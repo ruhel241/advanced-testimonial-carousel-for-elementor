@@ -1,0 +1,159 @@
+.atc-testimonial {
+  background: #ffff;
+  cursor: grab;
+}
+.atc-testimonial-slider-default {
+  .atc-slider {
+    height: 300px;
+    padding: 50px;
+  }
+  // .author-img {
+  //   flex: 1.8;
+  // }
+
+  .author-img img {
+    padding: 20px;
+    width:300px; 
+    height:300px;
+    object-fit: cover;
+  }
+
+  .author-name {
+    margin: 0;
+  }
+  .description {
+    flex: 4.6;
+    margin-right: 20px;
+  }
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .swiper-pagination-bullet {
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    font-size: 12px;
+    color: #000;
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.2);
+  }
+  .swiper-pagination-bullet-active {
+    color: #fff;
+    background: #007aff;
+  }
+}
+
+.atc-testimonial-slider-top {
+  height: 530px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+
+  .author-img img {
+    padding: 20px;
+    width:300px; 
+    height:300px;
+    object-fit: cover;
+  }
+
+  .description {
+    text-align: center;
+    padding-left: 50px;
+    padding-right: 50px;
+
+    .content{
+      margin-bottom: 20px;
+    }
+    .author-name {
+      margin-bottom: 2px;
+    }
+
+  }
+
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .swiper-pagination-bullets {
+    // bottom: -8px;
+  }
+  .swiper-pagination-bullet {
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    font-size: 12px;
+    color: #000;
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.2);
+  }
+  .swiper-pagination-bullet-active {
+    color: #fff;
+    background: #007aff;
+  }
+
+}
+
+.atc-testimonial-slider-bottom {
+  height: 530px;
+  margin-top: 50px;
+  margin-bottom: 30px;
+
+  .author-img img {
+    padding: 20px;
+    width:300px; 
+    height:300px;
+    object-fit: cover;
+  }
+
+  .description {
+    text-align: center;
+    padding-left: 50px;
+    padding-right: 50px;
+
+    .content{
+      margin-bottom: 20px;
+    }
+    .author-name {
+      margin-bottom: 2px;
+    }
+
+  }
+  .company {
+    margin-bottom: 0px;
+  }
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
+  .swiper-pagination-bullets {
+    // bottom: -8px;
+  }
+  .swiper-pagination-bullet {
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    font-size: 12px;
+    color: #000;
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.2);
+  }
+  .swiper-pagination-bullet-active {
+    color: #fff;
+    background: #007aff;
+  }
+
+}

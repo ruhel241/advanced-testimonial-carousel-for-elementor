@@ -1,0 +1,7 @@
+.idea
+node_modules
+svn/*
+dist/
+assets/*
+!assets/index.php
+package-lock.json
