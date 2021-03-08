@@ -2,10 +2,10 @@
 /**
  * Plugin Name: Advanced Testimonial Carousel
  * Description: Advanced Testimonial Carousel for elementor wordpress plugin
- * Plugin URI:  https://ruhel241/
+ * Plugin URI:  https://github.com/ruhel241/advanced-testimonial-carousel
  * Version:     1.0.0
  * Author:      Md.Ruhel Khan
- * Author URI:  https://ruhel241.com/
+ * Author URI:  https://github.com/ruhel241/
  * Text Domain: atc
  */
 
@@ -112,7 +112,6 @@ final class AdvancedTestimonialCarousel
 	public function i18n() {
 
 		load_plugin_textdomain( 'atc' );
-
 	}
 
 	/**
@@ -184,7 +183,7 @@ final class AdvancedTestimonialCarousel
 	 */
 	public function init() {
 	
-		$this->i18n();
+		$this->loadTextDomain();
 
 		// Add Plugin actions
 		add_action( 'elementor/widgets/widgets_registered', [ $this, 'init_widgets' ] );
@@ -197,7 +196,6 @@ final class AdvancedTestimonialCarousel
 		add_action('elementor/frontend/after_enqueue_scripts', function() {
 			wp_enqueue_script( 'atc-swiper-js', plugin_dir_url( __FILE__ ). 'assets/js/atc-testimonial.js', array('jquery'));
 		});
-
 	}
 
 	/**
@@ -219,6 +217,11 @@ final class AdvancedTestimonialCarousel
 
 	}
 
+	public function loadTextDomain()
+    {
+        load_plugin_textdomain('atc', false, basename(dirname(__FILE__)) . '/languages');
+	}
+	
 	
 	/**
 	 * Admin notice
