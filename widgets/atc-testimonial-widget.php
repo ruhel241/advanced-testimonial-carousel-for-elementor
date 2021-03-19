@@ -211,7 +211,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 				'label' => __( 'Background Color', 'atc' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .atc-testimonial' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .atc-testimonial-container' => 'background-color: {{VALUE}}',
 				],
 			]
         );
@@ -233,7 +233,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .atc-testimonial' => 'height: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .atc-testimonial-container' => 'height: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -244,7 +244,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
-					'{{WRAPPER}} .atc-testimonial .atc-slider' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .atc-testimonial-container .atc-slider' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
         );
@@ -256,7 +256,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
-					'{{WRAPPER}} .atc-testimonial .atc-slider' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .atc-testimonial-container .atc-slider' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -289,7 +289,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .atc-testimonial .author-img img' => 'width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .atc-testimonial-container .author-img img' => 'width: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -312,7 +312,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .atc-testimonial .author-img img' => 'height: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .atc-testimonial-container .author-img img' => 'height: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -324,7 +324,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
-					'{{WRAPPER}} .atc-testimonial .author-img img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .atc-testimonial-container .author-img img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -360,7 +360,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 				],
 				'toggle' => true,
                 'selectors' => [
-					'{{WRAPPER}} .atc-testimonial .content' => 'text-align: {{VALUE}}',
+					'{{WRAPPER}} .atc-testimonial-container .content' => 'text-align: {{VALUE}}',
 				]
 			]
 		);
@@ -370,7 +370,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 				'label' => __( 'Text Color', 'atc' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .atc-testimonial .content' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .atc-testimonial-container .content' => 'color: {{VALUE}}',
 				]
 			]
         );
@@ -381,7 +381,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 			[
 				'name' => 'content_typography',
 				'label' => __( 'Typography', 'plugin-domain' ),
-				'selector' => '{{WRAPPER}} .atc-testimonial .content',
+				'selector' => '{{WRAPPER}} .atc-testimonial-container .content',
 			]
         );
 
@@ -390,7 +390,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 			[
 				'name' => 'content_shadow',
 				'label' => __( 'Text Shadow', 'plugin-domain' ),
-				'selector' => '{{WRAPPER}} .atc-testimonial .content',
+				'selector' => '{{WRAPPER}} .atc-testimonial-container .content',
 			]
         );
 
@@ -401,7 +401,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
-					'{{WRAPPER}} .atc-testimonial .content' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .atc-testimonial-container .content' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
         );
@@ -413,7 +413,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
-					'{{WRAPPER}} .atc-testimonial .content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .atc-testimonial-container .content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
         );
@@ -449,7 +449,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 				],
 				'toggle' => true,
                 'selectors' => [
-					'{{WRAPPER}} .atc-testimonial .description .author-name' => 'text-align: {{VALUE}}',
+					'{{WRAPPER}} .atc-testimonial-container .description .author-name' => 'text-align: {{VALUE}}',
 				]
 			]
         );
@@ -460,7 +460,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 				'label' => __( 'Text Color', 'atc' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .atc-testimonial .description .author-name' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .atc-testimonial-container .description .author-name' => 'color: {{VALUE}}',
 				],
 			]
         );
@@ -470,7 +470,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 			[
 				'name' => 'author_name_typography',
 				'label' => __( 'Typography', 'plugin-domain' ),
-				'selector' => '{{WRAPPER}} .atc-testimonial .description .author-name',
+				'selector' => '{{WRAPPER}} .atc-testimonial-container .description .author-name',
 			]
         );
 
@@ -479,7 +479,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 			[
 				'name' => 'author_name_shadow',
 				'label' => __( 'Text Shadow', 'plugin-domain' ),
-				'selector' => '{{WRAPPER}} .atc-testimonial .description .author-name',
+				'selector' => '{{WRAPPER}} .atc-testimonial-container .description .author-name',
 			]
         );
 
@@ -490,7 +490,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
-					'{{WRAPPER}} .atc-testimonial .description .author-name' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .atc-testimonial-container .description .author-name' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
         );
@@ -502,7 +502,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
-					'{{WRAPPER}} .atc-testimonial .description .author-name' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .atc-testimonial-container .description .author-name' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
         );
@@ -538,7 +538,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 				],
 				'toggle' => true,
                 'selectors' => [
-					'{{WRAPPER}} .atc-testimonial .description .company' => 'text-align: {{VALUE}}',
+					'{{WRAPPER}} .atc-testimonial-container .description .company' => 'text-align: {{VALUE}}',
 				]
 			]
         );
@@ -549,7 +549,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 				'label' => __( 'Text Color', 'atc' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .atc-testimonial .description .company' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .atc-testimonial-container .description .company' => 'color: {{VALUE}}',
 				],
 			]
         );
@@ -559,7 +559,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 			[
 				'name' => 'author_company_typography',
 				'label' => __( 'Typography', 'plugin-domain' ),
-				'selector' => '{{WRAPPER}} .atc-testimonial .description .company',
+				'selector' => '{{WRAPPER}} .atc-testimonial-container .description .company',
 			]
         );
 
@@ -568,7 +568,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 			[
 				'name' => 'author_company_shadow',
 				'label' => __( 'Text Shadow', 'plugin-domain' ),
-				'selector' => '{{WRAPPER}} .atc-testimonial .description .company',
+				'selector' => '{{WRAPPER}} .atc-testimonial-container .description .company',
 			]
         );
 
@@ -579,7 +579,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
-					'{{WRAPPER}} .atc-testimonial .description .company' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .atc-testimonial-container .description .company' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
         );
@@ -591,7 +591,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
-					'{{WRAPPER}} .atc-testimonial .description .company' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .atc-testimonial-container .description .company' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -612,7 +612,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 				'label' => __( 'Icon Color', 'atc' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .atc-testimonial .swiper-pagination-bullet' => 'background: {{VALUE}}',
+					'{{WRAPPER}} .atc-testimonial-container .swiper-pagination-bullet' => 'background: {{VALUE}}',
 				],
 			]
         );
@@ -631,7 +631,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .atc-testimonial .swiper-pagination-bullet' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .atc-testimonial-container .swiper-pagination-bullet' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -658,15 +658,20 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
         
 	    $this->add_render_attribute( 
 			'atc_options', 
-			[
+			[   
+                'id'    => 'atc-testimonial-carousel-' . esc_attr( $this->get_id() ),
+                'class' => ['swiper-container atc-testimonial-container atc-testimonial-slider-'.$settings["atc_layout"]],
                 'data-loop' => $loop,
                 'data-autoplay' => $autoplay,
-                'data-slider-speed' => $settings['atc_testimonial_slide_speed']
+                'data-slider-speed' => $settings['atc_testimonial_slide_speed'],
+                'data-pagination' => '.swiper-pagination',
+                'data-button-next' => '.swiper-button-next',
+                'data-button-prev' => '.swiper-button-prev',
             ]
         );
         
         ?>
-        <div <?php echo $this->get_render_attribute_string( 'atc_options' ); ?> class="swiper-container atc-testimonial atc-testimonial-slider-<?php echo $settings['atc_layout']; ?>">
+        <div <?php echo $this->get_render_attribute_string( 'atc_options' ); ?>>
             <div class="swiper-wrapper">
                 <?php foreach (  $settings['atc_list'] as $item ) {
                     echo '<div class="swiper-slide atc-slider" style="text-align:left">
@@ -694,47 +699,4 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
         <?php
     }
 
-    protected function _content_template()
-    {
-        ?>
-        <# 
-            let loop = ( settings.atc_testimonial_loop === 'yes' ) ? 'true' : 'false';
-            let autoplay = ( settings.atc_testimonial_autoplay === 'yes' ) ? 'true' : 'false';
-            
-           
-            view.addRenderAttribute( 
-                'atc_options', 
-                {
-                    'data-loop': loop,
-                    'data-autoplay': autoplay,
-                    'data-slider-speed': settings.atc_testimonial_slide_speed
-                }
-            );
-        #>
-
-        <div {{{ view.getRenderAttributeString( 'atc_options' ) }}} class="swiper-container atc-testimonial atc-testimonial-slider-{{ settings.atc_layout }}">
-            <div class="swiper-wrapper">
-                <# _.each( settings.atc_list, function( item, index ) { #>
-                    <div class="swiper-slide atc-slider" style="text-align:left">
-                            <div class="author-img">
-                                <img src="{{ item.atc_image.url }}"/>
-                            </div>
-                            <div class="description"> 
-                                <p class="content">{{{ item.atc_content }}}</p>
-                                <h4 class="author-name">{{{ item.atc_name }}}</h4>
-                                <p class="company">{{{ item.atc_title }}}</p>
-                            </div>
-                        </div>
-                <# } ); #>
-            </div>
-              <#  if ( 'yes' === settings.atc_testimonial_nav ) { #>
-                <div class="swiper-button-next"></div> <div class="swiper-button-prev"></div>
-              <# } #>
-
-              <# if ( 'yes' === settings.atc_testimonial_dots ) { #>
-                   <div class="swiper-pagination"></div>
-              <# } #>
-        </div>
-        <?php
-    }
 } 
