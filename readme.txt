@@ -1,23 +1,20 @@
 === Advanced Testimonial Carousel ===
 Contributors: ruhel241
-Tags:  Elementor Testimonial Carousel, Elementor, Testimonial.
+Tags:  elementor, elementor testimonial carousel, testimonial, slider, elementor widget
 Requires at least: 4.5
 Requires PHP: 5.4 or greater
-Tested up to: 5.6.1
+Tested up to: 5.7
 Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-
 == Description ==
 
-Advanced Testimonial Carousel is a fully Responsive. You can add image, name, describes, title, added Unlimited slider. 
+Advanced Testimonial Carousel for Elementor. You can add image, name, describes, title, added Unlimited slider. 
 You can customize image, name, describes, title. Additional options etc.
-
 
 == Features ==  
 
-* Fully Responsive
 * 3 layouts (Slider)
 * Auto Play
 * Enable Loop
@@ -29,7 +26,6 @@ You can customize image, name, describes, title. Additional options etc.
 * Added Background color
 * Image Customize
 * Styling options
-
 
 == Installation ==
 

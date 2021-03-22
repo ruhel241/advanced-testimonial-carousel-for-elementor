@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Main Elementor Test Extension Class
+ * Main Advanced Testimonial Carousel Class
  *
  * The main class that initiates and runs the plugin.
  *
@@ -239,7 +239,7 @@ final class AdvancedTestimonialCarousel
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: Elementor */
 			esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', 'atc' ),
-			'<strong>' . esc_html__( 'Elementor Test Extension', 'atc' ) . '</strong>',
+			'<strong>' . esc_html__( 'Advanced Testimonial Carousel', 'atc' ) . '</strong>',
 			'<strong>' . esc_html__( 'Elementor', 'atc' ) . '</strong>'
 		);
 
@@ -263,7 +263,7 @@ final class AdvancedTestimonialCarousel
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: Elementor 3: Required Elementor version */
 			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'atc' ),
-			'<strong>' . esc_html__( 'Elementor Test Extension', 'atc' ) . '</strong>',
+			'<strong>' . esc_html__( 'Advanced Testimonial Carousel', 'atc' ) . '</strong>',
 			'<strong>' . esc_html__( 'Elementor', 'atc' ) . '</strong>',
 			 self::MINIMUM_ELEMENTOR_VERSION
 		);
@@ -288,7 +288,7 @@ final class AdvancedTestimonialCarousel
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: PHP 3: Required PHP version */
 			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'atc' ),
-			'<strong>' . esc_html__( 'Elementor Test Extension', 'atc' ) . '</strong>',
+			'<strong>' . esc_html__( 'Advanced Testimonial Carousel', 'atc' ) . '</strong>',
 			'<strong>' . esc_html__( 'PHP', 'atc' ) . '</strong>',
 			 self::MINIMUM_PHP_VERSION
 		);

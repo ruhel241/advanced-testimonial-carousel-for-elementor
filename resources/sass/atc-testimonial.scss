@@ -7,9 +7,6 @@
     height: 300px;
     padding: 50px;
   }
-  // .author-img {
-  //   flex: 1.8;
-  // }
 
   .author-img img {
     padding: 20px;
@@ -136,9 +133,6 @@
     justify-content: center;
     align-items: center;
   }
-  .swiper-pagination-bullets {
-    // bottom: -8px;
-  }
   .swiper-pagination-bullet {
     width: 20px;
     height: 20px;
@@ -154,4 +148,30 @@
     background: #007aff;
   }
 
+}
+
+@media only screen and (max-width: 900px) {
+  .atc-testimonial-slider-default { 
+    .author-img img {
+      width:200px; 
+      height:200px;
+    }
+    .swiper-slide {
+       align-items: initial;
+    }
+    .description {
+      .content {
+        font-size: 11px;
+        line-height: 1.9;
+        margin-top: 22px;
+        margin-bottom: 0;
+      }
+      .author-name{
+        font-size: 15px;
+      }
+      .company {
+        font-size: 15px;
+      }
+    }
+  } 
 }
