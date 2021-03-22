@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Advanced Testimonial Carousel
+ * Plugin Name: Advanced Testimonial Carousel for Elementor
  * Description: Advanced Testimonial Carousel for elementor wordpress plugin
  * Plugin URI:  https://github.com/ruhel241/advanced-testimonial-carousel
  * Version:     1.0.0

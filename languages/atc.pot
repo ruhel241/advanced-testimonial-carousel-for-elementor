@@ -1,9 +1,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Advanced Testimonial Carousel\n"
+"Project-Id-Version: Advanced Testimonial Carousel for Elementor\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-08 09:32+0000\n"
+"POT-Creation-Date: 2021-03-22 10:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -17,14 +17,15 @@ msgstr ""
 "X-Domain: atc"
 
 #. 1: Plugin name 2: Elementor
-#: advanced-testimonial-carousel.php:241
+#: advanced-testimonial-carousel-for-elementor.php:241
 #, php-format
 msgid "\"%1$s\" requires \"%2$s\" to be installed and activated."
 msgstr ""
 
 #. 1: Plugin name 2: Elementor 3: Required Elementor version
 #. 1: Plugin name 2: PHP 3: Required PHP version
-#: advanced-testimonial-carousel.php:265 advanced-testimonial-carousel.php:290
+#: advanced-testimonial-carousel-for-elementor.php:265
+#: advanced-testimonial-carousel-for-elementor.php:290
 #, php-format
 msgid "\"%1$s\" requires \"%2$s\" version %3$s or greater."
 msgstr ""
@@ -93,8 +94,14 @@ msgstr ""
 msgid "Additional"
 msgstr ""
 
-#. Name of the plugin
+#: advanced-testimonial-carousel-for-elementor.php:242
+#: advanced-testimonial-carousel-for-elementor.php:266
+#: advanced-testimonial-carousel-for-elementor.php:291
 msgid "Advanced Testimonial Carousel"
+msgstr ""
+
+#. Name of the plugin
+msgid "Advanced Testimonial Carousel for Elementor"
 msgstr ""
 
 #. Description of the plugin
@@ -161,13 +168,9 @@ msgstr ""
 msgid "Dots Icon"
 msgstr ""
 
-#: advanced-testimonial-carousel.php:243 advanced-testimonial-carousel.php:267
+#: advanced-testimonial-carousel-for-elementor.php:243
+#: advanced-testimonial-carousel-for-elementor.php:267
 msgid "Elementor"
-msgstr ""
-
-#: advanced-testimonial-carousel.php:242 advanced-testimonial-carousel.php:266
-#: advanced-testimonial-carousel.php:291
-msgid "Elementor Test Extension"
 msgstr ""
 
 #: widgets/atc-testimonial-widget.php:191
@@ -271,7 +274,7 @@ msgstr ""
 msgid "Padding"
 msgstr ""
 
-#: advanced-testimonial-carousel.php:292
+#: advanced-testimonial-carousel-for-elementor.php:292
 msgid "PHP"
 msgstr ""
 

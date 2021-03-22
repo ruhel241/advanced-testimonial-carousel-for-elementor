@@ -1,4 +1,4 @@
-=== Advanced Testimonial Carousel ===
+=== Advanced Testimonial Carousel for Elementor ===
 Contributors: ruhel241
 Tags:  elementor, elementor testimonial carousel, testimonial, slider, elementor widget
 Requires at least: 4.5
