@@ -43,7 +43,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
             'atc_content', [
                 'label' => __( 'Content', 'atc' ),
                 'type' => \Elementor\Controls_Manager::TEXTAREA,
-                'default' => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc blandit non nisl a maximus. Sed aliquam lectus ipsum, id imperdiet purus euismod et. Maecenas volutpat dictum purus, at malesuada tellus convallis et. Aliquam erat volutpat. Vestibulum felis ex, ultrices posuere facilisis eget, malesuada quis elit. Nulla ac eleifend odio' , 'atc' ),
+                'default' => __( 'Lorem ipsum dolor sit amet, tpat dictum purus, at malesuada tellus convallis et. Aliquam erat volutpat. Vestibulum felis ex, ultrices posuere facilisis eget, malesuada quis elit. Nulla ac eleifend odio' , 'atc' ),
                 'label_block' => true,
             ]
         );
@@ -85,15 +85,15 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
                   'fields' => $repeater->get_controls(),
                   'default' => [
                       [
-                          'atc_content' => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc blandit non nisl a maximus. Sed aliquam lectus ipsum, id imperdiet purus euismod et. Maecenas volutpat dictum purus, at malesuada tellus convallis et. Aliquam erat volutpat. Vestibulum felis ex, ultrices posuere facilisis eget, malesuada quis elit. Nulla ac eleifend odio', 'atc' ),
+                          'atc_content' => __( 'Lorem ipsum dolor sit amet, tpat dictum purus, at malesuada tellus convallis et. Aliquam erat volutpat. Vestibulum felis ex, ultrices posuere facilisis eget, malesuada quis elit. Nulla ac eleifend odio', 'atc' ),
                           'atc_name' => __( 'John Doe', 'atc' )
                       ],
                       [
-                          'atc_content' => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc blandit non nisl a maximus. Sed aliquam lectus ipsum, id imperdiet purus euismod et. Maecenas volutpat dictum purus, at malesuada tellus convallis et. Aliquam erat volutpat. Vestibulum felis ex, ultrices posuere facilisis eget, malesuada quis elit. Nulla ac eleifend odio', 'atc' ),
+                          'atc_content' => __( 'Lorem ipsum dolor sit amet, tpat dictum purus, at malesuada tellus convallis et. Aliquam erat volutpat. Vestibulum felis ex, ultrices posuere facilisis eget, malesuada quis elit. Nulla ac eleifend odio', 'atc' ),
                           'atc_name' => __( 'Michael Jackson', 'atc' )                
                       ],
                       [
-                        'atc_content' => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc blandit non nisl a maximus. Sed aliquam lectus ipsum, id imperdiet purus euismod et. Maecenas volutpat dictum purus, at malesuada tellus convallis et. Aliquam erat volutpat. Vestibulum felis ex, ultrices posuere facilisis eget, malesuada quis elit. Nulla ac eleifend odio', 'atc' ),
+                        'atc_content' => __( 'Lorem ipsum dolor sit amet, tpat dictum purus, at malesuada tellus convallis et. Aliquam erat volutpat. Vestibulum felis ex, ultrices posuere facilisis eget, malesuada quis elit. Nulla ac eleifend odio', 'atc' ),
                         'atc_name' => __( 'Jackson', 'atc' )                
                       ],
                   ],
