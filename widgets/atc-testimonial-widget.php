@@ -1,6 +1,15 @@
 <?php
 
-class ATCTestimonialWidget extends \Elementor\Widget_Base
+namespace ATC\Classes\Widgets;
+
+use \Elementor\Controls_Manager;
+use \Elementor\Group_Control_Typography;
+use \Elementor\Utils;
+use \Elementor\Widget_Base;
+use \Elementor\Group_Control_Text_Shadow;
+
+
+class ATCTestimonialWidget extends Widget_Base
 {
     public function get_name() 
     {
@@ -31,7 +40,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 			'atc_widget_content_section',
 			[
 				'label' => __( 'Testimonial Carousel', 'atc' ),
-				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+				'tab' => Controls_Manager::TAB_CONTENT,
 			]
         );
 
@@ -42,7 +51,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
         $repeater->add_control(
             'atc_content', [
                 'label' => __( 'Content', 'atc' ),
-                'type' => \Elementor\Controls_Manager::TEXTAREA,
+                'type' => Controls_Manager::TEXTAREA,
                 'default' => __( 'Lorem ipsum dolor sit amet, tpat dictum purus, at malesuada tellus convallis et. Aliquam erat volutpat. Vestibulum felis ex, ultrices posuere facilisis eget, malesuada quis elit. Nulla ac eleifend odio' , 'atc' ),
                 'label_block' => true,
             ]
@@ -51,9 +60,9 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
         $repeater->add_control(
             'atc_image', [
                 'label' => __( 'Choose Image', 'atc' ),
-                'type' => \Elementor\Controls_Manager::MEDIA,
+                'type' => Controls_Manager::MEDIA,
                 'default' => [
-					'url' => \Elementor\Utils::get_placeholder_image_src(),
+					'url' => Utils::get_placeholder_image_src(),
 				],
             ]
         );
@@ -61,7 +70,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
         $repeater->add_control(
             'atc_name', [
                 'label' => __( 'Name', 'atc' ),
-                'type' => \Elementor\Controls_Manager::TEXT,
+                'type' => Controls_Manager::TEXT,
                 'default' => __( 'John Doe' , 'atc' ),
                 'label_block' => true,
             ]
@@ -70,7 +79,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
         $repeater->add_control(
             'atc_title', [
                 'label' => __( 'Title', 'atc' ),
-                'type' => \Elementor\Controls_Manager::TEXT,
+                'type' => Controls_Manager::TEXT,
                 'default' => __( 'CEO' , 'atc' ),
                 'label_block' => true,
             ]
@@ -81,7 +90,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
               'atc_list',
               [
                   'label' => __( 'Repeater List', 'atc' ),
-                  'type' => \Elementor\Controls_Manager::REPEATER,
+                  'type' => Controls_Manager::REPEATER,
                   'fields' => $repeater->get_controls(),
                   'default' => [
                       [
@@ -105,7 +114,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
             $this->add_control(
                 'atc_hr1',
                 [
-                    'type' => \Elementor\Controls_Manager::DIVIDER,
+                    'type' => Controls_Manager::DIVIDER,
                 ]
 		    );
 
@@ -113,7 +122,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
                 'atc_layout',
                 [
                     'label' => __( 'Layout', 'atc' ),
-                    'type' => \Elementor\Controls_Manager::SELECT,
+                    'type' => Controls_Manager::SELECT,
                     'default' => 'default',
                     'options' => [
                         'default'  => __( 'Default', 'atc' ),
@@ -127,7 +136,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
                 'atc_testimonial_autoplay',
                 [
                     'label' => __( 'Autoplay', 'atc' ),
-                    'type' => \Elementor\Controls_Manager::SWITCHER,
+                    'type' => Controls_Manager::SWITCHER,
                     'label_on' => __( 'Show', 'atc' ),
                     'label_off' => __( 'Hide', 'atc' ),
                     'return_value' => 'yes',
@@ -139,7 +148,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
                 'atc_testimonial_slide_speed',
                 [
                     'label' => __( 'Slide Speed', 'atc' ),
-                    'type' =>  \Elementor\Controls_Manager::SELECT,
+                    'type' =>  Controls_Manager::SELECT,
                     'options' => [
                          '1000' => __( '1 Second', 'atc' ),
                          '2000' => __( '2 Seconds', 'atc' ),
@@ -165,7 +174,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
                 'atc_testimonial_loop',
                 [
                     'label' => __( 'Enable loop', 'atc' ),
-                    'type' => \Elementor\Controls_Manager::SWITCHER,
+                    'type' => Controls_Manager::SWITCHER,
                     'label_on' => __( 'Show', 'atc' ),
                     'label_off' => __( 'Hide', 'atc' ),
                     'return_value' => 'yes',
@@ -177,7 +186,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
                 'atc_testimonial_nav',
                 [
                     'label' => __( 'Enable Nav', 'atc' ),
-                    'type' => \Elementor\Controls_Manager::SWITCHER,
+                    'type' => Controls_Manager::SWITCHER,
                     'label_on' => __( 'Show', 'atc' ),
                     'label_off' => __( 'Hide', 'atc' ),
                     'return_value' => 'yes',
@@ -189,7 +198,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
                 'atc_testimonial_dots',
                 [
                     'label' => __( 'Enable Dots', 'atc' ),
-                    'type' => \Elementor\Controls_Manager::SWITCHER,
+                    'type' => Controls_Manager::SWITCHER,
                     'label_on' => __( 'Show', 'atc' ),
                     'label_off' => __( 'Hide', 'atc' ),
                     'return_value' => 'yes',
@@ -201,15 +210,15 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
         $this->start_controls_section(
 			'atc_widget_background_style_section',
 			[
-				'label' => __( 'Additional', 'atc' ),
-				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+				'label' => __( 'Additional Options', 'atc' ),
+				'tab' => Controls_Manager::TAB_CONTENT,
 			]
         );
         $this->add_control(
 			'atc_widget_background_color',
 			[
 				'label' => __( 'Background Color', 'atc' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .atc-testimonial-container' => 'background-color: {{VALUE}}',
 				],
@@ -219,7 +228,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
             'atc_testimonial_height',
             [
                 'label' => __( 'height', 'atc' ),
-                'type' => \Elementor\Controls_Manager::SLIDER,
+                'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px', '%' ],
                 'range' => [
                     'px' => [
@@ -241,7 +250,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 			'atc_testimonial_margin',
 			[
 				'label' => __( 'Margin', 'atc' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
 					'{{WRAPPER}} .atc-testimonial-container .atc-slider' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -253,7 +262,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 			'atc_testimonial_padding',
 			[
 				'label' => __( 'Padding', 'atc' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
 					'{{WRAPPER}} .atc-testimonial-container .atc-slider' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -267,7 +276,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 			'atc_widget_image_style_section',
 			[
 				'label' => __( 'Image', 'atc' ),
-				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+				'tab' => Controls_Manager::TAB_STYLE,
 			]
         );
 
@@ -275,7 +284,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
             'atc_image_width',
             [
                 'label' => __( 'width', 'atc' ),
-                'type' => \Elementor\Controls_Manager::SLIDER,
+                'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px', '%' ],
                 'range' => [
                     'px' => [
@@ -298,7 +307,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
             'atc_image_height',
             [
                 'label' => __( 'Height', 'atc' ),
-                'type' => \Elementor\Controls_Manager::SLIDER,
+                'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px', '%' ],
                 'range' => [
                     'px' => [
@@ -321,7 +330,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 			'atc_image_border_radius',
 			[
 				'label' => __( 'Border Radius', 'atc' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
 					'{{WRAPPER}} .atc-testimonial-container .author-img img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -336,14 +345,14 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 			'atc_widget_content_style_section',
 			[
 				'label' => __( 'Content', 'atc' ),
-				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+				'tab' => Controls_Manager::TAB_STYLE,
 			]
         );
         $this->add_control(
 			'atc_content_text_align',
 			[
 				'label' => __( 'Alignment', 'atc' ),
-				'type' => \Elementor\Controls_Manager::CHOOSE,
+				'type' => Controls_Manager::CHOOSE,
 				'options' => [
 					'left' => [
 						'title' => __( 'Left', 'atc' ),
@@ -368,7 +377,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 			'atc_widget_content_color',
 			[
 				'label' => __( 'Text Color', 'atc' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .atc-testimonial-container .content' => 'color: {{VALUE}}',
 				]
@@ -377,19 +386,19 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 
         
         $this->add_group_control(
-			\Elementor\Group_Control_Typography::get_type(),
+			Group_Control_Typography::get_type(),
 			[
 				'name' => 'content_typography',
-				'label' => __( 'Typography', 'plugin-domain' ),
+				'label' => __( 'Typography', 'atc' ),
 				'selector' => '{{WRAPPER}} .atc-testimonial-container .content',
 			]
         );
 
         $this->add_group_control(
-			\Elementor\Group_Control_Text_Shadow::get_type(),
+			Group_Control_Text_Shadow::get_type(),
 			[
 				'name' => 'content_shadow',
-				'label' => __( 'Text Shadow', 'plugin-domain' ),
+				'label' => __( 'Text Shadow', 'atc' ),
 				'selector' => '{{WRAPPER}} .atc-testimonial-container .content',
 			]
         );
@@ -398,7 +407,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 			'atc_image_content_margin',
 			[
 				'label' => __( 'Margin', 'atc' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
 					'{{WRAPPER}} .atc-testimonial-container .content' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -410,7 +419,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 			'atc_image_content_padding',
 			[
 				'label' => __( 'Padding', 'atc' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
 					'{{WRAPPER}} .atc-testimonial-container .content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -424,7 +433,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 			'atc_widget_author_name_style_section',
 			[
 				'label' => __( 'Author Name', 'atc' ),
-				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+				'tab' => Controls_Manager::TAB_STYLE,
 			]
         );
 
@@ -432,7 +441,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 			'atc_author_name_text_align',
 			[
 				'label' => __( 'Alignment', 'atc' ),
-				'type' => \Elementor\Controls_Manager::CHOOSE,
+				'type' => Controls_Manager::CHOOSE,
 				'options' => [
 					'left' => [
 						'title' => __( 'Left', 'atc' ),
@@ -458,7 +467,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 			'atc_widget_author_name_color',
 			[
 				'label' => __( 'Text Color', 'atc' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .atc-testimonial-container .description .author-name' => 'color: {{VALUE}}',
 				],
@@ -466,19 +475,19 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
         );
         
         $this->add_group_control(
-			\Elementor\Group_Control_Typography::get_type(),
+			Group_Control_Typography::get_type(),
 			[
 				'name' => 'author_name_typography',
-				'label' => __( 'Typography', 'plugin-domain' ),
+				'label' => __( 'Typography', 'atc' ),
 				'selector' => '{{WRAPPER}} .atc-testimonial-container .description .author-name',
 			]
         );
 
         $this->add_group_control(
-			\Elementor\Group_Control_Text_Shadow::get_type(),
+			Group_Control_Text_Shadow::get_type(),
 			[
 				'name' => 'author_name_shadow',
-				'label' => __( 'Text Shadow', 'plugin-domain' ),
+				'label' => __( 'Text Shadow', 'atc' ),
 				'selector' => '{{WRAPPER}} .atc-testimonial-container .description .author-name',
 			]
         );
@@ -487,7 +496,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 			'atc_image_author_name_margin',
 			[
 				'label' => __( 'Margin', 'atc' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
 					'{{WRAPPER}} .atc-testimonial-container .description .author-name' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -499,7 +508,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 			'atc_image_author_name_padding',
 			[
 				'label' => __( 'Padding', 'atc' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
 					'{{WRAPPER}} .atc-testimonial-container .description .author-name' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -513,7 +522,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 			'atc_widget_company_style_section',
 			[
 				'label' => __( 'Company Name', 'atc' ),
-				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+				'tab' => Controls_Manager::TAB_STYLE,
 			]
         );
 
@@ -521,7 +530,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 			'atc_company_text_align',
 			[
 				'label' => __( 'Alignment', 'atc' ),
-				'type' => \Elementor\Controls_Manager::CHOOSE,
+				'type' => Controls_Manager::CHOOSE,
 				'options' => [
 					'left' => [
 						'title' => __( 'Left', 'atc' ),
@@ -547,7 +556,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 			'atc_widget_company_color',
 			[
 				'label' => __( 'Text Color', 'atc' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .atc-testimonial-container .description .company' => 'color: {{VALUE}}',
 				],
@@ -555,19 +564,19 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
         );
         
         $this->add_group_control(
-			\Elementor\Group_Control_Typography::get_type(),
+			Group_Control_Typography::get_type(),
 			[
 				'name' => 'author_company_typography',
-				'label' => __( 'Typography', 'plugin-domain' ),
+				'label' => __( 'Typography', 'atc' ),
 				'selector' => '{{WRAPPER}} .atc-testimonial-container .description .company',
 			]
         );
 
         $this->add_group_control(
-			\Elementor\Group_Control_Text_Shadow::get_type(),
+			Group_Control_Text_Shadow::get_type(),
 			[
 				'name' => 'author_company_shadow',
-				'label' => __( 'Text Shadow', 'plugin-domain' ),
+				'label' => __( 'Text Shadow', 'atc' ),
 				'selector' => '{{WRAPPER}} .atc-testimonial-container .description .company',
 			]
         );
@@ -576,7 +585,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 			'atc_image_company_margin',
 			[
 				'label' => __( 'Margin', 'atc' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
 					'{{WRAPPER}} .atc-testimonial-container .description .company' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -588,7 +597,7 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 			'atc_image_company_padding',
 			[
 				'label' => __( 'Padding', 'atc' ),
-				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors' => [
 					'{{WRAPPER}} .atc-testimonial-container .description .company' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -599,10 +608,68 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
         $this->end_controls_section();
 
         $this->start_controls_section(
-			'atc_dots_style_section',
+			'atc_nav_section',
+			[
+				'label' => __( 'Nav Icon', 'atc' ),
+				'tab' => Controls_Manager::TAB_STYLE,
+			]
+        );
+
+        $this->add_control(
+			'atc_nav_color',
+			[
+				'label' => __( 'Icon Color', 'atc' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .atc-testimonial-container .swiper-button-prev:before, {{WRAPPER}} .atc-testimonial-container .swiper-button-next:before' => 'color: {{VALUE}}',
+				],
+			]
+        );
+
+        $this->add_control(
+			'atc_nav_size',
+			[
+				'label' => __( 'Icon Size', 'atc' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', 'em'],
+				'range' => [
+					'px' => [
+						'min' => 1,
+						'max' => 100,
+					],
+				],
+				'selectors' => [
+                    '{{WRAPPER}} .atc-testimonial-container .swiper-button-prev:before, {{WRAPPER}} .atc-testimonial-container .swiper-button-next:before' => 'font-size: {{SIZE}}{{UNIT}};',
+                ]
+			]
+		);
+
+        $this->add_control(
+			'atc_nav_position',
+			[
+				'label' => __( 'Icon Position', 'atc' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%'],
+				'range' => [
+					'px' => [
+						'min' => 0,
+                        'max' => 100,
+                        'step' => 1,
+					],
+				],
+				'selectors' => [
+                    '{{WRAPPER}} .atc-testimonial-container .swiper-button-prev:before, {{WRAPPER}} .atc-testimonial-container .swiper-button-next:before' => 'top: {{SIZE}}{{UNIT}};',
+                ]
+			]
+		);
+
+        $this->end_controls_section();
+
+        $this->start_controls_section(
+			'atc_dots_section',
 			[
 				'label' => __( 'Dots Icon', 'atc' ),
-				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+				'tab' => Controls_Manager::TAB_STYLE,
 			]
         );
 
@@ -610,9 +677,9 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
 			'atc_dots_color',
 			[
 				'label' => __( 'Icon Color', 'atc' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
+				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .atc-testimonial-container .swiper-pagination-bullet' => 'background: {{VALUE}}',
+					'{{WRAPPER}} .atc-testimonial-container .swiper-pagination-bullet-active' => 'background: {{VALUE}}',
 				],
 			]
         );
@@ -621,8 +688,8 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
             'atc_dots_size',
             [
                 'label' => __( 'Icon Size', 'atc' ),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => ['px',''],
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px','em'],
                 'range' => [
                     'px' => [
                         'min' => 0,
@@ -636,8 +703,26 @@ class ATCTestimonialWidget extends \Elementor\Widget_Base
             ]
         );
 
-        $this->end_controls_section();
+        $this->add_control(
+			'atc_dots_position',
+			[
+				'label' => __( 'Icon Position', 'atc' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%'],
+				'range' => [
+					'px' => [
+						'min' => 0,
+                        'max' => 100,
+                        'step' => 1,
+					],
+				],
+				'selectors' => [
+                    '{{WRAPPER}} .atc-testimonial-container .swiper-pagination-bullets' => 'bottom: {{SIZE}}{{UNIT}};',
+                ]
+			]
+		);
 
+        $this->end_controls_section();
     }
 
     protected function render()

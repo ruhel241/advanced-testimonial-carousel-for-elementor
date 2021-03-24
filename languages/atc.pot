@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Advanced Testimonial Carousel for Elementor\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-22 10:51+0000\n"
+"POT-Creation-Date: 2021-03-24 11:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -30,68 +30,68 @@ msgstr ""
 msgid "\"%1$s\" requires \"%2$s\" version %3$s or greater."
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:144
+#: widgets/atc-testimonial-widget.php:153
 msgid "1 Second"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:153
+#: widgets/atc-testimonial-widget.php:162
 msgid "10 Seconds"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:154
+#: widgets/atc-testimonial-widget.php:163
 msgid "11 Seconds"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:155
+#: widgets/atc-testimonial-widget.php:164
 msgid "12 Seconds"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:156
+#: widgets/atc-testimonial-widget.php:165
 msgid "13 Seconds"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:157
+#: widgets/atc-testimonial-widget.php:166
 msgid "14 Seconds"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:158
+#: widgets/atc-testimonial-widget.php:167
 msgid "15 Seconds"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:145
+#: widgets/atc-testimonial-widget.php:154
 msgid "2 Seconds"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:146
+#: widgets/atc-testimonial-widget.php:155
 msgid "3 Seconds"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:147
+#: widgets/atc-testimonial-widget.php:156
 msgid "4 Seconds"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:148
+#: widgets/atc-testimonial-widget.php:157
 msgid "5 Seconds"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:149
+#: widgets/atc-testimonial-widget.php:158
 msgid "6 Seconds"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:150
+#: widgets/atc-testimonial-widget.php:159
 msgid "7 Seconds"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:151
+#: widgets/atc-testimonial-widget.php:160
 msgid "8 Seconds"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:152
+#: widgets/atc-testimonial-widget.php:161
 msgid "9 Seconds"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:204
-msgid "Additional"
+#: widgets/atc-testimonial-widget.php:213
+msgid "Additional Options"
 msgstr ""
 
 #: advanced-testimonial-carousel-for-elementor.php:242
@@ -108,63 +108,63 @@ msgstr ""
 msgid "Advanced Testimonial Carousel for elementor wordpress plugin"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:345
-#: widgets/atc-testimonial-widget.php:434
-#: widgets/atc-testimonial-widget.php:523
+#: widgets/atc-testimonial-widget.php:354
+#: widgets/atc-testimonial-widget.php:443
+#: widgets/atc-testimonial-widget.php:532
 msgid "Alignment"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:12
+#: widgets/atc-testimonial-widget.php:21
 msgid "ATC Testimonial Carousel"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:426
+#: widgets/atc-testimonial-widget.php:435
 msgid "Author Name"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:129
+#: widgets/atc-testimonial-widget.php:138
 msgid "Autoplay"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:211
+#: widgets/atc-testimonial-widget.php:220
 msgid "Background Color"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:323
+#: widgets/atc-testimonial-widget.php:332
 msgid "Border Radius"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:121
+#: widgets/atc-testimonial-widget.php:130
 msgid "Bottom"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:353
-#: widgets/atc-testimonial-widget.php:442
-#: widgets/atc-testimonial-widget.php:531
+#: widgets/atc-testimonial-widget.php:362
+#: widgets/atc-testimonial-widget.php:451
+#: widgets/atc-testimonial-widget.php:540
 msgid "Center"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:74
+#: widgets/atc-testimonial-widget.php:83
 msgid "CEO"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:53
+#: widgets/atc-testimonial-widget.php:62
 msgid "Choose Image"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:515
+#: widgets/atc-testimonial-widget.php:524
 msgid "Company Name"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:44 widgets/atc-testimonial-widget.php:338
+#: widgets/atc-testimonial-widget.php:53 widgets/atc-testimonial-widget.php:347
 msgid "Content"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:119
+#: widgets/atc-testimonial-widget.php:128
 msgid "Default"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:604
+#: widgets/atc-testimonial-widget.php:671
 msgid "Dots Icon"
 msgstr ""
 
@@ -173,30 +173,30 @@ msgstr ""
 msgid "Elementor"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:191
+#: widgets/atc-testimonial-widget.php:200
 msgid "Enable Dots"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:167
+#: widgets/atc-testimonial-widget.php:176
 msgid "Enable loop"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:179
+#: widgets/atc-testimonial-widget.php:188
 msgid "Enable Nav"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:300
+#: widgets/atc-testimonial-widget.php:309
 msgid "Height"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:221
+#: widgets/atc-testimonial-widget.php:230
 msgid "height"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:132
-#: widgets/atc-testimonial-widget.php:170
-#: widgets/atc-testimonial-widget.php:182
-#: widgets/atc-testimonial-widget.php:194
+#: widgets/atc-testimonial-widget.php:141
+#: widgets/atc-testimonial-widget.php:179
+#: widgets/atc-testimonial-widget.php:191
+#: widgets/atc-testimonial-widget.php:203
 msgid "Hide"
 msgstr ""
 
@@ -208,50 +208,56 @@ msgstr ""
 msgid "https://github.com/ruhel241/advanced-testimonial-carousel"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:612
+#: widgets/atc-testimonial-widget.php:621
+#: widgets/atc-testimonial-widget.php:679
 msgid "Icon Color"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:623
+#: widgets/atc-testimonial-widget.php:650
+#: widgets/atc-testimonial-widget.php:709
+msgid "Icon Position"
+msgstr ""
+
+#: widgets/atc-testimonial-widget.php:632
+#: widgets/atc-testimonial-widget.php:690
 msgid "Icon Size"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:269
+#: widgets/atc-testimonial-widget.php:278
 msgid "Image"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:97
+#: widgets/atc-testimonial-widget.php:106
 msgid "Jackson"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:65 widgets/atc-testimonial-widget.php:89
+#: widgets/atc-testimonial-widget.php:74 widgets/atc-testimonial-widget.php:98
 msgid "John Doe"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:115
+#: widgets/atc-testimonial-widget.php:124
 msgid "Layout"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:349
-#: widgets/atc-testimonial-widget.php:438
-#: widgets/atc-testimonial-widget.php:527
+#: widgets/atc-testimonial-widget.php:358
+#: widgets/atc-testimonial-widget.php:447
+#: widgets/atc-testimonial-widget.php:536
 msgid "Left"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:46 widgets/atc-testimonial-widget.php:88
-#: widgets/atc-testimonial-widget.php:92 widgets/atc-testimonial-widget.php:96
+#: widgets/atc-testimonial-widget.php:55 widgets/atc-testimonial-widget.php:97
+#: widgets/atc-testimonial-widget.php:101
+#: widgets/atc-testimonial-widget.php:105
 msgid ""
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc blandit non "
-"nisl a maximus. Sed aliquam lectus ipsum, id imperdiet purus euismod et. "
-"Maecenas volutpat dictum purus, at malesuada tellus convallis et. Aliquam "
-"erat volutpat. Vestibulum felis ex, ultrices posuere facilisis eget, "
-"malesuada quis elit. Nulla ac eleifend odio"
+"Lorem ipsum dolor sit amet, tpat dictum purus, at malesuada tellus convallis "
+"et. Aliquam erat volutpat. Vestibulum felis ex, ultrices posuere facilisis "
+"eget, malesuada quis elit. Nulla ac eleifend odio"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:243
-#: widgets/atc-testimonial-widget.php:400
-#: widgets/atc-testimonial-widget.php:489
-#: widgets/atc-testimonial-widget.php:578
+#: widgets/atc-testimonial-widget.php:252
+#: widgets/atc-testimonial-widget.php:409
+#: widgets/atc-testimonial-widget.php:498
+#: widgets/atc-testimonial-widget.php:587
 msgid "Margin"
 msgstr ""
 
@@ -259,18 +265,22 @@ msgstr ""
 msgid "Md.Ruhel Khan"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:93
+#: widgets/atc-testimonial-widget.php:102
 msgid "Michael Jackson"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:63
+#: widgets/atc-testimonial-widget.php:72
 msgid "Name"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:255
-#: widgets/atc-testimonial-widget.php:412
-#: widgets/atc-testimonial-widget.php:501
-#: widgets/atc-testimonial-widget.php:590
+#: widgets/atc-testimonial-widget.php:613
+msgid "Nav Icon"
+msgstr ""
+
+#: widgets/atc-testimonial-widget.php:264
+#: widgets/atc-testimonial-widget.php:421
+#: widgets/atc-testimonial-widget.php:510
+#: widgets/atc-testimonial-widget.php:599
 msgid "Padding"
 msgstr ""
 
@@ -278,45 +288,57 @@ msgstr ""
 msgid "PHP"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:83
+#: widgets/atc-testimonial-widget.php:92
 msgid "Repeater List"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:357
-#: widgets/atc-testimonial-widget.php:446
-#: widgets/atc-testimonial-widget.php:535
+#: widgets/atc-testimonial-widget.php:366
+#: widgets/atc-testimonial-widget.php:455
+#: widgets/atc-testimonial-widget.php:544
 msgid "Right"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:131
-#: widgets/atc-testimonial-widget.php:169
-#: widgets/atc-testimonial-widget.php:181
-#: widgets/atc-testimonial-widget.php:193
+#: widgets/atc-testimonial-widget.php:140
+#: widgets/atc-testimonial-widget.php:178
+#: widgets/atc-testimonial-widget.php:190
+#: widgets/atc-testimonial-widget.php:202
 msgid "Show"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:141
+#: widgets/atc-testimonial-widget.php:150
 msgid "Slide Speed"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:33
+#: widgets/atc-testimonial-widget.php:42
 msgid "Testimonial Carousel"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:370
-#: widgets/atc-testimonial-widget.php:460
-#: widgets/atc-testimonial-widget.php:549
+#: widgets/atc-testimonial-widget.php:379
+#: widgets/atc-testimonial-widget.php:469
+#: widgets/atc-testimonial-widget.php:558
 msgid "Text Color"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:72
+#: widgets/atc-testimonial-widget.php:401
+#: widgets/atc-testimonial-widget.php:490
+#: widgets/atc-testimonial-widget.php:579
+msgid "Text Shadow"
+msgstr ""
+
+#: widgets/atc-testimonial-widget.php:81
 msgid "Title"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:120
+#: widgets/atc-testimonial-widget.php:129
 msgid "Top"
 msgstr ""
 
-#: widgets/atc-testimonial-widget.php:277
+#: widgets/atc-testimonial-widget.php:392
+#: widgets/atc-testimonial-widget.php:481
+#: widgets/atc-testimonial-widget.php:570
+msgid "Typography"
+msgstr ""
+
+#: widgets/atc-testimonial-widget.php:286
 msgid "width"
 msgstr ""

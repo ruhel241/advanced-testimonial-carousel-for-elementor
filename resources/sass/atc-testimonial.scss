@@ -1,7 +1,46 @@
-.atc-testimonial {
+.atc-testimonial-container {
   background: #ffff;
   cursor: grab;
+  position: relative;
+  
+  .swiper-button-prev, .swiper-button-next {
+    background-image: none;
+  }
+
+  .swiper-button-prev:focus, .swiper-button-next:focus {
+    outline: none;
+  }
+  
+  .swiper-button-prev:before {
+    content: "\f104";
+    font-family: "Font Awesome 5 Free";
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    color: #007aff;
+    font-size: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .swiper-button-next:before {
+    content: "\f105";
+    font-family: "Font Awesome 5 Free";
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    color: #007aff;
+    font-size: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
 }
+
 .atc-testimonial-slider-default {
   .atc-slider {
     height: 300px;
@@ -35,7 +74,7 @@
     text-align: center;
     line-height: 20px;
     font-size: 12px;
-    color: #000;
+    color: #007aff;
     opacity: 1;
     background: rgba(0, 0, 0, 0.2);
   }
@@ -60,14 +99,12 @@
     text-align: center;
     padding-left: 50px;
     padding-right: 50px;
-
     .content{
       margin-bottom: 20px;
     }
     .author-name {
       margin-bottom: 2px;
     }
-
   }
 
   .swiper-slide {
@@ -78,16 +115,14 @@
     justify-content: center;
     align-items: center;
   }
-  .swiper-pagination-bullets {
-    // bottom: -8px;
-  }
+
   .swiper-pagination-bullet {
     width: 20px;
     height: 20px;
     text-align: center;
     line-height: 20px;
     font-size: 12px;
-    color: #000;
+    color: #007aff;
     opacity: 1;
     background: rgba(0, 0, 0, 0.2);
   }
@@ -147,7 +182,6 @@
     color: #fff;
     background: #007aff;
   }
-
 }
 
 @media only screen and (max-width: 900px) {

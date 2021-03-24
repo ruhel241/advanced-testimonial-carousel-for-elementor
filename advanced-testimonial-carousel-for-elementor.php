@@ -213,7 +213,7 @@ final class AdvancedTestimonialCarousel
 		require_once( __DIR__ . '/widgets/atc-testimonial-widget.php' );
 
 		// Register widget
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new \ATCTestimonialWidget() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new ATC\Classes\Widgets\ATCTestimonialWidget() );
 
 	}
 
