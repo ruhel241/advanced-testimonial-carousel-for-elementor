@@ -18,7 +18,7 @@ class ATCTestimonialWidget extends Widget_Base
 
     public function get_title() 
     {
-        return __( 'ATC Testimonial Carousel', 'atc' );
+        return __( 'Advanced Testimonial Carousel', 'atc' );
         
     }
 
