@@ -24,7 +24,7 @@ class ATCTestimonialWidget extends Widget_Base
 
     public function get_icon() 
     {
-        return "far fa-comment-alt";
+        return "eicon-testimonial-carousel";
     }
 
     public function get_categories()
@@ -621,7 +621,7 @@ class ATCTestimonialWidget extends Widget_Base
 				'label' => __( 'Icon Color', 'atc' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .atc-testimonial-container .swiper-button-prev:before, {{WRAPPER}} .atc-testimonial-container .swiper-button-next:before' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .atc-testimonial-container .swiper-button-prev::after, {{WRAPPER}} .atc-testimonial-container .swiper-button-next::after' => 'color: {{VALUE}}',
 				],
 			]
         );
@@ -639,7 +639,7 @@ class ATCTestimonialWidget extends Widget_Base
 					],
 				],
 				'selectors' => [
-                    '{{WRAPPER}} .atc-testimonial-container .swiper-button-prev:before, {{WRAPPER}} .atc-testimonial-container .swiper-button-next:before' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .atc-testimonial-container .swiper-button-prev::after, {{WRAPPER}} .atc-testimonial-container .swiper-button-next::after' => 'font-size: {{SIZE}}{{UNIT}};',
                 ]
 			]
 		);
@@ -658,7 +658,7 @@ class ATCTestimonialWidget extends Widget_Base
 					],
 				],
 				'selectors' => [
-                    '{{WRAPPER}} .atc-testimonial-container .swiper-button-prev:before, {{WRAPPER}} .atc-testimonial-container .swiper-button-next:before' => 'top: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .atc-testimonial-container .swiper-button-prev::after, {{WRAPPER}} .atc-testimonial-container .swiper-button-next::after' => 'margin-top: {{SIZE}}{{UNIT}};',
                 ]
 			]
 		);

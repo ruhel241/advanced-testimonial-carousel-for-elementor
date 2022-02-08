@@ -1,3 +1,7 @@
+import Swiper from 'swiper/bundle';
+// import styles bundle
+import 'swiper/css/bundle';
+
 (function($) {
 
     const ATCTestimonialCarousel = function( $scope, $ ) {
@@ -18,14 +22,13 @@
           loop: $(sectionId).data('loop'),
           pagination: {
             el: $(sectionId).data('pagination'),
-            clickable: true,
+            clickable: true
           },
           navigation: {
             nextEl: $(sectionId).data('button-next'),
             prevEl: $(sectionId).data('button-prev')
           }
         });
-
       });
     }
    

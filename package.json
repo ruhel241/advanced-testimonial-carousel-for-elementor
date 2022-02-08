@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "laravel-mix": "^6.0.13",
-    "node-sass": "^5.0.0"
+    "node-sass": "^5.0.0",
+    "swiper": "^8.0.3"
   }
 }
