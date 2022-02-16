@@ -132,9 +132,26 @@ final class AdvancedTestimonialCarousel
 			add_action( 'elementor/init', [ $this, 'init' ] );
 		}
 
+		add_action( 'admin_notices', [$this, 'atc_admin_Notice'] );
+
 	}
 
-
+	public function atc_admin_Notice() {
+		//get the current screen
+		$screen = get_current_screen();
+		//Checks if settings updated 
+		if ( $screen->id == 'dashboard' ||  $screen->id == 'plugins' ) {
+			?>
+				<div class="notice notice-success is-dismissible">
+					<p>
+						<?php _e('Congratulations! you have installed "Advanced Testimonial Carousel for Elementor" plugin, Please rating this plugin.', 'atc'); ?>
+						<em><a href="https://wordpress.org/plugins/advanced-testimonial-carousel-for-elementor/" target="_blank">Rating</a></em>
+					</p>
+				</div>
+			<?php
+		}
+	}
+	
 	/**
 	 * Compatibility Checks
 	 *

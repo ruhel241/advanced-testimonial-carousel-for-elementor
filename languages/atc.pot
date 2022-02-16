@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Advanced Testimonial Carousel for Elementor\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-24 11:18+0000\n"
+"POT-Creation-Date: 2022-02-16 07:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -13,19 +13,19 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.5.0; wp-5.6.2\n"
+"X-Loco-Version: 2.5.5; wp-5.9\n"
 "X-Domain: atc"
 
 #. 1: Plugin name 2: Elementor
-#: advanced-testimonial-carousel-for-elementor.php:241
+#: advanced-testimonial-carousel-for-elementor.php:258
 #, php-format
 msgid "\"%1$s\" requires \"%2$s\" to be installed and activated."
 msgstr ""
 
 #. 1: Plugin name 2: Elementor 3: Required Elementor version
 #. 1: Plugin name 2: PHP 3: Required PHP version
-#: advanced-testimonial-carousel-for-elementor.php:265
-#: advanced-testimonial-carousel-for-elementor.php:290
+#: advanced-testimonial-carousel-for-elementor.php:282
+#: advanced-testimonial-carousel-for-elementor.php:307
 #, php-format
 msgid "\"%1$s\" requires \"%2$s\" version %3$s or greater."
 msgstr ""
@@ -94,9 +94,10 @@ msgstr ""
 msgid "Additional Options"
 msgstr ""
 
-#: advanced-testimonial-carousel-for-elementor.php:242
-#: advanced-testimonial-carousel-for-elementor.php:266
-#: advanced-testimonial-carousel-for-elementor.php:291
+#: advanced-testimonial-carousel-for-elementor.php:259
+#: advanced-testimonial-carousel-for-elementor.php:283
+#: advanced-testimonial-carousel-for-elementor.php:308
+#: widgets/atc-testimonial-widget.php:21
 msgid "Advanced Testimonial Carousel"
 msgstr ""
 
@@ -112,10 +113,6 @@ msgstr ""
 #: widgets/atc-testimonial-widget.php:443
 #: widgets/atc-testimonial-widget.php:532
 msgid "Alignment"
-msgstr ""
-
-#: widgets/atc-testimonial-widget.php:21
-msgid "ATC Testimonial Carousel"
 msgstr ""
 
 #: widgets/atc-testimonial-widget.php:435
@@ -156,6 +153,12 @@ msgstr ""
 msgid "Company Name"
 msgstr ""
 
+#: advanced-testimonial-carousel-for-elementor.php:147
+msgid ""
+"Congratulations! you have installed \"Advanced Testimonial Carousel for "
+"Elementor\" plugin, Please rating this plugin."
+msgstr ""
+
 #: widgets/atc-testimonial-widget.php:53 widgets/atc-testimonial-widget.php:347
 msgid "Content"
 msgstr ""
@@ -168,8 +171,8 @@ msgstr ""
 msgid "Dots Icon"
 msgstr ""
 
-#: advanced-testimonial-carousel-for-elementor.php:243
-#: advanced-testimonial-carousel-for-elementor.php:267
+#: advanced-testimonial-carousel-for-elementor.php:260
+#: advanced-testimonial-carousel-for-elementor.php:284
 msgid "Elementor"
 msgstr ""
 
@@ -284,7 +287,7 @@ msgstr ""
 msgid "Padding"
 msgstr ""
 
-#: advanced-testimonial-carousel-for-elementor.php:292
+#: advanced-testimonial-carousel-for-elementor.php:309
 msgid "PHP"
 msgstr ""
 
