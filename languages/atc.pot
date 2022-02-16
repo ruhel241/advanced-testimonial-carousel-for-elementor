@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Advanced Testimonial Carousel for Elementor\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-16 07:16+0000\n"
+"POT-Creation-Date: 2022-02-16 08:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -155,8 +155,8 @@ msgstr ""
 
 #: advanced-testimonial-carousel-for-elementor.php:147
 msgid ""
-"Congratulations! you have installed \"Advanced Testimonial Carousel for "
-"Elementor\" plugin, Please rating this plugin."
+"Congratulations! you have installed \"Advanced Testimonial Carousel\" for "
+"elementor plugin, Please rating this plugin."
 msgstr ""
 
 #: widgets/atc-testimonial-widget.php:53 widgets/atc-testimonial-widget.php:347
