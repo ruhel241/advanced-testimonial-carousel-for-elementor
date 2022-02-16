@@ -145,7 +145,7 @@ final class AdvancedTestimonialCarousel
 				<div class="notice notice-success is-dismissible">
 					<p>
 						<?php _e('Congratulations! you have installed "Advanced Testimonial Carousel for Elementor" plugin, Please rating this plugin.', 'atc'); ?>
-						<em><a href="https://wordpress.org/plugins/advanced-testimonial-carousel-for-elementor/" target="_blank">Rating</a></em>
+						<em><a href="https://wordpress.org/support/plugin/advanced-testimonial-carousel-for-elementor/reviews/#new-post" target="_blank">Rating</a></em>
 					</p>
 				</div>
 			<?php
