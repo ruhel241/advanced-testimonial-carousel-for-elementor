@@ -77,6 +77,7 @@ Yes you can style dots, dots size change.
 
 = 1.3.0 =
 * Added Sanitize field 
+* Added Image Margin & Padding Options 
 * CSS update
 
 = 1.2.0 =
