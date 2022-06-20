@@ -2,9 +2,9 @@
 Contributors: ruhel241
 Tags:  elementor, elementor testimonial carousel, testimonial, slider, elementor widget
 Requires at least: 4.5
-Tested up to: 5.9
+Tested up to: 6.0
 Requires PHP: 7.0 or higher
-Stable tag: 1.2.0
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -75,13 +75,17 @@ Yes you can style dots, dots size change.
 
 == Changelog ==
 
-= 1.0.0 =
-* Init First version
+= 1.3.0 =
+* Added Sanitize field 
+* CSS update
+
+= 1.2.0 =
+* Added Admin Notice
 
 = 1.1.0 =
 * Compatible WordPress 5.9 version
 
-= 1.2.0 =
-* Added Admin Notice
+= 1.0.0 =
+* Init First version
 
 == Upgrade Notice ==

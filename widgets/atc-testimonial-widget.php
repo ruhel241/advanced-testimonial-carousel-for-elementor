@@ -33,7 +33,7 @@ class ATCTestimonialWidget extends Widget_Base
     }
     
 
-    protected function _register_controls()
+    protected function register_controls()
     {
         
         $this->start_controls_section(
@@ -279,6 +279,32 @@ class ATCTestimonialWidget extends Widget_Base
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
         );
+        
+        $this->add_control(
+			'atc_image_text_align',
+			[
+				'label' => __( 'Alignment', 'atc' ),
+				'type' => Controls_Manager::CHOOSE,
+				'options' => [
+					'left' => [
+						'title' => __( 'Left', 'atc' ),
+						'icon' => 'eicon-text-align-left',
+					],
+					'center' => [
+						'title' => __( 'Center', 'atc' ),
+						'icon' => 'eicon-text-align-center',
+					],
+					'right' => [
+						'title' => __( 'Right', 'atc' ),
+						'icon' => 'eicon-text-align-right',
+					],
+				],
+				'toggle' => true,
+                'selectors' => [
+					'{{WRAPPER}} .atc-testimonial-container .author-img' => 'text-align: {{VALUE}}',
+				]
+			]
+		);
 
         $this->add_control(
             'atc_image_width',
@@ -338,6 +364,30 @@ class ATCTestimonialWidget extends Widget_Base
 			]
 		);
 
+        $this->add_responsive_control(
+			'atc_image_margin',
+			[
+				'label' => __( 'Margin', 'atc' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+				'selectors' => [
+					'{{WRAPPER}} .atc-testimonial-container .author-img' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+        );
+
+        $this->add_responsive_control(
+			'atc_image_padding',
+			[
+				'label' => __( 'Padding', 'atc' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+				'selectors' => [
+					'{{WRAPPER}} .atc-testimonial-container .author-img' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+        );
+
         $this->end_controls_section();
 
 
@@ -356,15 +406,15 @@ class ATCTestimonialWidget extends Widget_Base
 				'options' => [
 					'left' => [
 						'title' => __( 'Left', 'atc' ),
-						'icon' => 'fa fa-align-left',
+						'icon' => 'eicon-text-align-left',
 					],
 					'center' => [
 						'title' => __( 'Center', 'atc' ),
-						'icon' => 'fa fa-align-center',
+						'icon' => 'eicon-text-align-center',
 					],
 					'right' => [
 						'title' => __( 'Right', 'atc' ),
-						'icon' => 'fa fa-align-right',
+						'icon' => 'eicon-text-align-right',
 					],
 				],
 				'toggle' => true,
@@ -373,6 +423,7 @@ class ATCTestimonialWidget extends Widget_Base
 				]
 			]
 		);
+
         $this->add_control(
 			'atc_widget_content_color',
 			[
@@ -445,15 +496,15 @@ class ATCTestimonialWidget extends Widget_Base
 				'options' => [
 					'left' => [
 						'title' => __( 'Left', 'atc' ),
-						'icon' => 'fa fa-align-left',
+						'icon' => 'eicon-text-align-left',
 					],
 					'center' => [
 						'title' => __( 'Center', 'atc' ),
-						'icon' => 'fa fa-align-center',
+						'icon' => 'eicon-text-align-center',
 					],
 					'right' => [
 						'title' => __( 'Right', 'atc' ),
-						'icon' => 'fa fa-align-right',
+						'icon' => 'eicon-text-align-right',
 					],
 				],
 				'toggle' => true,
@@ -534,15 +585,15 @@ class ATCTestimonialWidget extends Widget_Base
 				'options' => [
 					'left' => [
 						'title' => __( 'Left', 'atc' ),
-						'icon' => 'fa fa-align-left',
+						'icon' => 'eicon-text-align-left',
 					],
 					'center' => [
 						'title' => __( 'Center', 'atc' ),
-						'icon' => 'fa fa-align-center',
+						'icon' => 'eicon-text-align-center',
 					],
 					'right' => [
 						'title' => __( 'Right', 'atc' ),
-						'icon' => 'fa fa-align-right',
+						'icon' => 'eicon-text-align-right',
 					],
 				],
 				'toggle' => true,
@@ -744,7 +795,7 @@ class ATCTestimonialWidget extends Widget_Base
 	    $this->add_render_attribute( 
 			'atc_options', 
 			[   
-                'id'    => 'atc-testimonial-carousel-' . esc_attr( $this->get_id() ),
+                'id'    => 'atc-testimonial-carousel-' . intval( $this->get_id() ),
                 'class' => ['swiper-container atc-testimonial-container atc-testimonial-slider-'.$settings["atc_layout"]],
                 'data-loop' => $loop,
                 'data-autoplay' => $autoplay,
@@ -761,12 +812,12 @@ class ATCTestimonialWidget extends Widget_Base
                 <?php foreach (  $settings['atc_list'] as $item ) {
                     echo '<div class="swiper-slide atc-slider" style="text-align:left">
                             <div class="author-img">
-                                <img src="'.$item['atc_image']['url'].'"/>
+                                <img src="'. esc_url($item['atc_image']['url']).'"/>
                             </div>
                             <div class="description"> 
-                                <p class="content">'. $item['atc_content'] .'</p>
-                                <h4 class="author-name">'. $item['atc_name'] .'</h4>
-                                <p class="company">'. $item['atc_title'] .'</p>
+                                <p class="content">'. esc_html($item['atc_content']) .'</p>
+                                <h4 class="author-name">'. esc_html($item['atc_name']) .'</h4>
+                                <p class="company">'. esc_html($item['atc_title']) .'</p>
                             </div>
                         </div>';
                     }
@@ -774,14 +825,24 @@ class ATCTestimonialWidget extends Widget_Base
             </div>
             <?php 
                 if ( 'yes' === $settings['atc_testimonial_nav'] ) {
-                    echo '<div class="swiper-button-next"></div> <div class="swiper-button-prev"></div>';
+                    echo wp_kses_post('<div class="swiper-button-next"></div> <div class="swiper-button-prev"></div>');
                 }
                 if ( 'yes' === $settings['atc_testimonial_dots'] ) {
-                    echo '<div class="swiper-pagination"></div>';
+                    echo wp_kses_post('<div class="swiper-pagination"></div>');
                 }
             ?>
         </div>
         <?php
     }
+
+    /**
+	 * Render element output in the editor.
+	 *
+	 * Used to generate the live preview, using a Backbone JavaScript template.
+	 *
+	 * @since 2.9.0
+	 * @access protected
+	 */
+	protected function content_template() {}
 
 } 

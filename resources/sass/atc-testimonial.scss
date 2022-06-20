@@ -10,63 +10,34 @@
   .swiper-button-prev:focus, .swiper-button-next:focus {
     outline: none;
   }
-  
-  // .swiper-button-prev:before {
-  //   content: "\f104";
-  //   font-family: "Font Awesome 5 Free";
-  //   font-style: normal;
-  //   font-weight: normal;
-  //   text-decoration: inherit;
-  //   color: #007aff;
-  //   font-size: 50px;
-  //   position: absolute;
-  //   top: 50%;
-  //   left: 50%;
-  //   transform: translate(-50%, -50%);
-  // }
-
-  // .swiper-button-next:before {
-  //   content: "\f105";
-  //   font-family: "Font Awesome 5 Free";
-  //   font-style: normal;
-  //   font-weight: normal;
-  //   text-decoration: inherit;
-  //   color: #007aff;
-  //   font-size: 50px;
-  //   position: absolute;
-  //   top: 50%;
-  //   left: 50%;
-  //   transform: translate(-50%, -50%);
-  // }
-
 }
 
 .atc-testimonial-slider-default {
-  .atc-slider {
-    height: 300px;
-    padding: 50px;
+  &.swiper-autoheight {
+    height: 375px;
   }
-
-  .author-img img {
-    padding: 20px;
-    width:300px; 
-    height:300px;
-    object-fit: cover;
+  .swiper-slide {
+    font-size: 18px;
+    display: flex;
+    padding-left: 75px;
+    padding-right: 75px;
+    margin-top: 30px;
   }
-
+  .author-img {
+    img {
+      // padding: 20px;
+      width:300px; 
+      height:300px;
+      object-fit: cover;
+    }
+  
+  } 
   .author-name {
     margin: 0;
   }
   .description {
     flex: 4.6;
-    margin-right: 20px;
-  }
-  .swiper-slide {
-    text-align: center;
-    font-size: 18px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding-left: 30px;
   }
   .swiper-pagination-bullet {
     width: 20px;
@@ -85,20 +56,29 @@
 }
 
 .atc-testimonial-slider-top {
-  height: 525px;
-  padding-top: 20px;
-
-  .author-img img {
-    padding: 20px;
-    width:300px; 
-    height:300px;
-    object-fit: cover;
+  margin-top: 20px;
+  &.swiper-autoheight {
+    height: 550px;
   }
-
+  .swiper-slide {
+    font-size: 18px;
+    padding-left: 80px;
+    padding-right: 80px;
+    display: flex;
+    flex-direction: column;
+  }
+  .author-img {
+    text-align: center;
+    img {
+      width:300px; 
+      height:300px;
+      object-fit: cover;
+    }
+  }
   .description {
     text-align: center;
-    padding-left: 50px;
-    padding-right: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     .content{
       margin-bottom: 20px;
     }
@@ -106,16 +86,6 @@
       margin-bottom: 2px;
     }
   }
-
-  .swiper-slide {
-    text-align: center;
-    font-size: 18px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
   .swiper-pagination-bullet {
     width: 20px;
     height: 20px;
@@ -130,26 +100,37 @@
     color: #fff;
     background: #007aff;
   }
-
 }
 
 .atc-testimonial-slider-bottom {
-  height: 560px;
-  padding-top: 50px;
-
-  .author-img img {
-    padding: 20px;
-    width:300px; 
-    height:300px;
-    object-fit: cover;
+  margin-top: 50px;
+  &.swiper-autoheight {
+    height: 550px;
   }
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    // align-items: center;
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+
+  .author-img {
+    text-align: center;
+    img {
+      margin-top: 20px;
+      width:300px; 
+      height:300px;
+      object-fit: cover;
+    }
+  } 
 
   .description {
     text-align: center;
-    padding-left: 50px;
-    padding-right: 50px;
-
-    .content{
+    .content {
       margin-bottom: 20px;
     }
     .author-name {
@@ -160,14 +141,7 @@
   .company {
     margin-bottom: 0px;
   }
-  .swiper-slide {
-    text-align: center;
-    font-size: 18px;
-    display: flex;
-    flex-direction: column-reverse;
-    justify-content: center;
-    align-items: center;
-  }
+  
   .swiper-pagination-bullet {
     width: 20px;
     height: 20px;
@@ -186,19 +160,22 @@
 
 @media only screen and (max-width: 900px) {
   .atc-testimonial-slider-default { 
-    .author-img img {
-      width:200px; 
-      height:200px;
+    &.swiper-autoheight {
+      height: 618px;
     }
     .swiper-slide {
-       align-items: initial;
+      padding: 0;
+      flex-direction: column;
+    }
+
+    .author-img {
+      text-align: center;
     }
     .description {
+      text-align: center;
+      padding: 0;
       .content {
-        font-size: 11px;
-        line-height: 1.9;
         margin-top: 22px;
-        margin-bottom: 0;
       }
       .author-name{
         font-size: 15px;
@@ -208,4 +185,14 @@
       }
     }
   } 
+  .atc-testimonial-slider-top { 
+    &.swiper-autoheight {
+      height: 618px;
+    }
+  }
+  .atc-testimonial-slider-bottom { 
+    &.swiper-autoheight {
+      height: 630px;
+    }
+  }
 }
