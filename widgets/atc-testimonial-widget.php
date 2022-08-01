@@ -812,7 +812,7 @@ class ATCTestimonialWidget extends Widget_Base
                 <?php foreach (  $settings['atc_list'] as $item ) {
                     echo '<div class="swiper-slide atc-slider" style="text-align:left">
                             <div class="author-img">
-                                <img src="'. esc_url($item['atc_image']['url']).'"/>
+                                <img src="'. esc_url($item['atc_image']['url']).'" alt="'.esc_html($item['atc_name']).'"/>
                             </div>
                             <div class="description"> 
                                 <p class="content">'. esc_html($item['atc_content']) .'</p>
