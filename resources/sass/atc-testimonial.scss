@@ -1,37 +1,97 @@
 .atc-testimonial-container {
-  background: #ffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: grab;
   position: relative;
-  
+  .author-name {
+    margin: 0px;
+  }
+  .author-img {
+    display: flex;
+    justify-content: center;
+    img {
+      width: 200px;
+      height: 150px;
+      object-fit: cover;
+    }
+  }
+  .company {
+    margin: 0;
+  }
   .swiper-button-prev, .swiper-button-next {
     background-image: none;
   }
-
   .swiper-button-prev:focus, .swiper-button-next:focus {
     outline: none;
   }
+  .elementor-star-rating {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
 }
 
+/**
+  Rating Alignment
+*/
+.atc-star-rating--align-right {
+  .elementor-star-rating {
+    text-align: right;
+    justify-content: flex-end !important;
+  }
+}
+.atc-star-rating--align-left {
+  .elementor-star-rating {
+    text-align: left;
+    justify-content: flex-start !important;
+  }
+}
+.atc-star-rating--align-center {
+  .elementor-star-rating {
+    text-align: center;
+    justify-content: center !important;
+  }
+}
+
+/**
+  Image Alignment
+*/
+.atc-image-align-right {
+  text-align: right;
+  justify-content: flex-end !important;
+}
+.atc-image-align-left {
+    text-align: left;
+    justify-content: flex-start !important;
+}
+.atc-image-align-center {
+  text-align: center;
+  justify-content: center !important;
+}
+
+/**
+  Dafault layout
+*/
 .atc-testimonial-slider-default {
   &.swiper-autoheight {
-    height: 375px;
+    height: 370px;
   }
   .swiper-slide {
     font-size: 18px;
     display: flex;
     padding-left: 75px;
     padding-right: 75px;
-    margin-top: 30px;
+    // margin-top: 30px;
   }
-  .author-img {
-    img {
-      // padding: 20px;
-      width:300px; 
-      height:300px;
-      object-fit: cover;
-    }
-  
-  } 
+  // .author-img {
+  //   img {
+  //     // padding: 20px;
+  //     width:300px; 
+  //     height:300px;
+  //     object-fit: cover;
+  //   }
+  // } 
   .author-name {
     margin: 0;
   }
@@ -55,10 +115,13 @@
   }
 }
 
+/**
+  Top layout
+*/
 .atc-testimonial-slider-top {
-  margin-top: 20px;
+  // margin-top: 20px;
   &.swiper-autoheight {
-    height: 550px;
+    height: 440px;
   }
   .swiper-slide {
     font-size: 18px;
@@ -66,14 +129,6 @@
     padding-right: 80px;
     display: flex;
     flex-direction: column;
-  }
-  .author-img {
-    text-align: center;
-    img {
-      width:300px; 
-      height:300px;
-      object-fit: cover;
-    }
   }
   .description {
     text-align: center;
@@ -84,6 +139,9 @@
     }
     .author-name {
       margin-bottom: 2px;
+    }
+    .elementor-star-rating {
+      justify-content: center;
     }
   }
   .swiper-pagination-bullet {
@@ -102,10 +160,13 @@
   }
 }
 
+/**
+  Bottom layout
+*/
 .atc-testimonial-slider-bottom {
-  margin-top: 50px;
+  // margin-top: 50px;
   &.swiper-autoheight {
-    height: 550px;
+    height: 520px;
   }
   .swiper-slide {
     text-align: center;
@@ -113,33 +174,24 @@
     display: flex;
     flex-direction: column-reverse;
     justify-content: center;
-    // align-items: center;
     padding-left: 80px;
     padding-right: 80px;
   }
-
-  .author-img {
-    text-align: center;
-    img {
-      margin-top: 20px;
-      width:300px; 
-      height:300px;
-      object-fit: cover;
-    }
-  } 
-
   .description {
     text-align: center;
     .content {
+      margin-top: 0px;
       margin-bottom: 20px;
     }
     .author-name {
       margin-bottom: 2px;
     }
-
-  }
-  .company {
-    margin-bottom: 0px;
+    .company {
+      margin-bottom: 0px;
+    }
+    .elementor-star-rating {
+      justify-content: center;
+    }
   }
   
   .swiper-pagination-bullet {
@@ -159,6 +211,9 @@
 }
 
 @media only screen and (max-width: 900px) {
+/**
+  Dafault layout
+*/
   .atc-testimonial-slider-default { 
     &.swiper-autoheight {
       height: 618px;
@@ -166,10 +221,6 @@
     .swiper-slide {
       padding: 0;
       flex-direction: column;
-    }
-
-    .author-img {
-      text-align: center;
     }
     .description {
       text-align: center;
@@ -185,11 +236,17 @@
       }
     }
   } 
+/**
+  Top layout
+*/
   .atc-testimonial-slider-top { 
     &.swiper-autoheight {
       height: 618px;
     }
   }
+/**
+  Bottom layout
+*/
   .atc-testimonial-slider-bottom { 
     &.swiper-autoheight {
       height: 630px;
