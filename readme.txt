@@ -72,11 +72,23 @@ Yes you can style dots, dots size change.
 6. Large Image Round with Elementor
 7. Small Image Round with Elementor
 8. Default Background color with radius
+9. Layout Image Bottom with Gradient color (Pro)
+10.Layout Image Default with Gradient color (Pro)
+11.Gradient color & Box Shadaw (Pro)
+12.Box Shadaw & Rating. (Pro)
+
 
 == Changelog ==
 
 = 2.0.0 =
-* Added New Pro Features
+* Added New Pro Features.
+* Added Rating Pro Features.
+* Added hide display image, author name, comapany name.
+* Image Border & Box Shadaw Pro Features.
+* Testimonial Border & Box Shadaw Pro Features.
+* Testimonial Background Totally pro Features.
+* Added Arrow icon position set.
+* Added Rating Styling options.
 
 = 1.4.0 =
 * Fix Image Alt tag
