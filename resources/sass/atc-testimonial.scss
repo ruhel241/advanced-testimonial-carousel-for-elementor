@@ -7,6 +7,9 @@
   .author-name {
     margin: 0px;
   }
+  .content {
+    margin-top: 0px;
+  }
   .author-img {
     display: flex;
     justify-content: center;
@@ -227,6 +230,8 @@
       padding: 0;
       .content {
         margin-top: 22px;
+        margin-left: 50px;
+        margin-right: 50px;
       }
       .author-name{
         font-size: 15px;
@@ -252,4 +257,10 @@
       height: 630px;
     }
   }
+  //.atc-star-rating--align-center {
+    .elementor-star-rating {
+      text-align: center;
+      justify-content: center !important;
+    }
+  //}
 }

@@ -930,6 +930,7 @@ class ATCTestimonialWidget extends Widget_Base
 
         if ( $settings['atc_list'] ) {
             echo $this->html($settings);
+            wp_enqueue_style( 'atc-elementor-frontend', ATC_PLUGIN_URL. 'assets/css/atc-frontend.min.css');
         }
     }
 
