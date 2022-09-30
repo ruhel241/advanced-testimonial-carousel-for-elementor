@@ -269,7 +269,6 @@ final class AdvancedTestimonialCarousel
 			/* translators: 1: Plugin name 2: Elementor */
 			esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', 'advanced-testimonial-carousel-for-elementor' ),
 			'<strong>' . esc_html__( 'Advanced Testimonial Carousel', 'advanced-testimonial-carousel-for-elementor' ) . '</strong>',
-			'<strong>' . esc_html__( 'Elementor', 'advanced-testimonial-carousel-for-elementor' ) . '</strong>'
 		);
 
 		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
@@ -293,7 +292,6 @@ final class AdvancedTestimonialCarousel
 			/* translators: 1: Plugin name 2: Elementor 3: Required Elementor version */
 			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'advanced-testimonial-carousel-for-elementor' ),
 			'<strong>' . esc_html__( 'Advanced Testimonial Carousel', 'advanced-testimonial-carousel-for-elementor' ) . '</strong>',
-			'<strong>' . esc_html__( 'Elementor', 'advanced-testimonial-carousel-for-elementor' ) . '</strong>',
 			 self::MINIMUM_ELEMENTOR_VERSION
 		);
 

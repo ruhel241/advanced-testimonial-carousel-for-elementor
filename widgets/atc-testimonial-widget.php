@@ -7,7 +7,7 @@ use \Elementor\Widget_Base;
 use \Elementor\Controls_Manager;
 use \Elementor\Group_Control_Typography;
 use \Elementor\Group_Control_Text_Shadow;
-
+use \Elementor\Core\Kits\Documents\Tabs\Global_Colors;
 use ATCPRO\Services\ATCWidgetPro;
 
 class ATCTestimonialWidget extends Widget_Base
@@ -192,7 +192,8 @@ class ATCTestimonialWidget extends Widget_Base
                     'options' => [
                         'default'  => __( 'Default', 'advanced-testimonial-carousel-for-elementor' ),
                         'top' => __( 'Top', 'advanced-testimonial-carousel-for-elementor' ),
-                        'bottom' => __( 'Bottom', 'advanced-testimonial-carousel-for-elementor' )
+                        'bottom' => __( 'Bottom', 'advanced-testimonial-carousel-for-elementor' ),
+                        'template-4' => __( 'Template 4', 'advanced-testimonial-carousel-for-elementor' )
                     ],
                 ]
             );
@@ -226,11 +227,11 @@ class ATCTestimonialWidget extends Widget_Base
                     'atc_important_notice_additional_options',
                     [
                         'type' => Controls_Manager::RAW_HTML,
-                        'raw' => $this->get_pro_notice( [
+                        'raw' => $this->getProNotice( [
                             'title' => $proNotice['title'],
                             'message' => $proNotice['message'],
                             'link' => $proNotice['link'],
-                            'image-link' => 'additional-options.png'
+                            'image-link' => 'additional-options.jpg'
                         ] ),
                     ]
                 );
@@ -251,7 +252,7 @@ class ATCTestimonialWidget extends Widget_Base
                     'atc_important_notice_rating_options',
                     [
                         'type' => Controls_Manager::RAW_HTML,
-                        'raw' => $this->get_pro_notice( [
+                        'raw' => $this->getProNotice( [
                             'title' => $proNotice['title'],
                             'message' => $proNotice['message'],
                             'link' => $proNotice['link'],
@@ -261,6 +262,33 @@ class ATCTestimonialWidget extends Widget_Base
                 );
             }
         $this->end_controls_section();
+
+        $this->start_controls_section(
+			'atc_quotation_icon_style_section',
+			[
+				'label' => __( 'Quotation Icon', 'advanced-testimonial-carousel-for-elementor' ),
+				'tab' => Controls_Manager::TAB_CONTENT,
+			]
+        );
+
+            if (defined('ATCPRO')) {
+                (new ATCWidgetPro)->quotationIconOptions($this);
+            } else {
+                $this->add_control(
+                    'atc_notice_quotation_icon_options',
+                    [
+                        'type' => Controls_Manager::RAW_HTML,
+                        'raw' => $this->getProNotice( [
+                            'title' => $proNotice['title'],
+                            'message' => $proNotice['message'],
+                            'link' => $proNotice['link'],
+                            'image-link' => 'quotation-icon-options.jpg'
+                        ] ),
+                    ]
+                );
+            }
+        $this->end_controls_section();
+
 
         $this->start_controls_section(
 			'atc_testimonial_carousel_style',
@@ -322,7 +350,7 @@ class ATCTestimonialWidget extends Widget_Base
                     'atc_notice_border_box_style',
                     [
                         'type' => Controls_Manager::RAW_HTML,
-                        'raw' => $this->get_pro_notice( [
+                        'raw' => $this->getProNotice( [
                             'title' => $proNotice['title'],
                             'message' => $proNotice['message'],
                             'link' => $proNotice['link'],
@@ -347,7 +375,7 @@ class ATCTestimonialWidget extends Widget_Base
                     'atc_important_notice_bg_gradien_style',
                     [
                         'type' => Controls_Manager::RAW_HTML,
-                        'raw' => $this->get_pro_notice( [
+                        'raw' => $this->getProNotice( [
                             'title' => $proNotice['title'],
                             'message' => $proNotice['message'],
                             'link' => $proNotice['link'],
@@ -408,6 +436,10 @@ class ATCTestimonialWidget extends Widget_Base
                             'max' => 100,
                         ],
                     ],
+                    'default' => [
+                        'unit' => 'px',
+                        'size' => 150,
+                    ],
                     'selectors' => [
                         '{{WRAPPER}} .atc-testimonial-container .author-img img' => 'width: {{SIZE}}{{UNIT}};',
                     ],
@@ -430,6 +462,10 @@ class ATCTestimonialWidget extends Widget_Base
                             'max' => 100,
                         ],
                     ],
+                    'default' => [
+                        'unit' => 'px',
+                        'size' => 150,
+                    ],
                     'selectors' => [
                         '{{WRAPPER}} .atc-testimonial-container .author-img img' => 'height: {{SIZE}}{{UNIT}};',
                     ],
@@ -444,6 +480,13 @@ class ATCTestimonialWidget extends Widget_Base
                     'label' => __( 'Border Radius', 'advanced-testimonial-carousel-for-elementor' ),
                     'type' => Controls_Manager::DIMENSIONS,
                     'size_units' => [ 'px', '%' ],
+                    'default' => [
+                        'unit' => '%',
+                        'top' => 100,
+                        'right' => 100,
+                        'bottom' => 100,
+                        'left' => 100,
+                    ],
                     'selectors' => [
                         '{{WRAPPER}} .atc-testimonial-container .author-img img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ],
@@ -477,7 +520,7 @@ class ATCTestimonialWidget extends Widget_Base
                     'atc_important_notice_image_style',
                     [
                         'type' => Controls_Manager::RAW_HTML,
-                        'raw' => $this->get_pro_notice( [
+                        'raw' => $this->getProNotice( [
                             'title' => $proNotice['title'],
                             'message' => $proNotice['message'],
                             'link' => $proNotice['link'],
@@ -746,13 +789,13 @@ class ATCTestimonialWidget extends Widget_Base
             ]
 		);
             if (defined('ATCPRO')) {
-                (new ATCWidgetPro)->starStylingOptions($this);
+                (new ATCWidgetPro)->ratingStylingOptions($this);
             } else {
                 $this->add_control(
                     'atc_important_notice_rating_style',
                     [
                         'type' => Controls_Manager::RAW_HTML,
-                        'raw' => $this->get_pro_notice( [
+                        'raw' => $this->getProNotice( [
                             'title' => $proNotice['title'],
                             'message' => $proNotice['message'],
                             'link' => $proNotice['link'],
@@ -761,6 +804,32 @@ class ATCTestimonialWidget extends Widget_Base
                     ]
                 );
             }
+        $this->end_controls_section();
+
+        $this->start_controls_section(
+			'atc_quotation_section_style_icon',
+			[
+				'label' => esc_html__( 'Quotation Icon', 'advanced-testimonial-carousel-for-elementor' ),
+				'tab' => Controls_Manager::TAB_STYLE,
+			]
+		);
+            if (defined('ATCPRO')) {
+                (new ATCWidgetPro)->quotationIconStyle($this);
+            } else {
+                $this->add_control(
+                    'atc_notice_quotation_icon_style',
+                    [
+                        'type' => Controls_Manager::RAW_HTML,
+                        'raw' => $this->getProNotice( [
+                            'title' => $proNotice['title'],
+                            'message' => $proNotice['message'],
+                            'link' => $proNotice['link'],
+                            'image-link' => 'quotation-icon-style.jpg'
+                        ] ),
+                    ]
+                );
+            }
+
         $this->end_controls_section();
         
         $this->start_controls_section(
@@ -804,7 +873,7 @@ class ATCTestimonialWidget extends Widget_Base
                     'atc_notice_arrows_style',
                     [
                         'type' => Controls_Manager::RAW_HTML,
-                        'raw' => $this->get_pro_notice( [
+                        'raw' => $this->getProNotice( [
                             'title' => $proNotice['title'],
                             'message' => $proNotice['message'],
                             'link' => $proNotice['link'],
@@ -874,7 +943,7 @@ class ATCTestimonialWidget extends Widget_Base
         $this->end_controls_section();
     }
 
-    public function get_pro_notice( $proNotice ) {
+    public function getProNotice( $proNotice ) {
 		ob_start();
 	?>
 		<div class="atc-nerd-box">
@@ -896,41 +965,13 @@ class ATCTestimonialWidget extends Widget_Base
 		return ob_get_clean();
 	}
 
-    protected function get_rating() {
-		$settings = $this->get_settings_for_display();
-		$rating_scale = (int) $settings['atc_pro_rating_scale'];
-		$rating = (float) $settings['atc_pro_rating'] > $rating_scale ? $rating_scale : $settings['atc_pro_rating'];
-
-		return [ $rating, $rating_scale ];
-	}
-
-    protected function render_stars( $icon ) {
-		$rating_data = $this->get_rating();
-		$rating = (float) $rating_data[0];
-		$floored_rating = floor( $rating );
-		$stars_html = '';
-
-		for ( $stars = 1.0; $stars <= $rating_data[1]; $stars++ ) {
-			if ( $stars <= $floored_rating ) {
-				$stars_html .= '<i class="elementor-star-full">' . $icon . '</i>';
-			} elseif ( $floored_rating + 1 === $stars && $rating !== $floored_rating ) {
-				$stars_html .= '<i class="elementor-star-' . ( $rating - $floored_rating ) * 10 . '">' . $icon . '</i>';
-			} else {
-				$stars_html .= '<i class="elementor-star-empty">' . $icon . '</i>';
-			}
-		}
-
-		return $stars_html;
-	}
-
-
+   
     protected function render()
     {
         $settings = $this->get_settings_for_display();
 
         if ( $settings['atc_list'] ) {
             echo $this->html($settings);
-            wp_enqueue_style( 'atc-elementor-frontend', ATC_PLUGIN_URL. 'assets/css/atc-frontend.min.css');
         }
     }
 
@@ -940,8 +981,6 @@ class ATCTestimonialWidget extends Widget_Base
         $imageDisplay = true;
         $authorNameDisplay = true;
         $companyNameDisplay = true;
-        $ratingDisplay = true;
-        $stars_element = '';
         $loop = ( $settings['atc_testimonial_loop'] ===  'yes' ) ? 'true' : 'false';
         $autoplay = ( $settings['atc_testimonial_autoplay'] ===  'yes' ) ? 'true' : 'false';
         
@@ -964,45 +1003,32 @@ class ATCTestimonialWidget extends Widget_Base
             $authorNameDisplay  = $settings['atc_author_name_display'];
             $companyNameDisplay = $settings['atc_company_name_display'];
             $ratingDisplay      = $settings['atc_rating_display'];
-
-            $rating_data = $this->get_rating();
-            $textual_rating = $rating_data[0] . '/' . $rating_data[1];
-            $icon = '&#xE934;';
-
-            if ( 'star_fontawesome' === $settings['atc_pro_star_style'] ) {
-                if ( 'outline' === $settings['atc_pro_unmarked_star_style'] ) {
-                    $icon = '&#xE933;';
-                }
-            } elseif ( 'star_unicode' === $settings['atc_pro_star_style'] ) {
-                $icon = '&#9733;';
-
-                if ( 'outline' === $settings['atc_pro_unmarked_star_style'] ) {
-                    $icon = '&#9734;';
-                }
-            }
-
-            $this->add_render_attribute( 'atc_icon_wrapper', [
-                'class' => 'elementor-star-rating',
-                'title' => $textual_rating,
-                'itemtype' => 'http://schema.org/Rating',
-                'itemscope' => '',
-                'itemprop' => 'reviewRating',
-            ] );
-
-            $schema_rating = '<span itemprop="ratingValue" class="elementor-screen-only">' . $textual_rating . '</span>';
-            $stars_element = '<div ' . $this->get_render_attribute_string( 'atc_icon_wrapper' ) . '>' . $this->render_stars( $icon ) . ' ' . $schema_rating . '</div>';
+            $quotationDisplay   = $settings['atc_quotation_display'];
+           
+            /***
+             * Icon
+            */
+                (new ATCWidgetPro)->quotationIconVar($this);
         }
-    ?>
+
+	?>
+	
         <div <?php echo $this->get_render_attribute_string( 'atc_options' ); ?>>
             <div class="swiper-wrapper">
                 <?php foreach (  $settings['atc_list'] as $item ) : ?>
                     <div class="swiper-slide atc-slider">
                         <?php if ($imageDisplay): ?>
-                            <div class="author-img atc-image-align-'<?php echo $settings['atc_image_text_align']; ?>">
+                            <div class="author-img atc-image-align-<?php echo $settings['atc_image_text_align']; ?>">
                                 <img src="<?php echo esc_url($item['atc_image']['url']); ?>" alt="<?php echo esc_html($item['atc_name']); ?>"/>
                             </div>
                         <?php endif; ?>
                         <div class="description"> 
+                            <?php 
+                                if (defined('ATCPRO') && $quotationDisplay): 
+                                    (new ATCWidgetPro)->quotationIconRender($this);
+                                endif;
+                            ?>
+                            
                             <p class="content">
                                 <?php echo esc_html($item['atc_content']); ?>
                             </p>
@@ -1019,9 +1045,11 @@ class ATCTestimonialWidget extends Widget_Base
                                 </p>
                             <?php endif; ?>
 
-                            <?php if ($ratingDisplay): ?> 
-                                <?php echo $stars_element; ?>
-                            <?php endif; ?>
+                            <?php 
+                                if ( defined('ATCPRO') && $ratingDisplay ):
+                                    (new ATCWidgetPro)->ratingRender($this); 
+                                endif; 
+                            ?>
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -1037,8 +1065,6 @@ class ATCTestimonialWidget extends Widget_Base
         </div>
         <?php
     }
-
-   
 
 
     /**
