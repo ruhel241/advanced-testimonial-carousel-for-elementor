@@ -50,48 +50,63 @@ class ATCTestimonialWidget extends Widget_Base
 			]
         );
 
+            // repeater start
+            $repeater = new \Elementor\Repeater();
 
-        // repeater start
-        $repeater = new \Elementor\Repeater();
+            $repeater->add_control(
+                'atc_image', [
+                    'label' => __( 'Choose Image', 'advanced-testimonial-carousel-for-elementor' ),
+                    'type' => Controls_Manager::MEDIA,
+                    'default' => [
+                        'url' => Utils::get_placeholder_image_src(),
+                    ],
+                ]
+            );
 
-        $repeater->add_control(
-            'atc_content', [
-                'label' => __( 'Content', 'advanced-testimonial-carousel-for-elementor' ),
-                'type' => Controls_Manager::TEXTAREA,
-                'default' => __( 'Lorem ipsum dolor sit amet, tpat dictum purus, at malesuada tellus convallis et. Aliquam erat volutpat. Vestibulum felis ex, ultrices posuere facilisis eget, malesuada quis elit. Nulla ac eleifend odio' , 'advanced-testimonial-carousel-for-elementor' ),
-                'label_block' => true,
-            ]
-        );
+            $repeater->add_control(
+                'atc_name', [
+                    'label' => __( 'Name', 'advanced-testimonial-carousel-for-elementor' ),
+                    'type' => Controls_Manager::TEXT,
+                    'default' => __( 'John Doe' , 'advanced-testimonial-carousel-for-elementor' ),
+                    'label_block' => true,
+                ]
+            );
 
-        $repeater->add_control(
-            'atc_image', [
-                'label' => __( 'Choose Image', 'advanced-testimonial-carousel-for-elementor' ),
-                'type' => Controls_Manager::MEDIA,
-                'default' => [
-					'url' => Utils::get_placeholder_image_src(),
-				],
-            ]
-        );
+            $repeater->add_control(
+                'atc_title', [
+                    'label' => __( 'Designation', 'advanced-testimonial-carousel-for-elementor' ),
+                    'type' => Controls_Manager::TEXT,
+                    'default' => __( 'CEO' , 'advanced-testimonial-carousel-for-elementor' ),
+                    'label_block' => true,
+                ]
+            );
 
-        $repeater->add_control(
-            'atc_name', [
-                'label' => __( 'Name', 'advanced-testimonial-carousel-for-elementor' ),
-                'type' => Controls_Manager::TEXT,
-                'default' => __( 'John Doe' , 'advanced-testimonial-carousel-for-elementor' ),
-                'label_block' => true,
-            ]
-        );
+            $repeater->add_control(
+                'atc_content', [
+                    'label' => __( 'Content', 'advanced-testimonial-carousel-for-elementor' ),
+                    'type' => Controls_Manager::TEXTAREA,
+                    'default' => __( 'Lorem ipsum dolor sit amet, tpat dictum purus, at malesuada tellus convallis et. Aliquam erat volutpat. Vestibulum felis ex, ultrices posuere facilisis eget, malesuada quis elit. Nulla ac eleifend odio' , 'advanced-testimonial-carousel-for-elementor' ),
+                    'label_block' => true,
+                ]
+            );
 
-        $repeater->add_control(
-            'atc_title', [
-                'label' => __( 'Title', 'advanced-testimonial-carousel-for-elementor' ),
-                'type' => Controls_Manager::TEXT,
-                'default' => __( 'CEO' , 'advanced-testimonial-carousel-for-elementor' ),
-                'label_block' => true,
-            ]
-        );
+            if (defined('ATCPRO')) {
+                (new ATCWidgetPro)->ratingOptionsPro($repeater);
+            } else {
+                $repeater->add_control(
+                    'atc_important_notice_rating_options',
+                    [
+                        'type' => Controls_Manager::RAW_HTML,
+                        'raw' => $this->getProNotice( [
+                            'title' => $proNotice['title'],
+                            'message' => $proNotice['message'],
+                            'link' => $proNotice['link'],
+                            'image-link' => 'rating-options.jpg'
+                        ] ),
+                    ]
+                );
+            }
 
-  
           $this->add_control(
               'atc_list',
               [
@@ -245,22 +260,7 @@ class ATCTestimonialWidget extends Widget_Base
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
         );
-            if (defined('ATCPRO')) {
-                (new ATCWidgetPro)->ratingOptionsPro($this);
-            } else {
-                $this->add_control(
-                    'atc_important_notice_rating_options',
-                    [
-                        'type' => Controls_Manager::RAW_HTML,
-                        'raw' => $this->getProNotice( [
-                            'title' => $proNotice['title'],
-                            'message' => $proNotice['message'],
-                            'link' => $proNotice['link'],
-                            'image-link' => 'rating-options.jpg'
-                        ] ),
-                    ]
-                );
-            }
+           
         $this->end_controls_section();
 
         $this->start_controls_section(
@@ -1008,7 +1008,7 @@ class ATCTestimonialWidget extends Widget_Base
             /***
              * Icon
             */
-                (new ATCWidgetPro)->quotationIconVar($this);
+            (new ATCWidgetPro)->quotationIconVar($this);
         }
 
 	?>
@@ -1047,7 +1047,7 @@ class ATCTestimonialWidget extends Widget_Base
 
                             <?php 
                                 if ( defined('ATCPRO') && $ratingDisplay ):
-                                    (new ATCWidgetPro)->ratingRender($this); 
+                                    (new ATCWidgetPro)->ratingRender($item, $this); 
                                 endif; 
                             ?>
                         </div>
