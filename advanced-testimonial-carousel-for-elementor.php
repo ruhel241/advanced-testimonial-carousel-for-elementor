@@ -224,7 +224,12 @@ final class AdvancedTestimonialCarousel
 		// after_enqueue_scripts
 		add_action('elementor/frontend/after_enqueue_scripts', function() {
 			wp_enqueue_script( 'atc-swiper-js', plugin_dir_url( __FILE__ ). 'assets/js/atc-testimonial.js', array('jquery'));
+			
+			wp_localize_script('atc-swiper-js', 'atcSwiperVar', array(
+                'has_pro' => defined('ATCPRO')
+            ));
 		});
+		
 	}
 
 	/**
@@ -243,7 +248,6 @@ final class AdvancedTestimonialCarousel
 
 		// Register widget
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new ATC\Classes\Widgets\ATCTestimonialWidget() );
-
 	}
 
 	public function loadTextDomain()
