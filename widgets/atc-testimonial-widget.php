@@ -225,20 +225,7 @@ class ATCTestimonialWidget extends Widget_Base
             );
             if (defined('ATCPRO')) {
                 (new ATCWidgetPro)->testimonialBackgroundStyling($this);
-            } else {
-                $this->add_control(
-                    'atc_important_notice_bg_gradien_style',
-                    [
-                        'type' => Controls_Manager::RAW_HTML,
-                        'raw' => $this->getProNotice( [
-                            'title' => $proNotice['title'],
-                            'message' => $proNotice['message'],
-                            'link' => $proNotice['link'],
-                            'image-link' => 'background-gradien-style.jpg'
-                        ] ),
-                    ]
-                );
-            }
+            } 
             $this->add_responsive_control(
                 'atc_testimonial_margin',
                 [
@@ -278,7 +265,7 @@ class ATCTestimonialWidget extends Widget_Base
                             'title' => $proNotice['title'],
                             'message' => $proNotice['message'],
                             'link' => $proNotice['link'],
-                            'image-link' => 'border-box-style.jpg'
+                            'image-link' => 'testimonial-background-style.jpg'
                         ] ),
                     ]
                 );
@@ -303,7 +290,7 @@ class ATCTestimonialWidget extends Widget_Base
                             'title' => $proNotice['title'],
                             'message' => $proNotice['message'],
                             'link' => $proNotice['link'],
-                            'image-link' => 'slider-background-gradien-style.jpg'
+                            'image-link' => 'slider-background-style.jpg'
                         ] ),
                     ]
                 );
