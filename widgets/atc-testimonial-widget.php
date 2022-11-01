@@ -60,6 +60,9 @@ class ATCTestimonialWidget extends Widget_Base
                     'default' => [
                         'url' => Utils::get_placeholder_image_src(),
                     ],
+                    'dynamic' => [
+                        'active' => true,
+                    ]
                 ]
             );
 
@@ -69,6 +72,9 @@ class ATCTestimonialWidget extends Widget_Base
                     'type' => Controls_Manager::TEXT,
                     'default' => __( 'John Doe' , 'advanced-testimonial-carousel-for-elementor' ),
                     'label_block' => true,
+                    'dynamic' => [
+                        'active' => true,
+                    ]
                 ]
             );
 
@@ -78,6 +84,9 @@ class ATCTestimonialWidget extends Widget_Base
                     'type' => Controls_Manager::TEXT,
                     'default' => __( 'CEO' , 'advanced-testimonial-carousel-for-elementor' ),
                     'label_block' => true,
+                    'dynamic' => [
+                        'active' => true,
+                    ]
                 ]
             );
 
@@ -87,6 +96,9 @@ class ATCTestimonialWidget extends Widget_Base
                     'type' => Controls_Manager::TEXTAREA,
                     'default' => __( 'Lorem ipsum dolor sit amet, tpat dictum purus, at malesuada tellus convallis et. Aliquam erat volutpat. Vestibulum felis ex, ultrices posuere facilisis eget, malesuada quis elit. Nulla ac eleifend odio' , 'advanced-testimonial-carousel-for-elementor' ),
                     'label_block' => true,
+                    'dynamic' => [
+                        'active' => true,
+                    ]
                 ]
             );
 
