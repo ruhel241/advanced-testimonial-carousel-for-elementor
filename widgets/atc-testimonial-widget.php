@@ -39,7 +39,7 @@ class ATCTestimonialWidget extends Widget_Base
         $proNotice = [
 			'title' => esc_html__( 'These are pro features', 'advanced-testimonial-carousel-for-elementor' ),
 			'message' => esc_html__( 'These are pro features, if you want to enable these features you need to upgrade to the pro version.', 'advanced-testimonial-carousel-for-elementor' ),
-			'link' => "mailto: ruhel241@gmail.com"
+			'link' => "https://wpcreativeidea.com/testimonial"
 		];
 
         $this->start_controls_section(
@@ -878,7 +878,6 @@ class ATCTestimonialWidget extends Widget_Base
 			</div>
 			<div class="atc-nerd-box-message">
 				<?php Utils::print_unescaped_internal_string( $proNotice['message'] ); ?> <br/><br/>
-				<p style="font-size:10px">[Note: Pro version Comming Soon please contact to email]</p>
 			</div><br/>
 			<a href="<?php echo esc_url( ( $proNotice['link'] ) ); ?>" class="atc-nerd-box-link atc-button atc-button-default atc-button-go-pro" target="_blank">
 				<?php echo esc_html__( 'Upgrade Now', 'advanced-slider-for-elementor' ); ?>
