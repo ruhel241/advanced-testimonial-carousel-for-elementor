@@ -4,7 +4,7 @@ Tags:  elementor, elementor testimonial carousel, testimonial, slider, elementor
 Requires at least: 4.5
 Tested up to: 6.1.1
 Requires PHP: 7.0 or higher
-Stable tag: 2.0.2
+Stable tag: 2.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -79,9 +79,14 @@ Yes you can style dots, dots size change.
 10. Layout Image Default with Gradient color (Pro)
 11. Gradient color & Box Shadaw (Pro)
 12. Box Shadaw & Rating (Pro)
+13. Template 6 New Features (Pro)
+
 
 
 == Changelog ==
+
+= 2.0.3 =
+* Added WYSIWYG Editor in pro
 
 = 2.0.2 =
 * WordPress Version 6.1.1 Compatible

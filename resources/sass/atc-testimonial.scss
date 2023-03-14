@@ -14,8 +14,9 @@
     &.atc-image-align- {
       align-self: center;
     }
-    width: 200px;
+    width: 150px;
     height: 150px;
+    border-radius: 100% 100% 100% 100%;
     overflow: hidden;
     img {
       width: 100%;
@@ -29,8 +30,9 @@
     justify-content: center;
     text-align: center;
     // position: relative;
-    .content {
-      margin: 0px;
+    .content p {
+      // margin: 0px;
+      line-height: 1.5;
     }
     .author-name {
       margin: 0px;
@@ -73,6 +75,7 @@
 */ 
 .atc-quotation-icon-wrapper {
   position: relative;
+  z-index: -1;
 }
 .atc-quotation-icon {
   display: inline-block;
@@ -82,7 +85,6 @@
   font-size: 35px;
   text-align: center;
   position: absolute;
-  z-index: -1;
 }
 .atc-quotation-icon-view-stacked {
   .atc-quotation-icon {
@@ -114,7 +116,7 @@
   font-family: eicons;
   display: inline-block;
   i {
-    display: inline-block;
+    // display: inline-block;
     position: relative;
     font-style: normal;
     cursor: default;
@@ -229,9 +231,6 @@
   .description {
     margin-top: 20px;
     margin-bottom: 20px;
-    .content{
-      margin-bottom: 20px;
-    }
     .author-name {
       margin-bottom: 2px;
     }
@@ -250,10 +249,10 @@
   }
   .description {
     margin-bottom: 20px;
-    .content {
-      margin-top: 0px;
-      margin-bottom: 20px;
-    }
+    // .content {
+    //   margin-top: 0px;
+    //   margin-bottom: 20px;
+    // }
     .company {
       margin-bottom: 0px;
     }
@@ -271,6 +270,11 @@
     text-align: center;
     margin-top: 20px;
     margin-bottom: 20px;
+    .content {
+      p {
+        margin-top: 16px;
+      }
+    }
     .author-name {
       order: -1;
     }
@@ -307,7 +311,10 @@
       margin-top: 20px;
       margin-bottom: 20px;
       .content {
-        color: #fff;
+        p {
+          color: #fff;
+          margin-top: 16px;
+        }
         .atc-quotation-icon {
           font-size: 26px;
           transform: translateX(-30px);
@@ -327,6 +334,62 @@
     }
   }
 }
+
+/**
+  template-6
+*/
+.atc-testimonial-slider-template-6 {
+  &.atc-testimonial-container {
+    // .swiper-slide {}
+    .author-img {
+      width: 80px;
+      height: 80px;
+    }
+    .description {
+      width: 87%;
+      .content { 
+        text-align: left;
+        .atc-quotation-icon {
+          font-size: 32px;
+        }
+      }
+      .author-name {
+        font-size: 18px;
+        text-align: left;
+      }
+      .company {
+        text-align: left;
+      }
+      .atc-star-rating {
+        display: flex;
+        // order: -1;
+      }
+      .bio-information {
+        display: flex;
+        align-items: center;
+        margin: 20px 0px;
+        gap: 12px;
+      }
+    }
+
+    .swiper-button-next, .swiper-button-prev {
+      top: 18%;
+      background: #CCE5E9;
+      width: 65px;
+      border-radius: 49px;
+    }
+    .swiper-button-prev {
+      right: 75px;
+      left: initial;
+    }
+    .swiper-button-next::after, .swiper-button-prev::after{
+      font-size: 21px;
+      color: #514C4C;
+    }
+  }
+}
+
+
 
 @media only screen and (max-width: 900px) {
 /**

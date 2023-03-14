@@ -90,18 +90,22 @@ class ATCTestimonialWidget extends Widget_Base
                 ]
             );
 
-            $repeater->add_control(
-                'atc_content', [
-                    'label' => __( 'Content', 'advanced-testimonial-carousel-for-elementor' ),
-                    'type' => Controls_Manager::TEXTAREA,
-                    'default' => __( 'Lorem ipsum dolor sit amet, tpat dictum purus, at malesuada tellus convallis et. Aliquam erat volutpat. Vestibulum felis ex, ultrices posuere facilisis eget, malesuada quis elit. Nulla ac eleifend odio' , 'advanced-testimonial-carousel-for-elementor' ),
-                    'label_block' => true,
-                    'dynamic' => [
-                        'active' => true,
+            if (defined('ATCPRO')) {
+                (new ATCWidgetPro)->WYSIWYGEditor($repeater);
+            } else {
+                $repeater->add_control(
+                    'atc_content', [
+                        'label' => __( 'Content', 'advanced-testimonial-carousel-for-elementor' ),
+                        'type' => Controls_Manager::TEXTAREA,
+                        'default' => "<p>". __( 'Lorem ipsum dolor sit amet, tpat dictum purus, at malesuada tellus convallis et. Aliquam erat volutpat. Vestibulum felis ex, ultrices posuere facilisis eget, malesuada quis elit. Nulla ac eleifend odio' , 'advanced-testimonial-carousel-for-elementor' )."</p>",
+                        'label_block' => true,
+                        'dynamic' => [
+                            'active' => true
+                        ]
                     ]
-                ]
-            );
-
+                );
+            }   
+           
             if (defined('ATCPRO')) {
                 (new ATCWidgetPro)->ratingOptionsPro($repeater);
             } else {
@@ -113,7 +117,7 @@ class ATCTestimonialWidget extends Widget_Base
                             'title' => $proNotice['title'],
                             'message' => $proNotice['message'],
                             'link' => $proNotice['link'],
-                            'image-link' => 'rating-options.jpg'
+                            'image-link' => 'repeater-features-options.jpg'
                         ] ),
                     ]
                 );
@@ -127,15 +131,15 @@ class ATCTestimonialWidget extends Widget_Base
                   'fields' => $repeater->get_controls(),
                   'default' => [
                       [
-                          'atc_content' => __( 'Lorem ipsum dolor sit amet, tpat dictum purus, at malesuada tellus convallis et. Aliquam erat volutpat. Vestibulum felis ex, ultrices posuere facilisis eget, malesuada quis elit. Nulla ac eleifend odio', 'advanced-testimonial-carousel-for-elementor' ),
+                          'atc_content' => "<p>". __( 'Lorem ipsum dolor sit amet, tpat dictum purus, at malesuada tellus convallis et. Aliquam erat volutpat. Vestibulum felis ex, ultrices posuere facilisis eget, malesuada quis elit. Nulla ac eleifend odio' , 'advanced-testimonial-carousel-for-elementor' )."</p>",
                           'atc_name' => __( 'John Doe', 'advanced-testimonial-carousel-for-elementor' )
                       ],
                       [
-                          'atc_content' => __( 'Lorem ipsum dolor sit amet, tpat dictum purus, at malesuada tellus convallis et. Aliquam erat volutpat. Vestibulum felis ex, ultrices posuere facilisis eget, malesuada quis elit. Nulla ac eleifend odio', 'advanced-testimonial-carousel-for-elementor' ),
+                          'atc_content' => "<p>". __( 'Lorem ipsum dolor sit amet, tpat dictum purus, at malesuada tellus convallis et. Aliquam erat volutpat. Vestibulum felis ex, ultrices posuere facilisis eget, malesuada quis elit. Nulla ac eleifend odio' , 'advanced-testimonial-carousel-for-elementor' )."</p>",
                           'atc_name' => __( 'Michael Jackson', 'advanced-testimonial-carousel-for-elementor' )                
                       ],
                       [
-                        'atc_content' => __( 'Lorem ipsum dolor sit amet, tpat dictum purus, at malesuada tellus convallis et. Aliquam erat volutpat. Vestibulum felis ex, ultrices posuere facilisis eget, malesuada quis elit. Nulla ac eleifend odio', 'advanced-testimonial-carousel-for-elementor' ),
+                        'atc_content' => "<p>". __( 'Lorem ipsum dolor sit amet, tpat dictum purus, at malesuada tellus convallis et. Aliquam erat volutpat. Vestibulum felis ex, ultrices posuere facilisis eget, malesuada quis elit. Nulla ac eleifend odio' , 'advanced-testimonial-carousel-for-elementor' )."</p>",
                         'atc_name' => __( 'Jackson', 'advanced-testimonial-carousel-for-elementor' )                
                       ],
                   ],
@@ -359,10 +363,10 @@ class ATCTestimonialWidget extends Widget_Base
                             'max' => 100,
                         ],
                     ],
-                    'default' => [
-                        'unit' => 'px',
-                        'size' => 150,
-                    ],
+                    // 'default' => [
+                    //     'unit' => 'px',
+                    //     'size' => 150,
+                    // ],
                     'selectors' => [
                         '{{WRAPPER}} .atc-testimonial-container .author-img' => 'width: {{SIZE}}{{UNIT}};',
                     ],
@@ -385,10 +389,10 @@ class ATCTestimonialWidget extends Widget_Base
                             'max' => 100,
                         ],
                     ],
-                    'default' => [
-                        'unit' => 'px',
-                        'size' => 150,
-                    ],
+                    // 'default' => [
+                    //     'unit' => 'px',
+                    //     'size' => 150,
+                    // ],
                     'selectors' => [
                         '{{WRAPPER}} .atc-testimonial-container .author-img' => 'height: {{SIZE}}{{UNIT}};',
                     ],
@@ -403,13 +407,13 @@ class ATCTestimonialWidget extends Widget_Base
                     'label' => __( 'Border Radius', 'advanced-testimonial-carousel-for-elementor' ),
                     'type' => Controls_Manager::DIMENSIONS,
                     'size_units' => [ 'px', '%' ],
-                    'default' => [
-                        'unit' => '%',
-                        'top' => 100,
-                        'right' => 100,
-                        'bottom' => 100,
-                        'left' => 100,
-                    ],
+                    // 'default' => [
+                    //     'unit' => '%',
+                    //     'top' => 100,
+                    //     'right' => 100,
+                    //     'bottom' => 100,
+                    //     'left' => 100,
+                    // ],
                     'selectors' => [
                         '{{WRAPPER}} .atc-testimonial-container .author-img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ],
@@ -483,7 +487,7 @@ class ATCTestimonialWidget extends Widget_Base
                     ],
                     'toggle' => true,
                     'selectors' => [
-                        '{{WRAPPER}} .atc-testimonial-container .content' => 'text-align: {{VALUE}}',
+                        '{{WRAPPER}} .atc-testimonial-container .content p' => 'text-align: {{VALUE}}',
                     ]
                 ]
             );
@@ -493,7 +497,7 @@ class ATCTestimonialWidget extends Widget_Base
                     'label' => __( 'Text Color', 'advanced-testimonial-carousel-for-elementor' ),
                     'type' => Controls_Manager::COLOR,
                     'selectors' => [
-                        '{{WRAPPER}} .atc-testimonial-container .content' => 'color: {{VALUE}}',
+                        '{{WRAPPER}} .atc-testimonial-container .content p' => 'color: {{VALUE}}',
                     ]
                 ]
             );
@@ -502,7 +506,7 @@ class ATCTestimonialWidget extends Widget_Base
                 [
                     'name' => 'content_typography',
                     'label' => __( 'Typography', 'advanced-testimonial-carousel-for-elementor' ),
-                    'selector' => '{{WRAPPER}} .atc-testimonial-container .content',
+                    'selector' => '{{WRAPPER}} .atc-testimonial-container .content p',
                 ]
             );
             $this->add_group_control(
@@ -510,7 +514,7 @@ class ATCTestimonialWidget extends Widget_Base
                 [
                     'name' => 'content_shadow',
                     'label' => __( 'Text Shadow', 'advanced-testimonial-carousel-for-elementor' ),
-                    'selector' => '{{WRAPPER}} .atc-testimonial-container .content',
+                    'selector' => '{{WRAPPER}} .atc-testimonial-container .content p',
                 ]
             );
             $this->add_responsive_control(
@@ -520,7 +524,7 @@ class ATCTestimonialWidget extends Widget_Base
                     'type' => Controls_Manager::DIMENSIONS,
                     'size_units' => [ 'px', '%' ],
                     'selectors' => [
-                        '{{WRAPPER}} .atc-testimonial-container .content' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        '{{WRAPPER}} .atc-testimonial-container .content p' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ],
                 ]
             );
@@ -531,7 +535,7 @@ class ATCTestimonialWidget extends Widget_Base
                     'type' => Controls_Manager::DIMENSIONS,
                     'size_units' => [ 'px', '%' ],
                     'selectors' => [
-                        '{{WRAPPER}} .atc-testimonial-container .content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        '{{WRAPPER}} .atc-testimonial-container .content p' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ],
                 ]
             );
@@ -762,6 +766,7 @@ class ATCTestimonialWidget extends Widget_Base
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
         );
+        if (!defined('ATCPRO')) {
             $this->add_control(
                 'atc_nav_color',
                 [
@@ -772,6 +777,7 @@ class ATCTestimonialWidget extends Widget_Base
                     ],
                 ]
             );
+        }
             $this->add_control(
                 'atc_nav_size',
                 [
@@ -949,44 +955,88 @@ class ATCTestimonialWidget extends Widget_Base
             );
         }
     ?>
+       
         <div <?php echo $this->get_render_attribute_string( 'atc_options' ); ?>>
             <div class="swiper-wrapper">
                 <?php foreach (  $settings['atc_list'] as $item ) : ?>
-                    <div class="swiper-slide atc-slider">
-                        <?php if ('yes' === $imageDisplay): ?>
-                            <div class="author-img atc-image-align-<?php echo $settings['atc_image_text_align']; ?>">
-                                <img src="<?php echo esc_url($item['atc_image']['url']); ?>" alt="<?php echo esc_html($item['atc_name']); ?>"/>
+                    <?php if ($template == 'template-6') : ?>
+                        <div class="swiper-slide atc-slider">
+                            <div class="description"> 
+                                <div class="content">
+                                    <?php 
+                                        if (defined('ATCPRO') && ('yes' === $quotationDisplay) ) {
+                                            (new ATCWidgetPro)->quotationIconRender($this);
+                                        }
+                                        echo wp_kses_post($item['atc_content']);
+                                    ?>
+                                </div>
+
+                                <div class="bio-information">
+                                    <?php if ('yes' === $imageDisplay): ?>
+                                        <div class="author-img atc-image-align-<?php echo $settings['atc_image_text_align']; ?>">
+                                            <img src="<?php echo esc_url($item['atc_image']['url']); ?>" alt="<?php echo esc_html($item['atc_name']); ?>"/>
+                                        </div>
+                                    <?php endif; ?>
+                                
+                                    <div class="info">
+                                        <?php if ('yes' === $authorNameDisplay): ?> 
+                                            <h4 class="author-name">
+                                                <?php echo esc_html($item['atc_name']); ?>
+                                            </h4>
+                                        <?php endif; ?>
+
+                                        <?php if ('yes' === $companyNameDisplay): ?> 
+                                            <p class="company">
+                                                <?php echo esc_html($item['atc_title']); ?>
+                                            </p>
+                                        <?php endif; ?>
+
+                                        <?php 
+                                            if ( defined('ATCPRO') && ('yes' === $ratingDisplay) ):
+                                                (new ATCWidgetPro)->ratingRender($item, $this); 
+                                            endif; 
+                                        ?>
+                                    </div>
+                                </div>
                             </div>
-                        <?php endif; ?>
-                        <div class="description"> 
-                            <p class="content">
-                                <?php 
-                                    if (defined('ATCPRO') && ('yes' === $quotationDisplay) ) {
-                                       (new ATCWidgetPro)->quotationIconRender($this);
-                                    }
-                                    echo esc_html($item['atc_content']);
-                                ?>
-                            </p>
-                            
-                            <?php if ('yes' === $authorNameDisplay): ?> 
-                                <h4 class="author-name">
-                                    <?php echo esc_html($item['atc_name']); ?>
-                                </h4>
-                            <?php endif; ?>
-
-                            <?php if ('yes' === $companyNameDisplay): ?> 
-                                <p class="company">
-                                    <?php echo esc_html($item['atc_title']); ?>
-                                </p>
-                            <?php endif; ?>
-
-                            <?php 
-                                if ( defined('ATCPRO') && ('yes' === $ratingDisplay) ):
-                                    (new ATCWidgetPro)->ratingRender($item, $this); 
-                                endif; 
-                            ?>
                         </div>
-                    </div>
+                    <?php else : ?>
+                        <div class="swiper-slide atc-slider">
+                            <?php if ('yes' === $imageDisplay): ?>
+                                <div class="author-img atc-image-align-<?php echo $settings['atc_image_text_align']; ?>">
+                                    <img src="<?php echo esc_url($item['atc_image']['url']); ?>" alt="<?php echo esc_html($item['atc_name']); ?>"/>
+                                </div>
+                            <?php endif; ?>
+                            <div class="description"> 
+                                <div class="content">
+                                    <?php 
+                                        if (defined('ATCPRO') && ('yes' === $quotationDisplay) ) {
+                                            (new ATCWidgetPro)->quotationIconRender($this);
+                                        }
+                                        echo wp_kses_post($item['atc_content']);
+                                    ?>
+                                </div>
+                                
+                                <?php if ('yes' === $authorNameDisplay): ?> 
+                                    <h4 class="author-name">
+                                        <?php echo esc_html($item['atc_name']); ?>
+                                    </h4>
+                                <?php endif; ?>
+
+                                <?php if ('yes' === $companyNameDisplay): ?> 
+                                    <p class="company">
+                                        <?php echo esc_html($item['atc_title']); ?>
+                                    </p>
+                                <?php endif; ?>
+
+                                <?php 
+                                    if ( defined('ATCPRO') && ('yes' === $ratingDisplay) ):
+                                        (new ATCWidgetPro)->ratingRender($item, $this); 
+                                    endif; 
+                                ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
                 <?php endforeach; ?>
             </div>
             <?php 
@@ -997,7 +1047,8 @@ class ATCTestimonialWidget extends Widget_Base
                     echo wp_kses_post('<div class="swiper-pagination"></div>');
                 }
             ?>
-        </div>
+        </div> 
+        
         <?php
     }
 
