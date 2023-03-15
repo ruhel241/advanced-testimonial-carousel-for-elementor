@@ -76,6 +76,7 @@
 .atc-quotation-icon-wrapper {
   position: relative;
   z-index: -1;
+  transform: translateX(-35px);
 }
 .atc-quotation-icon {
   display: inline-block;
@@ -114,9 +115,9 @@
 .atc-star-rating {
   color: #ccd6df;
   font-family: eicons;
-  display: inline-block;
+  display: flex;
+  justify-content: center;
   i {
-    // display: inline-block;
     position: relative;
     font-style: normal;
     cursor: default;
@@ -219,6 +220,9 @@
   .atc-quotation-icon {
     font-size: 27px;
   }
+  .atc-star-rating {
+    justify-content: flex-start; 
+  }
 }
 
 /**
@@ -315,10 +319,14 @@
           color: #fff;
           margin-top: 16px;
         }
-        .atc-quotation-icon {
-          font-size: 26px;
-          transform: translateX(-30px);
+        .atc-quotation-icon-wrapper {
+          transform: translateX(-24px);
+          .atc-quotation-icon {
+            font-size: 26px;
+            // transform: translateX(11px);
+          }
         }
+        
       }
       .author-name {
         order: -1;
@@ -361,7 +369,8 @@
         text-align: left;
       }
       .atc-star-rating {
-        display: flex;
+        font-size: 12px;
+        justify-content: flex-start;
         // order: -1;
       }
       .bio-information {
