@@ -5,6 +5,7 @@
   cursor: grab;
   position: relative;
   // padding: 0px 16px 0px 16px;
+  overflow: hidden;
   .swiper-slide {
     display: flex;
     font-size: 16px;
@@ -247,6 +248,7 @@
 .atc-testimonial-slider-template-3 {
   &.atc-testimonial-container {
     padding: 50px 16px 50px 16px;
+    overflow: hidden;
   }
   .swiper-slide {
     flex-direction: column-reverse;
@@ -297,6 +299,7 @@
 .atc-testimonial-slider-template-5 {
   &.atc-testimonial-container {
     padding: 70px 16px 70px 16px;
+    overflow: hidden;
     .swiper-slide {
       flex-direction: column;
       background-color:#352E2E;
@@ -349,6 +352,7 @@
 .atc-testimonial-slider-template-6 {
   &.atc-testimonial-container {
     // .swiper-slide {}
+    overflow: hidden;
     .author-img {
       width: 80px;
       height: 80px;
