@@ -26,6 +26,8 @@ define('ATC_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('ATC_LITE', 'advancedTestimonialLite');
 define('ATC_PLUGIN_VERSION', '2.0.3');
 
+use Elementor\Settings;
+
 final class AdvancedTestimonialCarousel 
 {
 
@@ -135,15 +137,24 @@ final class AdvancedTestimonialCarousel
 			add_action( 'elementor/init', [ $this, 'init' ] );
 		}
 
-		add_action( 'admin_notices', [$this, 'atc_admin_Notice'] );
-
 		if (defined('ATCPRO_DIR_FILE')) {
 			if (!class_exists(ATCPRO\Services\ATCWidgetPro::class)) {
 				require_once(ATCPRO_DIR_PATH.'Services/slider-widget.php');
 			}
 		}
+
+		add_action( 'admin_notices', [$this, 'atc_admin_Notice'] );
+
+		if ( is_admin() ) {
+			$page_id = Settings::PAGE_ID;
+			add_action( "elementor/admin/after_create_settings/{$page_id}", function( Settings $settings ) {
+				$adminPageHandler = new  ATC\Classes\AdminPageHandler();
+				$adminPageHandler->register_settings_fields( $settings );
+			}, 11 );
+		}
 	}
 
+	
 	public function atc_admin_Notice() {
 		//get the current screen
 		$screen = get_current_screen();
@@ -207,6 +218,8 @@ final class AdvancedTestimonialCarousel
 	 * @access public
 	 */
 	public function init() {
+		
+		include('load.php');
 	
 		$this->loadTextDomain();
 
@@ -214,7 +227,7 @@ final class AdvancedTestimonialCarousel
 		add_action( 'elementor/widgets/widgets_registered', [ $this, 'init_widgets' ] );
 		
 		add_action('elementor/frontend/after_enqueue_styles', function() {
-			wp_enqueue_style( 'atc-swiper-css', plugin_dir_url( __FILE__ ). 'assets/css/atc-testimonial.css');
+			wp_enqueue_style( 'atc-swiper-css', plugin_dir_url( __FILE__ ). 'assets/css/atc-testimonial.css', array(), ATC_PLUGIN_VERSION);
 		});
 
 		add_action('elementor/editor/after_enqueue_styles', function() {
@@ -223,14 +236,41 @@ final class AdvancedTestimonialCarousel
 
 		// after_enqueue_scripts
 		add_action('elementor/frontend/after_enqueue_scripts', function() {
-			wp_enqueue_script( 'atc-swiper-js', plugin_dir_url( __FILE__ ). 'assets/js/atc-testimonial.js', array('jquery'));
+			wp_enqueue_script( 'atc-swiper-js', plugin_dir_url( __FILE__ ). 'assets/js/atc-testimonial.js', array('jquery'), ATC_PLUGIN_VERSION);
 			
 			wp_localize_script('atc-swiper-js', 'atcSwiperVar', array(
                 'has_pro' => defined('ATCPRO')
             ));
 		});
+
+		add_action( 'admin_enqueue_scripts', array($this, 'enqueueScripts') );
 		
+		if (defined('ATCPRO')) {
+			add_action('wp_ajax_atc_pro_lincese_ajax_actions', function() {
+				$licenseController = new ATCPRO\Classes\LicenseController();
+				$licenseController->handleAjaxCalls();
+			});
+		}
+		
+		add_action('wp_ajax_atc_pro_setup_addons', function() {
+			$setupController = new ATC\Classes\SetupController();
+			$setupController->handleAjaxCalls();
+		});
 	}
+
+
+	public function adminHooks(){}
+
+
+	public static function enqueueScripts()
+    {
+		wp_enqueue_style( 'atc-admin-css', ATC_PLUGIN_URL.'assets/css/atc-admin.css', array(), ATC_PLUGIN_VERSION);
+		wp_enqueue_script( 'atc-admin-js', ATC_PLUGIN_URL.'assets/js/atc-admin.js', array('jquery'), ATC_PLUGIN_VERSION);
+        wp_localize_script('atc-admin-js', 'atcProVar', [
+			'ajaxurl' => admin_url( 'admin-ajax.php' ),
+			'has_pro' => defined('ATCPRO')
+		]);
+    }
 
 	/**
 	 * Init Widgets
@@ -327,7 +367,7 @@ final class AdvancedTestimonialCarousel
 		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
 
 	}
-
 }
 
 AdvancedTestimonialCarousel::instance();
+

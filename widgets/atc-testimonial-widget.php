@@ -8,7 +8,7 @@ use \Elementor\Controls_Manager;
 use \Elementor\Group_Control_Typography;
 use \Elementor\Group_Control_Text_Shadow;
 use \Elementor\Core\Kits\Documents\Tabs\Global_Colors;
-use ATCPRO\Services\ATCWidgetPro;
+use ATCPRO\Services\ATCWidgetPro; 
 
 class ATCTestimonialWidget extends Widget_Base
 {
