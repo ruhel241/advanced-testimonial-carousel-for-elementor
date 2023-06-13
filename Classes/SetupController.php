@@ -41,7 +41,7 @@ class SetupController
 
         wp_send_json_success([
             'is_installed' => defined('ATC_PLUGIN_VERSION'),
-            'message'      => __('Advanced Testimonial Carousel for Elementor plugin has been installed and activated successfully', 'fluent-crm')
+            'message'      => __('Advanced Testimonial Carousel for Elementor plugin has been installed and activated successfully', 'advanced-testimonial-carousel-for-elementor')
         ]);
     }
 
@@ -49,7 +49,7 @@ class SetupController
     {
         $plugin_id = 'advanced-testimonial-carousel-for-elementor';
         $plugin = [
-            'name'      => __('Advanced Testimonial Carousel for Elementor', 'fluent-crm'),
+            'name'      => __('Advanced Testimonial Carousel for Elementor', 'advanced-testimonial-carousel-for-elementor'), 
 			'repo-slug' => 'advanced-testimonial-carousel-for-elementor',
 			'file'      => 'advanced-testimonial-carousel-for-elementor.php',
         ];
@@ -66,7 +66,7 @@ class SetupController
 
         wp_send_json_success([
             'is_installed' => defined('AIC_PLUGIN_VERSION'),
-            'message'      => __('Advanced Image Comparison for Elementor has been installed and activated', 'fluent-crm')
+            'message'      => __('Advanced Image Comparison for Elementor has been installed and activated', 'advanced-testimonial-carousel-for-elementor')
         ]);
     }
 
@@ -74,7 +74,7 @@ class SetupController
     {
         $plugin_id = 'advanced-image-comparison-for-elementor';
         $plugin = [
-            'name'      => __('Advanced Image Comparison for Elementor', 'fluent-crm'),
+            'name'      => __('Advanced Image Comparison for Elementor', 'advanced-testimonial-carousel-for-elementor'),
             'repo-slug' => 'advanced-image-comparison-for-elementor',
             'file'      => 'advanced-image-comparison-for-elementor.php',
         ];
@@ -91,7 +91,7 @@ class SetupController
 
         wp_send_json_success([
             'is_installed' => defined('ASE_PLUGIN_VERSION'),
-            'message'      => __('Advanced Slider for Elementor plugin has been installed and activated successfully', 'fluent-crm')
+            'message'      => __('Advanced Slider for Elementor plugin has been installed and activated successfully', 'advanced-testimonial-carousel-for-elementor')
         ]);
     }
 
@@ -99,7 +99,7 @@ class SetupController
     {
         $plugin_id = 'advanced-slider-for-elementor';
         $plugin = [
-            'name'      => __('Advanced Slider for Elementor', 'fluent-crm'),
+            'name'      => __('Advanced Slider for Elementor', 'advanced-testimonial-carousel-for-elementor'),
 			'repo-slug' => 'advanced-slider-for-elementor',
 			'file'      => 'advanced-slider-for-elementor.php',
         ];

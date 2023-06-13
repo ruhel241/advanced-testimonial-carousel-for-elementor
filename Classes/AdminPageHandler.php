@@ -33,36 +33,41 @@ class AdminPageHandler {
     {
         $data = [
 			'advanced-testimonial' => [
-                'title'          => __('Advanced Testimonial Carousel For Elementor', 'fluent-crm'),
+                'title'          => __('Advanced Testimonial Carousel For Elementor', 'advanced-testimonial-carousel-for-elementor'),
                 'logo'           => 'testimonial-logo.png',
                 'is_installed'   => defined('ATC_PLUGIN_VERSION'),
-                'upgrade_to_pro_link' => 'https://wordpress.org/plugins/fluent-connect/',
-                'settings_url'   => admin_url('admin.php?page=fluent-support#/'),
-                'action_text'    => __('Install Advanced Testimonial', 'fluent-crm'),
+                'upgrade_to_pro_link' => 'https://wpcreativeidea.com/advanced-testimonial-carousel-for-elementor/',
+                'settings_url'   => admin_url('admin.php?page=elementor#tab-atc-settings'),
+                'action_text'    => __('Install Advanced Testimonial', 'advanced-testimonial-carousel-for-elementor'),
 				'route'			 => 'install-atc',
-                'description'    => __('WordPress Helpdesk and Customer Support Ticket Plugin. Provide awesome support and manage customer queries right from your WordPress dashboard.', 'fluent-crm')
+                'description'    => __('Advanced Testimonial Carousel for Elementor. You can add image, name, describes, title, added Unlimited slider.
+				You can customize image, name, describes, title. Additional options etc.', 'advanced-testimonial-carousel-for-elementor')
             ],
 
             'advanced-image-comparison'  => [
-                'title'          => __('Advanced Image Comparison for Elementor', 'fluent-crm'),
+                'title'          => __('Advanced Image Comparison for Elementor', 'advanced-testimonial-carousel-for-elementor'),
                 'logo'           => 'image-comparison-logo.png',
                 'is_installed'   => defined('AIC_PLUGIN_VERSION'),
-                'upgrade_to_pro_link' => 'https://wordpress.org/plugins/fluentform/',
-                'settings_url'   => admin_url('admin.php?page=fluent_forms'),
-                'action_text'    => __('Install Image Comparison', 'fluent-crm'),
+                'upgrade_to_pro_link' => 'https://wpcreativeidea.com/',
+                'settings_url'   => '#',
+                'action_text'    => __('Install Image Comparison', 'advanced-testimonial-carousel-for-elementor'),
 				'route'			 => 'install-aic', 
-                'description'    => __('Collect leads and build any type of forms, accept payments, connect with your CRM with the Fastest Contact Form Builder Plugin for WordPress', 'fluent-crm')
+                'description'    => __('Advanced Image Comparison is a fully Responsive.
+				You can comparison your image. Comparison before image and after image. You can also image filtering.
+				Customize image container, image radius, image border. Label customizing text color, background color border radius etc.
+				You can set image overlay. Divider width, color. Handle color, background color, border radius etc.
+				Additional options image visibility set, layout, move slider on click, move slider on hover, image overlay.', 'advanced-testimonial-carousel-for-elementor')
             ],
 		
 			'advanced-slider'    => [
-                'title'          => __('Advanced Slider for Elementor', 'fluent-crm'),
+                'title'          => __('Advanced Slider for Elementor', 'advanced-testimonial-carousel-for-elementor'),
                 'logo'           => 'slider-logo.png',
                 'is_installed'   => defined('ASE_PLUGIN_VERSION'),
-                'upgrade_to_pro_link' => 'https://wordpress.org/plugins/fluent-smtp/',
-                'settings_url'   => admin_url('options-general.php?page=fluent-mail#/'),
-                'action_text'    => __('Install Advanced Slider', 'fluent-crm'),
+                'upgrade_to_pro_link' => 'https://wpcreativeidea.com/',
+                'settings_url'   => '#',
+                'action_text'    => __('Install Advanced Slider', 'advanced-testimonial-carousel-for-elementor'),
 				'route'			 => 'install-ase',
-                'description'    => __('The Ultimate SMTP and SES Plugin for WordPress. Connect with any SMTP, SendGrid, Mailgun, SES, Sendinblue, PepiPost, Google, Microsoft and more.', 'fluent-crm')
+                'description'    => __('Advanced Slider for Elementor. You can add background image, title, content and button, added Unlimited slider. You can customize background, title, describes and button. Additional options etc.Additional options, Styling title, content, button, background Overlay etc pro features.', 'advanced-testimonial-carousel-for-elementor')
             ]
 		];
 
@@ -85,7 +90,7 @@ class AdminPageHandler {
         <?php if (defined('ATCPRO_PLUGIN_VERSION')) :?>
             <div class="atc-settings-tabs">
                 <ul class="menu-tabs">
-                    <li class="tab"> <a href="#tab-atc-settings" id="atc-addons-tab">Recommended Plugins</a> </li>
+                    <li class="tab"> <a href="#tab-atc-settings" id="atc-addons-tab">Recommended Addons</a> </li>
                     <li class="tab"> <a href="#tab-atc-settings" id="atc-license-tab">License Settings</a> </li>
                 </ul>
             </div>
@@ -93,8 +98,8 @@ class AdminPageHandler {
 		
 		<div class="atc-addons-wrapper">
 			<div class="atc-addons-heading">
-				<h1 style="display: initial"> Elementor Recommended Plugins </h1>
-				<p>	Extend FluentCRM functionalities and supercharge your email marketing and automation
+				<h1 style="display: initial"> Elementor Recommended Addons </h1>
+				<p>	These are the Elementor addons that will help your business. </p>  
 			</div>
 
 			<div class="atc-addons-wrap">
@@ -134,7 +139,7 @@ class AdminPageHandler {
 	public function licenseRender() {
 		?>
 			<div class="notice notice-success" id="atc-notice-success" style="display: none">
-				<p>The atc Pro Addon license activated.</p>
+				<p>The Advanced Testimonial Carousel Pro Addon license activated.</p>
 			</div>
 
 			<div class="notice notice-error" id="atc-notice-error" style="display: none">
@@ -143,7 +148,7 @@ class AdminPageHandler {
 
 			<div class="atc_license_box" style="display:none">
 				<div id="atc_activated_license" style="display: none">
-					<h3 class="title">Please Provide a license key of Exact links Pro Addon</h3> 
+					<h3 class="title">Please Provide a license key of Advanced Testimonial Carousel Pro Addon</h3> 
 					<div class="atc-input atc-input-group atc-input-group--append">
 						<input type="text" id="atc_license_settings_field" placeholder="License Key" class="atc_input__inner">
 						<div class="atc-input-group__append">
@@ -153,7 +158,7 @@ class AdminPageHandler {
 						</div>
 					</div> 
 					<hr style="margin: 20px 0px 30px;"> 
-					<p>Don't have a license key? <a href="https://wpatcsbooster.org/" target="_blank" style="cursor:pointer">Purchase one here</a></p>
+					<p>Don't have a license key? <a href="https://wpcreativeidea.com/" target="_blank" style="cursor:pointer">Purchase one here</a></p>
 				</div>
 				<div id="atc_deactivated_license" style="display: none">
 					<div class="text-align-center">
