@@ -49,7 +49,7 @@ class AdminPageHandler {
                 'logo'           => 'image-comparison-logo.png',
                 'is_installed'   => defined('AIC_PLUGIN_VERSION'),
                 'upgrade_to_pro_link' => 'https://wpcreativeidea.com/',
-                'settings_url'   => '#',
+                'settings_url'   => admin_url('admin.php?page=elementor#tab-aic-settings'),
                 'action_text'    => __('Install Image Comparison', 'advanced-testimonial-carousel-for-elementor'),
 				'route'			 => 'install-aic', 
                 'description'    => __('Advanced Image Comparison is a fully Responsive.
@@ -64,7 +64,7 @@ class AdminPageHandler {
                 'logo'           => 'slider-logo.png',
                 'is_installed'   => defined('ASE_PLUGIN_VERSION'),
                 'upgrade_to_pro_link' => 'https://wpcreativeidea.com/',
-                'settings_url'   => '#',
+                'settings_url'   => admin_url('admin.php?page=elementor#tab-ase-settings'),
                 'action_text'    => __('Install Advanced Slider', 'advanced-testimonial-carousel-for-elementor'),
 				'route'			 => 'install-ase',
                 'description'    => __('Advanced Slider for Elementor. You can add background image, title, content and button, added Unlimited slider. You can customize background, title, describes and button. Additional options etc.Additional options, Styling title, content, button, background Overlay etc pro features.', 'advanced-testimonial-carousel-for-elementor')
