@@ -36,9 +36,9 @@ class AdminPageHandler {
                 'title'          => __('Advanced Testimonial Carousel For Elementor', 'advanced-testimonial-carousel-for-elementor'),
                 'logo'           => 'testimonial-logo.png',
                 'is_installed'   => defined('ATC_PLUGIN_VERSION'),
-                'upgrade_to_pro_link' => 'https://wpcreativeidea.com/advanced-testimonial-carousel-for-elementor/',
+                'upgrade_to_pro_link' => 'https://wpcreativeidea.com/testimonial',
                 'settings_url'   => admin_url('admin.php?page=elementor#tab-atc-settings'),
-                'action_text'    => __('Install Advanced Testimonial', 'advanced-testimonial-carousel-for-elementor'),
+                'action_text'    => __('Install Testimonial', 'advanced-testimonial-carousel-for-elementor'),
 				'route'			 => 'install-atc',
                 'description'    => __('Advanced Testimonial Carousel for Elementor. You can add image, name, describes, title, added Unlimited slider.
 				You can customize image, name, describes, title. Additional options etc.', 'advanced-testimonial-carousel-for-elementor')
@@ -48,9 +48,9 @@ class AdminPageHandler {
                 'title'          => __('Advanced Image Comparison for Elementor', 'advanced-testimonial-carousel-for-elementor'),
                 'logo'           => 'image-comparison-logo.png',
                 'is_installed'   => defined('AIC_PLUGIN_VERSION'),
-                'upgrade_to_pro_link' => 'https://wpcreativeidea.com/',
+                'upgrade_to_pro_link' => 'https://wpcreativeidea.com/image-comparison',
                 'settings_url'   => admin_url('admin.php?page=elementor#tab-aic-settings'),
-                'action_text'    => __('Install Image Comparison', 'advanced-testimonial-carousel-for-elementor'),
+                'action_text'    => __('Install Comparison', 'advanced-testimonial-carousel-for-elementor'),
 				'route'			 => 'install-aic', 
                 'description'    => __('Advanced Image Comparison is a fully Responsive.
 				You can comparison your image. Comparison before image and after image. You can also image filtering.
@@ -63,9 +63,9 @@ class AdminPageHandler {
                 'title'          => __('Advanced Slider for Elementor', 'advanced-testimonial-carousel-for-elementor'),
                 'logo'           => 'slider-logo.png',
                 'is_installed'   => defined('ASE_PLUGIN_VERSION'),
-                'upgrade_to_pro_link' => 'https://wpcreativeidea.com/',
+                'upgrade_to_pro_link' => 'https://wpcreativeidea.com/slider',
                 'settings_url'   => admin_url('admin.php?page=elementor#tab-ase-settings'),
-                'action_text'    => __('Install Advanced Slider', 'advanced-testimonial-carousel-for-elementor'),
+                'action_text'    => __('Install Slider', 'advanced-testimonial-carousel-for-elementor'),
 				'route'			 => 'install-ase',
                 'description'    => __('Advanced Slider for Elementor. You can add background image, title, content and button, added Unlimited slider. You can customize background, title, describes and button. Additional options etc.Additional options, Styling title, content, button, background Overlay etc pro features.', 'advanced-testimonial-carousel-for-elementor')
             ]
@@ -118,11 +118,11 @@ class AdminPageHandler {
 										<?php echo $value['action_text']; ?>
 									</a>
 								<?php else: ?>
-									<a href="<?php echo $value['settings_url']; ?>" class="btn atcViewInstall" id="atcViewInstallddd">
+									<a href="<?php echo $value['settings_url']; ?>" class="viewInstall">
 										View Settings
 									</a>
 								<?php endif; ?>
-								<a href="<?php echo $value['upgrade_to_pro_link']; ?>" class="btn" target="_blank">Upgrade to Pro</a>
+								<a href="<?php echo $value['upgrade_to_pro_link']; ?>" class="upgrade-to-pro" target="_blank">Upgrade to Pro</a>
 							</div>
 						</div>
 					</div>

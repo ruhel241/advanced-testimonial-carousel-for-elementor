@@ -77,6 +77,9 @@
                 justify-content: center;
                 align-items: center;
                 height: 100%;
+                p {
+                    padding-bottom: 20px;
+                }
                 .image {
                     border: solid rgba(221, 221, 221, 0.8666666667);
                     width: 80px;
@@ -96,14 +99,69 @@
                 .btn-box {
                     display: flex;
                     gap: 17px;
-                    .btn {
-                        background-color: #67c23a;
-                        border-color: #67c23a;
-                        color: #fff;
-                        border-radius: 3px;
-                        padding: 10px;
+                    .installAddon {
+                        display: inline-block;
+                        line-height: 1;
+                        white-space: nowrap;
                         cursor: pointer;
+                        background: #67c23a;
+                        border: 1px solid #67c23a;
+                        color: #fff;
+                        text-align: center;
+                        box-sizing: border-box;
+                        margin: 0;
+                        transition: .1s;
+                        font-weight: 500;
+                        padding: 12px 20px;
+                        font-size: 14px;
+                        border-radius: 4px;
                         text-decoration: none;
+                    }
+                    .viewInstall {
+                        display: inline-block;
+                        line-height: 1;
+                        white-space: nowrap;
+                        cursor: pointer;
+                        background: #FFF;
+                        border: 1px solid #DCDFE6;
+                        color: #606266;
+                        text-align: center;
+                        box-sizing: border-box;
+                        margin: 0;
+                        transition: .1s;
+                        font-weight: 500;
+                        padding: 12px 20px;
+                        font-size: 14px;
+                        border-radius: 4px;
+                        text-decoration: none;
+                        &:hover {
+                            color: #409EFF;
+                            border-color: #c6e2ff;
+                            background-color: #ecf5ff;
+                        }
+                    }
+                    .upgrade-to-pro {
+                        display: inline-block;
+                        line-height: 1;
+                        white-space: nowrap;
+                        cursor: pointer;
+                        background: #FFF;
+                        border: 1px solid #356ae6;
+                        color: #356ae6;
+                        text-align: center;
+                        box-sizing: border-box;
+                        margin: 0;
+                        transition: .1s;
+                        font-weight: 500;
+                        padding: 12px 20px;
+                        font-size: 14px;
+                        border-radius: 4px;
+                        text-decoration: none;
+                        &:hover {
+                            color: #ffff;
+                            border-color: #356ae6;
+                            background-color: #356ae6;
+                        }
                     }
                 }
             }
