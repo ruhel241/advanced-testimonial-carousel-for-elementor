@@ -200,3 +200,10 @@
         }
     }
 }
+
+#tab-atc-settings {
+    margin-bottom: 150px;
+    &.elementor-active ~ p.submit {
+        display: none;
+    }
+}
