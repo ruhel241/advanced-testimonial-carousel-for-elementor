@@ -26,8 +26,6 @@ define('ATC_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('ATC_LITE', 'advancedTestimonialLite');
 define('ATC_PLUGIN_VERSION', '2.0.4');
 
-use Elementor\Settings;
-
 final class AdvancedTestimonialCarousel 
 {
 
@@ -144,14 +142,6 @@ final class AdvancedTestimonialCarousel
 		}
 
 		add_action( 'admin_notices', [$this, 'atc_admin_Notice'] );
-
-		if ( is_admin() ) {
-			$page_id = Settings::PAGE_ID;
-			add_action( "elementor/admin/after_create_settings/{$page_id}", function( Settings $settings ) {
-				$adminPageHandler = new  ATC\Classes\AdminPageHandler();
-				$adminPageHandler->register_settings_fields( $settings );
-			}, 11 );
-		}
 	}
 
 	
@@ -256,6 +246,8 @@ final class AdvancedTestimonialCarousel
 			$setupController = new ATC\Classes\SetupController();
 			$setupController->handleAjaxCalls();
 		});
+
+		add_action('admin_init', [new ATC\Classes\AdminPageHandler(), 'initialLoad']);
 	}
 
 
