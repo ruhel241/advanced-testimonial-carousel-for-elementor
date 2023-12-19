@@ -16,7 +16,6 @@ import 'swiper/css/bundle';
         const sectionId = '#' + $(this).attr('id');
        
         new Swiper(sectionId, {
-         
           autoplay: isPro ? $(sectionId).data('autoplay') : true,
           loop: isPro ? $(sectionId).data('loop') : true,
           speed: isPro ? $(sectionId).data('slider-speed') : 3000,

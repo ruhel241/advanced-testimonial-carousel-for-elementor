@@ -3,8 +3,11 @@
   justify-content: center;
   align-items: center;
   cursor: grab;
-  position: relative;
+  position: static;
   overflow: hidden;
+  .swiper-wrappe {
+    overflow: initial;
+  }
   .swiper-slide {
     display: flex;
     font-size: 16px;
@@ -405,8 +408,6 @@
     }
   }
 }
-
-
 
 @media only screen and (max-width: 900px) {
 /**
