@@ -8,27 +8,34 @@ class SetupController
     public function handleAjaxCalls()
     {
         $route = sanitize_text_field( $_REQUEST['route'] );
-        /**
-         *  Advaced Testimonial Carousel
-         */
-        if ($route == 'install-atc'){
-            $this->handleAdvancedTestimonialInstall();
-        }
+        $nonce = sanitize_text_field( $_REQUEST['nonce'] );
 
-        /**
-         *  Advaced Image Comparison
-         */
-        if ( $route == 'install-aic' ) {
-            $this->handleImageComparisonInstall();
+        if ( !(isset($nonce) && wp_verify_nonce($nonce, 'atc_nonce')) ) {
+            return;
         }
+        
+            /**
+             *  Advaced Testimonial Carousel
+            */
+            if ($route == 'install-atc') {
+                $this->handleAdvancedTestimonialInstall();
+            }
 
-        /**
-         *  Advaced Slider
-         */
+            /**
+             *  Advaced Image Comparison
+            */
+            if ( $route == 'install-aic' ) {
+                $this->handleImageComparisonInstall();
+            }
 
-        if ($route == 'install-ase') {
-            $this->handleAdvancedSliderInstall();
-        }
+            /**
+             *  Advaced Slider
+            */
+            if ($route == 'install-ase') {
+                $this->handleAdvancedSliderInstall();
+            }
+
+        
     }
 
     /**

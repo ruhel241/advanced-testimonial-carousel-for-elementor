@@ -1,10 +1,10 @@
 === Advanced Testimonial Carousel for Elementor ===
 Contributors: ruhel241, wpcreativeidea
 Tags:  elementor, elementor testimonial carousel, testimonial, slider, elementor widget
-Requires at least: 4.5
-Tested up to: 6.4.2
-Requires PHP: 7.0 or higher
-Stable tag: 2.0.6
+Requires at least: 5.0
+Tested up to: 6.4.3
+Requires PHP: 7.4
+Stable tag: 3.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -84,10 +84,13 @@ Yes you can style dots, dots size change.
 
 == Changelog ==
 
+= 3.0.0 (DATE: March 8, 2024) =
+* Added nonce (Fix security issue)
+
 = 2.0.6 =
 * Admin Notice Hide Option.
 
-= 2.0.6 =
+= 2.0.5 =
 * CSS Bug Fix
 
 = 2.0.4 =

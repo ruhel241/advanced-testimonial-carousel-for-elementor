@@ -1,6 +1,6 @@
 jQuery(document).ready(function($) {
     var $successMessage = $("#atc-notice-success");
-    var $errorMessage = $("#atc-notice-error");
+    var $errorMessage   = $("#atc-notice-error");
     
     $successMessage.on('click', function() {
         $(this).hide();
@@ -9,13 +9,9 @@ jQuery(document).ready(function($) {
     $errorMessage.on('click', function() {
         $(this).hide();
     });
-
-
-    
-   var atcAddons =  $("#atc-addons-tab");
-
+ 
+   var atcAddons  =  $("#atc-addons-tab");
    var atcLicense =  $("#atc-license-tab");
-
 
     atcAddons.on('click', function() {
         $('.atc-addons-wrapper').show();
@@ -28,11 +24,11 @@ jQuery(document).ready(function($) {
     })
     
     var atcAdminSettings = {
-      
         getStatusLicense: function() {
             jQuery.post(atcProVar.ajaxurl, {
                 action: 'atc_pro_lincese_ajax_actions', 
-                route: 'get_license_status'
+                route: 'get_license_status',
+                nonce: atcProVar.nonce
             })
                 .then(function(response) {
                     if ( response.data.license_data.status === 'valid' ) {
@@ -44,7 +40,7 @@ jQuery(document).ready(function($) {
                     }
                 })
                 .fail(function(error) {
-                    alert ( 'Something is wrong! Please try again' );
+                    console.log('Something is wrong! Please try again');
                 })
                 .always(function() {
                     $("#atcbooster-loading").hide();
@@ -61,7 +57,8 @@ jQuery(document).ready(function($) {
                 jQuery.post(atcProVar.ajaxurl, {
                     action: 'atc_pro_lincese_ajax_actions',
                     route: 'activate_license', 
-                    license_key: jQuery('#atc_license_settings_field').val()
+                    license_key: jQuery('#atc_license_settings_field').val(),
+                    nonce: atcProVar.nonce
                 })
                     .then(function(response) {
                         if (response.success == true) {
@@ -99,7 +96,8 @@ jQuery(document).ready(function($) {
                 e.preventDefault();
                 jQuery.post(atcProVar.ajaxurl, {
                     action: 'atc_pro_lincese_ajax_actions', 
-                    route: 'deactivated_license'
+                    route: 'deactivated_license',
+                    nonce: atcProVar.nonce
                 })
                     .then(function(response) {
                         $("#atcbooster-loading").hide();
@@ -119,11 +117,11 @@ jQuery(document).ready(function($) {
         // Active Plugin 
         installHandler: function() {
             $('.installAddon').on('click', function(e) {
-                // console.log($(this).attr('value'));
                 e.preventDefault();
                 jQuery.post(atcProVar.ajaxurl, {
                     action: 'atc_pro_setup_addons', 
                     route: $(this).attr('value'),
+                    nonce: atcProVar.nonce
                 })
                     .then(function(response) {
                         setTimeout(function() {
