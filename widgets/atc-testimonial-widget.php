@@ -790,6 +790,9 @@ class ATCTestimonialWidget extends Widget_Base
                             'max' => 100,
                         ],
                     ],
+                    'default' => [
+						'size' => 25,
+					],
                     'selectors' => [
                         '{{WRAPPER}} .atc-testimonial-container .swiper-button-prev::after, {{WRAPPER}} .atc-testimonial-container .swiper-button-next::after' => 'font-size: {{SIZE}}{{UNIT}};',
                     ]
@@ -899,7 +902,7 @@ class ATCTestimonialWidget extends Widget_Base
         $settings = $this->get_settings_for_display();
 
         if ( $settings['atc_list'] ) {
-            echo $this->html($settings);
+            echo esc_html( $this->html($settings) );
         }
     }
 
@@ -973,8 +976,8 @@ class ATCTestimonialWidget extends Widget_Base
 
                                 <div class="bio-information">
                                     <?php if ('yes' === $imageDisplay): ?>
-                                        <div class="author-img atc-image-align-<?php echo $settings['atc_image_text_align']; ?>">
-                                            <img src="<?php echo esc_url($item['atc_image']['url']); ?>" alt="<?php echo esc_html($item['atc_name']); ?>"/>
+                                        <div class="author-img atc-image-align-<?php echo esc_attr($settings['atc_image_text_align']); ?>">
+                                            <img src="<?php echo esc_url($item['atc_image']['url']); ?>" alt="<?php echo esc_attr($item['atc_name']); ?>"/>
                                         </div>
                                     <?php endif; ?>
                                 
@@ -1003,8 +1006,8 @@ class ATCTestimonialWidget extends Widget_Base
                     <?php else : ?>
                         <div class="swiper-slide atc-slider">
                             <?php if ('yes' === $imageDisplay): ?>
-                                <div class="author-img atc-image-align-<?php echo $settings['atc_image_text_align']; ?>">
-                                    <img src="<?php echo esc_url($item['atc_image']['url']); ?>" alt="<?php echo esc_html($item['atc_name']); ?>"/>
+                                <div class="author-img atc-image-align-<?php echo esc_attr($settings['atc_image_text_align']); ?>">
+                                    <img src="<?php echo esc_url($item['atc_image']['url']); ?>" alt="<?php echo esc_attr($item['atc_name']); ?>"/>
                                 </div>
                             <?php endif; ?>
                             <div class="description"> 

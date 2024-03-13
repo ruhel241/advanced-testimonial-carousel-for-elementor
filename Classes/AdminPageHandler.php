@@ -23,7 +23,6 @@ class AdminPageHandler {
 				'label' => esc_html__( 'ATC Settings', 'advanced-testimonial-carousel-for-elementor' ),
 				'sections' => [
 					'atc-plugins-section' => [
-						'label' => esc_html__( '', 'advanced-testimonial-carousel-for-elementor' ),
 						'callback' => function() {
 							$this->renderPage();
 						},
@@ -74,20 +73,20 @@ class AdminPageHandler {
 							<div class="image">
 								<img src="<?php echo esc_url( ATC_PLUGIN_URL . 'assets/images/'. $value['logo']); ?>" alt="">
 							</div>
-							<h2> <?php echo $value['title']; ?> </h2>
-							<p><?php echo $value['description']; ?></p>
+							<h2> <?php echo esc_html($value['title']); ?> </h2>
+							<p><?php echo esc_html($value['description']); ?></p>
 							<div class="btn-box">
 								<?php
 									if (!$value['is_installed']):
-								?>	<a class="btn installAddon" value="<?php echo $value['route']; ?>">
-										<?php echo $value['action_text']; ?>
+								?>	<a class="btn installAddon" value="<?php echo esc_attr($value['route']); ?>">
+										<?php echo esc_html($value['action_text']); ?>
 									</a>
 								<?php else: ?>
-									<a href="<?php echo $value['settings_url']; ?>" class="viewInstall" target="_blank">
+									<a href="<?php echo esc_attr($value['settings_url']); ?>" class="viewInstall" target="_blank">
 										View Settings
 									</a>
 								<?php endif; ?>
-								<a href="<?php echo $value['upgrade_to_pro_link']; ?>" class="upgrade-to-pro" target="_blank">Upgrade to Pro</a>
+								<a href="<?php echo esc_attr($value['upgrade_to_pro_link']); ?>" class="upgrade-to-pro" target="_blank">Upgrade to Pro</a>
 							</div>
 						</div>
 					</div>

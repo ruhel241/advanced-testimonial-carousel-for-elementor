@@ -18,7 +18,7 @@ import 'swiper/css/bundle';
         new Swiper(sectionId, {
           autoplay: isPro ? $(sectionId).data('autoplay') : true,
           loop: isPro ? $(sectionId).data('loop') : true,
-          speed: isPro ? $(sectionId).data('slider-speed') : 3000,
+          speed: isPro ? $(sectionId).data('slider-speed') : 6000,
           autoHeight: isPro ? $(sectionId).data('auto-height') : true,
           slidesPerView: isPro ? $(sectionId).data('slider-per-view') : 1, /// koita view korbe oita dekhabe 
           slidesPerGroup: isPro ? $(sectionId).data('slider-per-group') : 1, //koita kore slide hobe group kore dekhabe
@@ -34,10 +34,11 @@ import 'swiper/css/bundle';
         });
       });
     }
+
    
     $( window ).on( 'elementor/frontend/init', function () {
       elementorFrontend.hooks.addAction( 'frontend/element_ready/atc-testimonial-carousel.default', ATCTestimonialCarousel );
     });
-  
-  })( jQuery );
+
+})( jQuery );
   
