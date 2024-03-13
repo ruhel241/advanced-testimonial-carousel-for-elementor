@@ -153,8 +153,6 @@ final class AdvancedTestimonialCarousel
 		
 		if ( $screen->id == 'dashboard' ||  $screen->id == 'plugins' ) {
 			if ( !get_user_meta( $user_id, 'atc-notice-dismissed' ) ) {
-				// Generate nonce
-				$dismiss_nonce = wp_create_nonce( 'atc_dismiss_notice_nonce' );
 				
 				?>
 					<div class="notice notice-success is-dismissible" id="is_atcReviewNotice">
@@ -172,8 +170,7 @@ final class AdvancedTestimonialCarousel
 	public function atc_notice_dismissed() {
 		$user_id = get_current_user_id();
 	
-		// Verify nonce
-		if ( isset( $_GET['atc-dismissed-notice'] ) && wp_verify_nonce( $_GET['atc-dismissed-notice'], 'atc_dismiss_notice_nonce' ) ) {
+		if ( isset( $_GET['atc-dismissed-notice'] ) ) {
 			add_user_meta( $user_id, 'atc-notice-dismissed', 'true', true );
 		}
 			
@@ -320,7 +317,7 @@ final class AdvancedTestimonialCarousel
 	 */
 	public function admin_notice_missing_main_plugin() {
 
-		if ( isset($_GET['activate']) && wp_verify_nonce($_GET['activate'], '_wpnonce') ) unset( $_GET['activate'] );
+		if ( isset($_GET['activate']) ) unset( $_GET['activate'] );
 
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: Elementor */
@@ -343,7 +340,7 @@ final class AdvancedTestimonialCarousel
 	 */
 	public function admin_notice_minimum_elementor_version() {
 
-		if ( isset($_GET['activate']) && wp_verify_nonce($_GET['activate'], '_wpnonce' ) ) unset( $_GET['activate'] );
+		if ( isset($_GET['activate']) ) unset( $_GET['activate'] );
 
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: Elementor 3: Required Elementor version */
@@ -367,7 +364,7 @@ final class AdvancedTestimonialCarousel
 	 */
 	public function admin_notice_minimum_php_version() {
 
-		if ( isset($_GET['activate']) && wp_verify_nonce($_GET['activate'], '_wpnonce' ) ) unset( $_GET['activate'] );
+		if ( isset($_GET['activate']) ) unset( $_GET['activate'] );
 
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: PHP 3: Required PHP version */
