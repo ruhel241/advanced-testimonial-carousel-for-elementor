@@ -78,7 +78,7 @@ class AdminPageHandler {
 							<div class="btn-box">
 								<?php
 									if (!$value['is_installed']):
-								?>	<a class="btn installAddon" value="<?php echo esc_attr($value['route']); ?>">
+								?>	<a class="btn atc-install-addon" value="<?php echo esc_attr($value['route']); ?>">
 										<?php echo esc_html($value['action_text']); ?>
 									</a>
 								<?php else: ?>

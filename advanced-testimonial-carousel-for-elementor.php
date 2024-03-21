@@ -3,7 +3,7 @@
  * Plugin Name: Advanced Testimonial Carousel for Elementor
  * Description: Advanced Testimonial Carousel for elementor wordpress plugin
  * Plugin URI:  https://wpcreativeidea.com/testimonial
- * Version:     3.0.0
+ * Version:     3.0.1
  * Author:      wpcreativeidea
  * Author URI:  https://wpcreativeidea.com/home
  * Text Domain: advanced-testimonial-carousel-for-elementor
@@ -18,13 +18,13 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * The main class that initiates and runs the plugin.
  *
- * @since 3.0.0
+ * @since 3.0.1
  */
 
 define('ATC_DIR_FILE', __FILE__);
 define('ATC_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('ATC_LITE', 'advancedTestimonialLite');
-define('ATC_PLUGIN_VERSION', '3.0.0');
+define('ATC_PLUGIN_VERSION', '3.0.1');
 
 final class AdvancedTestimonialCarousel 
 {
@@ -32,16 +32,16 @@ final class AdvancedTestimonialCarousel
 	/**
 	 * Plugin Version
 	 *
-	 * @since 3.0.0
+	 * @since 3.0.1
 	 *
 	 * @var string The plugin version.
 	 */
-	const VERSION = '3.0.0';
+	const VERSION = '3.0.1';
 
 	/**
 	 * Minimum Elementor Version
 	 *
-	 * @since 3.0.0
+	 * @since 3.0.1
 	 *
 	 * @var string Minimum Elementor version required to run the plugin.
 	 */
@@ -50,7 +50,7 @@ final class AdvancedTestimonialCarousel
 	/**
 	 * Minimum PHP Version
 	 *
-	 * @since 3.0.0
+	 * @since 3.0.1
 	 *
 	 * @var string Minimum PHP version required to run the plugin.
 	 */
@@ -59,7 +59,7 @@ final class AdvancedTestimonialCarousel
 	/**
 	 * Instance
 	 *
-	 * @since 3.0.0
+	 * @since 3.0.1
 	 *
 	 * @access private
 	 * @static
@@ -74,7 +74,7 @@ final class AdvancedTestimonialCarousel
 	 *
 	 * Ensures only one instance of the class is loaded or can be loaded.
 	 *
-	 * @since 3.0.0
+	 * @since 3.0.1
 	 *
 	 * @access public
 	 * @static
@@ -94,7 +94,7 @@ final class AdvancedTestimonialCarousel
 	/**
 	 * Constructor
 	 *
-	 * @since 3.0.0
+	 * @since 3.0.1
 	 *
 	 * @access public
 	 */
@@ -109,7 +109,7 @@ final class AdvancedTestimonialCarousel
 	 *
 	 * Fired by `init` action hook.
 	 *
-	 * @since 3.0.0
+	 * @since 3.0.1
 	 *
 	 * @access public
 	 */
@@ -125,7 +125,7 @@ final class AdvancedTestimonialCarousel
 	 *
 	 * Fired by `plugins_loaded` action hook.
 	 *
-	 * @since 3.0.0
+	 * @since 3.0.1
 	 *
 	 * @access public
 	 */
@@ -139,6 +139,107 @@ final class AdvancedTestimonialCarousel
 					require_once(ATCPRO_DIR_PATH.'Services/slider-widget.php');
 				}
 			}
+		}
+
+		
+	}
+
+	
+	/**
+	 * Compatibility Checks
+	 *
+	 * Checks if the installed version of Elementor meets the plugin's minimum requirement.
+	 * Checks if the installed PHP version meets the plugin's minimum requirement.
+	 *
+	 * @since 3.0.1
+	 *
+	 * @access public
+	 */
+	public function is_compatible() {
+
+		// Check if Elementor installed and activated
+		if ( ! did_action( 'elementor/loaded' ) ) {
+			add_action( 'admin_notices', [ $this, 'admin_notice_missing_main_plugin' ] );
+			return false;
+		}
+
+		// Check for required Elementor version
+		if ( ! version_compare( ELEMENTOR_VERSION, self::MINIMUM_ELEMENTOR_VERSION, '>=' ) ) {
+			add_action( 'admin_notices', [ $this, 'admin_notice_minimum_elementor_version' ] );
+			return false;
+		}
+
+		// Check for required PHP version
+		if ( version_compare( PHP_VERSION, self::MINIMUM_PHP_VERSION, '<' ) ) {
+			add_action( 'admin_notices', [ $this, 'admin_notice_minimum_php_version' ] );
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * Initialize the plugin
+	 *
+	 * Load the plugin only after Elementor (and other plugins) are loaded.
+	 * Load the files required to run the plugin.
+	 *
+	 * Fired by `plugins_loaded` action hook.
+	 *
+	 * @since 3.0.1
+	 *
+	 * @access public
+	 */
+	public function init() {
+		
+		include('load.php');
+	
+		$this->loadTextDomain();
+
+		if ( is_admin() ) {
+			$this->adminHooks();
+		}
+
+		// Add Plugin actions
+		add_action( 'elementor/widgets/widgets_registered', [ $this, 'init_widgets' ] );
+		
+		add_action('elementor/frontend/after_enqueue_styles', function() {
+			wp_enqueue_style( 'atc-swiper-css', plugin_dir_url( __FILE__ ). 'assets/css/atc-testimonial.css', array(), ATC_PLUGIN_VERSION);
+		});
+
+		add_action('elementor/editor/after_enqueue_styles', function() {
+			wp_enqueue_style( 'atc-editor-css', plugin_dir_url( __FILE__ ). 'assets/css/atc-editor.css', array(), ATC_PLUGIN_VERSION);
+		});
+
+		// after_enqueue_scripts
+		add_action('elementor/frontend/after_enqueue_scripts', function() {
+			wp_enqueue_script( 'atc-swiper-js', plugin_dir_url( __FILE__ ). 'assets/js/atc-testimonial.js', array('jquery'), ATC_PLUGIN_VERSION, true);
+			
+			wp_localize_script('atc-swiper-js', 'atcSwiperVar', array(
+                'has_pro' => defined('ATCPRO')
+            ));
+		});
+	}
+
+
+	public function adminHooks(){
+
+		add_action( 'admin_enqueue_scripts', array($this, 'enqueueScripts') );
+		
+		if (defined('ATCPRO')) {
+			add_action('wp_ajax_atc_pro_lincese_ajax_actions', function() {
+				$licenseController = new ATCPRO\Classes\LicenseController();
+				$licenseController->handleAjaxCalls();
+			});
+		}
+		
+		add_action('wp_ajax_atc_pro_setup_addons', function() {
+			$setupController = new ATC\Classes\SetupController();
+			$setupController->handleAjaxCalls();
+		});
+
+	    if (defined('ELEMENTOR_VERSION')) {
+			add_action('admin_init', [new ATC\Classes\AdminPageHandler(), 'initialLoad']);
 		}
 
 		add_action( 'admin_notices', [$this, 'atc_admin_Notice'] );
@@ -175,101 +276,6 @@ final class AdvancedTestimonialCarousel
 		}
 			
 	}
-	
-	/**
-	 * Compatibility Checks
-	 *
-	 * Checks if the installed version of Elementor meets the plugin's minimum requirement.
-	 * Checks if the installed PHP version meets the plugin's minimum requirement.
-	 *
-	 * @since 3.0.0
-	 *
-	 * @access public
-	 */
-	public function is_compatible() {
-
-		// Check if Elementor installed and activated
-		if ( ! did_action( 'elementor/loaded' ) ) {
-			add_action( 'admin_notices', [ $this, 'admin_notice_missing_main_plugin' ] );
-			return false;
-		}
-
-		// Check for required Elementor version
-		if ( ! version_compare( ELEMENTOR_VERSION, self::MINIMUM_ELEMENTOR_VERSION, '>=' ) ) {
-			add_action( 'admin_notices', [ $this, 'admin_notice_minimum_elementor_version' ] );
-			return false;
-		}
-
-		// Check for required PHP version
-		if ( version_compare( PHP_VERSION, self::MINIMUM_PHP_VERSION, '<' ) ) {
-			add_action( 'admin_notices', [ $this, 'admin_notice_minimum_php_version' ] );
-			return false;
-		}
-
-		return true;
-	}
-
-	/**
-	 * Initialize the plugin
-	 *
-	 * Load the plugin only after Elementor (and other plugins) are loaded.
-	 * Load the files required to run the plugin.
-	 *
-	 * Fired by `plugins_loaded` action hook.
-	 *
-	 * @since 3.0.0
-	 *
-	 * @access public
-	 */
-	public function init() {
-		
-		include('load.php');
-	
-		$this->loadTextDomain();
-
-		// Add Plugin actions
-		add_action( 'elementor/widgets/widgets_registered', [ $this, 'init_widgets' ] );
-		
-		add_action('elementor/frontend/after_enqueue_styles', function() {
-			wp_enqueue_style( 'atc-swiper-css', plugin_dir_url( __FILE__ ). 'assets/css/atc-testimonial.css', array(), ATC_PLUGIN_VERSION);
-		});
-
-		add_action('elementor/editor/after_enqueue_styles', function() {
-			wp_enqueue_style( 'atc-editor-css', plugin_dir_url( __FILE__ ). 'assets/css/atc-editor.css', array(), ATC_PLUGIN_VERSION);
-		});
-
-		// after_enqueue_scripts
-		add_action('elementor/frontend/after_enqueue_scripts', function() {
-			wp_enqueue_script( 'atc-swiper-js', plugin_dir_url( __FILE__ ). 'assets/js/atc-testimonial.js', array('jquery'), ATC_PLUGIN_VERSION, true);
-			
-			wp_localize_script('atc-swiper-js', 'atcSwiperVar', array(
-                'has_pro' => defined('ATCPRO')
-            ));
-		});
-
-		add_action( 'admin_enqueue_scripts', array($this, 'enqueueScripts') );
-		
-		if (defined('ATCPRO')) {
-			add_action('wp_ajax_atc_pro_lincese_ajax_actions', function() {
-				$licenseController = new ATCPRO\Classes\LicenseController();
-				$licenseController->handleAjaxCalls();
-			});
-		}
-		
-		add_action('wp_ajax_atc_pro_setup_addons', function() {
-			$setupController = new ATC\Classes\SetupController();
-			$setupController->handleAjaxCalls();
-		});
-
-	    if (defined('ELEMENTOR_VERSION')) {
-			add_action('admin_init', [new ATC\Classes\AdminPageHandler(), 'initialLoad']);
-		}
-	
-	}
-
-
-	public function adminHooks(){}
-
 
 	public static function enqueueScripts()
     {
@@ -287,7 +293,7 @@ final class AdvancedTestimonialCarousel
 	 *
 	 * Include widgets files and register them
 	 *
-	 * @since 3.0.0
+	 * @since 3.0.1
 	 *
 	 * @access public
 	 */
@@ -311,7 +317,7 @@ final class AdvancedTestimonialCarousel
 	 *
 	 * Warning when the site doesn't have Elementor installed or activated.
 	 *
-	 * @since 3.0.0
+	 * @since 3.0.1
 	 *
 	 * @access public
 	 */
@@ -334,7 +340,7 @@ final class AdvancedTestimonialCarousel
 	 *
 	 * Warning when the site doesn't have a minimum required Elementor version.
 	 *
-	 * @since 3.0.0
+	 * @since 3.0.1
 	 *
 	 * @access public
 	 */
@@ -358,7 +364,7 @@ final class AdvancedTestimonialCarousel
 	 *
 	 * Warning when the site doesn't have a minimum required PHP version.
 	 *
-	 * @since 3.0.0
+	 * @since 3.0.1
 	 *
 	 * @access public
 	 */

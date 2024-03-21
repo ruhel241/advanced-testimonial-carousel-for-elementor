@@ -116,7 +116,7 @@ jQuery(document).ready(function($) {
         },
         // Active Plugin 
         installHandler: function() {
-            $('.installAddon').on('click', function(e) {
+            $('.atc-install-addon').on('click', function(e) {
                 e.preventDefault();
                 jQuery.post(atcProVar.ajaxurl, {
                     action: 'atc_pro_setup_addons', 

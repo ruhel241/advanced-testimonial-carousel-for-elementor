@@ -13,29 +13,31 @@ class SetupController
         if ( !(isset($nonce) && wp_verify_nonce($nonce, 'atc_nonce')) ) {
             return;
         }
+
+        if ( !current_user_can( 'manage_options' ) ) {
+            return;
+        }
         
-            /**
-             *  Advaced Testimonial Carousel
-            */
-            if ($route == 'install-atc') {
-                $this->handleAdvancedTestimonialInstall();
-            }
+        /**
+         *  Advaced Testimonial Carousel
+        */
+        if ($route == 'install-atc') {
+            $this->handleAdvancedTestimonialInstall();
+        }
 
-            /**
-             *  Advaced Image Comparison
-            */
-            if ( $route == 'install-aic' ) {
-                $this->handleImageComparisonInstall();
-            }
+        /**
+         *  Advaced Image Comparison
+        */
+        if ( $route == 'install-aic' ) {
+            $this->handleImageComparisonInstall();
+        }
 
-            /**
-             *  Advaced Slider
-            */
-            if ($route == 'install-ase') {
-                $this->handleAdvancedSliderInstall();
-            }
-
-        
+        /**
+         *  Advaced Slider
+        */
+        if ($route == 'install-ase') {
+            $this->handleAdvancedSliderInstall();
+        }
     }
 
     /**
