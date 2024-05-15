@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name: Advanced Testimonial Carousel for Elementor
+ * Plugin Name: Advanced Testimonial Carousel For Elementor
  * Description: Advanced Testimonial Carousel for elementor wordpress plugin
  * Plugin URI:  https://wpcreativeidea.com/testimonial
- * Version:     3.0.1
+ * Version:     3.0.2
  * Author:      wpcreativeidea
  * Author URI:  https://wpcreativeidea.com/home
  * Text Domain: advanced-testimonial-carousel-for-elementor
@@ -18,13 +18,13 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * The main class that initiates and runs the plugin.
  *
- * @since 3.0.1
+ * @since 3.0.2
  */
 
 define('ATC_DIR_FILE', __FILE__);
 define('ATC_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('ATC_LITE', 'advancedTestimonialLite');
-define('ATC_PLUGIN_VERSION', '3.0.1');
+define('ATC_PLUGIN_VERSION', '3.0.2');
 
 final class AdvancedTestimonialCarousel 
 {
@@ -32,16 +32,16 @@ final class AdvancedTestimonialCarousel
 	/**
 	 * Plugin Version
 	 *
-	 * @since 3.0.1
+	 * @since 3.0.2
 	 *
 	 * @var string The plugin version.
 	 */
-	const VERSION = '3.0.1';
+	const VERSION = '3.0.2';
 
 	/**
 	 * Minimum Elementor Version
 	 *
-	 * @since 3.0.1
+	 * @since 3.0.2
 	 *
 	 * @var string Minimum Elementor version required to run the plugin.
 	 */
@@ -50,7 +50,7 @@ final class AdvancedTestimonialCarousel
 	/**
 	 * Minimum PHP Version
 	 *
-	 * @since 3.0.1
+	 * @since 3.0.2
 	 *
 	 * @var string Minimum PHP version required to run the plugin.
 	 */
@@ -59,7 +59,7 @@ final class AdvancedTestimonialCarousel
 	/**
 	 * Instance
 	 *
-	 * @since 3.0.1
+	 * @since 3.0.2
 	 *
 	 * @access private
 	 * @static
@@ -74,7 +74,7 @@ final class AdvancedTestimonialCarousel
 	 *
 	 * Ensures only one instance of the class is loaded or can be loaded.
 	 *
-	 * @since 3.0.1
+	 * @since 3.0.2
 	 *
 	 * @access public
 	 * @static
@@ -94,7 +94,7 @@ final class AdvancedTestimonialCarousel
 	/**
 	 * Constructor
 	 *
-	 * @since 3.0.1
+	 * @since 3.0.2
 	 *
 	 * @access public
 	 */
@@ -109,7 +109,7 @@ final class AdvancedTestimonialCarousel
 	 *
 	 * Fired by `init` action hook.
 	 *
-	 * @since 3.0.1
+	 * @since 3.0.2
 	 *
 	 * @access public
 	 */
@@ -125,11 +125,15 @@ final class AdvancedTestimonialCarousel
 	 *
 	 * Fired by `plugins_loaded` action hook.
 	 *
-	 * @since 3.0.1
+	 * @since 3.0.2
 	 *
 	 * @access public
 	 */
 	public function on_plugins_loaded() {
+
+		if (! did_action( 'elementor/loaded' ) ) {
+			return $this->injectDependency();
+		}
 
 		if ( $this->is_compatible() ) {
 			add_action( 'elementor/init', [ $this, 'init' ] );
@@ -140,10 +144,69 @@ final class AdvancedTestimonialCarousel
 				}
 			}
 		}
-
-		
 	}
 
+
+	 /**
+     * Notify the user about the Advanced Pricing Table dependency and instructs to install it.
+     */
+    protected function injectDependency()
+    {
+        add_action('admin_notices', function () {
+            $pluginInfo = $this->getInstallationDetails();
+
+            $class = 'notice notice-error';
+
+            $install_url_text = 'Click Here to Install the Plugin';
+
+            if ($pluginInfo->action == 'activate') {
+                $install_url_text = 'Click Here to Activate the Plugin';
+            }
+
+			
+            $message = 'Advanced Testimonial Carousel For Elementor Add-On Requires Elementor Base Plugin, <b><a href="' . $pluginInfo->url
+                . '">' . $install_url_text . '</a></b>';
+
+            printf('<div class="%1$s"><p>%2$s</p></div>', esc_attr($class), wp_kses_post($message));
+        });
+    }
+
+    /**
+     * Get the Advanced Pricing Table plugin installation information e.g. the URL to install.
+     *
+     * @return \stdClass $activation
+     */
+    protected function getInstallationDetails()
+    {
+        $activation = (object)[
+            'action' => 'install',
+            'url'    => ''
+        ];
+
+        $allPlugins = get_plugins();
+
+        if (isset($allPlugins['elementor/elementor.php'])) {
+            $url = wp_nonce_url(
+                self_admin_url('plugins.php?action=activate&plugin=elementor/elementor.php'),
+                'activate-plugin_elementor/elementor.php'
+            );
+            
+            $activation->action = 'activate';
+        } else {
+            $api = (object)[
+                'slug' => 'elementor'
+            ];
+
+            $url = wp_nonce_url(
+                self_admin_url('update.php?action=install-plugin&plugin=' . $api->slug),
+                'install-plugin_' . $api->slug
+            );
+        }
+
+        $activation->url = $url;
+
+        return $activation;
+    }
 	
 	/**
 	 * Compatibility Checks
@@ -151,7 +214,7 @@ final class AdvancedTestimonialCarousel
 	 * Checks if the installed version of Elementor meets the plugin's minimum requirement.
 	 * Checks if the installed PHP version meets the plugin's minimum requirement.
 	 *
-	 * @since 3.0.1
+	 * @since 3.0.2
 	 *
 	 * @access public
 	 */
@@ -186,7 +249,7 @@ final class AdvancedTestimonialCarousel
 	 *
 	 * Fired by `plugins_loaded` action hook.
 	 *
-	 * @since 3.0.1
+	 * @since 3.0.2
 	 *
 	 * @access public
 	 */
@@ -254,7 +317,6 @@ final class AdvancedTestimonialCarousel
 		
 		if ( $screen->id == 'dashboard' ||  $screen->id == 'plugins' ) {
 			if ( !get_user_meta( $user_id, 'atc-notice-dismissed' ) ) {
-				
 				?>
 					<div class="notice notice-success is-dismissible" id="is_atcReviewNotice">
 						<p>
@@ -293,7 +355,7 @@ final class AdvancedTestimonialCarousel
 	 *
 	 * Include widgets files and register them
 	 *
-	 * @since 3.0.1
+	 * @since 3.0.2
 	 *
 	 * @access public
 	 */
@@ -317,7 +379,7 @@ final class AdvancedTestimonialCarousel
 	 *
 	 * Warning when the site doesn't have Elementor installed or activated.
 	 *
-	 * @since 3.0.1
+	 * @since 3.0.2
 	 *
 	 * @access public
 	 */
@@ -340,7 +402,7 @@ final class AdvancedTestimonialCarousel
 	 *
 	 * Warning when the site doesn't have a minimum required Elementor version.
 	 *
-	 * @since 3.0.1
+	 * @since 3.0.2
 	 *
 	 * @access public
 	 */
@@ -364,7 +426,7 @@ final class AdvancedTestimonialCarousel
 	 *
 	 * Warning when the site doesn't have a minimum required PHP version.
 	 *
-	 * @since 3.0.1
+	 * @since 3.0.2
 	 *
 	 * @access public
 	 */
