@@ -146,7 +146,7 @@ class AdminPageHandler {
                 'logo'           => 'testimonial-logo.png',
                 'is_installed'   => defined('ATC_PLUGIN_VERSION'),
                 'upgrade_to_pro_link' => 'https://wpcreativeidea.com/testimonial',
-                'settings_url'   => admin_url('admin.php?page=elementor#tab-atc-settings'),
+                'settings_url'   => admin_url('admin.php?page=elementor-settings#tab-atc-settings'),
                 'action_text'    => __('Install Testimonial', 'advanced-testimonial-carousel-for-elementor'),
 				'route'			 => 'install-atc',
                 'description'    => __('Advanced Testimonial Carousel for Elementor. You can add image, name, describes, title, added Unlimited slider.
@@ -158,7 +158,7 @@ class AdminPageHandler {
                 'logo'           => 'image-comparison-logo.png',
                 'is_installed'   => defined('AIC_PLUGIN_VERSION'),
                 'upgrade_to_pro_link' => 'https://wpcreativeidea.com/image-comparison',
-                'settings_url'   => admin_url('admin.php?page=elementor#tab-aic-settings'),
+                'settings_url'   => admin_url('admin.php?page=elementor-settings#tab-aic-settings'),
                 'action_text'    => __('Install Comparison', 'advanced-testimonial-carousel-for-elementor'),
 				'route'			 => 'install-aic', 
                 'description'    => __('Advanced Image Comparison is a fully Responsive.
@@ -173,7 +173,7 @@ class AdminPageHandler {
                 'logo'           => 'slider-logo.png',
                 'is_installed'   => defined('ASE_PLUGIN_VERSION'),
                 'upgrade_to_pro_link' => 'https://wpcreativeidea.com/slider',
-                'settings_url'   => admin_url('admin.php?page=elementor#tab-ase-settings'),
+                'settings_url'   => admin_url('admin.php?page=elementor-settings#tab-ase-settings'),
                 'action_text'    => __('Install Slider', 'advanced-testimonial-carousel-for-elementor'),
 				'route'			 => 'install-ase',
                 'description'    => __('Advanced Slider for Elementor. You can add background image, title, content and button, added Unlimited slider. You can customize background, title, describes and button. Additional options etc.Additional options, Styling title, content, button, background Overlay etc pro features.', 'advanced-testimonial-carousel-for-elementor')
