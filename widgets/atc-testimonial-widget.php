@@ -959,7 +959,7 @@ class ATCTestimonialWidget extends Widget_Base
         }
     ?>
        
-        <div <?php echo $this->get_render_attribute_string( 'atc_options' ); ?>>
+        <div <?php echo wp_kses_post($this->get_render_attribute_string( 'atc_options' )); ?>>
             <div class="swiper-wrapper">
                 <?php foreach (  $settings['atc_list'] as $item ) : ?>
                     <?php if ($template == 'template-6') : ?>

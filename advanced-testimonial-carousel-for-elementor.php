@@ -2,12 +2,15 @@
 /**
  * Plugin Name: Advanced Testimonial Carousel For Elementor
  * Description: Advanced Testimonial Carousel for elementor wordpress plugin
- * Plugin URI:  https://wpcreativeidea.com/testimonial
  * Version:     3.0.4
  * Author:      wpcreativeidea
  * Author URI:  https://wpcreativeidea.com/home
+ * Plugin URI:  https://wpcreativeidea.com/testimonial
+ * License: GPLv2 or later
  * Text Domain: advanced-testimonial-carousel-for-elementor
- */
+ * Domain Path: /language
+*/
+
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -25,6 +28,7 @@ define('ATC_DIR_FILE', __FILE__);
 define('ATC_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('ATC_LITE', 'advancedTestimonialLite');
 define('ATC_PLUGIN_VERSION', '3.0.4');
+define('ATC_PLUGIN_FILE_PATH', plugin_basename(__FILE__));
 
 final class AdvancedTestimonialCarousel 
 {
@@ -207,6 +211,22 @@ final class AdvancedTestimonialCarousel
 
         return $activation;
     }
+
+	public function atcPluginAction($links) {
+
+        $newLink = [
+            '<a href="'.admin_url('admin.php?page=elementor-settings#tab-atc-settings').'">' .esc_html__('Settings', 'advanced-testimonial-carousel-for-elementor'). '</a>'
+        ];
+
+		if (!defined('ATCPRO')) {
+            $goPro = '<a href="https://wpcreativeidea.com/testimonial" class="atc-go-pro" target="_blank" style="color:#39b54a;font-weight:bold;">' .esc_html__('Go Pro', 'advanced-testimonial-carousel-for-elementor'). '</a>';
+            array_push($newLink, $goPro);
+        }
+
+        return array_merge($links, $newLink);
+    }
+
+	
 	
 	/**
 	 * Compatibility Checks
@@ -265,6 +285,8 @@ final class AdvancedTestimonialCarousel
 
 		// Add Plugin actions
 		add_action( 'elementor/widgets/widgets_registered', [ $this, 'init_widgets' ] );
+
+		add_filter( 'plugin_action_links_'.ATC_PLUGIN_FILE_PATH, [$this, 'atcPluginAction'], 10, 1 );
 		
 		add_action('elementor/frontend/after_enqueue_styles', function() {
 			wp_enqueue_style( 'atc-swiper-css', plugin_dir_url( __FILE__ ). 'assets/css/atc-testimonial.css', array(), ATC_PLUGIN_VERSION);
@@ -443,7 +465,7 @@ final class AdvancedTestimonialCarousel
 			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'advanced-testimonial-carousel-for-elementor' ),
 			'<strong>' . esc_html__( 'Advanced Testimonial Carousel', 'advanced-testimonial-carousel-for-elementor' ) . '</strong>',
 			'<strong>' . esc_html__( 'PHP', 'advanced-testimonial-carousel-for-elementor' ) . '</strong>',
-			 self::MINIMUM_PHP_VERSION
+			self::MINIMUM_PHP_VERSION
 		);
 
 		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', wp_kses_post($message) );
