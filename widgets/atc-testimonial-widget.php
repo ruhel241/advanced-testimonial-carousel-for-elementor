@@ -39,13 +39,13 @@ class ATCTestimonialWidget extends Widget_Base
         $proNotice = [
 			'title' => esc_html__( 'These are pro features', 'advanced-testimonial-carousel-for-elementor' ),
 			'message' => esc_html__( 'These are pro features, if you want to enable these features you need to upgrade to the pro version.', 'advanced-testimonial-carousel-for-elementor' ),
-			'link' => "https://wpcreativeidea.com/testimonial"
+			'link' => esc_url("https://wpcreativeidea.com/testimonial")
 		];
 
         $this->start_controls_section(
 			'atc_widget_content_section',
 			[
-				'label' => __( 'Testimonial Carousel', 'advanced-testimonial-carousel-for-elementor' ),
+				'label' => esc_html__( 'Testimonial Carousel', 'advanced-testimonial-carousel-for-elementor' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
         );
@@ -55,7 +55,7 @@ class ATCTestimonialWidget extends Widget_Base
 
             $repeater->add_control(
                 'atc_image', [
-                    'label' => __( 'Choose Image', 'advanced-testimonial-carousel-for-elementor' ),
+                    'label' => esc_html__( 'Choose Image', 'advanced-testimonial-carousel-for-elementor' ),
                     'type' => Controls_Manager::MEDIA,
                     'default' => [
                         'url' => Utils::get_placeholder_image_src(),
@@ -68,9 +68,9 @@ class ATCTestimonialWidget extends Widget_Base
 
             $repeater->add_control(
                 'atc_name', [
-                    'label' => __( 'Name', 'advanced-testimonial-carousel-for-elementor' ),
+                    'label' => esc_html__( 'Name', 'advanced-testimonial-carousel-for-elementor' ),
                     'type' => Controls_Manager::TEXT,
-                    'default' => __( 'John Doe' , 'advanced-testimonial-carousel-for-elementor' ),
+                    'default' => esc_html__( 'John Doe' , 'advanced-testimonial-carousel-for-elementor' ),
                     'label_block' => true,
                     'dynamic' => [
                         'active' => true,
@@ -80,9 +80,9 @@ class ATCTestimonialWidget extends Widget_Base
 
             $repeater->add_control(
                 'atc_title', [
-                    'label' => __( 'Designation', 'advanced-testimonial-carousel-for-elementor' ),
+                    'label' => esc_html__( 'Designation', 'advanced-testimonial-carousel-for-elementor' ),
                     'type' => Controls_Manager::TEXT,
-                    'default' => __( 'CEO' , 'advanced-testimonial-carousel-for-elementor' ),
+                    'default' => esc_html__( 'CEO' , 'advanced-testimonial-carousel-for-elementor' ),
                     'label_block' => true,
                     'dynamic' => [
                         'active' => true,
@@ -95,9 +95,9 @@ class ATCTestimonialWidget extends Widget_Base
             } else {
                 $repeater->add_control(
                     'atc_content', [
-                        'label' => __( 'Content', 'advanced-testimonial-carousel-for-elementor' ),
+                        'label' => esc_html__( 'Content', 'advanced-testimonial-carousel-for-elementor' ),
                         'type' => Controls_Manager::TEXTAREA,
-                        'default' => "<p>". __( 'Lorem ipsum dolor sit amet, tpat dictum purus, at malesuada tellus convallis et. Aliquam erat volutpat. Vestibulum felis ex, ultrices posuere facilisis eget, malesuada quis elit. Nulla ac eleifend odio' , 'advanced-testimonial-carousel-for-elementor' )."</p>",
+                        'default' => "<p>". esc_html__( 'Lorem ipsum dolor sit amet, tpat dictum purus, at malesuada tellus convallis et. Aliquam erat volutpat. Vestibulum felis ex, ultrices posuere facilisis eget, malesuada quis elit. Nulla ac eleifend odio' , 'advanced-testimonial-carousel-for-elementor' )."</p>",
                         'label_block' => true,
                         'dynamic' => [
                             'active' => true
@@ -126,21 +126,21 @@ class ATCTestimonialWidget extends Widget_Base
           $this->add_control(
               'atc_list',
               [
-                  'label' => __( 'Repeater List', 'advanced-testimonial-carousel-for-elementor' ),
+                  'label' => esc_html__( 'Repeater List', 'advanced-testimonial-carousel-for-elementor' ),
                   'type' => Controls_Manager::REPEATER,
                   'fields' => $repeater->get_controls(),
                   'default' => [
                       [
-                          'atc_content' => "<p>". __( 'Lorem ipsum dolor sit amet, tpat dictum purus, at malesuada tellus convallis et. Aliquam erat volutpat. Vestibulum felis ex, ultrices posuere facilisis eget, malesuada quis elit. Nulla ac eleifend odio' , 'advanced-testimonial-carousel-for-elementor' )."</p>",
-                          'atc_name' => __( 'John Doe', 'advanced-testimonial-carousel-for-elementor' )
+                          'atc_content' => "<p>". esc_html__( 'Lorem ipsum dolor sit amet, tpat dictum purus, at malesuada tellus convallis et. Aliquam erat volutpat. Vestibulum felis ex, ultrices posuere facilisis eget, malesuada quis elit. Nulla ac eleifend odio' , 'advanced-testimonial-carousel-for-elementor' )."</p>",
+                          'atc_name' => esc_html__( 'John Doe', 'advanced-testimonial-carousel-for-elementor' )
                       ],
                       [
-                          'atc_content' => "<p>". __( 'Lorem ipsum dolor sit amet, tpat dictum purus, at malesuada tellus convallis et. Aliquam erat volutpat. Vestibulum felis ex, ultrices posuere facilisis eget, malesuada quis elit. Nulla ac eleifend odio' , 'advanced-testimonial-carousel-for-elementor' )."</p>",
-                          'atc_name' => __( 'Michael Jackson', 'advanced-testimonial-carousel-for-elementor' )                
+                          'atc_content' => "<p>". esc_html__( 'Lorem ipsum dolor sit amet, tpat dictum purus, at malesuada tellus convallis et. Aliquam erat volutpat. Vestibulum felis ex, ultrices posuere facilisis eget, malesuada quis elit. Nulla ac eleifend odio' , 'advanced-testimonial-carousel-for-elementor' )."</p>",
+                          'atc_name' => esc_html__( 'Michael Jackson', 'advanced-testimonial-carousel-for-elementor' )                
                       ],
                       [
-                        'atc_content' => "<p>". __( 'Lorem ipsum dolor sit amet, tpat dictum purus, at malesuada tellus convallis et. Aliquam erat volutpat. Vestibulum felis ex, ultrices posuere facilisis eget, malesuada quis elit. Nulla ac eleifend odio' , 'advanced-testimonial-carousel-for-elementor' )."</p>",
-                        'atc_name' => __( 'Jackson', 'advanced-testimonial-carousel-for-elementor' )                
+                        'atc_content' => "<p>". esc_html__( 'Lorem ipsum dolor sit amet, tpat dictum purus, at malesuada tellus convallis et. Aliquam erat volutpat. Vestibulum felis ex, ultrices posuere facilisis eget, malesuada quis elit. Nulla ac eleifend odio' , 'advanced-testimonial-carousel-for-elementor' )."</p>",
+                        'atc_name' => esc_html__( 'Jackson', 'advanced-testimonial-carousel-for-elementor' )                
                       ],
                   ],
                   'title_field' => '{{{ atc_name }}}',
@@ -161,7 +161,7 @@ class ATCTestimonialWidget extends Widget_Base
         $this->start_controls_section(
 			'atc_quotation_icon_style_section',
 			[
-				'label' => __( 'Quotation Icon', 'advanced-testimonial-carousel-for-elementor' ),
+				'label' => esc_html__( 'Quotation Icon', 'advanced-testimonial-carousel-for-elementor' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
         );
@@ -186,7 +186,7 @@ class ATCTestimonialWidget extends Widget_Base
         $this->start_controls_section(
 			'atc_widget_background_style_section',
 			[
-				'label' => __( 'Additional Options', 'advanced-testimonial-carousel-for-elementor' ),
+				'label' => esc_html__( 'Additional Options', 'advanced-testimonial-carousel-for-elementor' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
         );
@@ -211,14 +211,14 @@ class ATCTestimonialWidget extends Widget_Base
         $this->start_controls_section(
 			'atc_testimonial_carousel_style',
 			[
-				'label' => __( 'Testimonial Carousel', 'advanced-testimonial-carousel-for-elementor' ),
+				'label' => esc_html__( 'Testimonial Carousel', 'advanced-testimonial-carousel-for-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
         );
             $this->add_control(
                 'atc_testimonial_height',
                 [
-                    'label' => __( 'Height', 'advanced-testimonial-carousel-for-elementor' ),
+                    'label' => esc_html__( 'Height', 'advanced-testimonial-carousel-for-elementor' ),
                     'type' => Controls_Manager::SLIDER,
                     'size_units' => [ 'px', '%' ],
                     'range' => [
@@ -245,7 +245,7 @@ class ATCTestimonialWidget extends Widget_Base
             $this->add_responsive_control(
                 'atc_testimonial_margin',
                 [
-                    'label' => __( 'Margin', 'advanced-testimonial-carousel-for-elementor' ),
+                    'label' => esc_html__( 'Margin', 'advanced-testimonial-carousel-for-elementor' ),
                     'type' => Controls_Manager::DIMENSIONS,
                     'size_units' => [ 'px', '%' ],
                     'selectors' => [
@@ -257,7 +257,7 @@ class ATCTestimonialWidget extends Widget_Base
             $this->add_responsive_control(
                 'atc_testimonial_padding',
                 [
-                    'label' => __( 'Padding', 'advanced-testimonial-carousel-for-elementor' ),
+                    'label' => esc_html__( 'Padding', 'advanced-testimonial-carousel-for-elementor' ),
                     'type' => Controls_Manager::DIMENSIONS,
                     'size_units' => [ 'px', '%' ],
                     // 'default' => [
@@ -316,7 +316,7 @@ class ATCTestimonialWidget extends Widget_Base
         $this->start_controls_section(
 			'atc_widget_image_style_section',
 			[
-				'label' => __( 'Image', 'advanced-testimonial-carousel-for-elementor' ),
+				'label' => esc_html__( 'Image', 'advanced-testimonial-carousel-for-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
                 'condition' => defined('ATCPRO') ? ['atc_image_display' => 'yes'] : []
 			]
@@ -324,19 +324,19 @@ class ATCTestimonialWidget extends Widget_Base
             $this->add_control(
                 'atc_image_text_align',
                 [
-                    'label' => __( 'Alignment', 'advanced-testimonial-carousel-for-elementor' ),
+                    'label' => esc_html__( 'Alignment', 'advanced-testimonial-carousel-for-elementor' ),
                     'type' => Controls_Manager::CHOOSE,
                     'options' => [
                         'left' => [
-                            'title' => __( 'Left', 'advanced-testimonial-carousel-for-elementor' ),
+                            'title' => esc_html__( 'Left', 'advanced-testimonial-carousel-for-elementor' ),
                             'icon' => 'eicon-text-align-left',
                         ],
                         'center' => [
-                            'title' => __( 'Center', 'advanced-testimonial-carousel-for-elementor' ),
+                            'title' => esc_html__( 'Center', 'advanced-testimonial-carousel-for-elementor' ),
                             'icon' => 'eicon-text-align-center',
                         ],
                         'right' => [
-                            'title' => __( 'Right', 'advanced-testimonial-carousel-for-elementor' ),
+                            'title' => esc_html__( 'Right', 'advanced-testimonial-carousel-for-elementor' ),
                             'icon' => 'eicon-text-align-right',
                         ],
                     ],
@@ -349,7 +349,7 @@ class ATCTestimonialWidget extends Widget_Base
             $this->add_control(
                 'atc_image_width',
                 [
-                    'label' => __( 'width', 'advanced-testimonial-carousel-for-elementor' ),
+                    'label' => esc_html__( 'width', 'advanced-testimonial-carousel-for-elementor' ),
                     'type' => Controls_Manager::SLIDER,
                     'size_units' => [ 'px', '%' ],
                     'range' => [
@@ -375,7 +375,7 @@ class ATCTestimonialWidget extends Widget_Base
             $this->add_control(
                 'atc_image_height',
                 [
-                    'label' => __( 'Height', 'advanced-testimonial-carousel-for-elementor' ),
+                    'label' => esc_html__( 'Height', 'advanced-testimonial-carousel-for-elementor' ),
                     'type' => Controls_Manager::SLIDER,
                     'size_units' => [ 'px', '%' ],
                     'range' => [
@@ -404,7 +404,7 @@ class ATCTestimonialWidget extends Widget_Base
             $this->add_responsive_control(
                 'atc_image_border_radius',
                 [
-                    'label' => __( 'Border Radius', 'advanced-testimonial-carousel-for-elementor' ),
+                    'label' => esc_html__( 'Border Radius', 'advanced-testimonial-carousel-for-elementor' ),
                     'type' => Controls_Manager::DIMENSIONS,
                     'size_units' => [ 'px', '%' ],
                     // 'default' => [
@@ -423,7 +423,7 @@ class ATCTestimonialWidget extends Widget_Base
             $this->add_responsive_control(
                 'atc_image_margin',
                 [
-                    'label' => __( 'Margin', 'advanced-testimonial-carousel-for-elementor' ),
+                    'label' => esc_html__( 'Margin', 'advanced-testimonial-carousel-for-elementor' ),
                     'type' => Controls_Manager::DIMENSIONS,
                     'size_units' => [ 'px', '%' ],
                     'selectors' => [
@@ -434,7 +434,7 @@ class ATCTestimonialWidget extends Widget_Base
             $this->add_responsive_control(
                 'atc_image_padding',
                 [
-                    'label' => __( 'Padding', 'advanced-testimonial-carousel-for-elementor' ),
+                    'label' => esc_html__( 'Padding', 'advanced-testimonial-carousel-for-elementor' ),
                     'type' => Controls_Manager::DIMENSIONS,
                     'size_units' => [ 'px', '%' ],
                     'selectors' => [
@@ -462,26 +462,26 @@ class ATCTestimonialWidget extends Widget_Base
         $this->start_controls_section(
 			'atc_widget_content_style_section',
 			[
-				'label' => __( 'Content', 'advanced-testimonial-carousel-for-elementor' ),
+				'label' => esc_html__( 'Content', 'advanced-testimonial-carousel-for-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
         );
             $this->add_control(
                 'atc_content_text_align',
                 [
-                    'label' => __( 'Alignment', 'advanced-testimonial-carousel-for-elementor' ),
+                    'label' => esc_html__( 'Alignment', 'advanced-testimonial-carousel-for-elementor' ),
                     'type' => Controls_Manager::CHOOSE,
                     'options' => [
                         'left' => [
-                            'title' => __( 'Left', 'advanced-testimonial-carousel-for-elementor' ),
+                            'title' => esc_html__( 'Left', 'advanced-testimonial-carousel-for-elementor' ),
                             'icon' => 'eicon-text-align-left',
                         ],
                         'center' => [
-                            'title' => __( 'Center', 'advanced-testimonial-carousel-for-elementor' ),
+                            'title' => esc_html__( 'Center', 'advanced-testimonial-carousel-for-elementor' ),
                             'icon' => 'eicon-text-align-center',
                         ],
                         'right' => [
-                            'title' => __( 'Right', 'advanced-testimonial-carousel-for-elementor' ),
+                            'title' => esc_html__( 'Right', 'advanced-testimonial-carousel-for-elementor' ),
                             'icon' => 'eicon-text-align-right',
                         ],
                     ],
@@ -494,7 +494,7 @@ class ATCTestimonialWidget extends Widget_Base
             $this->add_control(
                 'atc_widget_content_color',
                 [
-                    'label' => __( 'Text Color', 'advanced-testimonial-carousel-for-elementor' ),
+                    'label' => esc_html__( 'Text Color', 'advanced-testimonial-carousel-for-elementor' ),
                     'type' => Controls_Manager::COLOR,
                     'selectors' => [
                         '{{WRAPPER}} .atc-testimonial-container .content p' => 'color: {{VALUE}}',
@@ -505,7 +505,7 @@ class ATCTestimonialWidget extends Widget_Base
                 Group_Control_Typography::get_type(),
                 [
                     'name' => 'content_typography',
-                    'label' => __( 'Typography', 'advanced-testimonial-carousel-for-elementor' ),
+                    'label' => esc_html__( 'Typography', 'advanced-testimonial-carousel-for-elementor' ),
                     'selector' => '{{WRAPPER}} .atc-testimonial-container .content p',
                 ]
             );
@@ -513,14 +513,14 @@ class ATCTestimonialWidget extends Widget_Base
                 Group_Control_Text_Shadow::get_type(),
                 [
                     'name' => 'content_shadow',
-                    'label' => __( 'Text Shadow', 'advanced-testimonial-carousel-for-elementor' ),
+                    'label' => esc_html__( 'Text Shadow', 'advanced-testimonial-carousel-for-elementor' ),
                     'selector' => '{{WRAPPER}} .atc-testimonial-container .content p',
                 ]
             );
             $this->add_responsive_control(
                 'atc_image_content_margin',
                 [
-                    'label' => __( 'Margin', 'advanced-testimonial-carousel-for-elementor' ),
+                    'label' => esc_html__( 'Margin', 'advanced-testimonial-carousel-for-elementor' ),
                     'type' => Controls_Manager::DIMENSIONS,
                     'size_units' => [ 'px', '%' ],
                     'selectors' => [
@@ -531,7 +531,7 @@ class ATCTestimonialWidget extends Widget_Base
             $this->add_responsive_control(
                 'atc_image_content_padding',
                 [
-                    'label' => __( 'Padding', 'advanced-testimonial-carousel-for-elementor' ),
+                    'label' => esc_html__( 'Padding', 'advanced-testimonial-carousel-for-elementor' ),
                     'type' => Controls_Manager::DIMENSIONS,
                     'size_units' => [ 'px', '%' ],
                     'selectors' => [
@@ -544,7 +544,7 @@ class ATCTestimonialWidget extends Widget_Base
         $this->start_controls_section(
 			'atc_widget_author_name_style_section',
 			[
-				'label' => __( 'Author Name', 'advanced-testimonial-carousel-for-elementor' ),
+				'label' => esc_html__( 'Author Name', 'advanced-testimonial-carousel-for-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
                 'condition' => defined('ATCPRO') ? ['atc_author_name_display' => 'yes'] : []
 			]
@@ -552,19 +552,19 @@ class ATCTestimonialWidget extends Widget_Base
             $this->add_control(
                 'atc_author_name_text_align',
                 [
-                    'label' => __( 'Alignment', 'advanced-testimonial-carousel-for-elementor' ),
+                    'label' => esc_html__( 'Alignment', 'advanced-testimonial-carousel-for-elementor' ),
                     'type' => Controls_Manager::CHOOSE,
                     'options' => [
                         'left' => [
-                            'title' => __( 'Left', 'advanced-testimonial-carousel-for-elementor' ),
+                            'title' => esc_html__( 'Left', 'advanced-testimonial-carousel-for-elementor' ),
                             'icon' => 'eicon-text-align-left',
                         ],
                         'center' => [
-                            'title' => __( 'Center', 'advanced-testimonial-carousel-for-elementor' ),
+                            'title' => esc_html__( 'Center', 'advanced-testimonial-carousel-for-elementor' ),
                             'icon' => 'eicon-text-align-center',
                         ],
                         'right' => [
-                            'title' => __( 'Right', 'advanced-testimonial-carousel-for-elementor' ),
+                            'title' => esc_html__( 'Right', 'advanced-testimonial-carousel-for-elementor' ),
                             'icon' => 'eicon-text-align-right',
                         ],
                     ],
@@ -577,7 +577,7 @@ class ATCTestimonialWidget extends Widget_Base
             $this->add_control(
                 'atc_widget_author_name_color',
                 [
-                    'label' => __( 'Text Color', 'advanced-testimonial-carousel-for-elementor' ),
+                    'label' => esc_html__( 'Text Color', 'advanced-testimonial-carousel-for-elementor' ),
                     'type' => Controls_Manager::COLOR,
                     'selectors' => [
                         '{{WRAPPER}} .atc-testimonial-container .description .author-name' => 'color: {{VALUE}}',
@@ -588,7 +588,7 @@ class ATCTestimonialWidget extends Widget_Base
                 Group_Control_Typography::get_type(),
                 [
                     'name' => 'author_name_typography',
-                    'label' => __( 'Typography', 'advanced-testimonial-carousel-for-elementor' ),
+                    'label' => esc_html__( 'Typography', 'advanced-testimonial-carousel-for-elementor' ),
                     'selector' => '{{WRAPPER}} .atc-testimonial-container .description .author-name',
                 ]
             );
@@ -596,14 +596,14 @@ class ATCTestimonialWidget extends Widget_Base
                 Group_Control_Text_Shadow::get_type(),
                 [
                     'name' => 'author_name_shadow',
-                    'label' => __( 'Text Shadow', 'advanced-testimonial-carousel-for-elementor' ),
+                    'label' => esc_html__( 'Text Shadow', 'advanced-testimonial-carousel-for-elementor' ),
                     'selector' => '{{WRAPPER}} .atc-testimonial-container .description .author-name',
                 ]
             );
             $this->add_responsive_control(
                 'atc_image_author_name_margin',
                 [
-                    'label' => __( 'Margin', 'advanced-testimonial-carousel-for-elementor' ),
+                    'label' => esc_html__( 'Margin', 'advanced-testimonial-carousel-for-elementor' ),
                     'type' => Controls_Manager::DIMENSIONS,
                     'size_units' => [ 'px', '%' ],
                     'selectors' => [
@@ -614,7 +614,7 @@ class ATCTestimonialWidget extends Widget_Base
             $this->add_responsive_control(
                 'atc_image_author_name_padding',
                 [
-                    'label' => __( 'Padding', 'advanced-testimonial-carousel-for-elementor' ),
+                    'label' => esc_html__( 'Padding', 'advanced-testimonial-carousel-for-elementor' ),
                     'type' => Controls_Manager::DIMENSIONS,
                     'size_units' => [ 'px', '%' ],
                     'selectors' => [
@@ -627,7 +627,7 @@ class ATCTestimonialWidget extends Widget_Base
         $this->start_controls_section(
 			'atc_widget_company_style_section',
 			[
-				'label' => __( 'Company Name', 'advanced-testimonial-carousel-for-elementor' ),
+				'label' => esc_html__( 'Company Name', 'advanced-testimonial-carousel-for-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
                 'condition' => defined('ATCPRO') ? ['atc_company_name_display' => 'yes'] : []
             ]
@@ -635,19 +635,19 @@ class ATCTestimonialWidget extends Widget_Base
             $this->add_control(
                 'atc_company_text_align',
                 [
-                    'label' => __( 'Alignment', 'advanced-testimonial-carousel-for-elementor' ),
+                    'label' => esc_html__( 'Alignment', 'advanced-testimonial-carousel-for-elementor' ),
                     'type' => Controls_Manager::CHOOSE,
                     'options' => [
                         'left' => [
-                            'title' => __( 'Left', 'advanced-testimonial-carousel-for-elementor' ),
+                            'title' => esc_html__( 'Left', 'advanced-testimonial-carousel-for-elementor' ),
                             'icon' => 'eicon-text-align-left',
                         ],
                         'center' => [
-                            'title' => __( 'Center', 'advanced-testimonial-carousel-for-elementor' ),
+                            'title' => esc_html__( 'Center', 'advanced-testimonial-carousel-for-elementor' ),
                             'icon' => 'eicon-text-align-center',
                         ],
                         'right' => [
-                            'title' => __( 'Right', 'advanced-testimonial-carousel-for-elementor' ),
+                            'title' => esc_html__( 'Right', 'advanced-testimonial-carousel-for-elementor' ),
                             'icon' => 'eicon-text-align-right',
                         ],
                     ],
@@ -660,7 +660,7 @@ class ATCTestimonialWidget extends Widget_Base
             $this->add_control(
                 'atc_widget_company_color',
                 [
-                    'label' => __( 'Text Color', 'advanced-testimonial-carousel-for-elementor' ),
+                    'label' => esc_html__( 'Text Color', 'advanced-testimonial-carousel-for-elementor' ),
                     'type' => Controls_Manager::COLOR,
                     'selectors' => [
                         '{{WRAPPER}} .atc-testimonial-container .description .company' => 'color: {{VALUE}}',
@@ -671,7 +671,7 @@ class ATCTestimonialWidget extends Widget_Base
                 Group_Control_Typography::get_type(),
                 [
                     'name' => 'author_company_typography',
-                    'label' => __( 'Typography', 'advanced-testimonial-carousel-for-elementor' ),
+                    'label' => esc_html__( 'Typography', 'advanced-testimonial-carousel-for-elementor' ),
                     'selector' => '{{WRAPPER}} .atc-testimonial-container .description .company',
                 ]
             );
@@ -679,14 +679,14 @@ class ATCTestimonialWidget extends Widget_Base
                 Group_Control_Text_Shadow::get_type(),
                 [
                     'name' => 'author_company_shadow',
-                    'label' => __( 'Text Shadow', 'advanced-testimonial-carousel-for-elementor' ),
+                    'label' => esc_html__( 'Text Shadow', 'advanced-testimonial-carousel-for-elementor' ),
                     'selector' => '{{WRAPPER}} .atc-testimonial-container .description .company',
                 ]
             );
             $this->add_responsive_control(
                 'atc_image_company_margin',
                 [
-                    'label' => __( 'Margin', 'advanced-testimonial-carousel-for-elementor' ),
+                    'label' => esc_html__( 'Margin', 'advanced-testimonial-carousel-for-elementor' ),
                     'type' => Controls_Manager::DIMENSIONS,
                     'size_units' => [ 'px', '%' ],
                     'selectors' => [
@@ -697,7 +697,7 @@ class ATCTestimonialWidget extends Widget_Base
             $this->add_responsive_control(
                 'atc_image_company_padding',
                 [
-                    'label' => __( 'Padding', 'advanced-testimonial-carousel-for-elementor' ),
+                    'label' => esc_html__( 'Padding', 'advanced-testimonial-carousel-for-elementor' ),
                     'type' => Controls_Manager::DIMENSIONS,
                     'size_units' => [ 'px', '%' ],
                     'selectors' => [
@@ -762,7 +762,7 @@ class ATCTestimonialWidget extends Widget_Base
         $this->start_controls_section(
 			'atc_nav_section',
 			[
-				'label' => __( 'Arrows Icon', 'advanced-testimonial-carousel-for-elementor' ),
+				'label' => esc_html__( 'Arrows Icon', 'advanced-testimonial-carousel-for-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
         );
@@ -770,7 +770,7 @@ class ATCTestimonialWidget extends Widget_Base
             $this->add_control(
                 'atc_nav_color',
                 [
-                    'label' => __( 'Arrows Color', 'advanced-testimonial-carousel-for-elementor' ),
+                    'label' => esc_html__( 'Arrows Color', 'advanced-testimonial-carousel-for-elementor' ),
                     'type' => Controls_Manager::COLOR,
                     'selectors' => [
                         '{{WRAPPER}} .atc-testimonial-container .swiper-button-prev::after, {{WRAPPER}} .atc-testimonial-container .swiper-button-next::after' => 'color: {{VALUE}}',
@@ -781,7 +781,7 @@ class ATCTestimonialWidget extends Widget_Base
             $this->add_control(
                 'atc_nav_size',
                 [
-                    'label' => __( 'Arrows Size', 'advanced-testimonial-carousel-for-elementor' ),
+                    'label' => esc_html__( 'Arrows Size', 'advanced-testimonial-carousel-for-elementor' ),
                     'type' => Controls_Manager::SLIDER,
                     'size_units' => [ 'px', 'em'],
                     'range' => [
@@ -790,9 +790,9 @@ class ATCTestimonialWidget extends Widget_Base
                             'max' => 100,
                         ],
                     ],
-                    'default' => [
-						'size' => 25,
-					],
+                    // 'default' => [
+					// 	'size' => 25,
+					// ],
                     'selectors' => [
                         '{{WRAPPER}} .atc-testimonial-container .swiper-button-prev::after, {{WRAPPER}} .atc-testimonial-container .swiper-button-next::after' => 'font-size: {{SIZE}}{{UNIT}};',
                     ]
@@ -819,7 +819,7 @@ class ATCTestimonialWidget extends Widget_Base
         $this->start_controls_section(
 			'atc_dots_section',
 			[
-				'label' => __( 'Dots Icon', 'advanced-testimonial-carousel-for-elementor' ),
+				'label' => esc_html__( 'Dots Icon', 'advanced-testimonial-carousel-for-elementor' ),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
         );
@@ -827,7 +827,7 @@ class ATCTestimonialWidget extends Widget_Base
         $this->add_control(
 			'atc_dots_color',
 			[
-				'label' => __( 'Dots Color', 'advanced-testimonial-carousel-for-elementor' ),
+				'label' => esc_html__( 'Dots Color', 'advanced-testimonial-carousel-for-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .atc-testimonial-container .swiper-pagination-bullet-active' => 'background: {{VALUE}}',
@@ -838,7 +838,7 @@ class ATCTestimonialWidget extends Widget_Base
         $this->add_control(
             'atc_dots_size',
             [
-                'label' => __( 'Dots Size', 'advanced-testimonial-carousel-for-elementor' ),
+                'label' => esc_html__( 'Dots Size', 'advanced-testimonial-carousel-for-elementor' ),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px','em'],
                 'range' => [
@@ -929,11 +929,11 @@ class ATCTestimonialWidget extends Widget_Base
 
         if (defined('ATCPRO')) {
             $template           = $settings["atc_layout"];
-            $loop               = ( $settings['atc_testimonial_loop'] ===  'yes' ) ? 'true' : 'false';
-			$autoPlay           = ( $settings['atc_testimonial_autoplay'] ===  'yes' ) ? 'true' : 'false';
+            $loop               = ($settings['atc_testimonial_loop'] ===  'yes' ) ? 'true' : 'false';
+			$autoPlay           = ($settings['atc_testimonial_autoplay'] ===  'yes' ) ? 'true' : 'false';
             $arrows             = $settings['atc_testimonial_nav'];
             $dots               = $settings['atc_testimonial_dots'];
-            $autoHeight         = ( $settings['atc_slider_auto_height'] ===  'yes' ) ? 'true' : 'false';
+            $autoHeight         = ($settings['atc_slider_auto_height'] ===  'yes' ) ? 'true' : 'false';
             $sliderPerView      = $settings['atc_slider_per_view'];
             $sliderPerGroup     = $settings['atc_slider_per_group'];
             $sliderSpaceBetween = $settings['atc_slider_space_between']['size'];

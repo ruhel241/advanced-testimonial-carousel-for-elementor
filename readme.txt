@@ -86,8 +86,9 @@ Yes you can style dots, dots size change.
 
 == Changelog ==
 
-= 3.0.4 (DATE: August 22, 2024) =
+= 3.0.4 (DATE: August 26, 2024) =
 * Pro license tab redirection fix
+* Code Refactor
 
 = 3.0.3 (DATE: July 27, 2024) =
 * WordPress Version 6.6.1 Compatible

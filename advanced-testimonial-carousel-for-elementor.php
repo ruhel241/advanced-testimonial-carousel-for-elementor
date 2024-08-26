@@ -11,7 +11,6 @@
  * Domain Path: /language
 */
 
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
@@ -211,6 +210,7 @@ final class AdvancedTestimonialCarousel
 
         return $activation;
     }
+	
 
 	public function atcPluginAction($links) {
 
@@ -219,15 +219,13 @@ final class AdvancedTestimonialCarousel
         ];
 
 		if (!defined('ATCPRO')) {
-            $goPro = '<a href="https://wpcreativeidea.com/testimonial" class="atc-go-pro" target="_blank" style="color:#39b54a;font-weight:bold;">' .esc_html__('Go Pro', 'advanced-testimonial-carousel-for-elementor'). '</a>';
+            $goPro = wp_kses_post('<a href="https://wpcreativeidea.com/testimonial" class="atc-go-pro" target="_blank" style="color:#39b54a;font-weight:bold;">' .esc_html__('Go Pro', 'advanced-testimonial-carousel-for-elementor'). '</a>');
             array_push($newLink, $goPro);
         }
 
         return array_merge($links, $newLink);
     }
 
-	
-	
 	/**
 	 * Compatibility Checks
 	 *
@@ -285,12 +283,12 @@ final class AdvancedTestimonialCarousel
 
 		// Add Plugin actions
 		add_action( 'elementor/widgets/widgets_registered', [ $this, 'init_widgets' ] );
-
-		add_filter( 'plugin_action_links_'.ATC_PLUGIN_FILE_PATH, [$this, 'atcPluginAction'], 10, 1 );
 		
 		add_action('elementor/frontend/after_enqueue_styles', function() {
 			wp_enqueue_style( 'atc-swiper-css', plugin_dir_url( __FILE__ ). 'assets/css/atc-testimonial.css', array(), ATC_PLUGIN_VERSION);
 		});
+		
+		add_filter( 'plugin_action_links_'.ATC_PLUGIN_FILE_PATH, [$this, 'atcPluginAction'], 10, 1 );
 
 		add_action('elementor/editor/after_enqueue_styles', function() {
 			wp_enqueue_style( 'atc-editor-css', plugin_dir_url( __FILE__ ). 'assets/css/atc-editor.css', array(), ATC_PLUGIN_VERSION);
@@ -359,7 +357,7 @@ final class AdvancedTestimonialCarousel
 	public function atc_notice_dismissed() {
 		$user_id = get_current_user_id();
 	
-		if (isset($_GET['atc-dismissed-notice']) && isset($_GET['_atc_nonce']) && wp_verify_nonce($_GET['_atc_nonce'], 'atc_dismiss_notice_nonce')) {
+		if (isset($_GET['atc-dismissed-notice']) && isset($_GET['_atc_nonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash ($_GET['_atc_nonce'], 'atc_dismiss_notice_nonce')) )) {
 			update_user_meta($user_id, 'atc-notice-dismissed', 'deactive');
 		}
 			
@@ -465,7 +463,7 @@ final class AdvancedTestimonialCarousel
 			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'advanced-testimonial-carousel-for-elementor' ),
 			'<strong>' . esc_html__( 'Advanced Testimonial Carousel', 'advanced-testimonial-carousel-for-elementor' ) . '</strong>',
 			'<strong>' . esc_html__( 'PHP', 'advanced-testimonial-carousel-for-elementor' ) . '</strong>',
-			self::MINIMUM_PHP_VERSION
+			 self::MINIMUM_PHP_VERSION
 		);
 
 		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', wp_kses_post($message) );

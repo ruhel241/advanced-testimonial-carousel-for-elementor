@@ -47,6 +47,10 @@
   .swiper-button-prev, .swiper-button-next {
     background-image: none;
   }
+  .swiper-button-next::after, .swiper-button-prev::after{
+    font-size: 25px;
+    color: #514C4C;
+  }
   .swiper-button-prev {
     left: 0px;
   }
@@ -403,7 +407,7 @@
       border-radius: 49px;
     }
     .swiper-button-next::after, .swiper-button-prev::after{
-      font-size: 21px;
+      font-size: 18px;
       color: #514C4C;
     }
   }
