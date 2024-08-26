@@ -14,13 +14,13 @@
     padding: 40px 100px 40px 100px;
   }
   .author-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    overflow: hidden;
     &.atc-image-align- {
       align-self: center;
     }
-    width: 150px;
-    height: 150px;
-    border-radius: 100% 100% 100% 100%;
-    overflow: hidden;
     img {
       width: 100%;
       height: 100%;
