@@ -1,3 +1,4 @@
+// import Swiper bundle with all modules installed
 import Swiper from 'swiper/bundle';
 // import styles bundle
 import 'swiper/css/bundle';
@@ -18,7 +19,7 @@ import 'swiper/css/bundle';
         new Swiper(sectionId, {
           autoplay: isPro ? $(sectionId).data('autoplay') : true,
           loop: isPro ? $(sectionId).data('loop') : true,
-          speed: isPro ? $(sectionId).data('slider-speed') : 6000,
+          speed: isPro ? $(sectionId).data('slider-speed') : 8000,
           autoHeight: isPro ? $(sectionId).data('auto-height') : true,
           slidesPerView: isPro ? $(sectionId).data('slider-per-view') : 1, /// koita view korbe oita dekhabe 
           slidesPerGroup: isPro ? $(sectionId).data('slider-per-group') : 1, //koita kore slide hobe group kore dekhabe

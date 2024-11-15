@@ -2,9 +2,9 @@
 Contributors: ruhel241, wpcreativeidea
 Tags:  elementor, elementor testimonial carousel, testimonial, slider, elementor widget
 Requires at least: 5.0
-Tested up to: 6.6.1
+Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 3.0.4
+Stable tag: 3.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -85,6 +85,11 @@ Yes you can style dots, dots size change.
 
 
 == Changelog ==
+
+= 3.1.0 (DATE: November 15, 2024) =
+* Swiper slider update
+* Responsive Issue fix
+* WordPress Latest version 6.7 Compatible
 
 = 3.0.4 (DATE: August 26, 2024) =
 * Pro license tab redirection fix

@@ -62,12 +62,8 @@
     outline: none;
   }
   .swiper-pagination-bullet {
-    width: 20px;
-    height: 20px;
-    text-align: center;
-    line-height: 20px;
-    font-size: 12px;
-    color: #007aff;
+    width: 12px;
+    height: 12px;
     opacity: 1;
     background: rgba(0, 0, 0, 0.2);
   }
@@ -417,42 +413,81 @@
 /**
   template-1
 */
-  .atc-testimonial-slider-template-1 { 
-    .swiper-slide {
-      padding: 0;
-      flex-direction: column;
-    }
-    .description {
-      padding: 0;
-      .content {
-        margin-top: 22px;
-        margin-left: 50px;
-        margin-right: 50px;
+  .atc-testimonial-slider-template-1,
+  .atc-testimonial-slider-template-2,
+  .atc-testimonial-slider-template-3,
+  .atc-testimonial-slider-template-4, 
+  .atc-testimonial-slider-template-5 { 
+    &.atc-testimonial-container {
+      .swiper-slide {
+        width: 100% !important;
+        padding: 40px 0px;
+        // flex-direction: column;
       }
-      .author-name {
-        font-size: 15px;
+      .description {
+        text-align: center;
+        padding: 0;
+        .content {
+          margin-top: 22px;
+          margin-left: 50px;
+          margin-right: 50px;
+        }
+        .author-name {
+          font-size: 15px;
+        }
+        .company {
+          font-size: 15px;
+        }
       }
-      .company {
-        font-size: 15px;
+      .author-img {
+        width: 100px;
+        height: 100px;
       }
-    }
-  } 
-  
-/**
-  template-2
-*/
-  .atc-testimonial-slider-template-2 { 
-    &.swiper-autoheight {
-      height: 618px;
     }
   }
 
-/**
-  template-3
-*/
-  .atc-testimonial-slider-template-3 { 
-    &.swiper-autoheight {
-      height: 630px;
+  .atc-testimonial-slider-template-6 {
+    &.atc-testimonial-container {
+      .swiper-slide {
+        padding-top: 40px;
+        padding-right: 30px;
+        padding-left: 30px;
+        padding-bottom: 0px;
+      }
+      .description {
+        width: 100%;
+        .content {
+          p {
+            margin: 0;
+          }
+        }
+        .bio-information {
+          .author-img {
+            width: 80px;
+            height: 80px;
+          }
+          .info {
+            .author-name {
+              font-size: 15px;
+            }
+            .company {
+              font-size: 15px;
+            }
+          }
+        }
+      } 
+     
+      .swiper-button-next, .swiper-button-prev {
+          top: 11%;
+          width: 55px;
+          height: 35px;
+        &::after {
+          font-size: 14px;
+        }
+      }
+      .swiper-button-prev {
+        right: 94px;
+      } 
     }
   }
   .atc-star-rating {
@@ -460,4 +495,3 @@
     justify-content: center !important;
   }
 }
-

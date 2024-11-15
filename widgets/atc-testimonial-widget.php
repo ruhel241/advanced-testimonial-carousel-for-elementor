@@ -215,7 +215,7 @@ class ATCTestimonialWidget extends Widget_Base
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
         );
-            $this->add_control(
+            $this->add_responsive_control(
                 'atc_testimonial_height',
                 [
                     'label' => esc_html__( 'Height', 'advanced-testimonial-carousel-for-elementor' ),
@@ -321,7 +321,7 @@ class ATCTestimonialWidget extends Widget_Base
                 'condition' => defined('ATCPRO') ? ['atc_image_display' => 'yes'] : []
 			]
         );
-            $this->add_control(
+            $this->add_responsive_control(
                 'atc_image_text_align',
                 [
                     'label' => esc_html__( 'Alignment', 'advanced-testimonial-carousel-for-elementor' ),
@@ -346,7 +346,7 @@ class ATCTestimonialWidget extends Widget_Base
                     // ]
                 ]
             );
-            $this->add_control(
+            $this->add_responsive_control(
                 'atc_image_width',
                 [
                     'label' => esc_html__( 'width', 'advanced-testimonial-carousel-for-elementor' ),
@@ -372,7 +372,7 @@ class ATCTestimonialWidget extends Widget_Base
                     ],
                 ]
             );
-            $this->add_control(
+            $this->add_responsive_control(
                 'atc_image_height',
                 [
                     'label' => esc_html__( 'Height', 'advanced-testimonial-carousel-for-elementor' ),
@@ -466,7 +466,7 @@ class ATCTestimonialWidget extends Widget_Base
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
         );
-            $this->add_control(
+            $this->add_responsive_control(
                 'atc_content_text_align',
                 [
                     'label' => esc_html__( 'Alignment', 'advanced-testimonial-carousel-for-elementor' ),
@@ -549,7 +549,7 @@ class ATCTestimonialWidget extends Widget_Base
                 'condition' => defined('ATCPRO') ? ['atc_author_name_display' => 'yes'] : []
 			]
         );
-            $this->add_control(
+            $this->add_responsive_control(
                 'atc_author_name_text_align',
                 [
                     'label' => esc_html__( 'Alignment', 'advanced-testimonial-carousel-for-elementor' ),
@@ -632,7 +632,7 @@ class ATCTestimonialWidget extends Widget_Base
                 'condition' => defined('ATCPRO') ? ['atc_company_name_display' => 'yes'] : []
             ]
         );
-            $this->add_control(
+            $this->add_responsive_control(
                 'atc_company_text_align',
                 [
                     'label' => esc_html__( 'Alignment', 'advanced-testimonial-carousel-for-elementor' ),
@@ -778,7 +778,7 @@ class ATCTestimonialWidget extends Widget_Base
                 ]
             );
         }
-            $this->add_control(
+            $this->add_responsive_control(
                 'atc_nav_size',
                 [
                     'label' => esc_html__( 'Arrows Size', 'advanced-testimonial-carousel-for-elementor' ),
@@ -835,7 +835,7 @@ class ATCTestimonialWidget extends Widget_Base
 			]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'atc_dots_size',
             [
                 'label' => esc_html__( 'Dots Size', 'advanced-testimonial-carousel-for-elementor' ),
@@ -853,7 +853,7 @@ class ATCTestimonialWidget extends Widget_Base
                 ],
             ]
         );
-        $this->add_control(
+        $this->add_responsive_control(
 			'ase_dots_position',
 			[
 				'label' => esc_html__( 'Dots Position', 'advanced-slider-for-elementor-pro' ),
