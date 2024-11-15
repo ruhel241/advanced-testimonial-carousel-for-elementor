@@ -325,43 +325,48 @@ final class AdvancedTestimonialCarousel
 			add_action('admin_init', [new ATC\Classes\AdminPageHandler(), 'initialLoad']);
 		}
 
-		add_action( 'admin_notices', [$this, 'atc_admin_Notice'] );
+		add_action( 'admin_notices', [$this, 'atc_admin_notice'] );
 		add_action( 'admin_init', [$this,  'atc_notice_dismissed'] );
 	}
 
-	public function atc_admin_Notice() {
-		
+	public function atc_admin_notice() {
 		$screen  = get_current_screen();
 		$user_id = get_current_user_id();
 		$nonce   = wp_create_nonce('atc_dismiss_notice_nonce');
-
-		if (!get_user_meta( $user_id, 'atc-notice-dismissed', true )) {
+	
+		// Ensure user meta exists
+		if (!get_user_meta($user_id, 'atc-notice-dismissed', true)) {
 			add_user_meta($user_id, 'atc-notice-dismissed', 'active');
 		}
-		
-		if ( $screen->id == 'dashboard' ||  $screen->id == 'plugins' ) {
-			if ( get_user_meta( $user_id, 'atc-notice-dismissed', true ) == 'active' ) { 
+	
+		// Show notice only on specific screens
+		if ($screen && in_array($screen->id, ['dashboard', 'plugins'], true)) {
+			if (get_user_meta($user_id, 'atc-notice-dismissed', true) === 'active') { 
 				?>
-					<div class="notice notice-success is-dismissible" id="is_atcReviewNotice">
-						<p>
-							<?php esc_html_e('Congratulations! you have installed "Advanced Testimonial Carousel" for elementor plugin, Please rating this plugin.', 'advanced-testimonial-carousel-for-elementor'); ?>
-							<em><a href="https://wordpress.org/support/plugin/advanced-testimonial-carousel-for-elementor/reviews/#new-post" target="_blank">Rating</a></em>
-						</p>
-						<a href="?atc-dismissed-notice=1&_atc_nonce=<?php echo esc_attr($nonce); ?>" type="button" class="notice-dismiss"></a>
-					</div>
+				<div class="notice notice-success is-dismissible" id="is_atcReviewNotice">
+					<p>
+						<?php esc_html_e('Congratulations! You have installed "Advanced Testimonial Carousel" for Elementor plugin. Please consider rating this plugin.', 'advanced-testimonial-carousel-for-elementor'); ?>
+						<em><a href="https://wordpress.org/support/plugin/advanced-testimonial-carousel-for-elementor/reviews/#new-post" target="_blank"><?php esc_html_e('Rate Us', 'advanced-testimonial-carousel-for-elementor'); ?></a></em>
+					</p>
+					<button type="button" class="notice-dismiss" onclick="window.location.href='<?php echo esc_url(add_query_arg(['atc-dismissed-notice' => 1, '_atc_nonce' => $nonce])); ?>'"></button>
+				</div>
 				<?php
 			}
 		}
 	}
-
+	
 	public function atc_notice_dismissed() {
 		$user_id = get_current_user_id();
 	
-		if (isset($_GET['atc-dismissed-notice']) && isset($_GET['_atc_nonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash ($_GET['_atc_nonce'], 'atc_dismiss_notice_nonce')) )) {
+		if (
+			isset($_GET['atc-dismissed-notice'], $_GET['_atc_nonce']) &&
+			wp_verify_nonce(sanitize_text_field(wp_unslash($_GET['_atc_nonce'])), 'atc_dismiss_notice_nonce')
+		) {
 			update_user_meta($user_id, 'atc-notice-dismissed', 'deactive');
 		}
-			
 	}
+
+	
 
 	public static function enqueueScripts()
     {
