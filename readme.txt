@@ -1,18 +1,18 @@
-=== Advanced Testimonial Carousel for Elementor ===
+=== Advanced Testimonial Carousel For Elementor ===
 Contributors: ruhel241, wpcreativeidea
 Tags:  elementor, elementor testimonial carousel, testimonial, slider, elementor widget
 Requires at least: 5.0
-Tested up to: 6.7
+Tested up to: 6.7.2
 Requires PHP: 7.4
-Stable tag: 3.1.0
+Stable tag: 3.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Advanced Testimonial Carousel for Elementor. You can add image, name, describes, title, added Unlimited slider.
+Advanced Testimonial Carousel For Elementor. You can add image, name, describes, title, added Unlimited slider.
 
 == Description ==
 
-Advanced Testimonial Carousel for Elementor. You can add image, name, describes, title, added Unlimited slider. 
+Advanced Testimonial Carousel For Elementor. You can add image, name, describes, title, added Unlimited slider. 
 You can customize image, name, describes, title. Additional options etc.
 
 == Features ==  
@@ -83,8 +83,11 @@ Yes you can style dots, dots size change.
 12. Box Shadaw & Rating (Pro)
 13. Template 6 New Features (Pro)
 
-
 == Changelog ==
+
+= 3.1.1(DATE: March 28, 2025)  =
+* WordPress 6.7.2 Compatible
+* Some bug issue fix for pro version
 
 = 3.1.0 (DATE: November 15, 2024) =
 * Swiper slider update

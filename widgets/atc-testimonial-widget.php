@@ -856,7 +856,7 @@ class ATCTestimonialWidget extends Widget_Base
         $this->add_responsive_control(
 			'ase_dots_position',
 			[
-				'label' => esc_html__( 'Dots Position', 'advanced-slider-for-elementor-pro' ),
+				'label' => esc_html__( 'Dots Position', 'advanced-testimonial-carousel-for-elementor' ),
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => [ 'px', '%'],
 				'range' => [

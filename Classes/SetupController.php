@@ -7,8 +7,8 @@ class SetupController
 
     public function handleAjaxCalls()
     {
-        $route = sanitize_text_field( $_REQUEST['route'] );
-        $nonce = sanitize_text_field( $_REQUEST['nonce'] );
+        $route = sanitize_text_field( isset($_REQUEST['route']) );
+        $nonce = sanitize_text_field( isset($_REQUEST['nonce']) );
 
         if ( !(isset($nonce) && wp_verify_nonce($nonce, 'atc_nonce')) ) {
             return;
