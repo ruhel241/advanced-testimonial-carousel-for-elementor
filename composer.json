@@ -1,0 +1,20 @@
+{
+  "name": "atcfe/advanced-testimonial-carousel-for-elementor",
+  "description": "Advanced Testimonial Carousel For Elementor",
+  "type": "wordpress-plugin",
+  "license": "GPL-2.0-or-later",
+  "authors": [
+    {
+      "name": "ATC",
+      "email": "wpcreativeidea@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "ATC\\": "app/"
+    },
+    "exclude-from-classmap": [
+      "app/Libs/wp-fluent/"
+    ]
+  }
+}

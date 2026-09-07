@@ -28,6 +28,10 @@ define('ATC_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('ATC_LITE', 'advancedTestimonialLite');
 define('ATC_PLUGIN_VERSION', '3.1.2');
 define('ATC_PLUGIN_FILE_PATH', plugin_basename(__FILE__));
+define("ATC_PLUGIN_DIR_PATH", plugin_dir_path(__FILE__));
+
+require_once ATC_PLUGIN_DIR_PATH . 'app/Helpers/global_functions.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 final class AdvancedTestimonialCarousel 
 {
@@ -215,7 +219,7 @@ final class AdvancedTestimonialCarousel
 	public function atcPluginAction($links) {
 
         $newLink = [
-            '<a href="'.admin_url('admin.php?page=elementor-settings#tab-atc-settings').'">' .esc_html__('Settings', 'advanced-testimonial-carousel-for-elementor'). '</a>'
+            '<a href="'.admin_url('admin.php?page=elementor-settings#tab-atcfe-settings').'">' .esc_html__('Settings', 'advanced-testimonial-carousel-for-elementor'). '</a>'
         ];
 
 		if (!defined('ATCPRO')) {
@@ -273,7 +277,7 @@ final class AdvancedTestimonialCarousel
 	 */
 	public function init() {
 		
-		include('load.php');
+		// include('load.php');
 	
 		$this->loadTextDomain();
 
@@ -307,22 +311,19 @@ final class AdvancedTestimonialCarousel
 
 	public function adminHooks(){
 
-		add_action( 'admin_enqueue_scripts', array($this, 'enqueueScripts') );
-		
 		if (defined('ATCPRO')) {
-			add_action('wp_ajax_atc_pro_lincese_ajax_actions', function() {
-				$licenseController = new ATCPRO\Classes\LicenseController();
-				$licenseController->handleAjaxCalls();
-			});
+			$licenseController = new ATCPRO\Classes\LicenseController();
+			$licenseController->register();
 		}
-		
-		add_action('wp_ajax_atc_pro_setup_addons', function() {
-			$setupController = new ATC\Classes\SetupController();
-			$setupController->handleAjaxCalls();
-		});
+
+			$setupController = new ATC\Http\Controllers\SetupController();
+			$setupController->register();
+
+			$googleReviewsSettingsController = new ATC\Http\Controllers\GoogleReviewsSettingsController();
+			$googleReviewsSettingsController->register();
 
 	    if (defined('ELEMENTOR_VERSION')) {
-			add_action('admin_init', [new ATC\Classes\AdminPageHandler(), 'initialLoad']);
+			add_action('admin_init', [new ATC\Handlers\AdminPageHandler(), 'initialLoad']);
 		}
 
 		add_action( 'admin_notices', [$this, 'atc_admin_notice'] );
@@ -368,16 +369,49 @@ final class AdvancedTestimonialCarousel
 
 	
 
-	public static function enqueueScripts()
-    {
-		wp_enqueue_style( 'atc-admin-css', ATC_PLUGIN_URL.'assets/css/atc-admin.css', array(), ATC_PLUGIN_VERSION);
-		wp_enqueue_script( 'atc-admin-js', ATC_PLUGIN_URL.'assets/js/atc-admin.js', array('jquery'), ATC_PLUGIN_VERSION, true);
-        wp_localize_script('atc-admin-js', 'atcProVar', [
-			'ajaxurl' => admin_url( 'admin-ajax.php' ),
-			'has_pro' => defined('ATCPRO'),
-			'nonce' => wp_create_nonce('atc_nonce')
-		]);
-    }
+	// public static function enqueueScripts()
+	// {
+	// 	wp_enqueue_style(
+	// 		'atc-admin-css',
+	// 		ATC_PLUGIN_URL . 'assets/css/atc-admin.css',
+	// 		[],
+	// 		ATC_PLUGIN_VERSION
+	// 	);
+
+	// 	wp_enqueue_script(
+	// 		'atc-admin-boot',
+	// 		ATC_PLUGIN_URL . 'assets/js/boot.js',
+	// 		['jquery'],
+	// 		ATC_PLUGIN_VERSION,
+	// 		true
+	// 	);
+
+	// 	wp_enqueue_script(
+	// 		'atc-admin-start',
+	// 		ATC_PLUGIN_URL . 'assets/js/start.js',
+	// 		['jquery', 'atc-admin-boot'],
+	// 		ATC_PLUGIN_VERSION,
+	// 		true
+	// 	);
+
+	// 	wp_enqueue_script(
+	// 		'atc-admin-js',
+	// 		ATC_PLUGIN_URL . 'assets/js/atc-admin.js',
+	// 		['jquery'],
+	// 		ATC_PLUGIN_VERSION,
+	// 		true
+	// 	);
+
+	// 	wp_localize_script(
+	// 		'atc-admin-js',
+	// 		'atcAdminVars',
+	// 		[
+	// 			'ajaxurl' => admin_url('admin-ajax.php'),
+	// 			'has_pro' => defined('ATCPRO'),
+	// 			'nonce'   => wp_create_nonce('atc_nonce')
+	// 		]
+	// 	);
+	// }
 
 	/**
 	 * Init Widgets
@@ -478,8 +512,17 @@ final class AdvancedTestimonialCarousel
 
 AdvancedTestimonialCarousel::instance();
 
-function atcDeactivatePlugin() {
+
+register_activation_hook(__FILE__, function ($network_wide) {
+    require_once(ATC_PLUGIN_DIR_PATH . 'app/Handlers/ActivationHandler.php');
+    ATC\Handlers\ActivationHandler::activate($network_wide);
+});
+
+
+register_deactivation_hook(__FILE__, function ($network_wide) {
 	$user_id = get_current_user_id();
 	update_user_meta($user_id, 'atc-notice-dismissed', 'active');
-}
-register_deactivation_hook( __FILE__, 'atcDeactivatePlugin' );
+
+    require_once(ATC_PLUGIN_DIR_PATH . 'app/Handlers/DeactivationHandler.php');
+    ATC\Handlers\DeactivationHandler::deActivate($network_wide);
+});

@@ -25,10 +25,10 @@ jQuery(document).ready(function($) {
     
     var atcAdminSettings = {
         getStatusLicense: function() {
-            jQuery.post(atcProVar.ajaxurl, {
+            jQuery.post(atcAdminVars.ajaxurl, {
                 action: 'atc_pro_lincese_ajax_actions', 
                 route: 'get_license_status',
-                nonce: atcProVar.nonce
+                nonce: atcAdminVars.nonce
             })
                 .then(function(response) {
                     if ( response.data.license_data.status === 'valid' ) {
@@ -54,11 +54,11 @@ jQuery(document).ready(function($) {
                 $("#atc_deactivated_license").hide();
                 e.preventDefault();
                 
-                jQuery.post(atcProVar.ajaxurl, {
+                jQuery.post(atcAdminVars.ajaxurl, {
                     action: 'atc_pro_lincese_ajax_actions',
                     route: 'activate_license', 
                     license_key: jQuery('#atc_license_settings_field').val(),
-                    nonce: atcProVar.nonce
+                    nonce: atcAdminVars.nonce
                 })
                     .then(function(response) {
                         if (response.success == true) {
@@ -94,10 +94,10 @@ jQuery(document).ready(function($) {
                 $("#atc_deactivated_license").hide();
 
                 e.preventDefault();
-                jQuery.post(atcProVar.ajaxurl, {
+                jQuery.post(atcAdminVars.ajaxurl, {
                     action: 'atc_pro_lincese_ajax_actions', 
                     route: 'deactivated_license',
-                    nonce: atcProVar.nonce
+                    nonce: atcAdminVars.nonce
                 })
                     .then(function(response) {
                         $("#atcbooster-loading").hide();
@@ -118,10 +118,10 @@ jQuery(document).ready(function($) {
         installHandler: function() {
             $('.atc-install-addon').on('click', function(e) {
                 e.preventDefault();
-                jQuery.post(atcProVar.ajaxurl, {
+                jQuery.post(atcAdminVars.ajaxurl, {
                     action: 'atc_pro_setup_addons', 
                     route: $(this).attr('value'),
-                    nonce: atcProVar.nonce
+                    nonce: atcAdminVars.nonce
                 })
                     .then(function(response) {
                         setTimeout(function() {
@@ -140,13 +140,13 @@ jQuery(document).ready(function($) {
         },
 
         init: function(){
-            if (!!atcProVar.has_pro) {
+            if (!!atcAdminVars.has_pro) {
                 this.getStatusLicense();
                 this.verifyLicense();
                 this.deactiveLicense();
             }
-            this.installHandler();
+            // this.installHandler();
         }
     } 
-    atcAdminSettings.init();
+    // atcAdminSettings.init();
 });
