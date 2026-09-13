@@ -583,7 +583,7 @@ class ATCTestimonialWidget extends Widget_Base
                     ],
                     'toggle' => true,
                     'selectors' => [
-                        '{{WRAPPER}} .atc-testimonial-container .content p' => 'text-align: {{VALUE}}',
+                        '{{WRAPPER}} .atc-testimonial-container .content' => 'text-align: {{VALUE}}',
                     ]
                 ]
             );
@@ -593,7 +593,7 @@ class ATCTestimonialWidget extends Widget_Base
                     'label' => esc_html__( 'Text Color', 'advanced-testimonial-carousel-for-elementor' ),
                     'type' => Controls_Manager::COLOR,
                     'selectors' => [
-                        '{{WRAPPER}} .atc-testimonial-container .content p' => 'color: {{VALUE}}',
+                        '{{WRAPPER}} .atc-testimonial-container .content' => 'color: {{VALUE}}',
                     ]
                 ]
             );
@@ -602,7 +602,7 @@ class ATCTestimonialWidget extends Widget_Base
                 [
                     'name' => 'content_typography',
                     'label' => esc_html__( 'Typography', 'advanced-testimonial-carousel-for-elementor' ),
-                    'selector' => '{{WRAPPER}} .atc-testimonial-container .content p',
+                    'selector' => '{{WRAPPER}} .atc-testimonial-container .content',
                 ]
             );
             $this->add_group_control(
@@ -610,7 +610,7 @@ class ATCTestimonialWidget extends Widget_Base
                 [
                     'name' => 'content_shadow',
                     'label' => esc_html__( 'Text Shadow', 'advanced-testimonial-carousel-for-elementor' ),
-                    'selector' => '{{WRAPPER}} .atc-testimonial-container .content p',
+                    'selector' => '{{WRAPPER}} .atc-testimonial-container .content',
                 ]
             );
             $this->add_responsive_control(
@@ -620,7 +620,7 @@ class ATCTestimonialWidget extends Widget_Base
                     'type' => Controls_Manager::DIMENSIONS,
                     'size_units' => [ 'px', '%' ],
                     'selectors' => [
-                        '{{WRAPPER}} .atc-testimonial-container .content p' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        '{{WRAPPER}} .atc-testimonial-container .content' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ],
                 ]
             );
@@ -631,7 +631,7 @@ class ATCTestimonialWidget extends Widget_Base
                     'type' => Controls_Manager::DIMENSIONS,
                     'size_units' => [ 'px', '%' ],
                     'selectors' => [
-                        '{{WRAPPER}} .atc-testimonial-container .content p' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        '{{WRAPPER}} .atc-testimonial-container .content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ],
                 ]
             );
@@ -1334,7 +1334,6 @@ class ATCTestimonialWidget extends Widget_Base
         <?php endif; ?>
             
         <div <?php echo $this->get_render_attribute_string( 'atc_options' ); ?>>
-            
             <div class="swiper-wrapper">
                 <?php foreach ( $reviews as $item ) : ?>
                     <?php
@@ -1415,6 +1414,9 @@ class ATCTestimonialWidget extends Widget_Base
                         </div>
                     <?php else : ?>
                         <div class="swiper-slide atc-slider">
+                            <div class="atc-google-image">
+                                <img src="https://emtech.suny.edu/wp-content/uploads/2000px-Google_22G22_Logo.svg_.png" alt="">
+                            </div>
                             <?php if ( 'yes' === $imageDisplay ) : ?>
                                 <div class="author-img atc-image-align-<?php echo esc_attr( $image_align ); ?>">
                                     <img
@@ -1427,13 +1429,15 @@ class ATCTestimonialWidget extends Widget_Base
                             <div class="description">
                                 <div class="content">
                                     <?php
-                                        if ( defined( 'ATCPRO' ) && 'yes' === $quotationDisplay ) {
-                                            ( new ATCWidgetPro() )->quotationIconRender(
-                                                $this
-                                            );
+                                        if ( defined( 'ATCPRO' ) && 'yes' === $quotationDisplay && !empty($content) ) {
+                                            ( new ATCWidgetPro() )->quotationIconRender( $this );
                                         }
 
                                         echo wp_kses_post( $content );
+
+                                        if ( defined( 'ATCPRO' ) && 'yes' === $quotationDisplay && !empty($content) ) {
+                                            ( new ATCWidgetPro() )->quotationRightIconRender( $this );
+                                        }
                                     ?>
                                 </div>
 
