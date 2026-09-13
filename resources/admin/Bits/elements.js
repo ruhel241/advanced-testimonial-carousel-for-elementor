@@ -45,12 +45,12 @@ import {
     RadioButton,
     // Checkbox,
     Tag,
-    Rate
+    Rate,
+    Dialog,
     // Popover,
     // PageHeader,
     // CheckboxGroup,
     // Cascader,
-    // Dialog,
     // Dropdown,
     // DropdownMenu,
     // DropdownItem,
@@ -67,7 +67,7 @@ Vue.use(Option);
 // Vue.use(Row);
 // Vue.use(Col);
 Vue.use(Button);
-// Vue.use(Dialog);
+Vue.use(Dialog);
 // Vue.use(Divider);
 // Vue.use(DatePicker);
 Vue.use(Icon);

@@ -9,6 +9,8 @@ use \Elementor\Group_Control_Typography;
 use \Elementor\Group_Control_Text_Shadow;
 use \Elementor\Core\Kits\Documents\Tabs\Global_Colors;
 use ATCPRO\Services\ATCWidgetPro; 
+use ATC\Models\GoogleReviews;
+use ATC\Models\GooglePlaces;
 
 class ATCTestimonialWidget extends Widget_Base
 {
@@ -36,6 +38,12 @@ class ATCTestimonialWidget extends Widget_Base
 
     protected function register_controls()
     {
+        require_once ATC_PLUGIN_DIR_PATH . 'app/Models/GooglePlaces.php';
+
+        // get google reviews from database
+        $GooglePlaces = new GooglePlaces();
+        $places       = $GooglePlaces->getPlaces();
+
         $proNotice = [
 			'title' => esc_html__( 'These are pro features', 'advanced-testimonial-carousel-for-elementor' ),
 			'message' => esc_html__( 'These are pro features, if you want to enable these features you need to upgrade to the pro version.', 'advanced-testimonial-carousel-for-elementor' ),
@@ -49,7 +57,16 @@ class ATCTestimonialWidget extends Widget_Base
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
         );
-
+            // elementor reviews repeater start 
+            $this->add_control(
+                'atc_custom_reviews_heading',
+                [
+                    'type' => Controls_Manager::HEADING,
+                    'label' => esc_html__( 'Custom Reviews', 'advanced-testimonial-carousel-for-elementor-pro' ),
+                    'condition' => [ 'atc_custom_reviews_show_option' => 'yes'],
+                ]
+            );
+        
             // repeater start
             $repeater = new \Elementor\Repeater();
 
@@ -89,6 +106,26 @@ class ATCTestimonialWidget extends Widget_Base
                     ]
                 ]
             );
+            $repeater->add_control(
+                'atc_date',
+                [
+                    'label' => esc_html__(
+                        'Date',
+                        'advanced-testimonial-carousel-for-elementor'
+                    ),
+                    'type' => Controls_Manager::DATE_TIME,
+                    'default' => '',
+                    'label_block' => true,
+            
+                    'picker_options' => [
+                        'maxDate' => 'today',
+                    ],
+            
+                    'dynamic' => [
+                        'active' => true,
+                    ],
+                ]
+            );
 
             if (defined('ATCPRO')) {
                 (new ATCWidgetPro)->WYSIWYGEditor($repeater);
@@ -126,24 +163,25 @@ class ATCTestimonialWidget extends Widget_Base
           $this->add_control(
               'atc_list',
               [
-                  'label' => esc_html__( 'Repeater List', 'advanced-testimonial-carousel-for-elementor' ),
-                  'type' => Controls_Manager::REPEATER,
-                  'fields' => $repeater->get_controls(),
-                  'default' => [
-                      [
-                          'atc_content' => "<p>". esc_html__( 'Lorem ipsum dolor sit amet, tpat dictum purus, at malesuada tellus convallis et. Aliquam erat volutpat. Vestibulum felis ex, ultrices posuere facilisis eget, malesuada quis elit. Nulla ac eleifend odio' , 'advanced-testimonial-carousel-for-elementor' )."</p>",
-                          'atc_name' => esc_html__( 'John Doe', 'advanced-testimonial-carousel-for-elementor' )
-                      ],
-                      [
-                          'atc_content' => "<p>". esc_html__( 'Lorem ipsum dolor sit amet, tpat dictum purus, at malesuada tellus convallis et. Aliquam erat volutpat. Vestibulum felis ex, ultrices posuere facilisis eget, malesuada quis elit. Nulla ac eleifend odio' , 'advanced-testimonial-carousel-for-elementor' )."</p>",
-                          'atc_name' => esc_html__( 'Michael Jackson', 'advanced-testimonial-carousel-for-elementor' )                
-                      ],
-                      [
+                'label' => esc_html__( '', 'advanced-testimonial-carousel-for-elementor' ),
+                'type' => Controls_Manager::REPEATER,
+                'fields' => $repeater->get_controls(),
+                'condition' => [ 'atc_custom_reviews_show_option' => 'yes'],
+                'default' => [
+                    [
                         'atc_content' => "<p>". esc_html__( 'Lorem ipsum dolor sit amet, tpat dictum purus, at malesuada tellus convallis et. Aliquam erat volutpat. Vestibulum felis ex, ultrices posuere facilisis eget, malesuada quis elit. Nulla ac eleifend odio' , 'advanced-testimonial-carousel-for-elementor' )."</p>",
-                        'atc_name' => esc_html__( 'Jackson', 'advanced-testimonial-carousel-for-elementor' )                
-                      ],
-                  ],
-                  'title_field' => '{{{ atc_name }}}',
+                        'atc_name' => esc_html__( 'John Doe', 'advanced-testimonial-carousel-for-elementor' )
+                    ],
+                    [
+                        'atc_content' => "<p>". esc_html__( 'Lorem ipsum dolor sit amet, tpat dictum purus, at malesuada tellus convallis et. Aliquam erat volutpat. Vestibulum felis ex, ultrices posuere facilisis eget, malesuada quis elit. Nulla ac eleifend odio' , 'advanced-testimonial-carousel-for-elementor' )."</p>",
+                        'atc_name' => esc_html__( 'Michael Jackson', 'advanced-testimonial-carousel-for-elementor' )                
+                    ],
+                    [
+                    'atc_content' => "<p>". esc_html__( 'Lorem ipsum dolor sit amet, tpat dictum purus, at malesuada tellus convallis et. Aliquam erat volutpat. Vestibulum felis ex, ultrices posuere facilisis eget, malesuada quis elit. Nulla ac eleifend odio' , 'advanced-testimonial-carousel-for-elementor' )."</p>",
+                    'atc_name' => esc_html__( 'Jackson', 'advanced-testimonial-carousel-for-elementor' )                
+                    ],
+                ],
+                'title_field' => '{{{ atc_name }}}'
               ]
           );
           // repeater end
@@ -152,10 +190,44 @@ class ATCTestimonialWidget extends Widget_Base
                 'atc_hr1',
                 [
                     'type' => Controls_Manager::DIVIDER,
+                    'condition' => [ 'atc_custom_reviews_show_option' => 'yes'],
                 ]
 		    );
 
+            // google reviews options start
+            $this->add_control(
+                'atc_google_reviews_heading',
+                [
+                    'type' => Controls_Manager::HEADING,
+                    'label' => esc_html__( 'Google Reviews', 'advanced-testimonial-carousel-for-elementor-pro' ),
+                    'condition' => ['atc_google_reviews_show_option' => 'yes'],
+                ]
+            );
            
+            $place_options = [
+                '' => esc_html__(
+                    'Choose Place',
+                    'advanced-testimonial-carousel-for-elementor-pro'
+                ),
+            ];
+            
+            foreach ( $places as $place ) {
+                $place_options[ $place->place_id ] = $place->name;
+            }
+            
+            $this->add_control(
+                'atc_google_reviews_place_id',
+                [
+                    'label'   => esc_html__(
+                        'Select Place',
+                        'advanced-testimonial-carousel-for-elementor-pro'
+                    ),
+                    'type'    => Controls_Manager::SELECT,
+                    'options' => $place_options,
+                    'default' => '',
+                    'condition' => ['atc_google_reviews_show_option' => 'yes'],
+                ]
+            );
         $this->end_controls_section();
         
         $this->start_controls_section(
@@ -190,6 +262,30 @@ class ATCTestimonialWidget extends Widget_Base
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
         );
+
+            $this->add_control(
+                'atc_google_reviews_show_option',
+                [
+                    'label' => esc_html__( 'Enable Google Reviews', 'advanced-testimonial-carousel-for-elementor-pro' ),
+                    'type' => Controls_Manager::SWITCHER,
+                    'label_on' => esc_html__( 'Show', 'advanced-testimonial-carousel-for-elementor-pro' ),
+                    'label_off' => esc_html__( 'Hide', 'advanced-testimonial-carousel-for-elementor-pro' ),
+                    'return_value' => 'yes',
+                    'default' => 'yes',
+                ]
+            );
+            $this->add_control(
+                'atc_custom_reviews_show_option',
+                [
+                    'label' => esc_html__( 'Enable Custom Reviews', 'advanced-testimonial-carousel-for-elementor-pro' ),
+                    'type' => Controls_Manager::SWITCHER,
+                    'label_on' => esc_html__( 'Show', 'advanced-testimonial-carousel-for-elementor-pro' ),
+                    'label_off' => esc_html__( 'Hide', 'advanced-testimonial-carousel-for-elementor-pro' ),
+                    'return_value' => 'yes',
+                    'default' => 'yes',
+                ]
+            );
+
             if (defined('ATCPRO')) {
                 (new ATCWidgetPro)->additionaloptionsMore($this);
             } else {
@@ -518,7 +614,7 @@ class ATCTestimonialWidget extends Widget_Base
                 ]
             );
             $this->add_responsive_control(
-                'atc_image_content_margin',
+                'atc_content_margin',
                 [
                     'label' => esc_html__( 'Margin', 'advanced-testimonial-carousel-for-elementor' ),
                     'type' => Controls_Manager::DIMENSIONS,
@@ -529,7 +625,7 @@ class ATCTestimonialWidget extends Widget_Base
                 ]
             );
             $this->add_responsive_control(
-                'atc_image_content_padding',
+                'atc_content_padding',
                 [
                     'label' => esc_html__( 'Padding', 'advanced-testimonial-carousel-for-elementor' ),
                     'type' => Controls_Manager::DIMENSIONS,
@@ -601,7 +697,7 @@ class ATCTestimonialWidget extends Widget_Base
                 ]
             );
             $this->add_responsive_control(
-                'atc_image_author_name_margin',
+                'atc_author_name_margin',
                 [
                     'label' => esc_html__( 'Margin', 'advanced-testimonial-carousel-for-elementor' ),
                     'type' => Controls_Manager::DIMENSIONS,
@@ -612,7 +708,7 @@ class ATCTestimonialWidget extends Widget_Base
                 ]
             );
             $this->add_responsive_control(
-                'atc_image_author_name_padding',
+                'atc_author_name_padding',
                 [
                     'label' => esc_html__( 'Padding', 'advanced-testimonial-carousel-for-elementor' ),
                     'type' => Controls_Manager::DIMENSIONS,
@@ -623,7 +719,7 @@ class ATCTestimonialWidget extends Widget_Base
                 ]
             );
         $this->end_controls_section();
-
+  
         $this->start_controls_section(
 			'atc_widget_company_style_section',
 			[
@@ -707,6 +803,90 @@ class ATCTestimonialWidget extends Widget_Base
             );
         $this->end_controls_section();
 
+        // Date styles
+        $this->start_controls_section(
+			'atc_widget_date_style_section',
+			[
+				'label' => esc_html__( 'Date', 'advanced-testimonial-carousel-for-elementor' ),
+				'tab' => Controls_Manager::TAB_STYLE,
+                'condition' => defined('ATCPRO') ? ['atc_date_display' => 'yes'] : []
+			]
+        );
+            $this->add_responsive_control(
+                'atc_date_text_align',
+                [
+                    'label' => esc_html__( 'Alignment', 'advanced-testimonial-carousel-for-elementor' ),
+                    'type' => Controls_Manager::CHOOSE,
+                    'options' => [
+                        'left' => [
+                            'title' => esc_html__( 'Left', 'advanced-testimonial-carousel-for-elementor' ),
+                            'icon' => 'eicon-text-align-left',
+                        ],
+                        'center' => [
+                            'title' => esc_html__( 'Center', 'advanced-testimonial-carousel-for-elementor' ),
+                            'icon' => 'eicon-text-align-center',
+                        ],
+                        'right' => [
+                            'title' => esc_html__( 'Right', 'advanced-testimonial-carousel-for-elementor' ),
+                            'icon' => 'eicon-text-align-right',
+                        ],
+                    ],
+                    'toggle' => true,
+                    'selectors' => [
+                        '{{WRAPPER}} .atc-testimonial-container .description .date' => 'text-align: {{VALUE}}',
+                    ]
+                ]
+            );
+            $this->add_control(
+                'atc_widget_date_color',
+                [
+                    'label' => esc_html__( 'Text Color', 'advanced-testimonial-carousel-for-elementor' ),
+                    'type' => Controls_Manager::COLOR,
+                    'selectors' => [
+                        '{{WRAPPER}} .atc-testimonial-container .description .date' => 'color: {{VALUE}}',
+                    ],
+                ]
+            );
+            $this->add_group_control(
+                Group_Control_Typography::get_type(),
+                [
+                    'name' => 'date_typography',
+                    'label' => esc_html__( 'Typography', 'advanced-testimonial-carousel-for-elementor' ),
+                    'selector' => '{{WRAPPER}} .atc-testimonial-container .description .date',
+                ]
+            );
+            $this->add_group_control(
+                Group_Control_Text_Shadow::get_type(),
+                [
+                    'name' => 'date_shadow',
+                    'label' => esc_html__( 'Text Shadow', 'advanced-testimonial-carousel-for-elementor' ),
+                    'selector' => '{{WRAPPER}} .atc-testimonial-container .description .date',
+                ]
+            );
+            $this->add_responsive_control(
+                'atc_date_margin',
+                [
+                    'label' => esc_html__( 'Margin', 'advanced-testimonial-carousel-for-elementor' ),
+                    'type' => Controls_Manager::DIMENSIONS,
+                    'size_units' => [ 'px', '%' ],
+                    'selectors' => [
+                        '{{WRAPPER}} .atc-testimonial-container .description .date' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    ],
+                ]
+            );
+            $this->add_responsive_control(
+                'atc_date_padding',
+                [
+                    'label' => esc_html__( 'Padding', 'advanced-testimonial-carousel-for-elementor' ),
+                    'type' => Controls_Manager::DIMENSIONS,
+                    'size_units' => [ 'px', '%' ],
+                    'selectors' => [
+                        '{{WRAPPER}} .atc-testimonial-container .description .date' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    ],
+                ]
+            );
+        $this->end_controls_section();
+
         $this->start_controls_section(
 			'atc_rating_style',
 			[
@@ -727,6 +907,32 @@ class ATCTestimonialWidget extends Widget_Base
                             'message' => $proNotice['message'],
                             'link' => $proNotice['link'],
                             'image-link' => 'rating-style.jpg'
+                        ] ),
+                    ]
+                );
+            }
+        $this->end_controls_section();
+
+        $this->start_controls_section(
+			'atc_google_review_heading_total_style_section',
+			[
+				'label' => esc_html__( 'Google Heading Ratings', 'advanced-testimonial-carousel-for-elementor' ),
+				'tab' => Controls_Manager::TAB_STYLE,
+                'condition' => defined('ATCPRO') ? ['atc_google_review_heading_total_rating' => 'yes'] : []
+			]
+        );
+            if (defined('ATCPRO')) {
+                (new ATCWidgetPro)->googleHeadingTotalRatingStyle($this);
+            } else {
+                $this->add_control(
+                    'atc_important_notice_heading_total_rating_style',
+                    [
+                        'type' => Controls_Manager::RAW_HTML,
+                        'raw' => $this->getProNotice( [
+                            'title' => $proNotice['title'],
+                            'message' => $proNotice['message'],
+                            'link' => $proNotice['link'],
+                            'image-link' => 'google-total-rating-style.jpg'
                         ] ),
                     ]
                 );
@@ -901,103 +1107,307 @@ class ATCTestimonialWidget extends Widget_Base
     {
         $settings = $this->get_settings_for_display();
 
-        if ( $settings['atc_list'] ) {
-            echo esc_html( $this->html($settings) );
+        if (
+            $settings['atc_custom_reviews_show_option'] === 'yes' ||
+            $settings['atc_google_reviews_show_option'] === 'yes'
+        ) {
+            $this->html( $settings );
+            return;
+        }
+
+        if ( \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
+            echo '<div class="atc-empty-testimonial">';
+            echo esc_html__(
+                'Please enable Custom Reviews or Google Reviews.',
+                'advanced-testimonial-carousel-for-elementor'
+            );
+            echo '</div>';
         }
     }
 
 
-    public function html($settings)
-    {   
+    public function html( $settings )
+    {
         $dots               = 'yes';
         $arrows             = 'yes';
         $imageDisplay       = 'yes';
         $authorNameDisplay  = 'yes';
         $companyNameDisplay = 'yes';
-        $template           = defined('ATCPRO') ? $settings["atc_layout"] : 'template-1';
+        $dateDisplay        = 'yes';
+        $googlePlacesTotalReviews = '';
+        $headingTotalRating  = '';
 
-	    $this->add_render_attribute( 
-			'atc_options', 
-			[   
-                'id'                => 'atc-testimonial-carousel-' . intval( $this->get_id() ),
-                'class'             => ['swiper-container atc-testimonial-container atc-testimonial-slider-'.$template],
-                'data-pagination'   => '.swiper-pagination',
-                'data-button-next'  => '.swiper-button-next',
-                'data-button-prev'  => '.swiper-button-prev',
+        $template = defined( 'ATCPRO' ) ? ( $settings['atc_layout'] ?? 'template-1' ) : 'template-1';
+
+        /*
+        * Slider attributes.
+        */
+        $this->add_render_attribute(
+            'atc_options',
+            [
+                'id'              => 'atc-testimonial-carousel-' . intval( $this->get_id() ),
+                'class'           => [
+                    'swiper-container',
+                    'atc-testimonial-container',
+                    'atc-testimonial-slider-' . sanitize_html_class( $template ),
+                ],
+                'data-pagination' => '.swiper-pagination',
+                'data-button-next' => '.swiper-button-next',
+                'data-button-prev' => '.swiper-button-prev',
             ]
         );
 
-        if (defined('ATCPRO')) {
-            $template           = $settings["atc_layout"];
-            $loop               = ($settings['atc_testimonial_loop'] ===  'yes' ) ? 'true' : 'false';
-			$autoPlay           = ($settings['atc_testimonial_autoplay'] ===  'yes' ) ? 'true' : 'false';
-            $arrows             = $settings['atc_testimonial_nav'];
-            $dots               = $settings['atc_testimonial_dots'];
-            $autoHeight         = ($settings['atc_slider_auto_height'] ===  'yes' ) ? 'true' : 'false';
-            $sliderPerView      = $settings['atc_slider_per_view'];
-            $sliderPerGroup     = $settings['atc_slider_per_group'];
-            $sliderSpaceBetween = $settings['atc_slider_space_between']['size'];
-            $imageDisplay       = $settings['atc_image_display'];
-            $authorNameDisplay  = $settings['atc_author_name_display'];
-            $companyNameDisplay = $settings['atc_company_name_display'];
-            $ratingDisplay      = $settings['atc_rating_display'];
-            $quotationDisplay   = $settings['atc_quotation_display'];
-            $sliderSpeed        = $settings['atc_testimonial_slide_speed'];
+        /*
+        * Pro settings.
+        */
+        if ( defined( 'ATCPRO' ) ) {
 
-            $this->add_render_attribute( 
-                'atc_options', 
-                [   
-                    'data-loop'                 => $loop,
-                    'data-autoplay'             => $autoPlay,
-                    'data-auto-height'          => $autoHeight,
-                    'data-slider-per-view'      => $sliderPerView,
-                    'data-slider-per-group'     => $sliderPerGroup,
-                    'data-slider-space-between' => $sliderSpaceBetween,
-                    'data-slider-speed'         => $sliderSpeed,
+            $template           = $settings['atc_layout'] ?? 'template-1';
+            $loop               = ( ( $settings['atc_testimonial_loop'] ?? '' ) === 'yes') ? 'true' : 'false';
+            $autoPlay           = ( ( $settings['atc_testimonial_autoplay'] ?? '' ) === 'yes' ) ? 'true' : 'false';
+            $arrows             = $settings['atc_testimonial_nav'] ?? 'yes';
+            $dots               = $settings['atc_testimonial_dots'] ?? 'yes';
+            $autoHeight         = (( $settings['atc_slider_auto_height'] ?? '' ) === 'yes') ? 'true' : 'false';
+            $sliderPerView      = $settings['atc_slider_per_view'] ?? 1;
+            $sliderPerGroup     = $settings['atc_slider_per_group'] ?? 1;
+            $sliderSpaceBetween = $settings['atc_slider_space_between'] ?? 30;
+            $imageDisplay       = $settings['atc_image_display'] ?? 'yes';
+            $authorNameDisplay  = $settings['atc_author_name_display'] ?? 'yes';
+            $companyNameDisplay = $settings['atc_company_name_display'] ?? 'yes';
+            $dateDisplay        = $settings['atc_date_display'] ?? 'yes';
+            $ratingDisplay      = $settings['atc_rating_display'] ?? 'yes';
+            $quotationDisplay   = $settings['atc_quotation_display'] ?? 'yes';
+            $sliderSpeed        = $settings['atc_testimonial_slide_speed'] ?? 300;
+            $reviewsLimit       = $settings['atc_reviews_limit'] ?? '';
+            $headingTotalRating = $settings['atc_google_review_heading_total_rating'] ?? '';
+
+            $this->add_render_attribute(
+                'atc_options',
+                [
+                    'data-loop'                 => esc_attr( $loop ),
+                    'data-autoplay'             => esc_attr( $autoPlay ),
+                    'data-auto-height'          => esc_attr( $autoHeight ),
+                    'data-slider-per-view'      => esc_attr( $sliderPerView ),
+                    'data-slider-per-group'     => esc_attr( $sliderPerGroup ),
+                    'data-slider-space-between' => esc_attr( $sliderSpaceBetween ),
+                    'data-slider-speed'         => esc_attr( $sliderSpeed ),
                 ]
             );
         }
-    ?>
-       
-        <div <?php echo wp_kses_post($this->get_render_attribute_string( 'atc_options' )); ?>>
+
+        /*
+        * Custom Reviews.
+        */
+        $reviews = [];
+
+        /*
+        * Custom Elementor reviews.
+        */
+        if ( ( $settings['atc_custom_reviews_show_option'] ?? '' ) === 'yes' ) {
+            $reviews = $settings['atc_list'] ?? [];
+
+            if ( ! is_array( $reviews ) ) {
+                $reviews = [];
+            }
+        }
+
+        /*
+        * Google Reviews.
+        */
+        if ( ( $settings['atc_google_reviews_show_option'] ?? '' ) === 'yes' ) {
+            require_once ATC_PLUGIN_DIR_PATH . 'app/Models/GoogleReviews.php';
+            require_once ATC_PLUGIN_DIR_PATH . 'app/Models/GooglePlaces.php';
+        
+            $googleReviews = new GoogleReviews();
+            $GooglePlaces  = new GooglePlaces();
+            $place        = [];
+        
+            $place_id = sanitize_text_field( $settings['atc_google_reviews_place_id'] ?? '' );
+        
+            $googleReviewsData = [];
+        
+            if ( ! empty( $place_id ) ) {
+
+                $params = [
+                    'place_id' =>  $place_id,
+                    'rating'   =>  sanitize_text_field( $settings['atc_google_reviews_min_rating'] ?? '' ),
+                    'sort'     =>  sanitize_text_field( $settings['atc_google_reviews_sort'] ?? '' ),
+                    'date_sort'=> sanitize_text_field( $settings['atc_google_reviews_date_sort'] ?? ''),
+                ];
+        
+                $googleReviewsData = $googleReviews->getGoogleReviews( $params );
+        
+                if ( ! is_array( $googleReviewsData ) ) {
+                    $googleReviewsData = [];
+                }    
+
+                $place = $GooglePlaces->getPlaceId($place_id);
+            }
+        
+            $googleReviewsData = array_map(
+                function ( $review ) {
+                    $review = (array) $review;
+                    return [
+                        'atc_content' => wp_kses_post( $review['review_text'] ?? '' ),
+                        'atc_name' => sanitize_text_field( $review['author_name'] ?? '' ),
+                        '_id' => sanitize_text_field(  $review['review_id'] ?? '' ),
+                        'atc_title' => '',
+                        'atc_date'  => sanitize_text_field(  $review['review_time'] ?? '' ),
+                        'atc_image' => [
+                            'url' => esc_url_raw(
+                                $review['author_photo'] ?? ''
+                            ),
+                            'id'   => '',
+                            'size' => '',
+                        ],
+                        'atc_pro_rating_scale' => 5,
+                        'atc_pro_rating' => (float) ( $review['rating'] ?? 0 ),
+                        'atc_pro_star_style' => 'star_fontawesome',
+                        'atc_pro_unmarked_star_style' => 'solid',
+                    ];
+                },
+                $googleReviewsData
+            );
+
+            /*
+                * Google Reviews Position.
+            */
+            $googleReviewsPosition = sanitize_key( $settings['atc_google_reviews_position'] ?? 'after' );
+
+            if ( 'before' === $googleReviewsPosition ) {
+                $reviews = array_merge( $googleReviewsData, $reviews );
+            } else {
+                $reviews = array_merge( $reviews, $googleReviewsData );
+            }
+        }
+
+        /*
+        * Remove completely empty reviews.
+        *
+        * This is useful if Elementor repeater contains
+        * empty/default items.
+        */
+        $reviews = array_filter( $reviews, function ( $item ) {
+                return ! empty( $item['atc_content'] ) || ! empty( $item['atc_name'] );
+            }
+        );
+
+        /*
+        * Limit Google Reviews.
+        */
+        if ( ! empty( $reviewsLimit ) ) {
+            $reviewsLimit = absint( $reviewsLimit );
+
+            if ( $reviewsLimit > 0 ) {
+                $reviews = array_slice( $reviews, 0, $reviewsLimit );
+            }
+        }
+
+        /*
+        * Re-index array.
+        */
+        $reviews = array_values( $reviews );
+
+        /*
+        * Empty reviews message.
+        */
+        if ( empty( $reviews ) ) {
+            echo '<div class="atc-empty-testimonial">';
+            echo esc_html__(
+                'No reviews found. Please add a custom review or select a Google Place with reviews.',
+                'advanced-testimonial-carousel-for-elementor'
+            );
+            echo '</div>';
+            return;
+        }
+
+        ?>
+
+        <?php if ( $headingTotalRating === 'yes' && !empty( $place_id ) ): ?>
+        <div class="atc-google-reviews-ratings">
+            <h2 class="title">Google Reviews ⭐ 
+                <?php 
+                    echo esc_html($place->rating); 
+                ?>
+            </h2>
+        </div>
+        <?php endif; ?>
+            
+        <div <?php echo $this->get_render_attribute_string( 'atc_options' ); ?>>
+            
             <div class="swiper-wrapper">
-                <?php foreach (  $settings['atc_list'] as $item ) : ?>
-                    <?php if ($template == 'template-6') : ?>
+                <?php foreach ( $reviews as $item ) : ?>
+                    <?php
+                    /*
+                    * Safe values.
+                    */
+                    $content = $item['atc_content'] ?? '';
+                    $name    = $item['atc_name'] ?? '';
+                    $title   = $item['atc_title'] ?? '';
+                    $date    = $item['atc_date'] ?? '';
+
+                    $image_url = '';
+
+                    if ( isset( $item['atc_image'] ) && is_array( $item['atc_image'] ) ) {
+                        $image_url = $item['atc_image']['url'] ?? '';
+                    }
+
+                    $image_align = sanitize_html_class( $settings['atc_image_text_align'] ?? '' );
+                    ?>
+
+                    <?php if ( 'template-6' === $template ) : ?>
                         <div class="swiper-slide atc-slider">
-                            <div class="description"> 
+                            <div class="description">
                                 <div class="content">
-                                    <?php 
-                                        if (defined('ATCPRO') && ('yes' === $quotationDisplay) ) {
-                                            (new ATCWidgetPro)->quotationIconRender($this);
+                                    <?php
+                                        if ( defined( 'ATCPRO' ) && 'yes' === $quotationDisplay ) {
+                                            ( new ATCWidgetPro() )->quotationIconRender(
+                                                $this
+                                            );
                                         }
-                                        echo wp_kses_post($item['atc_content']);
+
+                                        echo wp_kses_post( $content );
                                     ?>
                                 </div>
 
                                 <div class="bio-information">
-                                    <?php if ('yes' === $imageDisplay): ?>
-                                        <div class="author-img atc-image-align-<?php echo esc_attr($settings['atc_image_text_align']); ?>">
-                                            <img src="<?php echo esc_url($item['atc_image']['url']); ?>" alt="<?php echo esc_attr($item['atc_name']); ?>"/>
+                                    <?php if ( 'yes' === $imageDisplay ) : ?>
+                                        <div class="author-img atc-image-align-<?php echo esc_attr( $image_align ); ?>">
+                                            <img
+                                                src="<?php echo esc_url( $image_url ); ?>"
+                                                alt="<?php echo esc_attr( $name ); ?>"
+                                            />
                                         </div>
                                     <?php endif; ?>
-                                
+
                                     <div class="info">
-                                        <?php if ('yes' === $authorNameDisplay): ?> 
+                                        <?php if ( 'yes' === $authorNameDisplay ) : ?>
                                             <h4 class="author-name">
-                                                <?php echo esc_html($item['atc_name']); ?>
+                                                <?php echo esc_html( $name ); ?>
                                             </h4>
                                         <?php endif; ?>
 
-                                        <?php if ('yes' === $companyNameDisplay): ?> 
-                                            <p class="company">
-                                                <?php echo esc_html($item['atc_title']); ?>
-                                            </p>
+                                        <?php if ( ! empty( $date ) && 'yes' === $dateDisplay ) : ?>
+                                            <?php
+                                                $timestamp = strtotime( $date );
+                                                if ( $timestamp && $timestamp <= time() ) :
+                                                    $date_text = human_time_diff( $timestamp, time() ) . ' ago';
+                                            ?>
+                                                <span class="date">
+                                                    <?php echo esc_html( $date_text ); ?>
+                                                </span>
+                                            <?php endif; ?>
                                         <?php endif; ?>
 
-                                        <?php 
-                                            if ( defined('ATCPRO') && ('yes' === $ratingDisplay) ):
-                                                (new ATCWidgetPro)->ratingRender($item, $this); 
-                                            endif; 
+                                        <?php if ( 'yes' === $companyNameDisplay ) : ?>
+                                            <p class="company">
+                                                <?php echo esc_html( $title ); ?>
+                                            </p>
+                                        <?php endif; ?>
+                                        <?php
+                                            if ( defined( 'ATCPRO' ) && 'yes' === $ratingDisplay ) {
+                                                ( new ATCWidgetPro() )->ratingRender( $item, $this );
+                                            }
                                         ?>
                                     </div>
                                 </div>
@@ -1005,53 +1415,74 @@ class ATCTestimonialWidget extends Widget_Base
                         </div>
                     <?php else : ?>
                         <div class="swiper-slide atc-slider">
-                            <?php if ('yes' === $imageDisplay): ?>
-                                <div class="author-img atc-image-align-<?php echo esc_attr($settings['atc_image_text_align']); ?>">
-                                    <img src="<?php echo esc_url($item['atc_image']['url']); ?>" alt="<?php echo esc_attr($item['atc_name']); ?>"/>
+                            <?php if ( 'yes' === $imageDisplay ) : ?>
+                                <div class="author-img atc-image-align-<?php echo esc_attr( $image_align ); ?>">
+                                    <img
+                                        src="<?php echo esc_url( $image_url ); ?>"
+                                        alt="<?php echo esc_attr( $name ); ?>"
+                                    />
                                 </div>
                             <?php endif; ?>
-                            <div class="description"> 
+
+                            <div class="description">
                                 <div class="content">
-                                    <?php 
-                                        if (defined('ATCPRO') && ('yes' === $quotationDisplay) ) {
-                                            (new ATCWidgetPro)->quotationIconRender($this);
+                                    <?php
+                                        if ( defined( 'ATCPRO' ) && 'yes' === $quotationDisplay ) {
+                                            ( new ATCWidgetPro() )->quotationIconRender(
+                                                $this
+                                            );
                                         }
-                                        echo wp_kses_post($item['atc_content']);
+
+                                        echo wp_kses_post( $content );
                                     ?>
                                 </div>
-                                
-                                <?php if ('yes' === $authorNameDisplay): ?> 
+
+                                <?php if ( 'yes' === $authorNameDisplay ) : ?>
                                     <h4 class="author-name">
-                                        <?php echo esc_html($item['atc_name']); ?>
+                                        <?php 
+                                            echo esc_html( $name ); 
+                                        ?>
                                     </h4>
                                 <?php endif; ?>
 
-                                <?php if ('yes' === $companyNameDisplay): ?> 
+                                <?php if ( ! empty( $date ) && 'yes' === $dateDisplay ) : ?>
+                                    <?php
+                                        $timestamp = strtotime( $date );
+                                        if ( $timestamp && $timestamp <= time() ) :
+                                            $date_text = human_time_diff( $timestamp, time() ) . ' ago';
+                                    ?>
+                                        <span class="date">
+                                            <?php echo esc_html( $date_text ); ?>
+                                        </span>
+                                    <?php endif; ?>
+                                <?php endif; ?>
+
+                                <?php if ( 'yes' === $companyNameDisplay) : ?>
                                     <p class="company">
-                                        <?php echo esc_html($item['atc_title']); ?>
+                                        <?php echo esc_html( $title ); ?>
                                     </p>
                                 <?php endif; ?>
 
-                                <?php 
-                                    if ( defined('ATCPRO') && ('yes' === $ratingDisplay) ):
-                                        (new ATCWidgetPro)->ratingRender($item, $this); 
-                                    endif; 
+                                <?php
+                                if ( defined( 'ATCPRO' ) && 'yes' === $ratingDisplay ) {
+                                    ( new ATCWidgetPro() )->ratingRender( $item, $this );
+                                }
                                 ?>
                             </div>
                         </div>
                     <?php endif; ?>
                 <?php endforeach; ?>
             </div>
-            <?php 
-                if ( 'yes' === $arrows ) {
-                    echo wp_kses_post('<div class="swiper-button-next"></div> <div class="swiper-button-prev"></div>');
-                }
-                if ( 'yes' === $dots ) {
-                    echo wp_kses_post('<div class="swiper-pagination"></div>');
-                }
-            ?>
-        </div> 
-        
+
+            <?php if ( 'yes' === $arrows ) : ?>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            <?php endif; ?>
+
+            <?php if ( 'yes' === $dots ) : ?>
+                <div class="swiper-pagination"></div>
+            <?php endif; ?>
+        </div>
         <?php
     }
 

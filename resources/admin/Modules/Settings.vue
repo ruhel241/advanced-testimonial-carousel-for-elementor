@@ -5,9 +5,9 @@
                 <i class="el-icon-setting"></i>
                 Google Reviews Settings
             </el-radio-button>
-            <el-radio-button class="atcfe-tab-btn" label="reviews_lists">
+            <el-radio-button class="atcfe-tab-btn" label="google_places">
                 <i class="el-icon-circle-plus-outline"></i>
-                Reviews Lists
+                Google Places
             </el-radio-button>
             <el-radio-button class="atcfe-tab-btn" label="license_settings" v-if="hasPro">
                 <i class="el-icon-lock"></i>
@@ -19,7 +19,7 @@
             <div class="atcfe-tab-pane active" v-if="settingTabMenu === 'google_reviews_settings'">
                 <GoogleReviewsSettings/>
             </div>
-            <div class="atcfe-tab-pane active" v-if="settingTabMenu === 'reviews_lists'">
+            <div class="atcfe-tab-pane active" v-if="settingTabMenu === 'google_places'">
                 <GoogleReviews/>
             </div>
         </div>       
@@ -28,8 +28,8 @@
 
 <script>
 
-import GoogleReviewsSettings from './component/GoogleReviews/GoogleReviewsSettings.vue';
-import GoogleReviews from './GoogleReviews.vue'
+import GoogleReviewsSettings from './component/GoogleReviews/GoogleReviewsSettings';
+import GoogleReviews from './component/GoogleReviews/GoogleReviews'
 
 export default {
     name: 'Settings',

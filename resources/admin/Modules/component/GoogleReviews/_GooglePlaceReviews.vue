@@ -1,6 +1,7 @@
 <template>
     <div class="atcfe-google-place-reviews">
         <div class="atcfe-page-header">
+            <!-- {{ place }} -->
             <div>
                 <el-button
                     type="text"
@@ -9,11 +10,13 @@
                 >
                     Back to Places
                 </el-button>
-                <h1>
+                
+                <h1 v-if="place && place.name">
                     {{ place.name }}
                 </h1>
-                <p>
-                  Place ID:  {{ place.place_id }}
+
+                <p v-if="place && place.place_id">
+                    Place ID: {{ place.place_id }}
                 </p>
             </div>
             <div>
@@ -27,7 +30,7 @@
             </div>
         </div>
 
-        <el-card shadow="never" v-loading="fetching">
+        <el-card v-loading="fetching">
             <div class="atcfe-review-summary">
                 <div>
                     <strong>
@@ -40,11 +43,53 @@
                 </div>
                 <div>
                     <strong>
-                        {{ place.download_method }}
+                        {{handler(place.download_method) }}
+                        <i class="el-icon-edit" @click="editDownloadMethod"></i>
                     </strong>
                     <span>
                         Download Method
                     </span>
+                    <el-dialog
+                        title="Edit Download Method"
+                        :visible.sync="downloadMethodDialog"
+                        width="450px"
+                        class="atcfe-review-download-method"
+                    >
+                        <el-form label-position="top">
+                            <el-form-item label="Download Method">
+                                <el-select
+                                    v-model="downloadMethod"
+                                    placeholder="Select"
+                                    @change="downloadMethodChangeHandler"
+                                >
+                                    <el-option
+                                        v-for="item in downloadMethods"
+                                        :key="item.value"
+                                        :label="item.label"
+                                        :value="item.value"
+                                    />
+                                </el-select>
+                                <div class="atcfe-field-description">
+                                    Choose how reviews should be fetched from Google.
+                                </div>
+                            </el-form-item>
+                        </el-form>
+
+                        <span slot="footer">
+                            <el-button
+                                @click="downloadMethodDialog = false"
+                            >
+                                Cancel
+                            </el-button>
+                            <el-button
+                                type="primary"
+                                :loading="savingDownloadMethod"
+                                @click="saveDownloadMethod"
+                            >
+                                Save
+                            </el-button>
+                        </span>
+                    </el-dialog>
                 </div>
             </div>
 
@@ -163,8 +208,8 @@
 export default {
     name: 'GooglePlaceReviews',
     props: {
-        place: {
-            type: Object,
+        place_id: {
+            type: String,
             required: true,
         },
     },
@@ -174,16 +219,41 @@ export default {
             fetching: false,
             saving: false,
             reviews: [],
+            place: [],
             configs: {
-                place_id: this.place.place_id,
-                download_method: 'most_relevant',
+                place_id: this.place_id,
+                download_method: '',
                 auto_fetch: true,
             },
-            expandedReviews: []
+            expandedReviews: [],
+            downloadMethodDialog: false,
+            savingDownloadMethod: false,
+
+            downloadMethod: 'Most Relevant',
+            downloadMethods: [
+                {
+                    value: 'most_relevant',
+                    label: 'Most Relevant'
+                },
+                {
+                    value: 'newest',
+                    label: 'Newest'
+                },
+            ],
         };
     },
 
     methods: {
+        handler(downloadMethod) {
+            if (downloadMethod === 'most_relevant') {
+                return 'Most Relevant';
+            }
+
+            if (downloadMethod === 'newest') {
+                return 'Newest';
+            }
+            return '';
+        },
         getWordCount(text) {
             if (!text) {
                 return 0;
@@ -226,12 +296,14 @@ export default {
             this.$get({
                 action: 'atc_google_reviews_settings_admin_ajax',
                 route: 'get_google_reviews_by_place_id',
-                place_id: this.place.place_id,
+                place_id: this.place_id,
                 nonce: window.atcAdminVars.nonce
             })
                 .then(response => {
                     setTimeout(() => {
-                        this.reviews = response.data.reviews;
+                        this.reviews  = response.data.reviews;
+                        this.place    = response.data.place;
+                        this.downloadMethod = response.data.place.download_method,
                         this.fetching = false;
                     }, 1000);
                 })
@@ -239,6 +311,21 @@ export default {
                     this.$handleError(error);
                 });
         },
+
+        downloadMethodChangeHandler(val) {
+            this.configs.download_method = val;
+        },
+
+        editDownloadMethod() {
+            this.downloadMethodDialog = true;       
+        },
+
+        saveDownloadMethod() {
+            this.savingDownloadMethod = false;
+            this.downloadMethodDialog = false;
+            this.fetchReviews();
+        },
+        
         // fetch reviews from google api and save to database
         fetchReviews() {
             this.saving = true;
@@ -293,13 +380,8 @@ export default {
             })
                 .then((response) => {
                     this.$handleSuccess(response.data.message);
-                    // this.$notify({
-                    //     title: "Sucess",
-                    //     message: response.data.message,
-                    //     type: "success",
-                    // });
                     this.getGoogleReviews();
-                    })
+                })
                 .fail((error) => {
                     this.$handleError(error);
                 })
@@ -316,11 +398,6 @@ export default {
 </script>
 
 <style scoped>
-
-.atcfe-google-place-reviews {
-    max-width: 1200px;
-    margin: 30px 0;
-}
 
 .atcfe-page-header {
     display: flex;

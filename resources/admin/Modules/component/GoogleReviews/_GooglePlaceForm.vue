@@ -20,12 +20,9 @@
             </p>
         </div>
 
-        {{ verifiedPlace }}
-
         <!-- =========================
              FORM CARD
         ========================== -->
-
         <el-card
             shadow="never"
             class="atcfe-form-card"
@@ -54,59 +51,7 @@
 
                     </div>
                 </el-form-item>
-                <!-- =========================
-                     VERIFY PLACE
-                ========================== -->
-                <el-form-item>
-                    <el-button
-                        type="primary"
-                        plain
-                        :loading="verifying"
-                        @click="verifyPlace"
-                    >
-                        Verify Place
-
-                    </el-button>
-                </el-form-item>
-                <!-- =========================
-                     VERIFIED PLACE
-                ========================== -->
-                <div
-                    v-if="placeVerified"
-                    class="atcfe-verification-success"
-                >
-                    <div
-                        class="atcfe-verification-icon"
-                    >
-
-                        ✓
-
-                    </div>
-
-
-                    <div>
-                        <strong>
-                            Place verified successfully
-                        </strong>
-                        <p>
-                            {{ verifiedPlace.name }}
-                        </p>
-                        <span>
-                            {{ verifiedPlace.address }}
-                        </span>
-                        <div class="atcfe-place-meta">
-                            <span>
-                                ⭐
-                                {{ verifiedPlace.rating }}
-                            </span>
-                            <span>
-                                {{ verifiedPlace.review_count }}
-                                reviews
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
+               
                 <!-- =========================
                      DOWNLOAD METHOD
                 ========================== -->
@@ -135,6 +80,55 @@
                         fetched from Google.
                     </div>
                 </el-form-item>
+
+                <!-- =========================
+                     VERIFY PLACE FROM
+                ========================== -->
+                <el-form-item>
+                    <el-button
+                        type="primary"
+                        :loading="verifying"
+                        @click="verifyPlace"
+                    >
+                        Verify Place
+
+                    </el-button>
+                </el-form-item>
+                <!-- =========================
+                     VERIFIED PLACE
+                ========================== -->
+                <div
+                    v-if="placeVerified"
+                    class="atcfe-verification-success"
+                >
+                    <div
+                        class="atcfe-verification-icon"
+                    >
+                         ✓
+
+                    </div>
+                    <div>
+                        <strong>
+                            Place verified successfully
+                        </strong>
+                        <p>
+                            {{ verifiedPlace.name }}
+                        </p>
+                        <span>
+                            {{ verifiedPlace.address }}
+                        </span>
+                        <div class="atcfe-place-meta">
+                            <span>
+                                ⭐
+                                {{ verifiedPlace.rating }}
+                            </span>
+                            <span>
+                                {{ verifiedPlace.review_count }}
+                                reviews
+                            </span>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- =========================
                      AUTO FETCH
@@ -217,6 +211,7 @@ export default {
             this.$refs.configs.validateField(
                 'place_id',
                 error => {
+
                     if (error) {
                         return;
                     }
@@ -228,7 +223,8 @@ export default {
                         action: 'atc_google_reviews_settings_admin_ajax',
                         route: 'verify_google_place',
                         nonce: window.atcAdminVars.nonce,
-                        place_id: this.configs.place_id
+                        place_id: this.configs.place_id,
+                        configs: this.configs
                     })
                         .then(response => {
 
@@ -247,15 +243,17 @@ export default {
 
                             this.placeVerified = true;
 
-                            this.verifiedPlace = response.data.place;
+                            this.verifiedPlace =
+                                response.data.place;
 
                             this.$message({
                                 type: 'success',
-                                message:
-                                    'Google Place verified successfully.'
+                                message: 'Google Place verified successfully.',
+                                offset: 50,
                             });
                         })
                         .catch(() => {
+
                             this.verifying = false;
 
                             this.$message({
@@ -278,12 +276,12 @@ export default {
                 nonce: window.atcAdminVars.nonce
             })
                 .then(response => {
-                    // this.configs = response.data.configs;
-                    // this.getGoogleApiKey();
-                    this.$handleSuccess(response.data.message);
-
                     if (response.success === true) {
-                        this.$emit('savePlace', '');
+                        this.$handleSuccess( response.data.message );
+                        // when save success
+                        this.$emit('save-place');
+                    } else {
+                        this.$handleError(  response.data?.message || 'Unable to save Google Place.' );
                     }
                 })
                 .fail(error => {
@@ -292,9 +290,9 @@ export default {
                 .always(() => {
                     setTimeout(() => {
                         this.saving = false;
+                        this.fetching = false;
                     }, 1000);
                 });
-                
         }
     },
 };
@@ -302,155 +300,78 @@ export default {
 </script>
 
 <style scoped>
-
-.atcfe-google-place-form {
-
-    max-width: 1200px;
-
-    margin: 30px 0;
-
-}
-
-
 .atcfe-page-header {
-
     margin-bottom: 20px;
-
 }
-
-
 .atcfe-page-header h1 {
-
     margin: 5px 0 8px;
-
     font-size: 24px;
-
 }
-
 
 .atcfe-page-header p {
-
     margin: 0;
-
     color: #777;
-
 }
-
-
 .atcfe-form-card {
-
     max-width: 800px;
-
 }
-
 
 .atcfe-field-description {
-
     margin-top: 6px;
-
     color: #888;
-
     font-size: 13px;
-
     line-height: 1.5;
-
 }
-
-
 .atcfe-verification-success {
-
     display: flex;
-
     align-items: flex-start;
-
     gap: 15px;
-
     margin: 10px 0 25px;
-
     padding: 18px;
-
     border: 1px solid #b7eb8f;
-
     border-radius: 4px;
-
     background: #f6ffed;
-
 }
 
 
 .atcfe-verification-icon {
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     width: 32px;
-
     height: 32px;
-
     border-radius: 50%;
-
     background: #67c23a;
-
     color: #fff;
-
     font-size: 18px;
-
     font-weight: 600;
-
     flex-shrink: 0;
-
 }
-
 
 .atcfe-verification-success strong {
-
     display: block;
-
     margin-bottom: 5px;
-
 }
-
 
 .atcfe-verification-success p {
-
     margin: 0 0 4px;
-
     font-weight: 600;
-
 }
-
 
 .atcfe-verification-success span {
-
     color: #777;
-
 }
-
 
 .atcfe-place-meta {
-
     display: flex;
-
     gap: 20px;
-
     margin-top: 10px;
-
 }
-
 
 @media (max-width: 600px) {
-
     .atcfe-place-meta {
-
         flex-direction: column;
-
         gap: 5px;
-
     }
-
 }
-
 </style>

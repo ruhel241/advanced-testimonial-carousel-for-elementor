@@ -74,7 +74,7 @@
 </template>
 
 <script>
-import GoogleReviews from "../../GoogleReviews.vue"
+import GoogleReviews from "./GoogleReviews.vue"
 export default {
     name: 'GoogleReviewsSettings',
     components: {

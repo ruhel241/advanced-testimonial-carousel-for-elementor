@@ -43,6 +43,10 @@
     .company {
       margin: 0;
     }
+    .date {
+      font-size:12px;
+      color: #777;
+    }
   }
   .swiper-button-prev, .swiper-button-next {
     background-image: none;
@@ -306,6 +310,7 @@
       flex-direction: column;
       background-color:#352E2E;
       border-radius: 60px 0px 60px 0px;
+      padding: 35px;
     }
     .author-img {
       margin-top: -91px;
@@ -317,12 +322,14 @@
     }
     .description {
       text-align: center;
-      margin-top: 20px;
-      margin-bottom: 20px;
+      margin-top: 30px;
+      margin-bottom: 30px;
       .content {
+        color: #fff;
         p {
           color: #fff;
           margin-top: 16px;
+          margin-bottom: 0;
         }
       }
       .author-name {
@@ -338,7 +345,7 @@
       }
     }
     .atc-quotation-icon-wrapper {
-      transform: translateX(-26px);
+      transform: translateX(-16px);
       .atc-quotation-icon {
         top: 12px;
         font-size: 26px;

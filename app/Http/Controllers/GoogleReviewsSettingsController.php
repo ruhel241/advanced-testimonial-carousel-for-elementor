@@ -131,9 +131,11 @@ class GoogleReviewsSettingsController
 
 
     // verifyGooglePlace
-   public function verifyGooglePlace( $request ) {
-
-        $place_id = sanitize_text_field( $request['place_id'] ?? '');
+    public function verifyGooglePlace( $request )
+    {
+        $place_id = sanitize_text_field(
+            $request['place_id'] ?? ''
+        );
 
         if ( empty( $place_id ) ) {
             wp_send_json_error(
@@ -147,7 +149,13 @@ class GoogleReviewsSettingsController
             );
         }
 
-        $result = $this->GooglePlaceDataByApi( $place_id );
+        $configs = wp_unslash( $request['configs'] ?? [] );
+
+        /*
+        * Fetch Google Place data.
+        */
+        // $result = $this->GooglePlaceDataByApi( $place_id );
+        $result = $this->GooglePlaceDataByApi( $place_id, $configs['download_method'] ?? 'newest' );
 
         if ( empty( $result ) ) {
             wp_send_json_error(
@@ -161,6 +169,23 @@ class GoogleReviewsSettingsController
             );
         }
 
+        /*
+        * Store verified Google Place data temporarily.
+        */
+        $cache_key = 'atc_verified_place_' .
+            get_current_user_id() .
+            '_' .
+            md5( $place_id );
+
+        set_transient(
+            $cache_key,
+            $result,
+            10 * MINUTE_IN_SECONDS
+        );
+
+        /*
+        * Return verified place summary to Vue.
+        */
         wp_send_json_success(
             [
                 'place' => [
@@ -173,7 +198,6 @@ class GoogleReviewsSettingsController
             200
         );
     }
-
 
     // get google places 
     public function getGooglePlaces($request)
@@ -198,11 +222,11 @@ class GoogleReviewsSettingsController
     }
 
     // save google place
-    public function saveGooglePlace( $request ) 
+    public function saveGooglePlace( $request )
     {
         $configs = wp_unslash( $request['configs'] ?? [] );
 
-        $place_id = sanitize_text_field( $configs['place_id'] ?? '');
+        $place_id = sanitize_text_field( $configs['place_id'] ?? '' );
 
         $auto_fetch = ! empty( $configs['auto_fetch'] ) ? 1 : 0;
 
@@ -211,7 +235,6 @@ class GoogleReviewsSettingsController
         $action_type = sanitize_text_field( $request['action_type'] ?? 'update' );
 
         if ( empty( $place_id ) ) {
-
             wp_send_json_error(
                 [
                     'message' => __(
@@ -223,37 +246,40 @@ class GoogleReviewsSettingsController
             );
         }
 
-        /*
-        * Fetch Google Place data.
-        */
-        $result = $this->GooglePlaceDataByApi( $place_id );
-
-        if ( empty( $result ) ) {
-
-            wp_send_json_error(
-                [
-                    'message' => __(
-                        'Unable to fetch Google Place data.',
-                        'advanced-testimonial-carousel-for-elementor'
-                    ),
-                ],
-                400
-            );
-        }
-
         $GooglePlaces = new GooglePlaces();
-
+       
         /*
         * Save new place.
         */
         if ( 'new' === $action_type ) {
+            /*
+            * Get previously verified Google Place data.
+            */
+            $cache_key = 'atc_verified_place_' . get_current_user_id() . '_' .  md5( $place_id );
 
+            $result = get_transient( $cache_key );
+
+            if ( empty( $result ) ) {
+                wp_send_json_error(
+                    [
+                        'message' => __(
+                            'Please verify the Google Place before saving.',
+                            'advanced-testimonial-carousel-for-elementor'
+                        ),
+                    ],
+                    400
+                );
+            }
+
+            /*
+            * Check if place already exists.
+            */
             if ( empty( $GooglePlaces->getPlaceId( $place_id ) ) ) {
 
                 $place_data = [
                     'place_id'        => $place_id,
                     'name'            => $result['name'] ?? '',
-                    'address'         => null,
+                    'address'         => $result['formatted_address'] ?? '',
                     'rating'          => $result['rating'] ?? null,
                     'total_reviews'   => $result['user_ratings_total'] ?? null,
                     'auto_fetch'      => $auto_fetch,
@@ -264,32 +290,16 @@ class GoogleReviewsSettingsController
 
                 $GooglePlaces->insertGetId( $place_data );
             }
-        }
 
-        /*
-        * Update existing place.
-        */
-        if ( 'update' === $action_type ) {
+            /*
+            * Save reviews.
+            */
+            $this->saveGoogleReviews( $place_id, $result['reviews'] ?? [] );
 
-            $place_data = [
-                'name'           => $result['name'] ?? '',
-                'rating'         => $result['rating'] ?? null,
-                'total_reviews'  => $result['user_ratings_total'] ?? null,
-                'updated_at'     => gmdate( 'Y-m-d H:i:s' ),
-            ];
-
-            $GooglePlaces->update( $place_id, $place_data );
-        }
-
-        /*
-        * Save reviews.
-        */
-        $this->saveGoogleReviews( $place_id, $result['reviews'] ?? [] );
-
-        /*
-        * Response.
-        */
-        if ( 'new' === $action_type ) {
+            /*
+            * Remove temporary verified data.
+            */
+            delete_transient( $cache_key );
 
             wp_send_json_success(
                 [
@@ -302,21 +312,108 @@ class GoogleReviewsSettingsController
             );
         }
 
-        wp_send_json_success(
-            [
-                'message' => __(
-                    'Google reviews fetched successfully',
-                    'advanced-testimonial-carousel-for-elementor'
-                ),
-            ],
-            200
-        );
+        /*
+        * Update existing place.
+        */
+        if ( 'update' === $action_type ) {
+            error_log(print_r($configs['download_method'], 1));
+            /*
+            * Fetch latest Google Place data.
+            */
+            // $result = $this->GooglePlaceDataByApi( $place_id );
+            $result = $this->GooglePlaceDataByApi( $place_id, $configs['download_method'] ?? 'newest' );
+
+            if ( empty( $result ) ) {
+                wp_send_json_error(
+                    [
+                        'message' => __(
+                            'Unable to fetch Google Place data.',
+                            'advanced-testimonial-carousel-for-elementor'
+                        ),
+                    ],
+                    400
+                );
+            }
+
+            $place_data = [
+                'name'            => $result['name'] ?? '',
+                'address'         => $result['formatted_address'] ?? '',
+                'rating'          => $result['rating'] ?? null,
+                'total_reviews'   => $result['user_ratings_total'] ?? null,
+                'download_method' => $download_method,
+                'updated_at'      => gmdate( 'Y-m-d H:i:s' ),
+            ];
+
+            $GooglePlaces->update( $place_id, $place_data );
+
+            /*
+            * Save new reviews.
+            */
+            $this->saveGoogleReviews( $place_id, $result['reviews'] ?? [] );
+
+            wp_send_json_success(
+                [
+                    'message' => __(
+                        'Google reviews fetched successfully',
+                        'advanced-testimonial-carousel-for-elementor'
+                    )
+                ],
+                200
+            );
+        }
     }
 
     // fetch google place data by api
-    private function GooglePlaceDataByApi( $place_id ) {
+    // private function GooglePlaceDataByApi( $place_id ) {
 
-        $api_settings = get_option('atc_google_reviews_api_key', []);
+    //     $api_settings = get_option('atc_google_reviews_api_key', []);
+
+    //     $api_key = $api_settings['api_key'] ?? '';
+
+    //     if ( empty( $api_key ) || empty( $place_id ) ) {
+    //         return [];
+    //     }
+
+    //     $url = add_query_arg(
+    //         [
+    //             'place_id' => $place_id,
+    //             'fields' => 'name,formatted_address,rating,reviews,user_ratings_total',
+    //             'key'      => $api_key,
+    //         ],
+    //         'https://maps.googleapis.com/maps/api/place/details/json'
+    //     );
+
+    //     $response = wp_remote_get(
+    //         $url,
+    //         [
+    //             'timeout' => 15,
+    //         ]
+    //     );
+
+    //     if ( is_wp_error( $response ) ) {
+    //         return [];
+    //     }
+
+    //     $body = json_decode(
+    //         wp_remote_retrieve_body( $response ),
+    //         true
+    //     );
+
+    //     if (
+    //         empty( $body ) ||
+    //         empty( $body['result'] )
+    //     ) {
+    //         return [];
+    //     }
+
+    //     return $body['result'];
+    // }
+    private function GooglePlaceDataByApi( $place_id, $download_method = 'newest' ) {
+
+        $api_settings = get_option(
+            'atc_google_reviews_api_key',
+            []
+        );
 
         $api_key = $api_settings['api_key'] ?? '';
 
@@ -324,11 +421,18 @@ class GoogleReviewsSettingsController
             return [];
         }
 
+        $download_method = in_array(
+            $download_method,
+            [ 'most_relevant', 'newest' ],
+            true
+        ) ? $download_method : 'newest';
+
         $url = add_query_arg(
             [
-                'place_id' => $place_id,
-                'fields'   => 'name,rating,reviews,user_ratings_total',
-                'key'      => $api_key,
+                'place_id'     => $place_id,
+                'fields'       => 'name,formatted_address,rating,reviews,user_ratings_total',
+                'reviews_sort' => $download_method,
+                'key'          => $api_key,
             ],
             'https://maps.googleapis.com/maps/api/place/details/json'
         );
@@ -420,8 +524,11 @@ class GoogleReviewsSettingsController
             );
         }
 
+        $GooglePlaces  = new GooglePlaces();
         $GoogleReviews = new GoogleReviews();
-        $getReviews    = $GoogleReviews->getReviewsByPlaceId($placeId);    
+
+        $getReviews  = $GoogleReviews->getReviewsByPlaceId($placeId); 
+        $getPlace    = $GooglePlaces->getPlaceId($placeId);    
 
         wp_send_json_success(
             [
@@ -430,6 +537,7 @@ class GoogleReviewsSettingsController
                     'advanced-testimonial-carousel-for-elementor'
                 ),
                 'reviews' => $getReviews,
+                'place'   => $getPlace
             ],
             200
         );

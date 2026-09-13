@@ -1,19 +1,19 @@
 <template>
     <div class="atcfe-google-place-list">
-        <div class="atcfe-page-header">
+        <div class="atcfe-page-header" v-if="!addPlace">
             <div>
-                <h1>Google Reviews</h1>
+                <h1>Google Places</h1>
                 <p>
                     Manage your Google Business locations and imported
                     reviews.
                 </p>
             </div>
-                <el-button
-                    type="primary"
-                    icon="el-icon-plus"
-                    @click="addPlaceAction">
-                    Add Google Place
-                </el-button>
+            <el-button
+                type="primary"
+                icon="el-icon-plus"
+                @click="addPlaceAction">
+                Add Google Place
+            </el-button>
         </div>
         <el-card shadow="never" v-if="!addPlace">
             <div class="atcfe-table-responsive" v-loading="fetching">
@@ -30,7 +30,7 @@
                        fixed="left"
                      >
                         <template slot-scope="scope">
-                            <strong>
+                            <strong @click="viewReviews(scope.row.place_id)" style="cursor: pointer;">
                                 {{ scope.row.name }}
                             </strong>
                         </template>
@@ -61,7 +61,7 @@
                                 size="small"
                                 type="info"
                             >
-                                {{ scope.row.download_method }}
+                            {{handler(scope.row.download_method) }}
                             </el-tag>
                         </template>
                     </el-table-column>
@@ -74,7 +74,7 @@
                         <template slot-scope="scope">
                             <el-button
                                 type="text"
-                                @click="viewReviews(scope.row)"
+                                @click="viewReviews(scope.row.place_id)"
                             >
                                 {{ scope.row.total_reviews }}
                             </el-button>
@@ -116,7 +116,7 @@
                                     type="primary"
                                     size="mini"
                                     icon="el-icon-view"
-                                    @click="viewReviews(scope.row)"
+                                    @click="viewReviews(scope.row.place_id)"
                                 />
                                 <el-button
                                     type="danger"
@@ -130,82 +130,35 @@
                 </el-table>
             </div>
         </el-card>
-
-        <div v-else>
-            <GooglePlaceForm
-            @cancel="backToPlaces"
-            @savePlace="redirectToAddPlace"
-            />
-        </div>
     </div>
 </template>
 
 <script>
 
-import GooglePlaceForm from './GooglePlaceForm.vue';
-import GooglePlaceReviews from './GooglePlaceReviews.vue';
-
 export default {
-
     name: 'GooglePlaceList',
-
-    // props: {
-    //     places: {
-    //         type: Array,
-    //         default: () => [
-    //             {
-    //                 id: 1,
-
-    //                 business_name: 'Panshi Restaurant',
-
-    //                 place_id:
-    //                     'ChIJGaXRDStVUDcRKECOQjJ7ETo',
-
-    //                 place_url:
-    //                     'https://search.google.com/local/reviews?placeid=ChIJGaXRDStVUDcRKECOQjJ7ETo',
-
-    //                 download_type:
-    //                     'Crawl Method : newest',
-
-    //                 review_count: 5,
-    //             },
-
-    //             {
-    //                 id: 2,
-
-    //                 business_name: 'Authlab',
-
-    //                 place_id:
-    //                     'ChIJjzacjSNVUDcRQn7voHSyK08',
-
-    //                 place_url:
-    //                     'https://search.google.com/local/reviews?placeid=ChIJjzacjSNVUDcRQn7voHSyK08',
-
-    //                 download_type:
-    //                     'Places API : most_relevant',
-
-    //                 review_count: 5,
-    //             },
-    //         ],
-    //     },
-    // },
-    components: {
-        GooglePlaceForm,
-        GooglePlaceReviews
-    },
-
+    
     data() {
         return {
             addPlace: '',
-            // selectedPlace: null,
             places: [],
             fetching: false,
         };
     },
 
     methods: {
-        viewReviews(place) {
-            this.$emit('view-reviews', place);
+        handler(downloadMethod) {
+            if (downloadMethod === 'most_relevant') {
+                return 'Most Relevant';
+            }
+
+            if (downloadMethod === 'newest') {
+                return 'Newest';
+            }
+            return '';
+        },
+        viewReviews(place_id) {
+            this.$emit('view-reviews', place_id);
         },
 
         backToPlaces() {
@@ -213,17 +166,12 @@ export default {
             this.addPlace = '';
         },
         addPlaceAction() {
+            this.$emit('add-place');    
             this.addPlace = 'add_place';
-        },
-
-        redirectToAddPlace(val) {
-            this.getGooglePlaces();
-            this.addPlace = val;
         },
 
         getGooglePlaces() {
             this.fetching = true;
-
             this.$get({
                 action: 'atc_google_reviews_settings_admin_ajax',
                 route: 'get_google_places',
@@ -300,23 +248,6 @@ export default {
         overflow: scroll !important;
     }
 
-    /* .atcfe-google-place-list {
-        max-width: 1200px;
-        margin: 30px 0;
-    } */
-
-    /* .atcfe-table-responsive {
-        width: 100%;
-        max-width: 100%;
-        overflow-x: auto;
-        overflow-y: hidden;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    .atcfe-table-responsive .el-table {
-        min-width: 900px;
-    } */
-
     .atcfe-page-header {
         display: flex;
         align-items: center;
@@ -333,17 +264,6 @@ export default {
         margin: 0;
         color: #777;
     }
-
-    /* .atcfe-table-responsive {
-        width: 100%;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-    } */
-
-    /* .atcfe-table-responsive .el-table {
-        min-width: 850px;
-    } */
-
     .atcfe-place-id {
         display: inline-block;
         word-break: break-all;
