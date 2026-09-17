@@ -1151,7 +1151,7 @@ class ATCTestimonialWidget extends Widget_Base
                     'atc-testimonial-container',
                     'atc-testimonial-slider-' . sanitize_html_class( $template ),
                 ],
-                'data-pagination' => '.swiper-pagination',
+                'data-pagination'  => '.swiper-pagination',
                 'data-button-next' => '.swiper-button-next',
                 'data-button-prev' => '.swiper-button-prev',
             ]
@@ -1161,15 +1161,14 @@ class ATCTestimonialWidget extends Widget_Base
         * Pro settings.
         */
         if ( defined( 'ATCPRO' ) ) {
-
             $template           = $settings['atc_layout'] ?? 'template-1';
             $loop               = ( ( $settings['atc_testimonial_loop'] ?? '' ) === 'yes') ? 'true' : 'false';
             $autoPlay           = ( ( $settings['atc_testimonial_autoplay'] ?? '' ) === 'yes' ) ? 'true' : 'false';
             $arrows             = $settings['atc_testimonial_nav'] ?? 'yes';
             $dots               = $settings['atc_testimonial_dots'] ?? 'yes';
             $autoHeight         = (( $settings['atc_slider_auto_height'] ?? '' ) === 'yes') ? 'true' : 'false';
-            $sliderPerView      = $settings['atc_slider_per_view'] ?? 1;
-            $sliderPerGroup     = $settings['atc_slider_per_group'] ?? 1;
+            $sliderPerView      = $settings['atc_slider_per_view'];
+            // $sliderPerGroup     = $settings['atc_slider_per_group'];
             $sliderSpaceBetween = $settings['atc_slider_space_between'] ?? 30;
             $imageDisplay       = $settings['atc_image_display'] ?? 'yes';
             $authorNameDisplay  = $settings['atc_author_name_display'] ?? 'yes';
@@ -1181,6 +1180,20 @@ class ATCTestimonialWidget extends Widget_Base
             $reviewsLimit       = $settings['atc_reviews_limit'] ?? '';
             $headingTotalRating = $settings['atc_google_review_heading_total_rating'] ?? '';
 
+            if ( $sliderPerView > 1 ) {
+                $sliderSpaceBetween = ($sliderSpaceBetween / 2);
+            }
+            
+            // dafault if template-7
+            if ( $template == 'template-7' && empty($sliderPerView) ) {
+                $sliderPerView  = 3;
+                $sliderPerGroup = 3;
+                $sliderSpaceBetween = 20;
+            } else {
+                $sliderPerView  = $settings['atc_slider_per_view'] ?: 1;
+                $sliderPerGroup = $settings['atc_slider_per_group'] ?: 1;
+            }
+           
             $this->add_render_attribute(
                 'atc_options',
                 [
@@ -1354,18 +1367,20 @@ class ATCTestimonialWidget extends Widget_Base
                     $image_align = sanitize_html_class( $settings['atc_image_text_align'] ?? '' );
                     ?>
 
-                    <?php if ( 'template-6' === $template ) : ?>
+                    <?php if ( 'template-6' === $template || 'template-7' === $template ) : ?>
                         <div class="swiper-slide atc-slider">
                             <div class="description">
                                 <div class="content">
                                     <?php
-                                        if ( defined( 'ATCPRO' ) && 'yes' === $quotationDisplay ) {
-                                            ( new ATCWidgetPro() )->quotationIconRender(
-                                                $this
-                                            );
+                                        if ( defined( 'ATCPRO' ) && 'yes' === $quotationDisplay && !empty($content) ) {
+                                            ( new ATCWidgetPro() )->quotationIconRender( $this );
                                         }
 
                                         echo wp_kses_post( $content );
+
+                                        if ( defined( 'ATCPRO' ) && 'yes' === $quotationDisplay && !empty($content) ) {
+                                            ( new ATCWidgetPro() )->quotationRightIconRender( $this );
+                                        }
                                     ?>
                                 </div>
 
@@ -1414,9 +1429,9 @@ class ATCTestimonialWidget extends Widget_Base
                         </div>
                     <?php else : ?>
                         <div class="swiper-slide atc-slider">
-                            <div class="atc-google-image">
+                            <!-- <div class="atc-google-image">
                                 <img src="https://emtech.suny.edu/wp-content/uploads/2000px-Google_22G22_Logo.svg_.png" alt="">
-                            </div>
+                            </div> -->
                             <?php if ( 'yes' === $imageDisplay ) : ?>
                                 <div class="author-img atc-image-align-<?php echo esc_attr( $image_align ); ?>">
                                     <img
@@ -1461,7 +1476,7 @@ class ATCTestimonialWidget extends Widget_Base
                                     <?php endif; ?>
                                 <?php endif; ?>
 
-                                <?php if ( 'yes' === $companyNameDisplay) : ?>
+                                <?php if ( 'yes' === $companyNameDisplay && !empty($title) ) : ?>
                                     <p class="company">
                                         <?php echo esc_html( $title ); ?>
                                     </p>

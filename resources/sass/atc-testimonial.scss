@@ -97,7 +97,7 @@
 */ 
 .atc-quotation-icon-wrapper {
   position: relative;
-  z-index: -1;
+  z-index: 99999;
   transform: translateX(-35px);
 }
 .atc-quotation-icon {
@@ -134,7 +134,7 @@
 // right quotation icon
 .atc-quotation-right-icon-wrapper {
   position: relative;
-  z-index: -1;
+  z-index: 99999;
   // transform: translateX(-35px);
   transform: translateY(-26px);
 }
@@ -346,6 +346,9 @@
     .company {
       order: -1;
     }
+    .date {
+      order: -1;
+    }
     .atc-star-rating {
       order: -1;
     }
@@ -392,14 +395,18 @@
         order: -1;
         color: #fff;
       }
+      .date {
+        order: -1;
+        color: #fff;
+      }
       .atc-star-rating {
         order: -1;
       }
     }
     .atc-quotation-icon-wrapper {
-      transform: translateX(-16px);
+      transform: translateX(-25px);
       .atc-quotation-icon {
-        top: 12px;
+        top: -4px;
         font-size: 26px;
       }
     }
@@ -422,18 +429,24 @@
       height: 80px;
     }
     .description {
-      width: 87%;
+      // width: 87%;
       .content { 
         text-align: left;
         .atc-quotation-icon {
           font-size: 32px;
         }
       }
+      .info {
+        text-align: left;
+      }
       .author-name {
         font-size: 18px;
         text-align: left;
       }
       .company {
+        text-align: left;
+      }
+      .date {
         text-align: left;
       }
       .atc-star-rating {
@@ -456,7 +469,7 @@
       left: initial;
     }
     .swiper-button-next, .swiper-button-prev {
-      top: 18%;
+      top: 24%;
       background: #CCE5E9;
       width: 65px;
       border-radius: 49px;
@@ -467,6 +480,216 @@
     }
   }
 }
+
+
+// template 7 
+.atc-testimonial-slider-template-7 {
+  &.atc-testimonial-container {
+    overflow: hidden;
+    padding: 20px 20px 20px 20px;
+    overflow: hidden;
+    .atc-slider {
+      background: #fff;
+      border-radius: 16px;
+      // padding: 20px;
+      // box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+      transition: 0.3s;
+      // margin-right: 10px;
+      // padding: 20px 20px 20px 20px;
+      padding-right: 35px;
+      padding-left: 35px;
+      padding-top:0px;
+      padding-bottom:0px;
+    } 
+    // overflow: hidden;
+    // .swiper-slide {}
+    .author-img {
+      width: 60px;
+      height: 60px;
+    }
+    .description {
+      // width: 87%;
+      .content { 
+        text-align: left;
+        // font-size: 14px;
+        // line-height: 1.6;
+    
+        .atc-quotation-icon {
+          font-size: 32px;
+        }
+      }
+      .info {
+        text-align: left;
+      }
+      .author-name {
+        font-size: 18px;
+        text-align: left;
+      }
+      .company {
+        text-align: left;
+      }
+      .date {
+        text-align: left;
+      }
+      .atc-star-rating {
+        font-size: 12px;
+        justify-content: flex-start;
+        // order: -1;
+      }
+      .bio-information {
+        display: flex;
+        align-items: center;
+        margin: 20px 0px;
+        gap: 12px;
+        order: -1;
+      }
+      .atc-quotation-icon-wrapper {
+        transform: translateX(-27px);
+        .atc-quotation-icon {
+          width: 23px;
+          top: -22px;
+        }
+      }
+      .atc-quotation-right-icon-wrapper {
+        transform: translateY(-22px);
+        .atc-quotation-right-icon {
+          width: 23px;
+          right: 12px;
+        }
+      }
+    }
+    .swiper-button-next {
+      right: 30px;
+    }
+    .swiper-button-prev {
+      right: 105px;
+      left: initial;
+    }
+    .swiper-button-next, .swiper-button-prev {
+      top: 24%;
+      background: #CCE5E9;
+      width: 65px;
+      border-radius: 49px;
+    }
+    .swiper-button-next::after, .swiper-button-prev::after{
+      font-size: 18px;
+      color: #514C4C;
+    }
+  }
+}
+
+.atc-testimonial-slider-template-7.atc-testimonial-container[data-slider-per-view="2"], .atc-testimonial-slider-template-7.atc-testimonial-container[data-slider-per-view="3"]{
+  .atc-slider {
+    padding-right: 25px;    
+    padding-left: 25px;
+
+    background: #fff;
+    border-radius: 16px;
+    // padding: 20px;
+    // box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    // box-shadow: inset 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: 0.3s;
+    margin-right: 10px;
+    // // padding: 20px 20px 20px 20px;
+    // padding-right: 15px;
+    // padding-left: 15px;
+    // padding-top:0px;
+    // padding-bottom:0px;
+  } 
+  .description {
+    .content {
+      font-size: 14px;
+    }
+    .author-name {
+      font-size: 16px;
+    }
+    .atc-quotation-icon-wrapper {
+      transform: translateX(-33px);
+      .atc-quotation-icon {
+        width: 20px;
+        top: -15px;
+      }
+    }
+    .atc-quotation-right-icon-wrapper {
+      transform: translateY(-14px);
+      .atc-quotation-right-icon {
+        width: 20px;
+        right: 0px;
+      }
+    }
+  }
+}
+// .atc-testimonial-slider-template-7 {
+//   &.atc-testimonial-container {
+//     overflow: hidden;
+//     padding: 20px 20px 20px 20px;
+//     // .swiper-slide {}
+//     .atc-slider {
+//       background-color: #FFFFFF;
+//       border-radius: 10px 10px 10px 10px;
+//       box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+//       padding: 30px 30px 30px 30px;
+//       // margin: 40px;
+//     }
+//     .author-img {
+//       width: 60px;
+//       height: 60px;
+//     }
+//     // .description {
+//     //   width: 87%;
+//     //   .content { 
+       
+//     //     text-align: left;
+//     //     .atc-quotation-icon {
+//     //       font-size: 32px;
+//     //     }
+//     //   }
+//     //   .info {
+//     //     text-align: left;
+//     //   }
+//     //   .author-name {
+//     //     font-size: 18px;
+//     //     text-align: left;
+//     //   }
+//     //   .company {
+//     //     text-align: left;
+//     //   }
+//     //   .date {
+//     //     text-align: left;
+//     //   }
+//     //   .atc-star-rating {
+//     //     font-size: 12px;
+//     //     justify-content: flex-start;
+//     //     // order: -1;
+//     //   }
+//     //   .bio-information {
+//     //     display: flex;
+//     //     align-items: center;
+//     //     margin: 20px 0px;
+//     //     gap: 12px;
+//     //   }
+//     // }
+//     // .swiper-button-next {
+//     //   right: 30px;
+//     // }
+//     // .swiper-button-prev {
+//     //   right: 105px;
+//     //   left: initial;
+//     // }
+//     // .swiper-button-next, .swiper-button-prev {
+//     //   top: 24%;
+//     //   background: #CCE5E9;
+//     //   width: 65px;
+//     //   border-radius: 49px;
+//     // }
+//     // .swiper-button-next::after, .swiper-button-prev::after{
+//     //   font-size: 18px;
+//     //   color: #514C4C;
+//     // }
+//   }
+// }
+
 
 @media only screen and (max-width: 900px) {
 /**
@@ -554,3 +777,5 @@
     justify-content: center !important;
   }
 }
+
+
