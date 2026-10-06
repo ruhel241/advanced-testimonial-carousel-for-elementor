@@ -1,26 +1,26 @@
 <template>
-    <div class="atcfe_license_box">
+    <div class="atc_license_box">
         <div 
             class="notice notice-error" 
-            id="atcfe-notice-error" 
+            id="atc-notice-error" 
             v-if="showError"
             @click="hideError" 
             style="cursor: pointer; margin-bottom: 30px;">
             <p>{{errorMessage}}</p>
         </div>
         
-        <div id="atcfe-loading-addon" v-if="fetching">
+        <div id="atc-loading-addon" v-if="fetching">
             <img :src="imageUrl()+'loading.gif'" alt="">
             <h2> Loading..... </h2>
         </div>
 
-        <div class="atcfe_license_box_content" v-else>
-            <div id="atcfe_activated_license" v-if="licenseStatus != 'valid'">
+        <div class="atc_license_box_content" v-else>
+            <div id="atc_activated_license" v-if="licenseStatus != 'valid'">
                 <h3 class="title">Please Provide a license key of Advanced Testimonial Carousel Pro Addon</h3> 
-                <div class="atcfe-input atcfe-input-group atcfe-input-group--append">
-                    <input type="text" id="atcfe_license_settings_field" placeholder="License Key" class="atcfe_input__inner" v-model="licenseKey">
-                    <div class="atcfe-input-group__append">
-                        <a href="#" @click="verifyLicense" id="atcfe_verify_btn" class="atcfe-button atcfe-button--success">
+                <div class="atc-input atc-input-group atc-input-group--append">
+                    <input type="text" id="atc_license_settings_field" placeholder="License Key" class="atc_input__inner" v-model="licenseKey">
+                    <div class="atc-input-group__append">
+                        <a href="#" @click="verifyLicense" id="atc_verify_btn" class="atc-button atc-button--success">
                             &#128274; Verify License
                         </a>
                     </div>
@@ -29,13 +29,13 @@
                 <p>Don't have a license key? <a href="https://wpcreativeidea.com/" target="_blank" style="cursor:pointer">Purchase one here</a></p>
             </div>
 
-            <div id="atcfe_deactivated_license" v-if="licenseStatus === 'valid'">
+            <div id="atc_deactivated_license" v-if="licenseStatus === 'valid'">
                 <div class="text-align-center">
                     <span style="font-size: 50px;" class="el-icon el-icon-circle-check"></span>
                 </div>
                 <h2>You license key is valid and activated</h2>
                 <hr style="margin: 20px 0px;" />
-                <p>Want to deactivate this license? <a id="atcfe_deactive_license" href="#" @click="deactiveLicense">Click here</a></p>
+                <p>Want to deactivate this license? <a id="atc_deactive_license" href="#" @click="deactiveLicense">Click here</a></p>
             </div>
         </div>
     </div>

@@ -346,7 +346,7 @@ class SetupController
                 'logo'           => $imageUrl . 'testimonial-logo.png',
                 'is_installed'   => defined('ATC_PLUGIN_VERSION'),
                 'upgrade_to_pro_link' => 'https://wpcreativeidea.com/testimonial',
-                'settings_url'   => admin_url('admin.php?page=elementor-settings#tab-atcfe-settings'),
+                'settings_url'   => admin_url('admin.php?page=elementor-settings#tab-atc-settings'),
                 'action_text'    => __('Install Testimonial', 'advanced-testimonial-carousel-for-elementor'),
 				'route'			 => 'install_atc',
                 'description'    => __('Advanced Testimonial Carousel for Elementor. You can add image, name, describes, title, added Unlimited slider.

@@ -1,17 +1,17 @@
 <template>
-    <div class="atcfe-addons-wrapper">
-        <div class="atcfe-addons-heading">
+    <div class="atc-addons-wrapper">
+        <div class="atc-addons-heading">
             <h1> Elementor Recommended Addons </h1>
             <p>	These are the Elementor addons that will help your business. </p>  
         </div>
 
-        <div id="atcfe-loading-addon" v-if="fetching">
+        <div id="atc-loading-addon" v-if="fetching">
             <img :src="imageUrl()+'loading.gif'" alt="">
             <h2> Loading..... </h2>
         </div>
 
-        <div class="atcfe-addons-wrap" v-else>
-            <div class="atcfe-addons-templates" v-for="addon in getRecommendedAddons" :key="addon.id">
+        <div class="atc-addons-wrap" v-else>
+            <div class="atc-addons-templates" v-for="addon in getRecommendedAddons" :key="addon.id">
                 <div class="addons-box">
                     <div class="image">
                         <img :src="addon.logo" alt="">
@@ -19,7 +19,7 @@
                     <h2>{{ addon.title }}</h2>
                     <p>{{ addon.description }}</p>
                     <div class="btn-box">
-                        <a class="btn atcfe-install-addon" @click="saveAddons(addon.route)" v-if="!addon.is_installed">
+                        <a class="btn atc-install-addon" @click="saveAddons(addon.route)" v-if="!addon.is_installed">
                            {{ addon.action_text }}
                         </a>
                         <a :href="addon.settings_url" class="viewInstall" target="_blank" v-else>
@@ -46,7 +46,7 @@ export default {
       getRecommendedAddons: [],
       saving: false,
       hasPro: false,
-     //   settingTabMenu: localStorage.getItem('atcfe_active_menu_settings') || 'settings',
+     //   settingTabMenu: localStorage.getItem('atc_active_menu_settings') || 'settings',
     };
   },
   methods: {
@@ -54,7 +54,7 @@ export default {
       return window.atcAdminVars.assets_url+'images/';
     },
     // settingTabChangeHandler(val) {
-    //   localStorage.setItem('atcfe_active_menu_settings', val)
+    //   localStorage.setItem('atc_active_menu_settings', val)
     // },
    
     getAddons(){

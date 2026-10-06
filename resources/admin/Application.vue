@@ -1,34 +1,34 @@
 <template>
-    <div class="atcfe-wrapper">
+    <div class="atc-wrapper">
         <h1 class="heading-title">
           Advanced Testimonial Carousel Settings
         </h1>
-        <div class="atcfe-tabs">
-            <div class="atcfe-tab-nav">
+        <div class="atc-tabs">
+            <div class="atc-tab-nav">
                 <el-radio-group v-model="settingTabMenu" @change="settingTabChangeHandler" style="margin-bottom: 30px;">
-                    <el-radio-button class="atcfe-tab-btn" label="settings">
+                    <el-radio-button class="atc-tab-btn" label="settings">
                       <i class="el-icon-setting"></i>
                       Settings
                     </el-radio-button>
-                    <el-radio-button class="atcfe-tab-btn" label="recommended_addons">
+                    <el-radio-button class="atc-tab-btn" label="recommended_addons">
                       <i class="el-icon-circle-plus-outline"></i>
                       Recommended Addons
                     </el-radio-button>
-                    <el-radio-button class="atcfe-tab-btn" label="license_settings" v-if="hasPro">
+                    <el-radio-button class="atc-tab-btn" label="license_settings" v-if="hasPro">
                       <i class="el-icon-lock"></i>
                       License Settings
                     </el-radio-button>
                 </el-radio-group>
             </div>
 
-            <div class="atcfe-tab-content">
-              <div class="atcfe-tab-pane active" v-if="settingTabMenu === 'settings'">
+            <div class="atc-tab-content">
+              <div class="atc-tab-pane active" v-if="settingTabMenu === 'settings'">
                     <Settings/>
                 </div>
-                <div class="atcfe-tab-pane active" v-if="settingTabMenu === 'recommended_addons'">
+                <div class="atc-tab-pane active" v-if="settingTabMenu === 'recommended_addons'">
                       <RecommendedAddonsRender/>
                 </div>
-                <div class="atcfe-tab-pane active" v-if="settingTabMenu === 'license_settings' && hasPro">
+                <div class="atc-tab-pane active" v-if="settingTabMenu === 'license_settings' && hasPro">
                    <LicenseManagement/>
                 </div>
             </div>
@@ -52,13 +52,13 @@ export default {
     return {
       fetching: false,
       saving: false,
-      settingTabMenu: localStorage.getItem('atcfe_active_menu_settings') || 'settings',
+      settingTabMenu: localStorage.getItem('atc_active_menu_settings') || 'settings',
       hasPro: false,
     };
   },
   methods: {
     settingTabChangeHandler(val) {
-      localStorage.setItem('atcfe_active_menu_settings', val)
+      localStorage.setItem('atc_active_menu_settings', val)
     },
 
     hasProMethod() {
@@ -69,9 +69,9 @@ export default {
     // getSettings(){
     //   this.fetching = true;
     //   this.$post({
-    //     action: "atcfe_global_settings_admin_ajax",
+    //     action: "atc_global_settings_admin_ajax",
     //     route: "get_settings",
-    //     nonce: window.atcfeAdminVars.nonce,
+    //     nonce: window.atcAdminVars.nonce,
     //   })
     //       .then((response) => {
     //         this.settings = response.data.settings;
@@ -88,10 +88,10 @@ export default {
     // saveSettings() {
     //   this.saving = true;
     //   this.$post({
-    //     action: "atcfe_global_settings_admin_ajax",
+    //     action: "atc_global_settings_admin_ajax",
     //     route: "save_settings",
     //     settings: this.settings,
-    //     nonce: window.atcfeAdminVars.nonce,
+    //     nonce: window.atcAdminVars.nonce,
     //   })
     //       .then((response) => {
     //         this.getSettings();

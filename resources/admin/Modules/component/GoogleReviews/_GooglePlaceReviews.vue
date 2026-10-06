@@ -1,6 +1,6 @@
 <template>
-    <div class="atcfe-google-place-reviews">
-        <div class="atcfe-page-header">
+    <div class="atc-google-place-reviews">
+        <div class="atc-page-header">
             <!-- {{ place }} -->
             <div>
                 <el-button
@@ -29,39 +29,37 @@
                 </el-button>
             </div>
         </div>
-
         <el-card v-loading="fetching">
-            <div class="atcfe-review-summary">
-                <div>
+            <div class="atc-review-summary">
+                <div class="atc-review-counts">
                     <strong>
                         {{ reviews.length }}
                     </strong>
-                    <span>
+                    <span class="atc-gray-color">
                         Imported Reviews
                     </span>
-
                 </div>
-                <div>
-                    <strong>
-                        {{handler(place.download_method) }}
-                        <i class="el-icon-edit" @click="editDownloadMethod"></i>
+                <div class="atc-download-method-wrapper">
+                    <strong class="atc-download-method" @click="editDownloadMethod">
+                        {{handler(configs.download_method) }}
+                        <i class="el-icon-edit"></i>
                     </strong>
-                    <span>
+                    <span class="atc-gray-color">
                         Download Method
                     </span>
                     <el-dialog
                         title="Edit Download Method"
                         :visible.sync="downloadMethodDialog"
                         width="450px"
-                        class="atcfe-review-download-method"
+                        class="atc-review-download-method"
                     >
                         <el-form label-position="top">
                             <el-form-item label="Download Method">
                                 <el-select
-                                    v-model="downloadMethod"
+                                    v-model="configs.download_method"
                                     placeholder="Select"
-                                    @change="downloadMethodChangeHandler"
-                                >
+                                    class="atc-download-method-select-options"
+                                    >
                                     <el-option
                                         v-for="item in downloadMethods"
                                         :key="item.value"
@@ -69,7 +67,7 @@
                                         :value="item.value"
                                     />
                                 </el-select>
-                                <div class="atcfe-field-description">
+                                <div class="atc-field-description">
                                     Choose how reviews should be fetched from Google.
                                 </div>
                             </el-form-item>
@@ -85,15 +83,33 @@
                                 type="primary"
                                 :loading="savingDownloadMethod"
                                 @click="saveDownloadMethod"
+                                disable
                             >
                                 Save
                             </el-button>
                         </span>
                     </el-dialog>
                 </div>
+                <div class="atc-auto-fetch-switch">
+                    <span
+                        class="atc-auto-fetch-label"
+                        :class="{ 'is-active': configs.auto_fetch === 'yes' }"
+                    >
+                        Auto Fetch Reviews
+                    </span>
+
+                    <el-switch
+                        v-model="configs.auto_fetch"
+                        active-color="#409EFF"
+                        inactive-color="#C0C4CC"
+                        active-value="yes"
+                        inactive-value="no"
+                        @change="fetchReviews"
+                    />
+                </div>
             </div>
 
-            <div class="atcfe-table-responsive">
+            <div class="atc-table-responsive">
                 <el-table
                     :data="reviews"
                     border
@@ -106,7 +122,7 @@
                         min-width="180"
                     >
                         <template slot-scope="scope">
-                            <div class="atcfe-reviewer">
+                            <div class="atc-reviewer">
                                 <img
                                     v-if="scope.row.author_photo"
                                     :src="scope.row.author_photo"
@@ -137,30 +153,19 @@
                             />
                         </template>
                     </el-table-column>
-                    <!-- Review -->
-                    <!-- <el-table-column
-                        label="Review"
-                        min-width="400"
-                    >
-                        <template slot-scope="scope">
-                            <div class="atcfe-review-text">
-                                {{ scope.row.review_text }}
-                            </div>
-                        </template>
-                    </el-table-column> -->
-
+                 
                     <el-table-column
                         label="Review"
                         min-width="400"
                     >
                         <template slot-scope="scope">
-                            <div class="atcfe-review-text">
+                            <div class="atc-review-text">
                                 <template v-if="isReviewExpanded(scope.row.id)">
                                     {{ scope.row.review_text }}
 
                                     <el-button
                                         type="text"
-                                        class="atcfe-review-toggle"
+                                        class="atc-review-toggle"
                                         @click="toggleReview(scope.row.id)"
                                     >
                                         Less
@@ -173,7 +178,7 @@
                                     <el-button
                                         v-if="getWordCount(scope.row.review_text) > 20"
                                         type="text"
-                                        class="atcfe-review-toggle"
+                                        class="atc-review-toggle"
                                         @click="toggleReview(scope.row.id)"
                                     >
                                         More
@@ -201,10 +206,14 @@
                 </el-table>
             </div>
         </el-card>
+
+        <UpgradePopupModal :visible.sync="upgradeToProDialog"/>
     </div>
 </template>
 
 <script>
+import UpgradePopupModal from '../UpgradePopupModal.vue';
+
 export default {
     name: 'GooglePlaceReviews',
     props: {
@@ -213,6 +222,9 @@ export default {
             required: true,
         },
     },
+    components: {
+        UpgradePopupModal
+    },
 
     data() {
         return {
@@ -220,16 +232,10 @@ export default {
             saving: false,
             reviews: [],
             place: [],
-            configs: {
-                place_id: this.place_id,
-                download_method: '',
-                auto_fetch: true,
-            },
+            configs: [],
             expandedReviews: [],
             downloadMethodDialog: false,
             savingDownloadMethod: false,
-
-            downloadMethod: 'Most Relevant',
             downloadMethods: [
                 {
                     value: 'most_relevant',
@@ -240,6 +246,8 @@ export default {
                     label: 'Newest'
                 },
             ],
+            hasPro: !!window.atcAdminVars.has_pro,
+            upgradeToProDialog: false
         };
     },
 
@@ -303,17 +311,18 @@ export default {
                     setTimeout(() => {
                         this.reviews  = response.data.reviews;
                         this.place    = response.data.place;
-                        this.downloadMethod = response.data.place.download_method,
+                        this.configs =  {
+                            place_id: this.place.place_id,
+                            download_method: this.place.download_method,
+                            auto_fetch: this.place.auto_fetch
+                        },
+
                         this.fetching = false;
                     }, 1000);
                 })
                 .fail(error => {
                     this.$handleError(error);
                 });
-        },
-
-        downloadMethodChangeHandler(val) {
-            this.configs.download_method = val;
         },
 
         editDownloadMethod() {
@@ -325,15 +334,23 @@ export default {
             this.downloadMethodDialog = false;
             this.fetchReviews();
         },
-        
+
         // fetch reviews from google api and save to database
         fetchReviews() {
+            if (!this.hasPro) {
+                this.upgradeToProDialog = true;
+                this.configs.download_method = 'most_relevant';
+                this.configs.auto_fetch = 'no';
+                return;
+            }
+
             this.saving = true;
             this.fetching = true;
             this.$post({
                 action: 'atc_google_reviews_settings_admin_ajax',
                 route: 'save_google_place',
                 configs: this.configs,
+                action_type: 'update',
                 nonce: window.atcAdminVars.nonce
             })
                 .then(response => {
@@ -396,75 +413,3 @@ export default {
     }
 };
 </script>
-
-<style scoped>
-
-.atcfe-page-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
-
-.atcfe-page-header h1 {
-    margin: 5px 0 8px;
-    font-size: 24px;
-}
-
-.atcfe-page-header p {
-    margin: 0;
-    color: #777;
-}
-
-.atcfe-review-summary {
-    display: flex;
-    gap: 50px;
-    margin-bottom: 25px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #eee;
-}
-
-.atcfe-review-summary strong {
-    display: block;
-    font-size: 20px;
-}
-
-.atcfe-review-summary span {
-    display: block;
-    margin-top: 5px;
-    color: #888;
-}
-
-.atcfe-table-responsive {
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-}
-
-.atcfe-table-responsive .el-table {
-    min-width: 800px;
-}
-
-.atcfe-reviewer {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.atcfe-reviewer img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-}
-
-.atcfe-reviewer small {
-    display: block;
-    margin-top: 4px;
-    color: #888;
-}
-
-.atcfe-review-text {
-    line-height: 1.6;
-}
-
-</style>

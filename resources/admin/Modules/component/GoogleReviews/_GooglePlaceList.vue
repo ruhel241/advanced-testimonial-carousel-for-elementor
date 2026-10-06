@@ -1,6 +1,6 @@
 <template>
-    <div class="atcfe-google-place-list">
-        <div class="atcfe-page-header" v-if="!addPlace">
+    <div class="atc-google-place-list">
+        <div class="atc-page-header" v-if="!addPlace">
             <div>
                 <h1>Google Places</h1>
                 <p>
@@ -16,7 +16,7 @@
             </el-button>
         </div>
         <el-card shadow="never" v-if="!addPlace">
-            <div class="atcfe-table-responsive" v-loading="fetching">
+            <div class="atc-table-responsive" v-loading="fetching">
                 <el-table
                     :data="places"
                     border
@@ -38,14 +38,14 @@
                     <!-- Place ID -->
                     <el-table-column
                         label="Google Place ID"
-                      width="200"
+                        width="200"
                     >
                         <template slot-scope="scope">
                             <a
                                 :href="`https://www.google.com/maps/place/?q=place_id:${scope.row.place_id}`"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                class="atcfe-place-id"
+                                class="atc-place-id"
                             >
                                 {{ scope.row.place_id }}
                             </a>
@@ -111,7 +111,7 @@
                        fixed="right"
                     >
                         <template slot-scope="scope">
-                            <div class="atcfe-btn-group">
+                            <div class="atc-btn-group">
                                  <el-button
                                     type="primary"
                                     size="mini"
@@ -235,11 +235,11 @@ export default {
 
 <style scoped>
 
-    .atcfe-google-place-list .el-card {
+    .atc-google-place-list .el-card {
         width: 900px !important;
     }
 
-    .atcfe-btn-group {
+    .atc-btn-group {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -248,27 +248,28 @@ export default {
         overflow: scroll !important;
     }
 
-    .atcfe-page-header {
+    .atc-page-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
         margin-bottom: 20px;
     }
 
-    .atcfe-page-header h1 {
+    .atc-page-header h1 {
         margin: 0 0 8px;
         font-size: 24px;
     }
 
-    .atcfe-page-header p {
+    .atc-page-header p {
         margin: 0;
         color: #777;
     }
-    .atcfe-place-id {
+    .atc-place-id {
         display: inline-block;
         word-break: break-all;
         overflow-wrap: anywhere;
         text-decoration: none;
+        color: #4f46e5 !important;
     }
 
 </style>

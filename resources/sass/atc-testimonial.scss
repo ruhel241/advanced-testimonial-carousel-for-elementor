@@ -13,8 +13,8 @@
     // min-height: 250px;
     // height: auto;
     .atc-google-image {
-        display: flex;
-        // align-items: flex-start;
+      display: flex;
+      // align-items: flex-start;
         margin-left: 10px;
         img {
             display: block;
@@ -23,7 +23,7 @@
             object-fit: contain;
         }
     }
-  }
+   }
   .author-img {
     width: 150px;
     height: 150px;
@@ -290,6 +290,11 @@
 .atc-testimonial-slider-template-1 {
   &.atc-testimonial-container {
     padding-bottom: 30px;
+    .swiper-slide {
+      .atc-google-image {
+        margin-top: -40px;
+      }
+    }
     .author-name {
       margin: 0;
     }
@@ -315,6 +320,9 @@
         margin-right: 10px;
         min-height: 250px;
         height: auto;
+        .atc-google-image {
+          margin-top: 0px;
+        }
       } 
       .description {
         min-height: 250px;
@@ -343,8 +351,8 @@
         }
       }
       .author-img {
-        width: 130px;
-        height: 130px;
+        width: 100px;
+        height: 100px;
       }
     }
   }

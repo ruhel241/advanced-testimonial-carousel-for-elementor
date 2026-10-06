@@ -1,9 +1,9 @@
 <template>
-    <div class="atcfe-google-place-form">
+    <div class="atc-google-place-form">
         <!-- =========================
              PAGE HEADER
         ========================== -->
-        <div class="atcfe-page-header">
+        <div class="atc-page-header">
             <el-button
                 type="text"
                 icon="el-icon-arrow-left"
@@ -25,7 +25,7 @@
         ========================== -->
         <el-card
             shadow="never"
-            class="atcfe-form-card"
+            class="atc-form-card"
         >
             <el-form
                 ref="configs"
@@ -44,11 +44,9 @@
                         v-model="configs.place_id"
                         placeholder="Enter Google Place ID"
                     />
-                    <div class="atcfe-field-description">
-
+                    <div class="atc-field-description">
                         Enter the Google Place ID of your
                         Google Business Profile.
-
                     </div>
                 </el-form-item>
                
@@ -75,9 +73,8 @@
                         </el-radio>
                     </el-radio-group>
 
-                    <div class="atcfe-field-description">
-                        Select how reviews should be
-                        fetched from Google.
+                    <div class="atc-field-description">
+                        Select how reviews should be fetched from Google.
                     </div>
                 </el-form-item>
 
@@ -99,10 +96,10 @@
                 ========================== -->
                 <div
                     v-if="placeVerified"
-                    class="atcfe-verification-success"
+                    class="atc-verification-success"
                 >
                     <div
-                        class="atcfe-verification-icon"
+                        class="atc-verification-icon"
                     >
                          ✓
 
@@ -117,7 +114,7 @@
                         <span>
                             {{ verifiedPlace.address }}
                         </span>
-                        <div class="atcfe-place-meta">
+                        <div class="atc-place-meta">
                             <span>
                                 ⭐
                                 {{ verifiedPlace.rating }}
@@ -134,13 +131,25 @@
                      AUTO FETCH
                 ========================== -->
 
-                <el-form-item label="Auto Fetch Reviews">
-                    <el-switch
-                        v-model="configs.auto_fetch"
-                        active-text="Enabled"
-                        inactive-text="Disabled"
-                    />
-                    <div class="atcfe-field-description">
+                <el-form-item class="atc-auto-fetch-form">
+                    <div class="atc-auto-fetch-switch">
+                        <span
+                            class="atc-auto-fetch-label"
+                            :class="{ 'is-active': configs.auto_fetch == 'yes' }"
+                        >
+                            Auto Fetch Reviews
+                        </span>
+                        <el-switch
+                            v-model="configs.auto_fetch"
+                            active-color="#409EFF"
+                            inactive-color="#C0C4CC"
+                            active-value="yes"
+                            inactive-value="no"
+                            @change="changeHandler"
+                        />
+                            <!-- @input="(value) => changeHandler(value, 'instructor_signature_img_enable')"> -->
+                    </div>
+                    <div class="atc-field-description" style="font-style: italic;">
                         Automatically check for new
                         reviews using WP-Cron.
                     </div>
@@ -163,10 +172,13 @@
                 </el-form-item>
             </el-form>
         </el-card>
+
+        <UpgradePopupModal :visible.sync="upgradeToProDialog"/>
     </div>
 </template>
 
 <script>
+import UpgradePopupModal from '../UpgradePopupModal.vue';
 export default {
     name: 'GooglePlaceForm',
     props: {
@@ -174,6 +186,9 @@ export default {
             type: String,
             default: '',
         },
+    },
+    components: {
+        UpgradePopupModal
     },
     data() {
         return {
@@ -184,7 +199,7 @@ export default {
             configs: {
                 place_id: '',
                 download_method: 'most_relevant',
-                auto_fetch: true,
+                auto_fetch: 'no',
             },
             placeRules: {
                 place_id: [
@@ -202,11 +217,19 @@ export default {
                     },
                 ],
             },
+            upgradeToProDialog: false,
+            hasPro: !!window.atcAdminVars.has_pro,
         };
     },
 
-
     methods: {
+        changeHandler(val) {
+            if (!this.hasPro) {
+                this.upgradeToProDialog = true;
+                this.configs.auto_fetch = 'no';
+                return;
+           }
+        },
         verifyPlace() {
             this.$refs.configs.validateField(
                 'place_id',
@@ -295,83 +318,8 @@ export default {
                 });
         }
     },
+    mounted() {
+    }
 };
 
 </script>
-
-<style scoped>
-.atcfe-page-header {
-    margin-bottom: 20px;
-}
-.atcfe-page-header h1 {
-    margin: 5px 0 8px;
-    font-size: 24px;
-}
-
-.atcfe-page-header p {
-    margin: 0;
-    color: #777;
-}
-.atcfe-form-card {
-    max-width: 800px;
-}
-
-.atcfe-field-description {
-    margin-top: 6px;
-    color: #888;
-    font-size: 13px;
-    line-height: 1.5;
-}
-.atcfe-verification-success {
-    display: flex;
-    align-items: flex-start;
-    gap: 15px;
-    margin: 10px 0 25px;
-    padding: 18px;
-    border: 1px solid #b7eb8f;
-    border-radius: 4px;
-    background: #f6ffed;
-}
-
-
-.atcfe-verification-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: #67c23a;
-    color: #fff;
-    font-size: 18px;
-    font-weight: 600;
-    flex-shrink: 0;
-}
-
-.atcfe-verification-success strong {
-    display: block;
-    margin-bottom: 5px;
-}
-
-.atcfe-verification-success p {
-    margin: 0 0 4px;
-    font-weight: 600;
-}
-
-.atcfe-verification-success span {
-    color: #777;
-}
-
-.atcfe-place-meta {
-    display: flex;
-    gap: 20px;
-    margin-top: 10px;
-}
-
-@media (max-width: 600px) {
-    .atcfe-place-meta {
-        flex-direction: column;
-        gap: 5px;
-    }
-}
-</style>

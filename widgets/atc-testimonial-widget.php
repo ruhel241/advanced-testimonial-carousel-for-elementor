@@ -43,6 +43,13 @@ class ATCTestimonialWidget extends Widget_Base
         // get google reviews from database
         $GooglePlaces = new GooglePlaces();
         $places       = $GooglePlaces->getPlaces();
+        $customReviewsCondition = [];
+        $googleReviewsCondition = [];
+
+        if (defined('ATCPRO')) {
+            $customReviewsCondition = ['atc_custom_reviews_show_option' => 'yes'];
+            $googleReviewsCondition = ['atc_google_reviews_show_option' => 'yes'];
+        }
 
         $proNotice = [
 			'title' => esc_html__( 'These are pro features', 'advanced-testimonial-carousel-for-elementor' ),
@@ -63,7 +70,7 @@ class ATCTestimonialWidget extends Widget_Base
                 [
                     'type' => Controls_Manager::HEADING,
                     'label' => esc_html__( 'Custom Reviews', 'advanced-testimonial-carousel-for-elementor-pro' ),
-                    'condition' => [ 'atc_custom_reviews_show_option' => 'yes'],
+                    'condition' => $customReviewsCondition,
                 ]
             );
         
@@ -166,7 +173,7 @@ class ATCTestimonialWidget extends Widget_Base
                 'label' => esc_html__( '', 'advanced-testimonial-carousel-for-elementor' ),
                 'type' => Controls_Manager::REPEATER,
                 'fields' => $repeater->get_controls(),
-                'condition' => [ 'atc_custom_reviews_show_option' => 'yes'],
+                'condition' => $customReviewsCondition,
                 'default' => [
                     [
                         'atc_content' => "<p>". esc_html__( 'Lorem ipsum dolor sit amet, tpat dictum purus, at malesuada tellus convallis et. Aliquam erat volutpat. Vestibulum felis ex, ultrices posuere facilisis eget, malesuada quis elit. Nulla ac eleifend odio' , 'advanced-testimonial-carousel-for-elementor' )."</p>",
@@ -193,22 +200,15 @@ class ATCTestimonialWidget extends Widget_Base
               ]
           );
           // repeater end
-
-            $this->add_control(
-                'atc_hr1',
-                [
-                    'type' => Controls_Manager::DIVIDER,
-                    'condition' => [ 'atc_custom_reviews_show_option' => 'yes'],
-                ]
-		    );
-
+            
             // google reviews options start
             $this->add_control(
                 'atc_google_reviews_heading',
                 [
                     'type' => Controls_Manager::HEADING,
                     'label' => esc_html__( 'Google Reviews', 'advanced-testimonial-carousel-for-elementor-pro' ),
-                    'condition' => ['atc_google_reviews_show_option' => 'yes'],
+                    'separator' => 'before',
+                    'condition' => $googleReviewsCondition,
                 ]
             );
            
@@ -233,7 +233,7 @@ class ATCTestimonialWidget extends Widget_Base
                     'type'    => Controls_Manager::SELECT,
                     'options' => $place_options,
                     'default' => '',
-                    'condition' => ['atc_google_reviews_show_option' => 'yes'],
+                    'condition' => $googleReviewsCondition,
                 ]
             );
         $this->end_controls_section();
@@ -270,29 +270,6 @@ class ATCTestimonialWidget extends Widget_Base
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
         );
-
-            $this->add_control(
-                'atc_google_reviews_show_option',
-                [
-                    'label' => esc_html__( 'Enable Google Reviews', 'advanced-testimonial-carousel-for-elementor-pro' ),
-                    'type' => Controls_Manager::SWITCHER,
-                    'label_on' => esc_html__( 'Show', 'advanced-testimonial-carousel-for-elementor-pro' ),
-                    'label_off' => esc_html__( 'Hide', 'advanced-testimonial-carousel-for-elementor-pro' ),
-                    'return_value' => 'yes',
-                    'default' => 'yes',
-                ]
-            );
-            $this->add_control(
-                'atc_custom_reviews_show_option',
-                [
-                    'label' => esc_html__( 'Enable Custom Reviews', 'advanced-testimonial-carousel-for-elementor-pro' ),
-                    'type' => Controls_Manager::SWITCHER,
-                    'label_on' => esc_html__( 'Show', 'advanced-testimonial-carousel-for-elementor-pro' ),
-                    'label_off' => esc_html__( 'Hide', 'advanced-testimonial-carousel-for-elementor-pro' ),
-                    'return_value' => 'yes',
-                    'default' => 'yes',
-                ]
-            );
 
             if (defined('ATCPRO')) {
                 (new ATCWidgetPro)->additionaloptionsMore($this);
@@ -1114,11 +1091,15 @@ class ATCTestimonialWidget extends Widget_Base
     protected function render()
     {
         $settings = $this->get_settings_for_display();
+        $customReviewsDisplay = "yes";
+        $googleReviewsDisplay = 'yes';
 
-        if (
-            $settings['atc_custom_reviews_show_option'] === 'yes' ||
-            $settings['atc_google_reviews_show_option'] === 'yes'
-        ) {
+        if (defined( 'ATCPRO' )) {
+            $customReviewsDisplay = $settings['atc_custom_reviews_show_option'];
+            $googleReviewsDisplay = $settings['atc_google_reviews_show_option'];
+        }
+
+        if ( $customReviewsDisplay === 'yes' || $googleReviewsDisplay === 'yes') {
             $this->html( $settings );
             return;
         }
@@ -1136,15 +1117,18 @@ class ATCTestimonialWidget extends Widget_Base
 
     public function html( $settings )
     {
-        $dots               = 'yes';
-        $arrows             = 'yes';
-        $imageDisplay       = 'yes';
-        $authorNameDisplay  = 'yes';
-        $companyNameDisplay = 'yes';
-        $dateDisplay        = 'yes';
+        $dots                     = 'yes';
+        $arrows                   = 'yes';
+        $imageDisplay             = 'yes';
+        $authorNameDisplay        = 'yes';
+        $companyNameDisplay       = 'yes';
+        $dateDisplay              = 'yes';
         $googlePlacesTotalReviews = '';
         $headingTotalRating       = '';
         $assetsImagesURL          = ATC_PLUGIN_URL.'assets/images/';
+        $googleLogoDisplay        = '';
+        $customReviewsDisplay     = 'yes';
+        $googleReviewsDisplay     = 'yes';
 
         $template = defined( 'ATCPRO' ) ? ( $settings['atc_layout'] ?? 'template-1' ) : 'template-1';
 
@@ -1189,6 +1173,8 @@ class ATCTestimonialWidget extends Widget_Base
             $reviewsLimit       = $settings['atc_reviews_limit'] ?? '';
             $headingTotalRating = $settings['atc_google_review_heading_total_rating'] ?? '';
             $googleLogoDisplay  = $settings['atc_google_logo_display'] ?? '';
+            $customReviewsDisplay = $settings['atc_custom_reviews_show_option'];
+            $googleReviewsDisplay = $settings['atc_google_reviews_show_option'];
 
 
             // dafault if template-7
@@ -1219,7 +1205,7 @@ class ATCTestimonialWidget extends Widget_Base
         /*
         * Custom Elementor reviews.
         */
-        if ( ( $settings['atc_custom_reviews_show_option'] ?? '' ) === 'yes' ) {
+        if ( $customReviewsDisplay  === 'yes' ) {
             $reviews = $settings['atc_list'] ?? [];
 
             if ( ! is_array( $reviews ) ) {
@@ -1230,7 +1216,7 @@ class ATCTestimonialWidget extends Widget_Base
         /*
         * Google Reviews.
         */
-        if ( ( $settings['atc_google_reviews_show_option'] ?? '' ) === 'yes' ) {
+        if ( $googleReviewsDisplay === 'yes' ) {
             require_once ATC_PLUGIN_DIR_PATH . 'app/Models/GoogleReviews.php';
             require_once ATC_PLUGIN_DIR_PATH . 'app/Models/GooglePlaces.php';
         
@@ -1419,7 +1405,6 @@ class ATCTestimonialWidget extends Widget_Base
                                     }
 
                                     ?>
-
                                 </div>
                                 <div class="bio-information">
                                     <?php if ( 'yes' === $imageDisplay ) : ?>

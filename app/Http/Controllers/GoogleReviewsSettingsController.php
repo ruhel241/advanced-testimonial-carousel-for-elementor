@@ -4,7 +4,6 @@ namespace ATC\Http\Controllers;
 use ATC\Models\GooglePlaces;
 use ATC\Models\GoogleReviews;
 
-
 class GoogleReviewsSettingsController
 {
     public function register() {
@@ -52,7 +51,6 @@ class GoogleReviewsSettingsController
             'get_google_reviews_by_place_id'  => 'getReviewsByPlaceId',
             'maybe_delete_google_place'       => 'maybeDeleteGooglePlace',
             'maybe_delete_google_review'      => 'maybeDeleteGoogleReview'
-
         );
     
         if ( ! isset( $maps[ $route ] ) ) {
@@ -154,7 +152,6 @@ class GoogleReviewsSettingsController
         /*
         * Fetch Google Place data.
         */
-        // $result = $this->GooglePlaceDataByApi( $place_id );
         $result = $this->GooglePlaceDataByApi( $place_id, $configs['download_method'] ?? 'newest' );
 
         if ( empty( $result ) ) {
@@ -224,15 +221,11 @@ class GoogleReviewsSettingsController
     // save google place
     public function saveGooglePlace( $request )
     {
-        $configs = wp_unslash( $request['configs'] ?? [] );
-
-        $place_id = sanitize_text_field( $configs['place_id'] ?? '' );
-
-        $auto_fetch = ! empty( $configs['auto_fetch'] ) ? 1 : 0;
-
-        $download_method = sanitize_text_field( $configs['download_method'] ?? '' );
-
-        $action_type = sanitize_text_field( $request['action_type'] ?? 'update' );
+        $configs          = wp_unslash( $request['configs'] ?? [] );
+        $place_id         = sanitize_text_field( $configs['place_id'] ?? '' );
+        $auto_fetch       = sanitize_text_field( $configs['auto_fetch'] );
+        $download_method  = sanitize_text_field( $configs['download_method'] ?? '' );
+        $action_type      = sanitize_text_field( $request['action_type'] );
 
         if ( empty( $place_id ) ) {
             wp_send_json_error(
@@ -316,11 +309,9 @@ class GoogleReviewsSettingsController
         * Update existing place.
         */
         if ( 'update' === $action_type ) {
-            error_log(print_r($configs['download_method'], 1));
             /*
             * Fetch latest Google Place data.
             */
-            // $result = $this->GooglePlaceDataByApi( $place_id );
             $result = $this->GooglePlaceDataByApi( $place_id, $configs['download_method'] ?? 'newest' );
 
             if ( empty( $result ) ) {
@@ -340,6 +331,7 @@ class GoogleReviewsSettingsController
                 'address'         => $result['formatted_address'] ?? '',
                 'rating'          => $result['rating'] ?? null,
                 'total_reviews'   => $result['user_ratings_total'] ?? null,
+                'auto_fetch'      => $auto_fetch,
                 'download_method' => $download_method,
                 'updated_at'      => gmdate( 'Y-m-d H:i:s' ),
             ];
@@ -363,52 +355,7 @@ class GoogleReviewsSettingsController
         }
     }
 
-    // fetch google place data by api
-    // private function GooglePlaceDataByApi( $place_id ) {
-
-    //     $api_settings = get_option('atc_google_reviews_api_key', []);
-
-    //     $api_key = $api_settings['api_key'] ?? '';
-
-    //     if ( empty( $api_key ) || empty( $place_id ) ) {
-    //         return [];
-    //     }
-
-    //     $url = add_query_arg(
-    //         [
-    //             'place_id' => $place_id,
-    //             'fields' => 'name,formatted_address,rating,reviews,user_ratings_total',
-    //             'key'      => $api_key,
-    //         ],
-    //         'https://maps.googleapis.com/maps/api/place/details/json'
-    //     );
-
-    //     $response = wp_remote_get(
-    //         $url,
-    //         [
-    //             'timeout' => 15,
-    //         ]
-    //     );
-
-    //     if ( is_wp_error( $response ) ) {
-    //         return [];
-    //     }
-
-    //     $body = json_decode(
-    //         wp_remote_retrieve_body( $response ),
-    //         true
-    //     );
-
-    //     if (
-    //         empty( $body ) ||
-    //         empty( $body['result'] )
-    //     ) {
-    //         return [];
-    //     }
-
-    //     return $body['result'];
-    // }
-    private function GooglePlaceDataByApi( $place_id, $download_method = 'newest' ) {
+    public function GooglePlaceDataByApi( $place_id, $download_method = 'newest' ) {
 
         $api_settings = get_option(
             'atc_google_reviews_api_key',
@@ -464,7 +411,7 @@ class GoogleReviewsSettingsController
     }
 
     // save google reviews
-    private function saveGoogleReviews( $place_id, $reviews ) {
+    public function saveGoogleReviews( $place_id, $reviews ) {
 
         if ( empty( $place_id ) || empty( $reviews ) ) {
             return;

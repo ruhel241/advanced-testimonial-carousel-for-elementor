@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PLUGIN_NAME="swift-certificate-manager"
+PLUGIN_NAME="advanced-testimonial-carousel-for-elementor"
 BUILD_DIR="builds"
 DIST_DIR="$BUILD_DIR/$PLUGIN_NAME"
 
@@ -24,8 +24,7 @@ cp -r assets $DIST_DIR/
 cp -r database $DIST_DIR/
 cp -r languages $DIST_DIR/ 2>/dev/null
 
-cp swift-certificate-manager.php $DIST_DIR/
-cp swift-certificate-manager-boot.php $DIST_DIR/
+cp advanced-testimonial-carousel-for-elementor.php $DIST_DIR/
 cp readme.txt $DIST_DIR/ 2>/dev/null
 cp mix-manifest.json $DIST_DIR/
 cp composer.json $DIST_DIR/

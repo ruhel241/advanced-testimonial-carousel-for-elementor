@@ -1,25 +1,25 @@
 <template>
-    <div class="atcfe-settings-page">
+    <div class="atc-settings-page">
         <el-radio-group v-model="settingTabMenu"  @change="settingTabChangeHandler" style="margin-bottom: 30px !important; ">
-            <el-radio-button class="atcfe-tab-btn" label="google_reviews_settings">
+            <el-radio-button class="atc-tab-btn" label="google_reviews_settings">
                 <i class="el-icon-setting"></i>
                 Google Reviews Settings
             </el-radio-button>
-            <el-radio-button class="atcfe-tab-btn" label="google_places">
+            <el-radio-button class="atc-tab-btn" label="google_places">
                 <i class="el-icon-circle-plus-outline"></i>
                 Google Places
             </el-radio-button>
-            <el-radio-button class="atcfe-tab-btn" label="license_settings" v-if="hasPro">
+            <el-radio-button class="atc-tab-btn" label="license_settings" v-if="hasPro">
                 <i class="el-icon-lock"></i>
                 License Settings
             </el-radio-button>
         </el-radio-group>
 
-        <div class="atcfe-tab-content">
-            <div class="atcfe-tab-pane active" v-if="settingTabMenu === 'google_reviews_settings'">
+        <div class="atc-tab-content">
+            <div class="atc-tab-pane active" v-if="settingTabMenu === 'google_reviews_settings'">
                 <GoogleReviewsSettings/>
             </div>
-            <div class="atcfe-tab-pane active" v-if="settingTabMenu === 'google_places'">
+            <div class="atc-tab-pane active" v-if="settingTabMenu === 'google_places'">
                 <GoogleReviews/>
             </div>
         </div>       
@@ -39,13 +39,13 @@ export default {
     },
     data() {
         return {
-            settingTabMenu: localStorage.getItem('atcfe_google_review_active_menu') || 'google_reviews_settings',
+            settingTabMenu: localStorage.getItem('atc_google_review_active_menu') || 'google_reviews_settings',
             hasPro: false,
         };
     },
     methods: {
         settingTabChangeHandler(val) {
-            localStorage.setItem('atcfe_google_review_active_menu', val)
+            localStorage.setItem('atc_google_review_active_menu', val)
         },
     }
 };

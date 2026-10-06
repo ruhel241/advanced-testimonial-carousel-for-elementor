@@ -1,6 +1,6 @@
 <template>
-    <div class="atcfe-settings">
-        <div class="atcfe-page-header">
+    <div class="atc-settings">
+        <div class="atc-page-header">
             <div>
                 <h1>Google Reviews Settings</h1>
                 <p>
@@ -11,7 +11,7 @@
         </div>
         <el-card
             shadow="never"
-            class="atcfe-settings-card"
+            class="atc-settings-card"
             v-loading="fetching"
         >
         <!--     :rules="rules" -->
@@ -33,30 +33,13 @@
                         placeholder="Enter your Google API Key"
                     />
 
-                    <div class="atcfe-field-description">
+                    <div class="atc-field-description">
                         Your Google Places API key used to fetch Google
-                        Business information and reviews.
+                        Business information and reviews. 
+                        <a href="https://console.cloud.google.com/apis/credentials" target="_blank"> Google Cloud Console – API Credentials </a>
                     </div>
 
                 </el-form-item>
-
-
-                <!-- Auto Fetch -->
-                <!-- <el-form-item label="Auto Fetch Reviews">
-
-                    <el-switch
-                        v-model="settings.auto_fetch"
-                        active-text="Enabled"
-                        inactive-text="Disabled"
-                    />
-
-                    <div class="atcfe-field-description">
-                        Automatically check for new Google reviews using
-                        WP-Cron.
-                    </div>
-
-                </el-form-item> -->
-
 
                 <!-- Save -->
                 <el-form-item>
@@ -154,30 +137,30 @@ export default {
 
 <style scoped>
 
-.atcfe-settings {
+.atc-settings {
     max-width: 1200px;
     margin: 30px 0;
 }
 
-.atcfe-page-header {
+.atc-page-header {
     margin-bottom: 20px;
 }
 
-.atcfe-page-header h1 {
+.atc-page-header h1 {
     margin: 0 0 8px;
     font-size: 24px;
 }
 
-.atcfe-page-header p {
+.atc-page-header p {
     margin: 0;
     color: #777;
 }
 
-.atcfe-settings-card {
+.atc-settings-card {
     max-width: 800px;
 }
 
-.atcfe-field-description {
+.atc-field-description {
     margin-top: 6px;
     color: #888;
     font-size: 13px;

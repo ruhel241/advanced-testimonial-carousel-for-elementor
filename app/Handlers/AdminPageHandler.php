@@ -25,9 +25,9 @@ class AdminPageHandler {
 		?>
 		<script>
 			jQuery(function ($) {
-				if (window.location.hash === '#/tab-atcfe-settings') {
+				if (window.location.hash === '#/tab-atc-settings') {
 					setTimeout(function () {
-						$('#elementor-settings-tab-atcfe-settings').trigger('click');
+						$('#elementor-settings-tab-atc-settings').trigger('click');
 					}, 500);
 				}
 			});
@@ -82,7 +82,7 @@ class AdminPageHandler {
 
    public function register_settings_fields( $settings ) {
 		$settings->add_tab(
-			'atcfe-settings',
+			'atc-settings',
 			[
 				'label' => esc_html__( 'ATC Settings', 'advanced-testimonial-carousel-for-elementor' ),
 				'sections' => [
@@ -101,10 +101,8 @@ class AdminPageHandler {
 
     public function renderPage()
     {
-		
 		?>
-			<div id="atcfe_admin_wrap"></div>
-			
+			<div id="atc_admin_wrap"></div>
 		<?php
     }
 }

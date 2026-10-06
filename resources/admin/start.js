@@ -3,7 +3,7 @@ import Application from './Application.vue';
 
 const vueRouter = new window.AdvancedTestimonialCarousel.Router({
     routes: window.AdvancedTestimonialCarousel.applyFilters(
-        'atcfe_global_routes',
+        'atc_global_routes',
         routes
     )
 });
@@ -19,7 +19,7 @@ window.AdvancedTestimonialCarousel.Vue.prototype.$del = window.AdvancedTestimoni
 window.AdvancedTestimonialCarousel.Vue.prototype.$bus = new window.AdvancedTestimonialCarousel.Vue();
 
 new window.AdvancedTestimonialCarousel.Vue({
-    el: '#atcfe_admin_wrap',
+    el: '#atc_admin_wrap',
     // router: vueRouter,
     render: h => h(Application),
     mounted() {

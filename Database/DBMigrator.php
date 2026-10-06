@@ -39,7 +39,6 @@ class DBMigrator {
 	}
 
 	private static function migrate() {
-
 	
 		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 
@@ -48,14 +47,5 @@ class DBMigrator {
 		
         GooglePlacesMigrator::migrate();
         GoogleReviewsMigrator::migrate();
-
-
-		// require_once ATC_PLUGIN_DIR_PATH . 'Database/Migrations/GooglePlacesMigrator.php';
-
-		// require_once ATC_PLUGIN_DIR_PATH . 'Database/Migrations/GoogleReviewsMigrator.php';
-
-		// GooglePlacesMigrator::migrate();
-
-		// GoogleReviewsMigrator::migrate();
 	}
 }

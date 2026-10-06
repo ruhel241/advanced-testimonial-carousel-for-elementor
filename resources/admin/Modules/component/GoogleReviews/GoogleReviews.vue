@@ -1,5 +1,5 @@
 <template>
-    <div class="atcfe-google-reviews">
+    <div class="atc-google-reviews">
         <!-- =========================
              GOOGLE PLACES
         ========================== -->

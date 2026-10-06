@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class GooglePlacesMigrator {
 
-    public static $tableName = 'atcfe_google_places';
+    public static $tableName = 'atc_google_places';
     
     public static function migrate() {
         global $wpdb;
@@ -24,7 +24,7 @@ class GooglePlacesMigrator {
                 address TEXT NULL,
                 rating DECIMAL(2,1) NULL,
                 total_reviews INT UNSIGNED NULL,
-                auto_fetch TINYINT(1) NOT NULL DEFAULT 0,
+                auto_fetch VARCHAR(11) NULL,
                 download_method VARCHAR(50) NULL,
                 created_at DATETIME NULL,
                 updated_at DATETIME NULL,

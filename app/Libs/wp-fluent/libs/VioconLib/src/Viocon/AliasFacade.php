@@ -12,7 +12,7 @@ class AliasFacade {
     /**
      * @var Container
      */
-    protected static $atcfeInstance;
+    protected static $atcInstance;
 
     /**
      * @param $method
@@ -22,11 +22,11 @@ class AliasFacade {
      */
     public static function __callStatic($method, $args)
     {
-        if(!static::$atcfeInstance) {
-            static::$atcfeInstance = new Container();
+        if(!static::$atcInstance) {
+            static::$atcInstance = new Container();
         }
 
-        return call_user_func_array(array(static::$atcfeInstance, $method), $args);
+        return call_user_func_array(array(static::$atcInstance, $method), $args);
     }
 
     /**
@@ -34,7 +34,7 @@ class AliasFacade {
      */
     public static function setVioconInstance(Container $instance)
     {
-        static::$atcfeInstance = $instance;
+        static::$atcInstance = $instance;
     }
 
     /**
@@ -42,6 +42,6 @@ class AliasFacade {
      */
     public static function getVioconInstance()
     {
-        return static::$atcfeInstance;
+        return static::$atcInstance;
     }
 }

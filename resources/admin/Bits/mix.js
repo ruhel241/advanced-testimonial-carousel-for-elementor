@@ -43,7 +43,7 @@ mix.webpackConfig({
 
     // output: {
     //     publicPath: '/',
-    //     chunkLoadingGlobal: 'webpackChunkatcfe'
+    //     chunkLoadingGlobal: 'webpackChunkatc'
     // },
 
     // optimization: {

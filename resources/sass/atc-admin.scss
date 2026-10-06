@@ -1,6 +1,6 @@
 @import "./vendor";
 // vue settings
-#tab-atcfe-settings {
+#tab-atc-settings {
     padding:0;
     background:transparent;
     .heading-title{
@@ -9,13 +9,13 @@
     &.elementor-active ~ .submit {
         display: none !important;
     }
-    .atcfe-tabs {
+    .atc-tabs {
         max-width:1400px;
         .el-radio-group {
             margin: initial !important;
         }
     }
-    .atcfe-tab-nav{
+    .atc-tab-nav{
         display:flex;
         align-items:center;
         gap:14px;
@@ -28,7 +28,7 @@
         width:max-content;
     }
 
-    .atcfe-tab-btn {
+    .atc-tab-btn {
         position:relative;
         border:none;
         background:transparent;
@@ -61,11 +61,11 @@
         }
     }
 
-    .atcfe-tab-content{
+    .atc-tab-content{
         position:relative;
     }
 
-    .atcfe-tab-pane{
+    .atc-tab-pane{
         background:#ffffff;
         border-radius:30px;
         padding:35px;
@@ -73,9 +73,9 @@
         box-shadow:
             0 10px 25px rgba(0,0,0,.04),
             0 20px 50px rgba(0,0,0,.05);
-        animation:atcfeFade .25s ease;
+        animation:atcFade .25s ease;
     }
-    @keyframes atcfeFade{
+    @keyframes atcFade{
         from{
             opacity:0;
             transform:translateY(10px);
@@ -88,38 +88,38 @@
 
     @media(max-width:767px){
 
-        .atcfe-tabs{
+        .atc-tabs{
             margin:20px auto;
         }
 
-        .atcfe-tab-nav{
+        .atc-tab-nav{
             width:100%;
             flex-direction:column;
             align-items:stretch;
             padding:8px;
         }
 
-        .atcfe-tab-btn{
+        .atc-tab-btn{
             width:100%;
             text-align:center;
         }
 
-        .atcfe-tab-pane{
+        .atc-tab-pane{
             padding:20px;
             border-radius:22px;
         }
     }
 
 
-    .atcfe-admin-wrap {
+    .atc-admin-wrap {
         padding: 0px !important;
     }
-    .atcfe-admin-wrap h1 {
+    .atc-admin-wrap h1 {
         padding: 20px 0px;
     }
 
     //license
-    .atcfe_license_box{
+    .atc_license_box{
         max-width:780px;
         margin:40px auto;
         padding:50px;
@@ -132,7 +132,7 @@
         overflow:hidden;
     }
 
-    .atcfe_license_box::before{
+    .atc_license_box::before{
         content:"";
         position:absolute;
         top:-120px;
@@ -144,7 +144,7 @@
         border-radius:50%;
     }
 
-    .atcfe_license_box .title{
+    .atc_license_box .title{
         font-size: 20px;
         line-height:1.4;
         font-weight:700;
@@ -152,7 +152,7 @@
         margin-bottom:35px;
     }
 
-    .atcfe-input-group{
+    .atc-input-group{
         display:flex;
         align-items:center;
         width:100%;
@@ -165,7 +165,7 @@
         box-shadow:0 10px 25px rgba(0,0,0,.04);
     }
 
-    .atcfe_input__inner{
+    .atc_input__inner{
         flex:1;
         height:45px !important;
         border:none !important;
@@ -176,16 +176,16 @@
         box-shadow:none !important;
     }
 
-    .atcfe_input__inner:focus{
+    .atc_input__inner:focus{
         outline:none;
         box-shadow:none !important;
     }
 
-    .atcfe_input__inner::placeholder{
+    .atc_input__inner::placeholder{
         color:#9ca3af;
     }
 
-    .atcfe-input-group__append{
+    .atc-input-group__append{
         height:45px;
         min-width:190px;
         display:flex;
@@ -195,11 +195,11 @@
         transition:.3s ease;
     }
 
-    .atcfe-input-group__append:hover{
+    .atc-input-group__append:hover{
         filter:brightness(1.05);
     }
 
-    .atcfe-input-group__append a{
+    .atc-input-group__append a{
         color:#fff !important;
         text-decoration:none !important;
         font-size:15px;
@@ -209,45 +209,45 @@
         gap:10px;
     }
 
-    .atcfe-input-group__append a:focus{
+    .atc-input-group__append a:focus{
         box-shadow:none;
         outline:none;
     }
 
-    .atcfe_license_box hr{
+    .atc_license_box hr{
         border:none;
         height:1px;
         background:#edf2f7;
         margin:35px 0;
     }
 
-    .atcfe_license_box p{
+    .atc_license_box p{
         font-size:15px;
         color:#6b7280;
         margin:0;
     }
 
-    .atcfe_license_box p a{
+    .atc_license_box p a{
         color:#2563eb;
         text-decoration:none;
         font-weight:600;
     }
 
-    .atcfe_license_box p a:hover{
+    .atc_license_box p a:hover{
         text-decoration:underline;
     }
 
-    #atcfe_deactivated_license{
+    #atc_deactivated_license{
         padding:20px 0;
     }
 
-    #atcfe_deactivated_license h2{
+    #atc_deactivated_license h2{
         font-size:28px;
         color:#16a34a;
         margin:20px 0 10px;
     }
 
-    #atcfe_deactivated_license span{
+    #atc_deactivated_license span{
         display:inline-flex;
         align-items:center;
         justify-content:center;
@@ -261,7 +261,7 @@
         }
     }
 
-    #atcfe-loading-license, #atcfe-loading-addon {
+    #atc-loading-license, #atc-loading-addon {
         text-align: center;
         width: 20%;
         margin: 0 auto;
@@ -276,11 +276,11 @@
 
     @media(max-width:767px){
 
-        .atcfe_license_box{
+        .atc_license_box{
             padding:30px 20px;
         }
 
-        .atcfe-input-group{
+        .atc-input-group{
             flex-direction:column;
             border:none;
             background:transparent;
@@ -288,39 +288,39 @@
             gap:15px;
         }
 
-        .atcfe_input__inner{
+        .atc_input__inner{
             width:100%;
             border:1px solid #dbe2ea !important;
             border-radius:16px !important;
         }
 
-        .atcfe-input-group__append{
+        .atc-input-group__append{
             width:100%;
             border-radius:16px;
         }
 
-        .atcfe_license_box .title{
+        .atc_license_box .title{
             font-size:20px;
         }
     }
 
     // settings
-    .atcfe-addons-wrapper *{
+    .atc-addons-wrapper *{
         box-sizing:border-box;
     }
 
-    .atcfe-addons-wrapper{
+    .atc-addons-wrapper{
         padding:40px 20px;
         max-width:1400px;
         margin:0 auto;
     }
 
-    .atcfe-addons-heading{
+    .atc-addons-heading{
         text-align:center;
         margin-bottom:50px;
     }
 
-    .atcfe-addons-heading h1{
+    .atc-addons-heading h1{
         font-size: 28px;
         line-height:1.2;
         font-weight:700;
@@ -328,19 +328,19 @@
         margin-bottom:12px;
     }
 
-    .atcfe-addons-heading p{
+    .atc-addons-heading p{
         font-size:16px;
         color:#6b7280;
         margin:0;
     }
 
-    .atcfe-addons-wrap{
+    .atc-addons-wrap{
         display:grid;
         grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
         gap:30px;
     }
 
-    .atcfe-addons-templates{
+    .atc-addons-templates{
         background:#ffffff;
         border:1px solid #e5e7eb;
         border-radius:24px;
@@ -351,7 +351,7 @@
         box-shadow:0 10px 30px rgba(0,0,0,.04);
     }
 
-    .atcfe-addons-templates:hover{
+    .atc-addons-templates:hover{
         transform:translateY(-6px);
         border-color:#c7d2fe;
         box-shadow:0 20px 40px rgba(37,99,235,.12);
@@ -411,7 +411,7 @@
         width:100%;
     }
 
-    .atcfe-install-addon,
+    .atc-install-addon,
     .viewInstall,
     .upgrade-to-pro{
         display:inline-flex;
@@ -429,14 +429,14 @@
         cursor: pointer;
     }
 
-    .atcfe-install-addon{
+    .atc-install-addon{
         background:linear-gradient(135deg,#22c55e,#16a34a);
         color:#fff;
         border:none;
         box-shadow:0 10px 20px rgba(34,197,94,.22);
     }
 
-    .atcfe-install-addon:hover{
+    .atc-install-addon:hover{
         transform:translateY(-2px);
         box-shadow:0 15px 25px rgba(34,197,94,.3);
         color:#fff;
@@ -471,15 +471,15 @@
 
     @media(max-width:767px){
 
-        .atcfe-addons-wrapper{
+        .atc-addons-wrapper{
             padding:20px 10px;
         }
 
-        .atcfe-addons-heading h1{
+        .atc-addons-heading h1{
             font-size:28px;
         }
 
-        .atcfe-addons-templates{
+        .atc-addons-templates{
             padding:25px 20px;
         }
 
@@ -487,66 +487,388 @@
             flex-direction:column;
         }
 
-        .atcfe-install-addon,
+        .atc-install-addon,
         .viewInstall,
         .upgrade-to-pro{
             width:100%;
         }
     }
-}
 
-
-// admin css
-.el-button--primary {
-    background: linear-gradient(135deg, #2563eb, #4f46e5);
-    border-color: #4f46e5;
-    transition: all 0.25s ease;
-    &:focus {
-        background: linear-gradient(135deg, #2563eb, #4f46e5) !important;
-        border-color: #4f46e5 !important;
-        box-shadow: none;
-        transform: none;
+    .atc-google-place-reviews {
+        .atc-page-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .atc-page-header h1 {
+            margin: 5px 0 8px;
+            font-size: 24px;
+        }
+        .atc-page-header p {
+            margin: 0;
+            color: #777;
+        }
+        .atc-review-summary {
+            display: flex;
+            gap: 50px;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .atc-review-summary strong {
+            display: block;
+            font-size: 20px;
+        }
+        .atc-gray-color {
+            display: block;
+            margin-top: 5px;
+            color: #888;
+        }
+        .atc-table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .atc-table-responsive .el-table {
+            min-width: 800px;
+        }
+        .atc-reviewer {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .atc-reviewer img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        .atc-reviewer small {
+            display: block;
+            margin-top: 4px;
+            color: #888;
+        }
+        .atc-review-text {
+            line-height: 1.6;
+        } 
     }
-    &:hover {
-        background: linear-gradient(135deg, #1d4ed8, #4338ca) !important;
-        border-color: #4338ca !important;
-        box-shadow: none;
-        transform: none;
+    
+    .el-select .el-input.is-focus .el-input__inner {
+        border-color: #4f46e5 !important;  
     }
-}
-
-.el-button--text {
-    color: #4f46e5 !important;
-    transition: color 0.2s ease;
-    &:hover {
+    .el-select-dropdown__item.selected {
         color: #4f46e5 !important;
-        transform: none;
     }
-}
 
-.el-switch__label.is-active{
-    color: #4f46e5 !important; 
-}
+    // admin css
+    .el-button--primary {
+        background: linear-gradient(135deg, #2563eb, #4f46e5);
+        border-color: #4f46e5;
+        transition: all 0.25s ease;
+        &:focus {
+            background: linear-gradient(135deg, #2563eb, #4f46e5) !important;
+            border-color: #4f46e5 !important;
+            box-shadow: none;
+            transform: none;
+        }
+        &:hover {
+            background: linear-gradient(135deg, #1d4ed8, #4338ca) !important;
+            border-color: #4338ca !important;
+            box-shadow: none;
+            transform: none;
+        }
+    }
 
-.el-switch.is-checked .el-switch__core {
-    border-color: #4f46e5 !important;
-    background-color: #4f46e5 !important;
-}
+    .el-button--text {
+        color: #4f46e5 !important;
+        transition: color 0.2s ease;
+        &:hover {
+            color: #4f46e5 !important;
+            transform: none;
+        }
+    }
 
-.el-radio__input.is-checked + .el-radio__label {
-    color: #4f46e5 !important; 
-}
+    .el-switch__label.is-active{
+        color: #4f46e5 !important; 
+    }
 
-.el-radio__input.is-checked .el-radio__inner {
-    border-color: #4f46e5;
-    background: #4f46e5;
-}
+    .el-switch.is-checked .el-switch__core {
+        border-color: #4f46e5 !important;
+        background-color: #4f46e5 !important;
+    }
 
-.el-radio:focus:not(.is-focus):not(:active):not(.is-disabled) .el-radio__inner {
-    box-shadow: 0 0 2px 2px #4f46e5;
-}
+    .el-radio__input.is-checked + .el-radio__label {
+        color: #4f46e5 !important; 
+    }
 
-.el-button--primary.is-disabled {
-    background-color: #557be6 !important;
-    border-color: #557be6 !important;
+    .el-radio__input.is-checked .el-radio__inner {
+        border-color: #4f46e5;
+        background: #4f46e5;
+    }
+
+    .el-radio:focus:not(.is-focus):not(:active):not(.is-disabled) .el-radio__inner {
+        box-shadow: 0 0 2px 2px #4f46e5;
+    }
+
+    .el-button--primary.is-disabled {
+        background-color: #557be6 !important;
+        border-color: #557be6 !important;
+    }
+
+    .atc-download-method {
+        color: #4f46e5;
+        cursor: pointer;
+    }
+    
+    // upgarde to pro popup
+    .atc-upgrade-popup {
+        .atc-upgrade-pro-dialog {
+            .el-dialog {
+                border-radius: 14px;
+                overflow: hidden;
+                margin-top: 12vh;
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            }
+    
+            .el-dialog__header {
+                padding: 0;
+            }
+    
+            .el-dialog__headerbtn {
+                top: 16px;
+                right: 16px;
+                z-index: 5;
+    
+                .el-dialog__close {
+                    font-size: 18px;
+                    color: #98a2b3;
+                    transition: all 0.2s ease;
+    
+                    &:hover {
+                        color: #344054;
+                    }
+                }
+            }
+    
+            .el-dialog__body {
+                padding: 0;
+            }
+        }
+    
+        .atc-upgrade-content {
+            padding: 34px 34px 30px;
+            text-align: center;
+        }
+    
+        .atc-upgrade-icon {
+            width: 58px;
+            height: 58px;
+            margin: 0 auto 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: linear-gradient(
+                135deg,
+                #fff7e6 0%,
+                #ffedd5 100%
+            );
+    
+            i {
+                font-size: 28px;
+                color: #f59e0b;
+            }
+        }
+    
+        .atc-upgrade-title {
+            margin: 0 0 10px;
+            color: #101828;
+            font-size: 24px;
+            line-height: 32px;
+            font-weight: 700;
+        }
+    
+        .atc-upgrade-description {
+            max-width: 350px;
+            margin: 0 auto 24px;
+            color: #667085;
+            font-size: 14px;
+            line-height: 22px;
+        }
+    
+        .atc-upgrade-features {
+            padding: 18px 18px;
+            margin-bottom: 26px;
+            border: 1px solid #eaecf0;
+            border-radius: 10px;
+            background: #f9fafb;
+            text-align: left;
+        }
+    
+        .atc-upgrade-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            color: #344054;
+            font-size: 13px;
+            line-height: 20px;
+    
+            &:not(:last-child) {
+                margin-bottom: 12px;
+            }
+        }
+    
+        .atc-feature-icon {
+            flex: 0 0 auto;
+    
+            i {
+                color: #12b76a;
+                font-size: 16px;
+            }
+        }
+    
+        .atc-upgrade-actions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+    
+            .el-button {
+                height: 40px;
+                padding: 0 18px;
+                border-radius: 7px;
+                font-size: 13px;
+                font-weight: 500;
+            }
+    
+            .atc-upgrade-button {
+                border: 0;
+                padding: 0 20px;
+                box-shadow: 0 4px 10px rgba(64, 158, 255, 0.25);
+    
+                i {
+                    margin-right: 5px;
+                }
+            }
+        }
+    }
+    // auto fetch switch
+    .atc-auto-fetch-switch {
+        display: flex;
+        // align-items: center;
+        // justify-content: space-between;
+        // gap: 15px;
+        .atc-auto-fetch-label {
+            color: #606266;
+            font-size: 14px;
+            line-height: 20px;
+            transition: color 0.2s ease;
+            &.is-active {
+                color: #4f46e5;
+            }
+        }
+        .el-switch {
+            flex-shrink: 0;
+        }
+    }
+    
+    // google place form
+    .atc-google-place-form {
+        .atc-page-header {
+            margin-bottom: 20px;
+        }
+        .atc-page-header h1 {
+            margin: 5px 0 8px;
+            font-size: 24px;
+        }
+        
+        .atc-page-header p {
+            margin: 0;
+            color: #777;
+        }
+        .atc-form-card {
+            max-width: 800px;
+        }
+        
+        .atc-field-description {
+            margin-top: 6px;
+            color: #888;
+            font-size: 13px;
+            line-height: 1.5;
+            font-style: italic;
+        }
+        .atc-verification-success {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin: 10px 0 25px;
+            padding: 18px;
+            border: 1px solid #b7eb8f;
+            border-radius: 4px;
+            background: #f6ffed;
+        }
+        .atc-verification-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #67c23a;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        
+        .atc-verification-success strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .atc-verification-success p {
+            margin: 0 0 4px;
+            font-weight: 600;
+        }
+        
+        .atc-verification-success span {
+            color: #777;
+        }
+        
+        .atc-place-meta {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+        }
+        
+        @media (max-width: 600px) {
+            .atc-place-meta {
+                flex-direction: column;
+                gap: 5px;
+            }
+        }
+        .atc-auto-fetch-form {
+            margin: 30px 0px;
+            .atc-auto-fetch-switch {
+                display: flex;
+                // align-items: center;
+                // justify-content: space-between;
+                // gap: 15px;
+                .atc-auto-fetch-label {
+                    color: #606266;
+                    font-size: 14px;
+                    line-height: 20px;
+                    transition: color 0.2s ease;
+                    &.is-active {
+                        color: #4f46e5;
+                    }
+                }
+                .el-switch {
+                    flex-shrink: 0;
+                }
+            }
+        }
+    }
 }

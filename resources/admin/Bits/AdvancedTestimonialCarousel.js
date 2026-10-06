@@ -62,10 +62,10 @@ export default class AdvancedTestimonialCarousel {
                 },
                 getDisplayShortCode(display, slug) {
                     if (display === 'box') {
-                        return `[atcfe box-slug="${slug}"]`;
+                        return `[atc box-slug="${slug}"]`;
                     }
                     if (display === 'choice') {
-                        return `[atcfe choice-slug="${slug}"]`;
+                        return `[atc choice-slug="${slug}"]`;
                     }
                 },
                 getCopyUrlLink(link) {
@@ -104,7 +104,7 @@ export default class AdvancedTestimonialCarousel {
             return;
         }
 
-        this.addFilter('atcfe_top_menus', this.appVars.slug, function (menus) {
+        this.addFilter('atc_top_menus', this.appVars.slug, function (menus) {
             menus = menus.filter(m => m.route !== route.name);
             menus.push({
                 route: route.name,
@@ -113,7 +113,7 @@ export default class AdvancedTestimonialCarousel {
             return menus;
         });
 
-        this.addFilter('atcfe_global_routes', this.appVars.slug, function (routes) {
+        this.addFilter('atc_global_routes', this.appVars.slug, function (routes) {
             routes = routes.filter(r => r.name !== route.name);
             routes.push(route);
             return routes;
