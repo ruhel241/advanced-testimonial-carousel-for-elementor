@@ -5,10 +5,10 @@ namespace ATCFE\Models;
 class GooglePlaces {
 
 
-    protected $table = 'atc_google_places';
+    protected $table = 'atcfe_google_places';
    
     public function getPlaces() {
-        $places = atc_query()->table($this->table)
+        $places = atcfe_query()->table($this->table)
                 ->orderBy('id', 'ASC')
                 ->get();
 
@@ -16,13 +16,13 @@ class GooglePlaces {
     }
 
     public function getPlaceId($place_id) {
-        $placeId = atc_query()->table($this->table)->where('place_id', $place_id)->first();
+        $placeId = atcfe_query()->table($this->table)->where('place_id', $place_id)->first();
 
         return $placeId;
     }   
     
     public function getPlacesAutoFetch() {
-        $places = atc_query()->table($this->table)
+        $places = atcfe_query()->table($this->table)
                 ->where('auto_fetch', 'yes')
                 ->get();
                 
@@ -30,7 +30,7 @@ class GooglePlaces {
     }
 
     public function getPlacesIdAutoFetch($place_id) {
-        $placeId = atc_query()->table($this->table)
+        $placeId = atcfe_query()->table($this->table)
                     ->where('place_id', $place_id)
                     ->where('auto_fetch', 1)
                     ->first();
@@ -40,12 +40,12 @@ class GooglePlaces {
 
     // public function getTemplateSlug($slug)
     // {
-    //     $template = atc_query()->table($this->table)->where('slug', $slug)->first();
+    //     $template = atcfe_query()->table($this->table)->where('slug', $slug)->first();
     //     return $template;
     // }
 
     // public function isSlug($slug) {
-    //     $isSlug =  atc_query()->table($this->table)->where('slug', $slug)->first();
+    //     $isSlug =  atcfe_query()->table($this->table)->where('slug', $slug)->first();
 
     //     if ($isSlug) {
     //         return true;
@@ -56,7 +56,7 @@ class GooglePlaces {
 
     public function insertGetId($data) {
        
-        $save = atc_query()->table($this->table)->insert($data);
+        $save = atcfe_query()->table($this->table)->insert($data);
 
         return $save;
     }
@@ -64,7 +64,7 @@ class GooglePlaces {
 
     public function update($id, $data) {
        
-        $update = atc_query()->table($this->table)
+        $update = atcfe_query()->table($this->table)
                 ->where('place_id', $id)
                 ->update($data);
 
@@ -72,7 +72,7 @@ class GooglePlaces {
     }
 
     public function deletePlace($place_id) {
-        $delete = atc_query()->table($this->table)->where('place_id', $place_id)->delete();
+        $delete = atcfe_query()->table($this->table)->where('place_id', $place_id)->delete();
 
         return $delete;
     }

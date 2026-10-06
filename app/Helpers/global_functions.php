@@ -14,12 +14,12 @@ if ( ! class_exists( GoogleReviewsSettingsController::class ) ) {
 }
 
 // db wp-fluent helper functions
-if (!function_exists('atc_query')) {
-    function atc_query() {
-        if (!function_exists('atc_db')) {
+if (!function_exists('atcfe_query')) {
+    function atcfe_query() {
+        if (!function_exists('atcfe_db')) {
             include ATCFE_PLUGIN_DIR_PATH . 'app/Libs/wp-fluent/wp-fluent.php';
         }
        
-        return atc_db();
+        return atcfe_db();
     }
 }

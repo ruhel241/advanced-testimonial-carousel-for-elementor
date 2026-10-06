@@ -79,7 +79,7 @@ class GoogleReviewsSettingsController
 
     public function getGoogleApiKey($request)
     {
-        $configs = get_option('atc_google_reviews_api_key', []);
+        $configs = get_option('atcfe_google_reviews_api_key', []);
     
         wp_send_json_success(
             [
@@ -113,7 +113,7 @@ class GoogleReviewsSettingsController
         }
 
       
-        update_option('atc_google_reviews_api_key', $configs);
+        update_option('atcfe_google_reviews_api_key', $configs);
     
         wp_send_json_success(
             [
@@ -358,7 +358,7 @@ class GoogleReviewsSettingsController
     public function GooglePlaceDataByApi( $place_id, $download_method = 'newest' ) {
 
         $api_settings = get_option(
-            'atc_google_reviews_api_key',
+            'atcfe_google_reviews_api_key',
             []
         );
 

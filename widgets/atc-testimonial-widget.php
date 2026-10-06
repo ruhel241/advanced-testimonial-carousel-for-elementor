@@ -1327,7 +1327,7 @@ class ATCTestimonialWidget extends Widget_Base
 
         ?>
       
-        <div <?php echo $render_attributes; ?>>
+        <div <?php echo wp_kses_post($render_attributes); ?>>
             <?php if ( $headingTotalRating === 'yes' && !empty( $place_id ) ): ?>
                 <div class="atc-google-reviews-ratings">
                     <h2 class="title">Google Reviews ⭐ 

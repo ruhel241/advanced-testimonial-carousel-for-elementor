@@ -475,7 +475,7 @@ AdvancedTestimonialCarousel::instance();
 
 register_activation_hook(__FILE__, function ($network_wide) {
     require_once(ATCFE_PLUGIN_DIR_PATH . 'app/Handlers/ActivationHandler.php');
-    ATC\Handlers\ActivationHandler::activate($network_wide);
+    ATCFE\Handlers\ActivationHandler::activate($network_wide);
 });
 
 
@@ -484,5 +484,5 @@ register_deactivation_hook(__FILE__, function ($network_wide) {
 	update_user_meta($user_id, 'atc-notice-dismissed', 'active');
 
     require_once(ATCFE_PLUGIN_DIR_PATH . 'app/Handlers/DeactivationHandler.php');
-    ATC\Handlers\DeactivationHandler::deActivate($network_wide);
+    ATCFE\Handlers\DeactivationHandler::deActivate($network_wide);
 });

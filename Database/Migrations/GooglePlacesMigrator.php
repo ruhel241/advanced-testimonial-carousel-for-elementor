@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class GooglePlacesMigrator {
 
-    public static $tableName = 'atc_google_places';
+    public static $tableName = 'atcfe_google_places';
     
     public static function migrate() {
         global $wpdb;

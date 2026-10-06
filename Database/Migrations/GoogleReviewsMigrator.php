@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class GoogleReviewsMigrator {
 
-    public static $tableName = 'atc_google_reviews';
+    public static $tableName = 'atcfe_google_reviews';
 
     public static function migrate() {
         global $wpdb;

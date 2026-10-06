@@ -4,10 +4,10 @@ namespace ATCFE\Models;
 
 class GoogleReviews {
 
-    protected $table = 'atc_google_reviews';
+    protected $table = 'atcfe_google_reviews';
 
     public function getReviews() {
-        $reviews = atc_query()->table($this->table)
+        $reviews = atcfe_query()->table($this->table)
                 ->orderBy('id', 'ASC')
                 ->get();
 
@@ -15,14 +15,14 @@ class GoogleReviews {
     }
 
     public function getReviewId($review_id) {
-        $reviewId = atc_query()->table($this->table)->where('review_id', $review_id)->first();
+        $reviewId = atcfe_query()->table($this->table)->where('review_id', $review_id)->first();
 
         return $reviewId;
     } 
 
 
     public function getReviewsByPlaceId($place_id) {
-        $reviews = atc_query()->table($this->table)->where('place_id', $place_id)->get();
+        $reviews = atcfe_query()->table($this->table)->where('place_id', $place_id)->get();
 
         return $reviews;
     } 
@@ -34,7 +34,7 @@ class GoogleReviews {
         $sort      = $params['sort'] ?? ''; 
         $date_sort = $params['date_sort'] ?? ''; 
        
-        $query = atc_query()
+        $query = atcfe_query()
                 ->table( $this->table )
                 ->where( 'place_id', $place_id );
 
@@ -62,19 +62,19 @@ class GoogleReviews {
 
     public function insertGetId($data) {
        
-        $save = atc_query()->table($this->table)->insert($data);
+        $save = atcfe_query()->table($this->table)->insert($data);
 
         return $save;
     }
 
     public function deleteReviewsByPlaceId($place_id) {
-        $delete = atc_query()->table($this->table)->where('place_id', $place_id)->delete();
+        $delete = atcfe_query()->table($this->table)->where('place_id', $place_id)->delete();
 
         return $delete;
     }
 
     public function deleteReviewById($reviewId) {
-        $delete = atc_query()->table($this->table)->where('id', $reviewId)->delete();
+        $delete = atcfe_query()->table($this->table)->where('id', $reviewId)->delete();
 
         return $delete;
     }

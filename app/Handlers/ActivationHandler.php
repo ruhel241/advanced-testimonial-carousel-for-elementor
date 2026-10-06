@@ -12,8 +12,8 @@ class ActivationHandler
 
         DBMigrator::run($network_wide);
 
-        if (!get_option('atc_google_reviews_api_key')){
-            update_option('atc_google_reviews_api_key', [
+        if (!get_option('atcfe_google_reviews_api_key')){
+            update_option('atcfe_google_reviews_api_key', [
                 'api_key' => '',
             ]);
         }
