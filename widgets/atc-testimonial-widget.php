@@ -161,7 +161,7 @@ class ATCTestimonialWidget extends Widget_Base
                             'title' => $proNotice['title'],
                             'message' => $proNotice['message'],
                             'link' => $proNotice['link'],
-                            'image-link' => 'repeater-features-options.jpg'
+                            'image-link' => 'repeater-features-options.png'
                         ] ),
                     ]
                 );
@@ -256,7 +256,7 @@ class ATCTestimonialWidget extends Widget_Base
                             'title' => $proNotice['title'],
                             'message' => $proNotice['message'],
                             'link' => $proNotice['link'],
-                            'image-link' => 'quotation-icon-options.jpg'
+                            'image-link' => 'quotation-icon-options.png'
                         ] ),
                     ]
                 );
@@ -282,7 +282,7 @@ class ATCTestimonialWidget extends Widget_Base
                             'title' => $proNotice['title'],
                             'message' => $proNotice['message'],
                             'link' => $proNotice['link'],
-                            'image-link' => 'additional-options.jpg'
+                            'image-link' => 'additional-options.png'
                         ] ),
                     ]
                 );
@@ -362,7 +362,7 @@ class ATCTestimonialWidget extends Widget_Base
                             'title' => $proNotice['title'],
                             'message' => $proNotice['message'],
                             'link' => $proNotice['link'],
-                            'image-link' => 'testimonial-background-style.jpg'
+                            'image-link' => 'testimonial-background-style.png'
                         ] ),
                     ]
                 );
@@ -387,7 +387,7 @@ class ATCTestimonialWidget extends Widget_Base
                             'title' => $proNotice['title'],
                             'message' => $proNotice['message'],
                             'link' => $proNotice['link'],
-                            'image-link' => 'slider-background-style.jpg'
+                            'image-link' => 'slider-background-style.png'
                         ] ),
                     ]
                 );
@@ -532,7 +532,7 @@ class ATCTestimonialWidget extends Widget_Base
                             'title' => $proNotice['title'],
                             'message' => $proNotice['message'],
                             'link' => $proNotice['link'],
-                            'image-link' => 'image-style.jpg'
+                            'image-link' => 'image-style.png'
                         ] ),
                     ]
                 );
@@ -891,7 +891,7 @@ class ATCTestimonialWidget extends Widget_Base
                             'title' => $proNotice['title'],
                             'message' => $proNotice['message'],
                             'link' => $proNotice['link'],
-                            'image-link' => 'rating-style.jpg'
+                            'image-link' => 'rating-style.png'
                         ] ),
                     ]
                 );
@@ -917,7 +917,7 @@ class ATCTestimonialWidget extends Widget_Base
                             'title' => $proNotice['title'],
                             'message' => $proNotice['message'],
                             'link' => $proNotice['link'],
-                            'image-link' => 'google-total-rating-style.jpg'
+                            'image-link' => 'google-total-rating-style.png'
                         ] ),
                     ]
                 );
@@ -942,7 +942,7 @@ class ATCTestimonialWidget extends Widget_Base
                             'title' => $proNotice['title'],
                             'message' => $proNotice['message'],
                             'link' => $proNotice['link'],
-                            'image-link' => 'quotation-icon-style.jpg'
+                            'image-link' => 'quotation-icon-style.png'
                         ] ),
                     ]
                 );
@@ -1000,7 +1000,7 @@ class ATCTestimonialWidget extends Widget_Base
                             'title' => $proNotice['title'],
                             'message' => $proNotice['message'],
                             'link' => $proNotice['link'],
-                            'image-link' => 'arrows-style.jpg'
+                            'image-link' => 'arrows-style.png'
                         ] ),
                     ]
                 );
