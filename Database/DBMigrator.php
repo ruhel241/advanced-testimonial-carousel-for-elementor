@@ -1,13 +1,13 @@
 <?php
 
-namespace ATC\Database;
+namespace ATCFE\Database;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use ATC\Database\Migrations\GooglePlacesMigrator;
-use ATC\Database\Migrations\GoogleReviewsMigrator;
+use ATCFE\Database\Migrations\GooglePlacesMigrator;
+use ATCFE\Database\Migrations\GoogleReviewsMigrator;
 
 class DBMigrator {
 
@@ -42,8 +42,8 @@ class DBMigrator {
 	
 		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 
-		require_once ATC_PLUGIN_DIR_PATH . 'Database/Migrations/GooglePlacesMigrator.php';
-		require_once ATC_PLUGIN_DIR_PATH . 'Database/Migrations/GoogleReviewsMigrator.php';
+		require_once ATCFE_PLUGIN_DIR_PATH . 'Database/Migrations/GooglePlacesMigrator.php';
+		require_once ATCFE_PLUGIN_DIR_PATH . 'Database/Migrations/GoogleReviewsMigrator.php';
 		
         GooglePlacesMigrator::migrate();
         GoogleReviewsMigrator::migrate();

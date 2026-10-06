@@ -1,6 +1,6 @@
 <?php
 
-namespace ATC\Database\Migrations;
+namespace ATCFE\Database\Migrations;
 
 if ( ! defined( 'ABSPATH' ) ) {
     exit;

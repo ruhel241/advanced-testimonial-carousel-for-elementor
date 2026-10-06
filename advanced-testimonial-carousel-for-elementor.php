@@ -8,7 +8,7 @@
  * Plugin URI:  https://wpcreativeidea.com/testimonial
  * License: GPLv2 or later
  * Text Domain: advanced-testimonial-carousel-for-elementor
- * Domain Path: /language
+ * Domain Path: /languages
 */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -23,14 +23,14 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 4.0.0
  */
 
-define('ATC_DIR_FILE', __FILE__);
-define('ATC_PLUGIN_URL', plugin_dir_url(__FILE__));
-define('ATC_LITE', 'advancedTestimonialLite');
-define('ATC_PLUGIN_VERSION', '4.0.0');
-define('ATC_PLUGIN_FILE_PATH', plugin_basename(__FILE__));
-define("ATC_PLUGIN_DIR_PATH", plugin_dir_path(__FILE__));
+define('ATCFE_DIR_FILE', __FILE__);
+define('ATCFE_PLUGIN_URL', plugin_dir_url(__FILE__));
+define('ATCFE_LITE', 'advancedTestimonialLite');
+define('ATCFE_PLUGIN_VERSION', '4.0.0');
+define('ATCFE_PLUGIN_FILE_PATH', plugin_basename(__FILE__));
+define("ATCFE_PLUGIN_DIR_PATH", plugin_dir_path(__FILE__));
 
-require_once ATC_PLUGIN_DIR_PATH . 'app/Helpers/global_functions.php';
+require_once ATCFE_PLUGIN_DIR_PATH . 'app/Helpers/global_functions.php';
 require_once __DIR__ . '/vendor/autoload.php';
 
 final class AdvancedTestimonialCarousel 
@@ -121,7 +121,7 @@ final class AdvancedTestimonialCarousel
 	 * @access public
 	 */
 	public function i18n() {
-		load_plugin_textdomain( 'advanced-testimonial-carousel-for-elementor' );
+	
 	}
 
 	/**
@@ -289,18 +289,18 @@ final class AdvancedTestimonialCarousel
 		add_action( 'elementor/widgets/widgets_registered', [ $this, 'init_widgets' ] );
 		
 		add_action('elementor/frontend/after_enqueue_styles', function() {
-			wp_enqueue_style( 'atc-swiper-css', plugin_dir_url( __FILE__ ). 'assets/css/atc-testimonial.css', array(), ATC_PLUGIN_VERSION);
+			wp_enqueue_style( 'atc-swiper-css', plugin_dir_url( __FILE__ ). 'assets/css/atc-testimonial.css', array(), ATCFE_PLUGIN_VERSION);
 		});
 		
-		add_filter( 'plugin_action_links_'.ATC_PLUGIN_FILE_PATH, [$this, 'atcPluginAction'], 10, 1 );
+		add_filter( 'plugin_action_links_'.ATCFE_PLUGIN_FILE_PATH, [$this, 'atcPluginAction'], 10, 1 );
 
 		add_action('elementor/editor/after_enqueue_styles', function() {
-			wp_enqueue_style( 'atc-editor-css', plugin_dir_url( __FILE__ ). 'assets/css/atc-editor.css', array(), ATC_PLUGIN_VERSION);
+			wp_enqueue_style( 'atc-editor-css', plugin_dir_url( __FILE__ ). 'assets/css/atc-editor.css', array(), ATCFE_PLUGIN_VERSION);
 		});
 
 		// after_enqueue_scripts
 		add_action('elementor/frontend/after_enqueue_scripts', function() {
-			wp_enqueue_script( 'atc-swiper-js', plugin_dir_url( __FILE__ ). 'assets/js/atc-testimonial.js', array('jquery'), ATC_PLUGIN_VERSION, true);
+			wp_enqueue_script( 'atc-swiper-js', plugin_dir_url( __FILE__ ). 'assets/js/atc-testimonial.js', array('jquery'), ATCFE_PLUGIN_VERSION, true);
 			
 			wp_localize_script('atc-swiper-js', 'atcSwiperVar', array(
                 'has_pro' => defined('ATCPRO')
@@ -316,14 +316,14 @@ final class AdvancedTestimonialCarousel
 			$licenseController->register();
 		}
 
-		$setupController = new ATC\Http\Controllers\SetupController();
+		$setupController = new ATCFE\Http\Controllers\SetupController();
 		$setupController->register();
 
-		$googleReviewsSettingsController = new ATC\Http\Controllers\GoogleReviewsSettingsController();
+		$googleReviewsSettingsController = new ATCFE\Http\Controllers\GoogleReviewsSettingsController();
 		$googleReviewsSettingsController->register();
 
 	    if (defined('ELEMENTOR_VERSION')) {
-			add_action('admin_init', [new ATC\Handlers\AdminPageHandler(), 'initialLoad']);
+			add_action('admin_init', [new ATCFE\Handlers\AdminPageHandler(), 'initialLoad']);
 		}
 
 		add_action( 'admin_notices', [$this, 'atc_admin_notice'] );
@@ -382,12 +382,12 @@ final class AdvancedTestimonialCarousel
 		require_once( __DIR__ . '/widgets/atc-testimonial-widget.php' );
 
 		// Register widget
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new ATC\Classes\Widgets\ATCTestimonialWidget() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new ATCFE\Classes\Widgets\ATCTestimonialWidget() );
 	}
 
 	public function loadTextDomain()
     {
-        load_plugin_textdomain('advanced-testimonial-carousel-for-elementor', false, basename(dirname(__FILE__)) . '/languages');
+       
 	}
 	
 	
@@ -401,8 +401,10 @@ final class AdvancedTestimonialCarousel
 	 * @access public
 	 */
 	public function admin_notice_missing_main_plugin() {
-
-		if ( isset($_GET['activate']) ) unset( $_GET['activate'] );
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- WordPress activation parameter.
+		if ( isset( $_GET['activate'] ) ) {
+			unset( $_GET['activate'] );
+		}
 
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: Elementor */
@@ -424,8 +426,10 @@ final class AdvancedTestimonialCarousel
 	 * @access public
 	 */
 	public function admin_notice_minimum_elementor_version() {
-
-		if ( isset($_GET['activate']) ) unset( $_GET['activate'] );
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- WordPress activation parameter.
+		if ( isset($_GET['activate']) ) {
+			unset( $_GET['activate'] );
+		} 
 
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: Elementor 3: Required Elementor version */
@@ -448,9 +452,11 @@ final class AdvancedTestimonialCarousel
 	 * @access public
 	 */
 	public function admin_notice_minimum_php_version() {
-
-		if ( isset($_GET['activate']) ) unset( $_GET['activate'] );
-
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- WordPress activation parameter.
+		if ( isset($_GET['activate']) ) {
+			unset( $_GET['activate'] );
+		}
+			
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: PHP 3: Required PHP version */
 			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'advanced-testimonial-carousel-for-elementor' ),
@@ -468,7 +474,7 @@ AdvancedTestimonialCarousel::instance();
 
 
 register_activation_hook(__FILE__, function ($network_wide) {
-    require_once(ATC_PLUGIN_DIR_PATH . 'app/Handlers/ActivationHandler.php');
+    require_once(ATCFE_PLUGIN_DIR_PATH . 'app/Handlers/ActivationHandler.php');
     ATC\Handlers\ActivationHandler::activate($network_wide);
 });
 
@@ -477,6 +483,6 @@ register_deactivation_hook(__FILE__, function ($network_wide) {
 	$user_id = get_current_user_id();
 	update_user_meta($user_id, 'atc-notice-dismissed', 'active');
 
-    require_once(ATC_PLUGIN_DIR_PATH . 'app/Handlers/DeactivationHandler.php');
+    require_once(ATCFE_PLUGIN_DIR_PATH . 'app/Handlers/DeactivationHandler.php');
     ATC\Handlers\DeactivationHandler::deActivate($network_wide);
 });

@@ -1,6 +1,6 @@
 <?php
 
-namespace ATC\Classes\Widgets;
+namespace ATCFE\Classes\Widgets;
 
 use \Elementor\Utils;
 use \Elementor\Widget_Base;
@@ -9,8 +9,8 @@ use \Elementor\Group_Control_Typography;
 use \Elementor\Group_Control_Text_Shadow;
 use \Elementor\Core\Kits\Documents\Tabs\Global_Colors;
 use ATCPRO\Services\ATCWidgetPro; 
-use ATC\Models\GoogleReviews;
-use ATC\Models\GooglePlaces;
+use ATCFE\Models\GoogleReviews;
+use ATCFE\Models\GooglePlaces;
 
 class ATCTestimonialWidget extends Widget_Base
 {
@@ -38,7 +38,7 @@ class ATCTestimonialWidget extends Widget_Base
 
     protected function register_controls()
     {
-        require_once ATC_PLUGIN_DIR_PATH . 'app/Models/GooglePlaces.php';
+        require_once ATCFE_PLUGIN_DIR_PATH . 'app/Models/GooglePlaces.php';
 
         // get google reviews from database
         $GooglePlaces = new GooglePlaces();
@@ -69,7 +69,7 @@ class ATCTestimonialWidget extends Widget_Base
                 'atc_custom_reviews_heading',
                 [
                     'type' => Controls_Manager::HEADING,
-                    'label' => esc_html__( 'Custom Reviews', 'advanced-testimonial-carousel-for-elementor-pro' ),
+                    'label' => esc_html__( 'Custom Reviews', 'advanced-testimonial-carousel-for-elementor' ),
                     'condition' => $customReviewsCondition,
                 ]
             );
@@ -170,7 +170,6 @@ class ATCTestimonialWidget extends Widget_Base
           $this->add_control(
               'atc_list',
               [
-                'label' => esc_html__( '', 'advanced-testimonial-carousel-for-elementor' ),
                 'type' => Controls_Manager::REPEATER,
                 'fields' => $repeater->get_controls(),
                 'condition' => $customReviewsCondition,
@@ -206,7 +205,7 @@ class ATCTestimonialWidget extends Widget_Base
                 'atc_google_reviews_heading',
                 [
                     'type' => Controls_Manager::HEADING,
-                    'label' => esc_html__( 'Google Reviews', 'advanced-testimonial-carousel-for-elementor-pro' ),
+                    'label' => esc_html__( 'Google Reviews', 'advanced-testimonial-carousel-for-elementor' ),
                     'separator' => 'before',
                     'condition' => $googleReviewsCondition,
                 ]
@@ -215,7 +214,7 @@ class ATCTestimonialWidget extends Widget_Base
             $place_options = [
                 '' => esc_html__(
                     'Choose Place',
-                    'advanced-testimonial-carousel-for-elementor-pro'
+                    'advanced-testimonial-carousel-for-elementor'
                 ),
             ];
             
@@ -228,7 +227,7 @@ class ATCTestimonialWidget extends Widget_Base
                 [
                     'label'   => esc_html__(
                         'Select Place',
-                        'advanced-testimonial-carousel-for-elementor-pro'
+                        'advanced-testimonial-carousel-for-elementor'
                     ),
                     'type'    => Controls_Manager::SELECT,
                     'options' => $place_options,
@@ -1071,7 +1070,7 @@ class ATCTestimonialWidget extends Widget_Base
 	?>
 		<div class="atc-nerd-box">
 			<div class="image-box">
-				<img class="atc-nerd-box-icon" src="<?php echo esc_url( ATC_PLUGIN_URL . 'assets/images/' .$proNotice['image-link'] ); ?>" />
+				<img class="atc-nerd-box-icon" src="<?php echo esc_url( ATCFE_PLUGIN_URL . 'assets/images/' .$proNotice['image-link'] ); ?>" />
 			</div>
 			<div class="atc-nerd-box-title">
 				<?php Utils::print_unescaped_internal_string( $proNotice['title'] ); ?>
@@ -1080,7 +1079,7 @@ class ATCTestimonialWidget extends Widget_Base
 				<?php Utils::print_unescaped_internal_string( $proNotice['message'] ); ?> <br/><br/>
 			</div><br/>
 			<a href="<?php echo esc_url( ( $proNotice['link'] ) ); ?>" class="atc-nerd-box-link atc-button atc-button-default atc-button-go-pro" target="_blank">
-				<?php echo esc_html__( 'Upgrade Now', 'advanced-slider-for-elementor' ); ?>
+				<?php echo esc_html__( 'Upgrade Now', 'advanced-testimonial-carousel-for-elementor' ); ?>
 			</a>
 		</div>
 	<?php
@@ -1125,7 +1124,7 @@ class ATCTestimonialWidget extends Widget_Base
         $dateDisplay              = 'yes';
         $googlePlacesTotalReviews = '';
         $headingTotalRating       = '';
-        $assetsImagesURL          = ATC_PLUGIN_URL.'assets/images/';
+        $assetsImagesURL          = ATCFE_PLUGIN_URL.'assets/images/';
         $googleLogoDisplay        = '';
         $customReviewsDisplay     = 'yes';
         $googleReviewsDisplay     = 'yes';
@@ -1217,8 +1216,8 @@ class ATCTestimonialWidget extends Widget_Base
         * Google Reviews.
         */
         if ( $googleReviewsDisplay === 'yes' ) {
-            require_once ATC_PLUGIN_DIR_PATH . 'app/Models/GoogleReviews.php';
-            require_once ATC_PLUGIN_DIR_PATH . 'app/Models/GooglePlaces.php';
+            require_once ATCFE_PLUGIN_DIR_PATH . 'app/Models/GoogleReviews.php';
+            require_once ATCFE_PLUGIN_DIR_PATH . 'app/Models/GooglePlaces.php';
         
             $googleReviews = new GoogleReviews();
             $GooglePlaces  = new GooglePlaces();
@@ -1323,9 +1322,12 @@ class ATCTestimonialWidget extends Widget_Base
             return;
         }
 
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor escapes render attributes via get_render_attribute_string().
+        $render_attributes = $this->get_render_attribute_string( 'atc_options' );
+
         ?>
       
-        <div <?php echo $this->get_render_attribute_string( 'atc_options' ); ?>>
+        <div <?php echo $render_attributes; ?>>
             <?php if ( $headingTotalRating === 'yes' && !empty( $place_id ) ): ?>
                 <div class="atc-google-reviews-ratings">
                     <h2 class="title">Google Reviews ⭐ 
@@ -1389,11 +1391,11 @@ class ATCTestimonialWidget extends Widget_Base
 
                                     <?php if ( str_word_count( wp_strip_all_tags( $content ) ) > $content_limit ) : ?>
                                         <button type="button" class="atc-read-more-btn">
-                                            <?php esc_html_e( '[Read More...]', 'advanced-testimonial-carousel-for-elementor-pro' ); ?>
+                                            <?php esc_html_e( '[Read More...]', 'advanced-testimonial-carousel-for-elementor' ); ?>
                                         </button>
 
                                         <button type="button" class="atc-less-btn" style="display:none;">
-                                            <?php esc_html_e( '[Less..]', 'advanced-testimonial-carousel-for-elementor-pro' ); ?>
+                                            <?php esc_html_e( '[Less..]', 'advanced-testimonial-carousel-for-elementor' ); ?>
                                         </button>
                                     <?php endif; ?>
                                 
@@ -1497,11 +1499,11 @@ class ATCTestimonialWidget extends Widget_Base
 
                                         <?php if ( str_word_count( wp_strip_all_tags( $content ) ) > $content_limit ) : ?>
                                             <button type="button" class="atc-read-more-btn">
-                                                <?php esc_html_e( '[Read More...]', 'advanced-testimonial-carousel-for-elementor-pro' ); ?>
+                                                <?php esc_html_e( '[Read More...]', 'advanced-testimonial-carousel-for-elementor' ); ?>
                                             </button>
 
                                             <button type="button" class="atc-less-btn" style="display:none;">
-                                                <?php esc_html_e( '[Less..]', 'advanced-testimonial-carousel-for-elementor-pro' ); ?>
+                                                <?php esc_html_e( '[Less..]', 'advanced-testimonial-carousel-for-elementor' ); ?>
                                             </button>
                                         <?php endif; ?>
 

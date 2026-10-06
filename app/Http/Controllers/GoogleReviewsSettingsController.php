@@ -1,8 +1,8 @@
 <?php
 
-namespace ATC\Http\Controllers;
-use ATC\Models\GooglePlaces;
-use ATC\Models\GoogleReviews;
+namespace ATCFE\Http\Controllers;
+use ATCFE\Models\GooglePlaces;
+use ATCFE\Models\GoogleReviews;
 
 class GoogleReviewsSettingsController
 {

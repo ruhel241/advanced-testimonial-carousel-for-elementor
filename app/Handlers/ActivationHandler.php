@@ -1,14 +1,14 @@
 <?php
 
-namespace ATC\Handlers;
+namespace ATCFE\Handlers;
 
-use ATC\Database\DBMigrator;
+use ATCFE\Database\DBMigrator;
 
 class ActivationHandler
 {
     public static function activate($network_wide)
     {
-        require_once ATC_PLUGIN_DIR_PATH . 'Database/DBMigrator.php';
+        require_once ATCFE_PLUGIN_DIR_PATH . 'Database/DBMigrator.php';
 
         DBMigrator::run($network_wide);
 

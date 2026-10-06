@@ -2,7 +2,7 @@
 Contributors: ruhel241, wpcreativeidea
 Tags:  elementor, elementor testimonial carousel, testimonial, slider, elementor widget
 Requires at least: 5.0
-Tested up to: 6.9
+Tested up to: 7.1
 Requires PHP: 7.4
 Stable tag: 4.0.0
 License: GPLv2 or later

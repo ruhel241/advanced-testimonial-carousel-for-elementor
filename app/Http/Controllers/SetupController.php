@@ -1,6 +1,6 @@
 <?php
 
-namespace ATC\Http\Controllers;
+namespace ATCFE\Http\Controllers;
 
 class SetupController
 {
@@ -89,7 +89,7 @@ class SetupController
 
         if ($result) {
             wp_send_json_success([
-                'is_installed' => defined('ATC_PLUGIN_VERSION'),
+                'is_installed' => defined('ATCFE_PLUGIN_VERSION'),
                 'message'      => __('Advanced Testimonial Carousel for Elementor plugin has been installed and activated successfully.', 'advanced-testimonial-carousel-for-elementor')
             ]);
         }
@@ -289,16 +289,22 @@ class SetupController
     
                 $activate = true;
     
-            } catch (\Exception $e) {
-    
-                error_log($e->getMessage());
-    
-                ob_end_clean();
-    
+            } catch ( \Exception $e ) {
+                if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+                    // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log -- Log exceptions only when WordPress debugging is enabled.
+                    error_log( $e->getMessage() );
+                }
+            
+                if ( ob_get_level() ) {
+                    ob_end_clean();
+                }
+            
                 return false;
             }
     
-            ob_end_clean();
+            if ( ob_get_level() ) {
+                ob_end_clean();
+            }
         }
     
         wp_clean_plugins_cache();
@@ -317,10 +323,16 @@ class SetupController
                     throw new \Exception($result->get_error_message());
                 }
     
-            } catch (\Exception $e) {
-
-                error_log($e->getMessage());
-    
+            } catch ( \Exception $e ) {
+                if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+                    // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log -- Log exceptions only when WordPress debugging is enabled.
+                    error_log( $e->getMessage() );
+                }
+            
+                if ( ob_get_level() ) {
+                    ob_end_clean();
+                }
+            
                 return false;
             }
         }
@@ -338,13 +350,13 @@ class SetupController
 
     public function getAddons()
     {
-        $imageUrl = ATC_PLUGIN_URL.'assets/images/';
+        $imageUrl = ATCFE_PLUGIN_URL.'assets/images/';
 
         $data = [
             'advanced-testimonial' => [
                 'title'          => __('Advanced Testimonial Carousel For Elementor', 'advanced-testimonial-carousel-for-elementor'),
                 'logo'           => $imageUrl . 'testimonial-logo.png',
-                'is_installed'   => defined('ATC_PLUGIN_VERSION'),
+                'is_installed'   => defined('ATCFE_PLUGIN_VERSION'),
                 'upgrade_to_pro_link' => 'https://wpcreativeidea.com/testimonial',
                 'settings_url'   => admin_url('admin.php?page=elementor-settings#tab-atc-settings'),
                 'action_text'    => __('Install Testimonial', 'advanced-testimonial-carousel-for-elementor'),

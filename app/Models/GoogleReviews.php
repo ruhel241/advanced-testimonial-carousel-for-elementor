@@ -1,6 +1,6 @@
 <?php
 
-namespace ATC\Models;
+namespace ATCFE\Models;
 
 class GoogleReviews {
 

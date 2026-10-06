@@ -1,6 +1,6 @@
 <?php
 
-namespace ATC\Handlers;
+namespace ATCFE\Handlers;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

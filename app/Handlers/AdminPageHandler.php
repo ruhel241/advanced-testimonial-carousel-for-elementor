@@ -1,6 +1,6 @@
 <?php
 
-namespace ATC\Handlers;
+namespace ATCFE\Handlers;
 
 use Elementor\Settings;
 
@@ -18,6 +18,7 @@ class AdminPageHandler {
 	}
 
 	public function normalize_settings_tab_hash() {
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Used only to identify the Elementor settings page.
 		if ( ! isset( $_GET['page'] ) || 'elementor-settings' !== $_GET['page'] ) {
 			return;
 		}
@@ -39,32 +40,32 @@ class AdminPageHandler {
 	{
 		wp_enqueue_style(
 			'atc-admin-css',
-			ATC_PLUGIN_URL . 'assets/css/atc-admin.css',
+			ATCFE_PLUGIN_URL . 'assets/css/atc-admin.css',
 			[],
-			ATC_PLUGIN_VERSION
+			ATCFE_PLUGIN_VERSION
 		);
 
 		wp_enqueue_script(
 			'atc-admin-boot',
-			ATC_PLUGIN_URL . 'assets/js/boot.js',
+			ATCFE_PLUGIN_URL . 'assets/js/boot.js',
 			['jquery'],
-			ATC_PLUGIN_VERSION,
+			ATCFE_PLUGIN_VERSION,
 			true
 		);
 
 		wp_enqueue_script(
 			'atc-admin-start',
-			ATC_PLUGIN_URL . 'assets/js/start.js',
+			ATCFE_PLUGIN_URL . 'assets/js/start.js',
 			['jquery', 'atc-admin-boot'],
-			ATC_PLUGIN_VERSION,
+			ATCFE_PLUGIN_VERSION,
 			true
 		);
 
 		wp_enqueue_script(
 			'atc-admin-js',
-			ATC_PLUGIN_URL . 'assets/js/atc-admin.js',
+			ATCFE_PLUGIN_URL . 'assets/js/atc-admin.js',
 			['jquery'],
-			ATC_PLUGIN_VERSION,
+			ATCFE_PLUGIN_VERSION,
 			true
 		);
 
@@ -73,7 +74,7 @@ class AdminPageHandler {
 			'atcAdminVars',
 			[
 				'ajaxurl' 	  => admin_url('admin-ajax.php'),
-				'assets_url'  => ATC_PLUGIN_URL.'assets/',	
+				'assets_url'  => ATCFE_PLUGIN_URL.'assets/',	
 				'has_pro' 	  => defined('ATCPRO'),
 				'nonce'   	  => wp_create_nonce('atc_nonce'),
 			]
