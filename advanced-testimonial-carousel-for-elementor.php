@@ -313,7 +313,7 @@ final class AdvancedTestimonialCarousel
 
 		if ( defined( 'ATCPRO' ) && class_exists( \ATCPRO\Classes\LicenseController::class ) ) {
 			$licenseController = new \ATCPRO\Classes\LicenseController();		
-			$licenseController->register();
+			$licenseController->handleAjaxCalls();
 		}
 
 		$setupController = new ATCFE\Http\Controllers\SetupController();
