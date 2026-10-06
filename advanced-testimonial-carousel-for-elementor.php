@@ -145,9 +145,9 @@ final class AdvancedTestimonialCarousel
 		if ( $this->is_compatible() ) {
 			add_action( 'elementor/init', [ $this, 'init' ] );
 
-			if (defined('ATCPRO_DIR_FILE')) {
-				if (!class_exists(ATCPRO\Services\ATCWidgetPro::class)) {
-					require_once(ATCPRO_DIR_PATH.'Services/slider-widget.php');
+			if ( defined( 'ATCPRO_DIR_FILE' ) ) {
+				if ( ! class_exists( \ATCPRO\Services\ATCWidgetPro::class ) ) {			
+					require_once ATCPRO_DIR_PATH . 'Services/slider-widget.php';
 				}
 			}
 		}
@@ -311,8 +311,8 @@ final class AdvancedTestimonialCarousel
 
 	public function adminHooks(){
 
-		if (defined('ATCPRO')) {
-			$licenseController = new ATCPRO\Classes\LicenseController();
+		if ( defined( 'ATCPRO' ) && class_exists( \ATCPRO\Classes\LicenseController::class ) ) {
+			$licenseController = new \ATCPRO\Classes\LicenseController();		
 			$licenseController->register();
 		}
 
