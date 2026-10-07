@@ -1,0 +1,53 @@
+<template>
+    <div class="atc-settings-page">
+        <el-radio-group v-model="settingTabMenu"  @change="settingTabChangeHandler" style="margin-bottom: 30px !important; ">
+            <el-radio-button class="atc-tab-btn" label="google_reviews_settings">
+                <i class="el-icon-setting"></i>
+                Google Reviews Settings
+            </el-radio-button>
+            <el-radio-button class="atc-tab-btn" label="google_places">
+                <i class="el-icon-circle-plus-outline"></i>
+                Google Places
+            </el-radio-button>
+            <el-radio-button class="atc-tab-btn" label="license_settings" v-if="hasPro">
+                <i class="el-icon-lock"></i>
+                License Settings
+            </el-radio-button>
+        </el-radio-group>
+
+        <div class="atc-tab-content">
+            <div class="atc-tab-pane active" v-if="settingTabMenu === 'google_reviews_settings'">
+                <GoogleReviewsSettings/>
+            </div>
+            <div class="atc-tab-pane active" v-if="settingTabMenu === 'google_places'">
+                <GoogleReviews/>
+            </div>
+        </div>       
+    </div>
+</template>
+
+<script>
+
+import GoogleReviewsSettings from './component/GoogleReviews/GoogleReviewsSettings';
+import GoogleReviews from './component/GoogleReviews/GoogleReviews'
+
+export default {
+    name: 'Settings',
+    components: {
+        GoogleReviews,
+        GoogleReviewsSettings,
+    },
+    data() {
+        return {
+            settingTabMenu: localStorage.getItem('atc_google_review_active_menu') || 'google_reviews_settings',
+            hasPro: false,
+        };
+    },
+    methods: {
+        settingTabChangeHandler(val) {
+            localStorage.setItem('atc_google_review_active_menu', val)
+        },
+    }
+};
+
+</script>

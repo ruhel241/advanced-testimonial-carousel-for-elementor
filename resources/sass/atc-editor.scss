@@ -42,3 +42,12 @@
         margin: 0 !important;
     }
 }
+
+.elementor-control-atc_slider_space_between, .elementor-control-atc_reviews_limit {
+    .elementor-control-input-wrapper {
+        width: 52%;
+        input {
+            width: 100%;
+        }
+    }
+}

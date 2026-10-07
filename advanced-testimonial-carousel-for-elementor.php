@@ -2,13 +2,13 @@
 /**
  * Plugin Name: Advanced Testimonial Carousel For Elementor
  * Description: Advanced Testimonial Carousel for elementor WordPress plugin
- * Version:     3.1.2
+ * Version:     4.0.0
  * Author:      wpcreativeidea
  * Author URI:  https://wpcreativeidea.com/home
  * Plugin URI:  https://wpcreativeidea.com/testimonial
  * License: GPLv2 or later
  * Text Domain: advanced-testimonial-carousel-for-elementor
- * Domain Path: /language
+ * Domain Path: /languages
 */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -20,14 +20,18 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * The main class that initiates and runs the plugin.
  *
- * @since 3.1.2
+ * @since 4.0.0
  */
 
-define('ATC_DIR_FILE', __FILE__);
-define('ATC_PLUGIN_URL', plugin_dir_url(__FILE__));
-define('ATC_LITE', 'advancedTestimonialLite');
-define('ATC_PLUGIN_VERSION', '3.1.2');
-define('ATC_PLUGIN_FILE_PATH', plugin_basename(__FILE__));
+define('ATCFE_DIR_FILE', __FILE__);
+define('ATCFE_PLUGIN_URL', plugin_dir_url(__FILE__));
+define('ATCFE_LITE', 'advancedTestimonialLite');
+define('ATCFE_PLUGIN_VERSION', '4.0.0');
+define('ATCFE_PLUGIN_FILE_PATH', plugin_basename(__FILE__));
+define("ATCFE_PLUGIN_DIR_PATH", plugin_dir_path(__FILE__));
+
+require_once ATCFE_PLUGIN_DIR_PATH . 'app/Helpers/global_functions.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 final class AdvancedTestimonialCarousel 
 {
@@ -35,16 +39,16 @@ final class AdvancedTestimonialCarousel
 	/**
 	 * Plugin Version
 	 *
-	 * @since 3.1.2
+	 * @since 4.0.0
 	 *
 	 * @var string The plugin version.
 	 */
-	const VERSION = '3.1.2';
+	const VERSION = '4.0.0';
 
 	/**
 	 * Minimum Elementor Version
 	 *
-	 * @since 3.1.2
+	 * @since 4.0.0
 	 *
 	 * @var string Minimum Elementor version required to run the plugin.
 	 */
@@ -53,7 +57,7 @@ final class AdvancedTestimonialCarousel
 	/**
 	 * Minimum PHP Version
 	 *
-	 * @since 3.1.2
+	 * @since 4.0.0
 	 *
 	 * @var string Minimum PHP version required to run the plugin.
 	 */
@@ -62,7 +66,7 @@ final class AdvancedTestimonialCarousel
 	/**
 	 * Instance
 	 *
-	 * @since 3.1.2
+	 * @since 4.0.0
 	 *
 	 * @access private
 	 * @static
@@ -77,7 +81,7 @@ final class AdvancedTestimonialCarousel
 	 *
 	 * Ensures only one instance of the class is loaded or can be loaded.
 	 *
-	 * @since 3.1.2
+	 * @since 4.0.0
 	 *
 	 * @access public
 	 * @static
@@ -97,7 +101,7 @@ final class AdvancedTestimonialCarousel
 	/**
 	 * Constructor
 	 *
-	 * @since 3.1.2
+	 * @since 4.0.0
 	 *
 	 * @access public
 	 */
@@ -112,12 +116,12 @@ final class AdvancedTestimonialCarousel
 	 *
 	 * Fired by `init` action hook.
 	 *
-	 * @since 3.1.2
+	 * @since 4.0.0
 	 *
 	 * @access public
 	 */
 	public function i18n() {
-		load_plugin_textdomain( 'advanced-testimonial-carousel-for-elementor' );
+	
 	}
 
 	/**
@@ -128,7 +132,7 @@ final class AdvancedTestimonialCarousel
 	 *
 	 * Fired by `plugins_loaded` action hook.
 	 *
-	 * @since 3.1.2
+	 * @since 4.0.0
 	 *
 	 * @access public
 	 */
@@ -141,9 +145,9 @@ final class AdvancedTestimonialCarousel
 		if ( $this->is_compatible() ) {
 			add_action( 'elementor/init', [ $this, 'init' ] );
 
-			if (defined('ATCPRO_DIR_FILE')) {
-				if (!class_exists(ATCPRO\Services\ATCWidgetPro::class)) {
-					require_once(ATCPRO_DIR_PATH.'Services/slider-widget.php');
+			if ( defined( 'ATCPRO_DIR_FILE' ) ) {
+				if ( ! class_exists( \ATCPRO\Services\ATCWidgetPro::class ) ) {			
+					require_once ATCPRO_DIR_PATH . 'Services/slider-widget.php';
 				}
 			}
 		}
@@ -232,7 +236,7 @@ final class AdvancedTestimonialCarousel
 	 * Checks if the installed version of Elementor meets the plugin's minimum requirement.
 	 * Checks if the installed PHP version meets the plugin's minimum requirement.
 	 *
-	 * @since 3.1.2
+	 * @since 4.0.0
 	 *
 	 * @access public
 	 */
@@ -267,13 +271,13 @@ final class AdvancedTestimonialCarousel
 	 *
 	 * Fired by `plugins_loaded` action hook.
 	 *
-	 * @since 3.1.2
+	 * @since 4.0.0
 	 *
 	 * @access public
 	 */
 	public function init() {
 		
-		include('load.php');
+		// include('load.php');
 	
 		$this->loadTextDomain();
 
@@ -285,18 +289,18 @@ final class AdvancedTestimonialCarousel
 		add_action( 'elementor/widgets/widgets_registered', [ $this, 'init_widgets' ] );
 		
 		add_action('elementor/frontend/after_enqueue_styles', function() {
-			wp_enqueue_style( 'atc-swiper-css', plugin_dir_url( __FILE__ ). 'assets/css/atc-testimonial.css', array(), ATC_PLUGIN_VERSION);
+			wp_enqueue_style( 'atc-swiper-css', plugin_dir_url( __FILE__ ). 'assets/css/atc-testimonial.css', array(), ATCFE_PLUGIN_VERSION);
 		});
 		
-		add_filter( 'plugin_action_links_'.ATC_PLUGIN_FILE_PATH, [$this, 'atcPluginAction'], 10, 1 );
+		add_filter( 'plugin_action_links_'.ATCFE_PLUGIN_FILE_PATH, [$this, 'atcPluginAction'], 10, 1 );
 
 		add_action('elementor/editor/after_enqueue_styles', function() {
-			wp_enqueue_style( 'atc-editor-css', plugin_dir_url( __FILE__ ). 'assets/css/atc-editor.css', array(), ATC_PLUGIN_VERSION);
+			wp_enqueue_style( 'atc-editor-css', plugin_dir_url( __FILE__ ). 'assets/css/atc-editor.css', array(), ATCFE_PLUGIN_VERSION);
 		});
 
 		// after_enqueue_scripts
 		add_action('elementor/frontend/after_enqueue_scripts', function() {
-			wp_enqueue_script( 'atc-swiper-js', plugin_dir_url( __FILE__ ). 'assets/js/atc-testimonial.js', array('jquery'), ATC_PLUGIN_VERSION, true);
+			wp_enqueue_script( 'atc-swiper-js', plugin_dir_url( __FILE__ ). 'assets/js/atc-testimonial.js', array('jquery'), ATCFE_PLUGIN_VERSION, true);
 			
 			wp_localize_script('atc-swiper-js', 'atcSwiperVar', array(
                 'has_pro' => defined('ATCPRO')
@@ -307,22 +311,19 @@ final class AdvancedTestimonialCarousel
 
 	public function adminHooks(){
 
-		add_action( 'admin_enqueue_scripts', array($this, 'enqueueScripts') );
-		
-		if (defined('ATCPRO')) {
-			add_action('wp_ajax_atc_pro_lincese_ajax_actions', function() {
-				$licenseController = new ATCPRO\Classes\LicenseController();
-				$licenseController->handleAjaxCalls();
-			});
+		if ( defined( 'ATCPRO' ) && class_exists( \ATCPRO\Classes\LicenseController::class ) ) {
+			$licenseController = new \ATCPRO\Classes\LicenseController();		
+			$licenseController->handleAjaxCalls();
 		}
-		
-		add_action('wp_ajax_atc_pro_setup_addons', function() {
-			$setupController = new ATC\Classes\SetupController();
-			$setupController->handleAjaxCalls();
-		});
+
+		$setupController = new ATCFE\Http\Controllers\SetupController();
+		$setupController->register();
+
+		$googleReviewsSettingsController = new ATCFE\Http\Controllers\GoogleReviewsSettingsController();
+		$googleReviewsSettingsController->register();
 
 	    if (defined('ELEMENTOR_VERSION')) {
-			add_action('admin_init', [new ATC\Classes\AdminPageHandler(), 'initialLoad']);
+			add_action('admin_init', [new ATCFE\Handlers\AdminPageHandler(), 'initialLoad']);
 		}
 
 		add_action( 'admin_notices', [$this, 'atc_admin_notice'] );
@@ -366,25 +367,12 @@ final class AdvancedTestimonialCarousel
 		}
 	}
 
-	
-
-	public static function enqueueScripts()
-    {
-		wp_enqueue_style( 'atc-admin-css', ATC_PLUGIN_URL.'assets/css/atc-admin.css', array(), ATC_PLUGIN_VERSION);
-		wp_enqueue_script( 'atc-admin-js', ATC_PLUGIN_URL.'assets/js/atc-admin.js', array('jquery'), ATC_PLUGIN_VERSION, true);
-        wp_localize_script('atc-admin-js', 'atcProVar', [
-			'ajaxurl' => admin_url( 'admin-ajax.php' ),
-			'has_pro' => defined('ATCPRO'),
-			'nonce' => wp_create_nonce('atc_nonce')
-		]);
-    }
-
 	/**
 	 * Init Widgets
 	 *
 	 * Include widgets files and register them
 	 *
-	 * @since 3.1.2
+	 * @since 4.0.0
 	 *
 	 * @access public
 	 */
@@ -394,12 +382,12 @@ final class AdvancedTestimonialCarousel
 		require_once( __DIR__ . '/widgets/atc-testimonial-widget.php' );
 
 		// Register widget
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new ATC\Classes\Widgets\ATCTestimonialWidget() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new ATCFE\Classes\Widgets\ATCTestimonialWidget() );
 	}
 
 	public function loadTextDomain()
     {
-        load_plugin_textdomain('advanced-testimonial-carousel-for-elementor', false, basename(dirname(__FILE__)) . '/languages');
+       
 	}
 	
 	
@@ -408,13 +396,15 @@ final class AdvancedTestimonialCarousel
 	 *
 	 * Warning when the site doesn't have Elementor installed or activated.
 	 *
-	 * @since 3.1.2
+	 * @since 4.0.0
 	 *
 	 * @access public
 	 */
 	public function admin_notice_missing_main_plugin() {
-
-		if ( isset($_GET['activate']) ) unset( $_GET['activate'] );
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- WordPress activation parameter.
+		if ( isset( $_GET['activate'] ) ) {
+			unset( $_GET['activate'] );
+		}
 
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: Elementor */
@@ -431,13 +421,15 @@ final class AdvancedTestimonialCarousel
 	 *
 	 * Warning when the site doesn't have a minimum required Elementor version.
 	 *
-	 * @since 3.1.2
+	 * @since 4.0.0
 	 *
 	 * @access public
 	 */
 	public function admin_notice_minimum_elementor_version() {
-
-		if ( isset($_GET['activate']) ) unset( $_GET['activate'] );
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- WordPress activation parameter.
+		if ( isset($_GET['activate']) ) {
+			unset( $_GET['activate'] );
+		} 
 
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: Elementor 3: Required Elementor version */
@@ -455,14 +447,16 @@ final class AdvancedTestimonialCarousel
 	 *
 	 * Warning when the site doesn't have a minimum required PHP version.
 	 *
-	 * @since 3.1.2
+	 * @since 4.0.0
 	 *
 	 * @access public
 	 */
 	public function admin_notice_minimum_php_version() {
-
-		if ( isset($_GET['activate']) ) unset( $_GET['activate'] );
-
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- WordPress activation parameter.
+		if ( isset($_GET['activate']) ) {
+			unset( $_GET['activate'] );
+		}
+			
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: PHP 3: Required PHP version */
 			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'advanced-testimonial-carousel-for-elementor' ),
@@ -478,8 +472,17 @@ final class AdvancedTestimonialCarousel
 
 AdvancedTestimonialCarousel::instance();
 
-function atcDeactivatePlugin() {
+
+register_activation_hook(__FILE__, function ($network_wide) {
+    require_once(ATCFE_PLUGIN_DIR_PATH . 'app/Handlers/ActivationHandler.php');
+    ATCFE\Handlers\ActivationHandler::activate($network_wide);
+});
+
+
+register_deactivation_hook(__FILE__, function ($network_wide) {
 	$user_id = get_current_user_id();
 	update_user_meta($user_id, 'atc-notice-dismissed', 'active');
-}
-register_deactivation_hook( __FILE__, 'atcDeactivatePlugin' );
+
+    require_once(ATCFE_PLUGIN_DIR_PATH . 'app/Handlers/DeactivationHandler.php');
+    ATCFE\Handlers\DeactivationHandler::deActivate($network_wide);
+});

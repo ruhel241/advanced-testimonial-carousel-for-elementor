@@ -1,11 +1,45 @@
 let mix = require('laravel-mix');
+
 mix.setPublicPath('assets');
+mix.setResourceRoot('../');
 
-mix.copy('resources/images', 'assets/images');
-mix.sass('./resources/sass/atc-testimonial.scss', './assets/css/atc-testimonial.css');
-mix.sass('./resources/sass/atc-editor.scss', './assets/css/atc-editor.css');
-mix.sass('./resources/sass/atc-admin.scss', './assets/css/atc-admin.css');
+mix.copy('resources/admin/images', 'assets/images');
 
-mix.js('resources/js/atc-testimonial.js', 'assets/js/atc-testimonial.js');
-mix.js('resources/js/atc-admin.js', 'assets/js/atc-admin.js');
+mix.sass(
+    'resources/sass/atc-testimonial.scss',
+    'css/atc-testimonial.css'
+);
 
+mix.sass(
+    'resources/sass/atc-editor.scss',
+    'css/atc-editor.css'
+);
+
+mix.sass(
+    'resources/sass/atc-admin.scss',
+    'css/atc-admin.css'
+);
+
+mix.js(
+    'resources/admin/boot.js',
+    'js/boot.js'
+);
+
+mix.js(
+    'resources/admin/start.js',
+    'js/start.js'
+).vue({
+    version: 2
+});
+
+mix.js(
+    'resources/admin/atc-testimonial.js',
+    'js/atc-testimonial.js'
+);
+
+mix.js(
+    'resources/admin/atc-admin.js',
+    'js/atc-admin.js'
+);
+
+module.exports = mix;
