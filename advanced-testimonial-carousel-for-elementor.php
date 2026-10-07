@@ -147,7 +147,7 @@ final class AdvancedTestimonialCarousel
 
 			if ( defined( 'ATCPRO_DIR_FILE' ) ) {
 				if ( ! class_exists( \ATCPRO\Services\ATCWidgetPro::class ) ) {			
-					require_once ATCPRO_DIR_PATH . 'Services/slider-widget.php';
+					require_once ATCPRO_DIR_PATH . 'App/Services/ATCWidgetPro.php';
 				}
 			}
 		}
@@ -277,8 +277,6 @@ final class AdvancedTestimonialCarousel
 	 */
 	public function init() {
 		
-		// include('load.php');
-	
 		$this->loadTextDomain();
 
 		if ( is_admin() ) {
@@ -311,7 +309,7 @@ final class AdvancedTestimonialCarousel
 
 	public function adminHooks(){
 
-		if ( defined( 'ATCPRO' ) && class_exists( \ATCPRO\Classes\LicenseController::class ) ) {
+		if ( defined('ATCPRO') && class_exists( \ATCPRO\Classes\LicenseController::class ) ) {
 			$licenseController = new \ATCPRO\Classes\LicenseController();		
 			$licenseController->handleAjaxCalls();
 		}
@@ -472,12 +470,10 @@ final class AdvancedTestimonialCarousel
 
 AdvancedTestimonialCarousel::instance();
 
-
 register_activation_hook(__FILE__, function ($network_wide) {
     require_once(ATCFE_PLUGIN_DIR_PATH . 'app/Handlers/ActivationHandler.php');
     ATCFE\Handlers\ActivationHandler::activate($network_wide);
 });
-
 
 register_deactivation_hook(__FILE__, function ($network_wide) {
 	$user_id = get_current_user_id();

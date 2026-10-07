@@ -1093,7 +1093,7 @@ class ATCTestimonialWidget extends Widget_Base
         $customReviewsDisplay = "yes";
         $googleReviewsDisplay = 'yes';
 
-        if (defined( 'ATCPRO' )) {
+        if (defined('ATCPRO')) {
             $customReviewsDisplay = $settings['atc_custom_reviews_show_option'];
             $googleReviewsDisplay = $settings['atc_google_reviews_show_option'];
         }
@@ -1122,14 +1122,13 @@ class ATCTestimonialWidget extends Widget_Base
         $authorNameDisplay        = 'yes';
         $companyNameDisplay       = 'yes';
         $dateDisplay              = 'yes';
-        $googlePlacesTotalReviews = '';
-        $headingTotalRating       = '';
+        $googleHeadingTotalRating = '';
         $assetsImagesURL          = ATCFE_PLUGIN_URL.'assets/images/';
         $googleLogoDisplay        = '';
         $customReviewsDisplay     = 'yes';
         $googleReviewsDisplay     = 'yes';
 
-        $template = defined( 'ATCPRO' ) ? ( $settings['atc_layout'] ?? 'template-1' ) : 'template-1';
+        $template = defined('ATCPRO') ? ( $settings['atc_layout'] ?? 'template-1' ) : 'template-1';
 
         /*
         * Slider attributes.
@@ -1152,28 +1151,28 @@ class ATCTestimonialWidget extends Widget_Base
         /*
         * Pro settings.
         */
-        if ( defined( 'ATCPRO' ) ) {
-            $template           = $settings['atc_layout'] ?? 'template-1';
-            $loop               = ( ( $settings['atc_testimonial_loop'] ?? '' ) === 'yes') ? 'true' : 'false';
-            $autoPlay           = ( ( $settings['atc_testimonial_autoplay'] ?? '' ) === 'yes' ) ? 'true' : 'false';
-            $arrows             = $settings['atc_testimonial_nav'] ?? 'yes';
-            $dots               = $settings['atc_testimonial_dots'] ?? 'yes';
-            $autoHeight         = (( $settings['atc_slider_auto_height'] ?? '' ) === 'yes') ? 'true' : 'false';
-            $sliderPerView      = empty($settings['atc_slider_per_view']) ? '1': $settings['atc_slider_per_view'];
-            $sliderPerGroup     = $settings['atc_slider_per_group'] ?? 1;
-            $sliderSpaceBetween = $settings['atc_slider_space_between'] ?? 30;
-            $imageDisplay       = $settings['atc_image_display'] ?? 'yes';
-            $authorNameDisplay  = $settings['atc_author_name_display'] ?? 'yes';
-            $companyNameDisplay = $settings['atc_company_name_display'] ?? 'yes';
-            $dateDisplay        = $settings['atc_date_display'] ?? 'yes';
-            $ratingDisplay      = $settings['atc_rating_display'] ?? 'yes';
-            $quotationDisplay   = $settings['atc_quotation_display'] ?? 'yes';
-            $sliderSpeed        = $settings['atc_testimonial_slide_speed'] ?? 300;
-            $reviewsLimit       = $settings['atc_reviews_limit'] ?? '';
-            $headingTotalRating = $settings['atc_google_review_heading_total_rating'] ?? '';
-            $googleLogoDisplay  = $settings['atc_google_logo_display'] ?? '';
-            $customReviewsDisplay = $settings['atc_custom_reviews_show_option'];
-            $googleReviewsDisplay = $settings['atc_google_reviews_show_option'];
+        if ( defined('ATCPRO') ) {
+            $template                 = $settings['atc_layout'] ?? 'template-1';
+            $loop                     = ( ( $settings['atc_testimonial_loop'] ?? '' ) === 'yes') ? 'true' : 'false';
+            $autoPlay                 = ( ( $settings['atc_testimonial_autoplay'] ?? '' ) === 'yes' ) ? 'true' : 'false';
+            $arrows                   = $settings['atc_testimonial_nav'] ?? 'yes';
+            $dots                     = $settings['atc_testimonial_dots'] ?? 'yes';
+            $autoHeight               = (( $settings['atc_slider_auto_height'] ?? '' ) === 'yes') ? 'true' : 'false';
+            $sliderPerView            = empty($settings['atc_slider_per_view']) ? '1': $settings['atc_slider_per_view'];
+            $sliderPerGroup           = $settings['atc_slider_per_group'] ?? 1;
+            $sliderSpaceBetween       = $settings['atc_slider_space_between'] ?? 30;
+            $imageDisplay             = $settings['atc_image_display'] ?? 'yes';
+            $authorNameDisplay        = $settings['atc_author_name_display'] ?? 'yes';
+            $companyNameDisplay       = $settings['atc_company_name_display'] ?? 'yes';
+            $dateDisplay              = $settings['atc_date_display'] ?? 'yes';
+            $ratingDisplay            = $settings['atc_rating_display'] ?? 'yes';
+            $quotationDisplay         = $settings['atc_quotation_display'] ?? 'yes';
+            $sliderSpeed              = $settings['atc_testimonial_slide_speed'] ?? 300;
+            $reviewsLimit             = $settings['atc_reviews_limit'] ?? '';
+            $googleHeadingTotalRating = $settings['atc_google_review_heading_total_rating'] ?? '';
+            $googleLogoDisplay        = $settings['atc_google_logo_display'] ?? '';
+            $customReviewsDisplay     = $settings['atc_custom_reviews_show_option'];
+            $googleReviewsDisplay     = $settings['atc_google_reviews_show_option'];
 
 
             // dafault if template-7
@@ -1250,10 +1249,10 @@ class ATCTestimonialWidget extends Widget_Base
                     $review = (array) $review;
                     return [
                         'atc_content' => wp_kses_post( $review['review_text'] ?? '' ),
-                        'atc_name' => sanitize_text_field( $review['author_name'] ?? '' ),
-                        '_id' => sanitize_text_field(  $review['review_id'] ?? '' ),
-                        'atc_title' => '',
-                        'atc_date'  => sanitize_text_field(  $review['review_time'] ?? '' ),
+                        'atc_name'    => sanitize_text_field( $review['author_name'] ?? '' ),
+                        '_id'         => sanitize_text_field(  $review['review_id'] ?? '' ),
+                        'atc_title'   => '',
+                        'atc_date'    => sanitize_text_field(  $review['review_time'] ?? '' ),
                         'atc_image' => [
                             'url' => esc_url_raw(
                                 $review['author_photo'] ?? ''
@@ -1261,9 +1260,9 @@ class ATCTestimonialWidget extends Widget_Base
                             'id'   => '',
                             'size' => '',
                         ],
-                        'atc_pro_rating_scale' => 5,
-                        'atc_pro_rating' => (float) ( $review['rating'] ?? 0 ),
-                        'atc_pro_star_style' => 'star_fontawesome',
+                        'atc_pro_rating_scale'        => 5,
+                        'atc_pro_rating'              => (float) ( $review['rating'] ?? 0 ),
+                        'atc_pro_star_style'          => 'star_fontawesome',
                         'atc_pro_unmarked_star_style' => 'solid',
                     ];
                 },
@@ -1328,7 +1327,7 @@ class ATCTestimonialWidget extends Widget_Base
         ?>
       
         <div <?php echo wp_kses_post($render_attributes); ?>>
-            <?php if ( $headingTotalRating === 'yes' && !empty( $place_id ) ): ?>
+            <?php if ( $googleHeadingTotalRating === 'yes' && !empty( $place_id ) ): ?>
                 <div class="atc-google-reviews-ratings">
                     <h2 class="title">Google Reviews ⭐ 
                         <?php 
@@ -1365,7 +1364,7 @@ class ATCTestimonialWidget extends Widget_Base
 
                                     <?php
 
-                                    if ( defined( 'ATCPRO' ) && 'yes' === $quotationDisplay && ! empty( $content ) ) {
+                                    if ( defined('ATCPRO') && 'yes' === $quotationDisplay && ! empty( $content ) ) {
                                         ( new ATCWidgetPro() )->quotationIconRender( $this );
                                     }
 
@@ -1402,7 +1401,7 @@ class ATCTestimonialWidget extends Widget_Base
 
                                     <?php
 
-                                    if ( defined( 'ATCPRO' ) && 'yes' === $quotationDisplay && ! empty( $content ) ) {
+                                    if ( defined('ATCPRO') && 'yes' === $quotationDisplay && ! empty( $content ) ) {
                                         ( new ATCWidgetPro() )->quotationRightIconRender( $this );
                                     }
 
@@ -1442,7 +1441,7 @@ class ATCTestimonialWidget extends Widget_Base
                                             </p>
                                         <?php endif; ?>
                                         <?php
-                                            if ( defined( 'ATCPRO' ) && 'yes' === $ratingDisplay ) {
+                                            if ( defined('ATCPRO') && 'yes' === $ratingDisplay ) {
                                                 ( new ATCWidgetPro() )->ratingRender( $item, $this );
                                             }
                                         ?>
@@ -1473,7 +1472,7 @@ class ATCTestimonialWidget extends Widget_Base
 
                                         <?php
 
-                                        if ( defined( 'ATCPRO' ) && 'yes' === $quotationDisplay && ! empty( $content ) ) {
+                                        if ( defined('ATCPRO') && 'yes' === $quotationDisplay && ! empty( $content ) ) {
                                             ( new ATCWidgetPro() )->quotationIconRender( $this );
                                         }
 
@@ -1510,7 +1509,7 @@ class ATCTestimonialWidget extends Widget_Base
 
                                         <?php
 
-                                        if ( defined( 'ATCPRO' ) && 'yes' === $quotationDisplay && ! empty( $content ) ) {
+                                        if ( defined('ATCPRO') && 'yes' === $quotationDisplay && ! empty( $content ) ) {
                                             ( new ATCWidgetPro() )->quotationRightIconRender( $this );
                                         }
 
@@ -1545,7 +1544,7 @@ class ATCTestimonialWidget extends Widget_Base
                                     <?php endif; ?>
 
                                     <?php
-                                    if ( defined( 'ATCPRO' ) && 'yes' === $ratingDisplay ) {
+                                    if ( defined('ATCPRO') && 'yes' === $ratingDisplay ) {
                                         ( new ATCWidgetPro() )->ratingRender( $item, $this );
                                     }
                                     ?>

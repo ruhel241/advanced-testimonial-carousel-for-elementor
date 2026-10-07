@@ -17,7 +17,7 @@ You can customize image, name, describes, title. Additional options etc.
 
 == Features ==  
 
-* 6 layouts (Slider)
+* 8 layouts (Slider)
 * Auto Play
 * Enable Loop
 * Enable Nav
@@ -31,6 +31,15 @@ You can customize image, name, describes, title. Additional options etc.
 * Rating (Pro)
 * Image Border & Box Shadaw (Pro)
 * Testimonial Background color & Gradient Color (Pro)
+* Google Reviews
+* Google Heading Rating display (Pro)
+* Google Reviews Auto Fetch (Pro)
+* Google Reviews Enable/Disabl (Pro)
+* Custom Reviews Enable/Disable (pro)
+* Google Reviews Sorting (Pro)
+* Google Reviews 5 star 4 star set (Pro)
+* Google Reviews Date Sorting (Pro)
+* Added New Templates (Pro)
 
 == Installation ==
 
@@ -81,7 +90,7 @@ Yes you can style dots, dots size change.
 10. Layout Image Default with Gradient color (Pro)
 11. Gradient color & Box Shadaw (Pro)
 12. Box Shadaw & Rating (Pro)
-13. Template 6 New Features (Pro)
+13. Template 8 New Features (Pro)
 
 == Changelog ==
 
