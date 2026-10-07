@@ -21,7 +21,7 @@ echo "📦 Copying production files..."
 
 cp -r app $DIST_DIR/
 cp -r assets $DIST_DIR/
-cp -r database $DIST_DIR/
+cp -r Database $DIST_DIR/
 cp -r widgets $DIST_DIR/
 cp -r languages $DIST_DIR/ 2>/dev/null
 cp advanced-testimonial-carousel-for-elementor.php $DIST_DIR/
