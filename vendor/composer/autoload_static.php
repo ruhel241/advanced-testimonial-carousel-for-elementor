@@ -21,6 +21,13 @@ class ComposerStaticInitc320eb8340fc43ddd606a231b7310a7a
     );
 
     public static $classMap = array (
+        'ATCFE\\Handlers\\ActivationHandler' => __DIR__ . '/../..' . '/app/Handlers/ActivationHandler.php',
+        'ATCFE\\Handlers\\AdminPageHandler' => __DIR__ . '/../..' . '/app/Handlers/AdminPageHandler.php',
+        'ATCFE\\Handlers\\DeactivationHandler' => __DIR__ . '/../..' . '/app/Handlers/DeactivationHandler.php',
+        'ATCFE\\Http\\Controllers\\GoogleReviewsSettingsController' => __DIR__ . '/../..' . '/app/Http/Controllers/GoogleReviewsSettingsController.php',
+        'ATCFE\\Http\\Controllers\\SetupController' => __DIR__ . '/../..' . '/app/Http/Controllers/SetupController.php',
+        'ATCFE\\Models\\GooglePlaces' => __DIR__ . '/../..' . '/app/Models/GooglePlaces.php',
+        'ATCFE\\Models\\GoogleReviews' => __DIR__ . '/../..' . '/app/Models/GoogleReviews.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
 

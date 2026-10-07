@@ -6,5 +6,12 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'ATCFE\\Handlers\\ActivationHandler' => $baseDir . '/app/Handlers/ActivationHandler.php',
+    'ATCFE\\Handlers\\AdminPageHandler' => $baseDir . '/app/Handlers/AdminPageHandler.php',
+    'ATCFE\\Handlers\\DeactivationHandler' => $baseDir . '/app/Handlers/DeactivationHandler.php',
+    'ATCFE\\Http\\Controllers\\GoogleReviewsSettingsController' => $baseDir . '/app/Http/Controllers/GoogleReviewsSettingsController.php',
+    'ATCFE\\Http\\Controllers\\SetupController' => $baseDir . '/app/Http/Controllers/SetupController.php',
+    'ATCFE\\Models\\GooglePlaces' => $baseDir . '/app/Models/GooglePlaces.php',
+    'ATCFE\\Models\\GoogleReviews' => $baseDir . '/app/Models/GoogleReviews.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
 );
