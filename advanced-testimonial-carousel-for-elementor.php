@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Advanced Testimonial Carousel For Elementor
  * Description: Advanced Testimonial Carousel for elementor WordPress plugin
- * Version:     4.0.0
+ * Version:     4.0.1
  * Author:      wpcreativeidea
  * Author URI:  https://wpcreativeidea.com/home
  * Plugin URI:  https://wpcreativeidea.com/testimonial
@@ -20,13 +20,13 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * The main class that initiates and runs the plugin.
  *
- * @since 4.0.0
+ * @since 4.0.1
  */
 
 define('ATCFE_DIR_FILE', __FILE__);
 define('ATCFE_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('ATCFE_LITE', 'advancedTestimonialLite');
-define('ATCFE_PLUGIN_VERSION', '4.0.0');
+define('ATCFE_PLUGIN_VERSION', '4.0.1');
 define('ATCFE_PLUGIN_FILE_PATH', plugin_basename(__FILE__));
 define("ATCFE_PLUGIN_DIR_PATH", plugin_dir_path(__FILE__));
 
@@ -39,16 +39,16 @@ final class AdvancedTestimonialCarousel
 	/**
 	 * Plugin Version
 	 *
-	 * @since 4.0.0
+	 * @since 4.0.1
 	 *
 	 * @var string The plugin version.
 	 */
-	const VERSION = '4.0.0';
+	const VERSION = '4.0.1';
 
 	/**
 	 * Minimum Elementor Version
 	 *
-	 * @since 4.0.0
+	 * @since 4.0.1
 	 *
 	 * @var string Minimum Elementor version required to run the plugin.
 	 */
@@ -57,7 +57,7 @@ final class AdvancedTestimonialCarousel
 	/**
 	 * Minimum PHP Version
 	 *
-	 * @since 4.0.0
+	 * @since 4.0.1
 	 *
 	 * @var string Minimum PHP version required to run the plugin.
 	 */
@@ -66,7 +66,7 @@ final class AdvancedTestimonialCarousel
 	/**
 	 * Instance
 	 *
-	 * @since 4.0.0
+	 * @since 4.0.1
 	 *
 	 * @access private
 	 * @static
@@ -81,7 +81,7 @@ final class AdvancedTestimonialCarousel
 	 *
 	 * Ensures only one instance of the class is loaded or can be loaded.
 	 *
-	 * @since 4.0.0
+	 * @since 4.0.1
 	 *
 	 * @access public
 	 * @static
@@ -101,7 +101,7 @@ final class AdvancedTestimonialCarousel
 	/**
 	 * Constructor
 	 *
-	 * @since 4.0.0
+	 * @since 4.0.1
 	 *
 	 * @access public
 	 */
@@ -116,7 +116,7 @@ final class AdvancedTestimonialCarousel
 	 *
 	 * Fired by `init` action hook.
 	 *
-	 * @since 4.0.0
+	 * @since 4.0.1
 	 *
 	 * @access public
 	 */
@@ -132,7 +132,7 @@ final class AdvancedTestimonialCarousel
 	 *
 	 * Fired by `plugins_loaded` action hook.
 	 *
-	 * @since 4.0.0
+	 * @since 4.0.1
 	 *
 	 * @access public
 	 */
@@ -236,7 +236,7 @@ final class AdvancedTestimonialCarousel
 	 * Checks if the installed version of Elementor meets the plugin's minimum requirement.
 	 * Checks if the installed PHP version meets the plugin's minimum requirement.
 	 *
-	 * @since 4.0.0
+	 * @since 4.0.1
 	 *
 	 * @access public
 	 */
@@ -271,7 +271,7 @@ final class AdvancedTestimonialCarousel
 	 *
 	 * Fired by `plugins_loaded` action hook.
 	 *
-	 * @since 4.0.0
+	 * @since 4.0.1
 	 *
 	 * @access public
 	 */
@@ -370,7 +370,7 @@ final class AdvancedTestimonialCarousel
 	 *
 	 * Include widgets files and register them
 	 *
-	 * @since 4.0.0
+	 * @since 4.0.1
 	 *
 	 * @access public
 	 */
@@ -394,7 +394,7 @@ final class AdvancedTestimonialCarousel
 	 *
 	 * Warning when the site doesn't have Elementor installed or activated.
 	 *
-	 * @since 4.0.0
+	 * @since 4.0.1
 	 *
 	 * @access public
 	 */
@@ -419,7 +419,7 @@ final class AdvancedTestimonialCarousel
 	 *
 	 * Warning when the site doesn't have a minimum required Elementor version.
 	 *
-	 * @since 4.0.0
+	 * @since 4.0.1
 	 *
 	 * @access public
 	 */
@@ -445,7 +445,7 @@ final class AdvancedTestimonialCarousel
 	 *
 	 * Warning when the site doesn't have a minimum required PHP version.
 	 *
-	 * @since 4.0.0
+	 * @since 4.0.1
 	 *
 	 * @access public
 	 */

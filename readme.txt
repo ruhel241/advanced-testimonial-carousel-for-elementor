@@ -1,14 +1,14 @@
 === Advanced Testimonial Carousel For Elementor ===
 Contributors: ruhel241, wpcreativeidea
-Tags: elementor, elementor testimonial carousel, testimonial, reviews, google reviews, slider, elementor widget
+Tags: elementor, reviews, testimonial, google reviews, slider,
 Requires at least: 5.0
-Tested up to: 7.1.3
+Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 4.0.0
+Stable tag: 4.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Create beautiful testimonial and review carousels with Elementor. Add custom testimonials or display Google Reviews with multiple business locations, flexible layouts, responsive controls, styling options, and more.
+Create beautiful testimonial and review carousels with Elementor. Add custom testimonials or display Google Reviews with multiple business locations.
 
 == Description ==
 
@@ -292,6 +292,10 @@ Yes. You can configure and style navigation arrows and pagination dots.
 
 == Changelog ==
 
+= 4.0.1 (DATE: November 25, 2026) =
+* Media Issue Fix
+* _.pluck js Issue Fix
+
 = 4.0.0 (DATE: October 07, 2026) =
 * Added Google Reviews integration.
 * Added Google Business Place ID support.
@@ -385,3 +389,7 @@ Yes. You can configure and style navigation arrows and pagination dots.
 
 = 4.0.0 =
 Google Reviews are now available in the Pro version. Configure your Google API Key and add one or multiple Google Place IDs to display reviews from your business locations.
+
+= 4.0.1 (DATE: November 25, 2026) =
+* Media Issue Fix
+* _.pluck js Issue Fix

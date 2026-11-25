@@ -38,6 +38,12 @@ class AdminPageHandler {
 
 	public function enqueueScripts()
 	{
+		// Only load on Elementor > Settings.
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( ! isset( $_GET['page'] ) || 'elementor-settings' !== $_GET['page'] ) {
+			return;
+		}
+
 		wp_enqueue_style(
 			'atc-admin-css',
 			ATCFE_PLUGIN_URL . 'assets/css/atc-admin.css',

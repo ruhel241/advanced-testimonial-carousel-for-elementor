@@ -2,6 +2,8 @@ import routes from './Bits/routes';
 import Application from './Application.vue';
 
 const vueRouter = new window.AdvancedTestimonialCarousel.Router({
+    // 'abstract' never touches location.hash (hash mode appended "#/" and broke Elementor's tab switching)
+    mode: 'abstract',
     routes: window.AdvancedTestimonialCarousel.applyFilters(
         'atc_global_routes',
         routes
